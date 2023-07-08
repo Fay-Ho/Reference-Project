@@ -41,6 +41,20 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ```
 
+#### Reference-Model-Generator
+---
+The `Perl` project for auto generate data model.
+
+The sample
+
+- Java (Model.java)
+
+- Kotlin (Model.kotlin)
+
+- Objective-C (FRModel.h, FRModel.m)
+
+- Swift (Model.swift)
+
 #### Reference-Parcelize-Plugin
 ---
 The `Intellij IDEA` / `Android Studio` plugin project for solve the code show error where `Java` project using `@Parcelize` `(xyz.fay.parcel.Parcelize)` annotation.
