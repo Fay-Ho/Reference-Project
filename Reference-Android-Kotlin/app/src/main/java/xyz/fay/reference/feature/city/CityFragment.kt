@@ -1,28 +1,24 @@
 package xyz.fay.reference.feature.city
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.databinding.CityFragmentBinding
+import kotlin.reflect.KClass
 
-class CityFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val viewModel = ViewModelProvider(this)[CityViewModel::class.java]
-        val binding = CityFragmentBinding.inflate(inflater, container, false)
-        observeCityResponse(viewModel, binding)
-        return binding.root
-    }
+class CityFragment : BaseFragment<CityFragmentBinding, CityViewModel>() {
+    private val args: CityFragmentArgs by navArgs()
 
-    private fun observeCityResponse(viewModel: CityViewModel, binding: CityFragmentBinding) {
-        viewModel.cityResponse.observe(viewLifecycleOwner) {
-            binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            binding.recyclerView.adapter = CityAdapter(it.cities) {
-            }
-        }
-        viewModel.fetchData(requireContext())
+    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
+            CityFragmentBinding.inflate(inflater, container, false)
+
+    override fun createViewModel(): KClass<CityViewModel> =
+            CityViewModel::class
+
+    override fun onCreateView() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = CityAdapter(args.models) {}
     }
 }

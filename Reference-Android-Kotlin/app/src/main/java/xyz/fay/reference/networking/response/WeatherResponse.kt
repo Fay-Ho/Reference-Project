@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class WeatherResponse(
-        val lives: List<WeatherLiveResponse>,
+        val lives: Array<WeatherLiveResponse>,
         val status: String
 ) : Parcelable
 

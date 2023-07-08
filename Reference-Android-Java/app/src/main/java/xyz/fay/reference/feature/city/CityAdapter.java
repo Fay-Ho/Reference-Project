@@ -8,16 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import xyz.fay.reference.databinding.CityAdapterBinding;
 import xyz.fay.reference.networking.response.CityListResponse;
 
-public class CityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final List<CityListResponse> cities;
+public final class CityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final CityListResponse[] cities;
     private final OnClickListener onClickListener;
 
-    public CityAdapter(List<CityListResponse> cities, OnClickListener onClickListener) {
+    public CityAdapter(CityListResponse[] cities, OnClickListener onClickListener) {
         this.cities = cities;
         this.onClickListener = onClickListener;
     }
@@ -39,12 +37,12 @@ public class CityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //        holder.itemView.setOnClickListener(v -> {
 //            onClickListener.onClick();
 //        });
-        ((ViewHolder) holder).nameView.setText(cities.get(position).getName());
+        ((ViewHolder) holder).nameView.setText(cities[position].getName());
     }
 
     @Override
     public int getItemCount() {
-        return cities.size();
+        return cities.length;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

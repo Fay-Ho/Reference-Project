@@ -7,7 +7,7 @@ import xyz.fay.reference.databinding.CityAdapterBinding
 import xyz.fay.reference.networking.response.CityListResponse
 
 class CityAdapter(
-        private val cities: List<CityListResponse>,
+        private val cities: Array<CityListResponse>,
         private val onClick: () -> Unit
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KClass
 
-abstract class BaseFragment<T: ViewBinding, U: ViewModel> : Fragment() {
-    protected lateinit var binding: T
-    protected lateinit var viewModel: U
+abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
+    protected lateinit var binding: VB
+    protected lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = createViewBinding(inflater, container)
@@ -21,9 +21,9 @@ abstract class BaseFragment<T: ViewBinding, U: ViewModel> : Fragment() {
         return binding.root
     }
 
-    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): T
+    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
-    protected abstract fun createViewModel(): KClass<U>
+    protected abstract fun createViewModel(): KClass<VM>
 
     protected abstract fun onCreateView()
 }

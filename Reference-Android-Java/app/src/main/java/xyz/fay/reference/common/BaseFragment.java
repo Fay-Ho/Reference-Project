@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseFragment<T extends ViewBinding, U extends ViewModel> extends Fragment {
-    protected T binding;
-    protected U viewModel;
+public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment {
+    protected VB binding;
+    protected VM viewModel;
 
     @Nullable
     @Override
@@ -26,10 +26,10 @@ public abstract class BaseFragment<T extends ViewBinding, U extends ViewModel> e
     }
 
     @NonNull
-    protected abstract T createViewBinding(LayoutInflater inflater, ViewGroup container);
+    protected abstract VB createViewBinding(LayoutInflater inflater, ViewGroup container);
 
     @NonNull
-    protected abstract Class<U> createViewModel();
+    protected abstract Class<VM> createViewModel();
 
     protected abstract void onCreateView();
 }

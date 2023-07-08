@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CityResponse(
-        val cities: List<CityListResponse>
+        val cities: Array<CityListResponse>
 ) : Parcelable
 
 @Parcelize
