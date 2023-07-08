@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsConfigurator {
+class SettingsConfigurator: FeatureConfigurator {
     func makeViewController() -> UIViewController {
         let interactor = SettingsInteractor()
         let presenter = SettingsPresenter()

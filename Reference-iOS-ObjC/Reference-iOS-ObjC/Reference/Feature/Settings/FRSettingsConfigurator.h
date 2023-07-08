@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FRConfigurator.h"
+#import "FRFeatureConfigurator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRSettingsConfigurator : NSObject <FRConfigurator>
+@interface FRSettingsConfigurator : NSObject <FRFeatureConfigurator>
 
 @end
 

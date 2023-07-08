@@ -7,16 +7,7 @@
 //
 
 #import "FRCityInteractor.h"
-#import "FRNetworkManager.h"
-#import "FRCityResponse.h"
 
 @implementation FRCityInteractor
-
-- (void)fetchData {
-    FRNetworkManager<FRCityResponse *> *manager = [FRNetworkManager manager];
-    [manager getCity:^(FRCityResponse * _Nullable response) {
-        NSLog(@"%@", response.cities);
-    }];
-}
 
 @end

@@ -1,5 +1,5 @@
 //
-//  FRCityConfigurator.h
+//  FRHomeConfigurator.h
 //  Reference-iOS-ObjC
 //
 //  Created by Fay on 2023/7/7.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRCityConfigurator : NSObject <FRFeatureConfigurator>
+@interface FRHomeConfigurator : NSObject <FRFeatureConfigurator>
 
 @end
 

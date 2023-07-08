@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		659F93442A5756C3000F7E2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93432A5756C3000F7E2B /* AppDelegate.m */; };
-		659F934A2A5756C3000F7E2B /* FRMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93492A5756C3000F7E2B /* FRMainViewController.m */; };
-		659F934D2A5756C3000F7E2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659F934B2A5756C3000F7E2B /* Main.storyboard */; };
 		659F934F2A5756C3000F7E2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659F934E2A5756C3000F7E2B /* Assets.xcassets */; };
 		659F93522A5756C3000F7E2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659F93502A5756C3000F7E2B /* LaunchScreen.storyboard */; };
 		659F93552A5756C3000F7E2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93542A5756C3000F7E2B /* main.m */; };
 		659F935F2A5756C3000F7E2B /* Reference_iOS_ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F935E2A5756C3000F7E2B /* Reference_iOS_ObjCTests.m */; };
 		659F936A2A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93692A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m */; };
+		65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */; };
+		65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */; };
 		65F8FD6F2A575DC500C4E686 /* FRWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD6E2A575DC500C4E686 /* FRWeatherResponse.m */; };
 		65F8FD722A575E1200C4E686 /* FRUserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD712A575E1200C4E686 /* FRUserResponse.m */; };
 		65F8FD752A575E2300C4E686 /* FRCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD742A575E2300C4E686 /* FRCityResponse.m */; };
 		65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */; };
-		65F8FD832A57C1C100C4E686 /* FRWeatherPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD822A57C1C100C4E686 /* FRWeatherPresenter.m */; };
-		65F8FD862A57C27400C4E686 /* FRWeatherInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD852A57C27400C4E686 /* FRWeatherInteractor.m */; };
+		65F8FD832A57C1C100C4E686 /* FRHomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD822A57C1C100C4E686 /* FRHomePresenter.m */; };
+		65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD852A57C27400C4E686 /* FRHomeInteractor.m */; };
 		65F8FD892A57C29200C4E686 /* FRCityPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD882A57C29200C4E686 /* FRCityPresenter.m */; };
 		65F8FD8C2A57C2A600C4E686 /* FRCityInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD8B2A57C2A600C4E686 /* FRCityInteractor.m */; };
 		65F8FD8F2A57C38100C4E686 /* FRCityConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD8E2A57C38100C4E686 /* FRCityConfigurator.m */; };
-		65F8FD922A57C38E00C4E686 /* FRWeatherConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD912A57C38E00C4E686 /* FRWeatherConfigurator.m */; };
+		65F8FD922A57C38E00C4E686 /* FRHomeConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD912A57C38E00C4E686 /* FRHomeConfigurator.m */; };
 		65F8FD952A57C39E00C4E686 /* FRUserConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD942A57C39E00C4E686 /* FRUserConfigurator.m */; };
 		65F8FD982A57C3A900C4E686 /* FRSettingsConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD972A57C3A900C4E686 /* FRSettingsConfigurator.m */; };
 		65F8FD9E2A57C46F00C4E686 /* FRSettingsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD9D2A57C46F00C4E686 /* FRSettingsPresenter.m */; };
@@ -34,7 +34,7 @@
 		65F8FDAE2A57C62300C4E686 /* FRCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDAD2A57C62300C4E686 /* FRCityViewController.m */; };
 		65F8FDB12A57C62E00C4E686 /* FRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDB02A57C62E00C4E686 /* FRSettingsViewController.m */; };
 		65F8FDB42A57C63B00C4E686 /* FRUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDB32A57C63B00C4E686 /* FRUserViewController.m */; };
-		65F8FDB72A57C64600C4E686 /* FRWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDB62A57C64600C4E686 /* FRWeatherViewController.m */; };
+		65F8FDB72A57C64600C4E686 /* FRHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDB62A57C64600C4E686 /* FRHomeViewController.m */; };
 		65F8FDBF2A58132C00C4E686 /* Mock.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65F8FDBE2A58132C00C4E686 /* Mock.bundle */; };
 		65F8FDC62A581A3600C4E686 /* FRBundleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDC52A581A3600C4E686 /* FRBundleProvider.m */; };
 		65F8FDF82A58515B00C4E686 /* FRNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FDF72A58515B00C4E686 /* FRNavigator.m */; };
@@ -63,9 +63,6 @@
 		659F933F2A5756C3000F7E2B /* Reference-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reference-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F93422A5756C3000F7E2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		659F93432A5756C3000F7E2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		659F93482A5756C3000F7E2B /* FRMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRMainViewController.h; sourceTree = "<group>"; };
-		659F93492A5756C3000F7E2B /* FRMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRMainViewController.m; sourceTree = "<group>"; };
-		659F934C2A5756C3000F7E2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		659F934E2A5756C3000F7E2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		659F93512A5756C3000F7E2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		659F93532A5756C3000F7E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +73,10 @@
 		659F93652A5756C3000F7E2B /* Reference-iOS-ObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reference-iOS-ObjCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F93692A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reference_iOS_ObjCUITests.m; sourceTree = "<group>"; };
 		659F936B2A5756C3000F7E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65AA0C202A5975E800FE3AA0 /* UIColor+FRHex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRHex.h"; sourceTree = "<group>"; };
+		65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRHex.m"; sourceTree = "<group>"; };
+		65AA0C242A5983B900FE3AA0 /* UIColor+FRColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRColor.h"; sourceTree = "<group>"; };
+		65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRColor.m"; sourceTree = "<group>"; };
 		65F8FD6D2A575DC500C4E686 /* FRWeatherResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherResponse.h; sourceTree = "<group>"; };
 		65F8FD6E2A575DC500C4E686 /* FRWeatherResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherResponse.m; sourceTree = "<group>"; };
 		65F8FD702A575E1200C4E686 /* FRUserResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRUserResponse.h; sourceTree = "<group>"; };
@@ -84,18 +85,18 @@
 		65F8FD742A575E2300C4E686 /* FRCityResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityResponse.m; sourceTree = "<group>"; };
 		65F8FD7E2A57B06100C4E686 /* FRNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRNetworkManager.h; sourceTree = "<group>"; };
 		65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRNetworkManager.m; sourceTree = "<group>"; };
-		65F8FD812A57C1C100C4E686 /* FRWeatherPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherPresenter.h; sourceTree = "<group>"; };
-		65F8FD822A57C1C100C4E686 /* FRWeatherPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherPresenter.m; sourceTree = "<group>"; };
-		65F8FD842A57C27400C4E686 /* FRWeatherInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherInteractor.h; sourceTree = "<group>"; };
-		65F8FD852A57C27400C4E686 /* FRWeatherInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherInteractor.m; sourceTree = "<group>"; };
+		65F8FD812A57C1C100C4E686 /* FRHomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomePresenter.h; sourceTree = "<group>"; };
+		65F8FD822A57C1C100C4E686 /* FRHomePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRHomePresenter.m; sourceTree = "<group>"; };
+		65F8FD842A57C27400C4E686 /* FRHomeInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomeInteractor.h; sourceTree = "<group>"; };
+		65F8FD852A57C27400C4E686 /* FRHomeInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRHomeInteractor.m; sourceTree = "<group>"; };
 		65F8FD872A57C29200C4E686 /* FRCityPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityPresenter.h; sourceTree = "<group>"; };
 		65F8FD882A57C29200C4E686 /* FRCityPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityPresenter.m; sourceTree = "<group>"; };
 		65F8FD8A2A57C2A600C4E686 /* FRCityInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityInteractor.h; sourceTree = "<group>"; };
 		65F8FD8B2A57C2A600C4E686 /* FRCityInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityInteractor.m; sourceTree = "<group>"; };
 		65F8FD8D2A57C38100C4E686 /* FRCityConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityConfigurator.h; sourceTree = "<group>"; };
 		65F8FD8E2A57C38100C4E686 /* FRCityConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityConfigurator.m; sourceTree = "<group>"; };
-		65F8FD902A57C38E00C4E686 /* FRWeatherConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherConfigurator.h; sourceTree = "<group>"; };
-		65F8FD912A57C38E00C4E686 /* FRWeatherConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherConfigurator.m; sourceTree = "<group>"; };
+		65F8FD902A57C38E00C4E686 /* FRHomeConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomeConfigurator.h; sourceTree = "<group>"; };
+		65F8FD912A57C38E00C4E686 /* FRHomeConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRHomeConfigurator.m; sourceTree = "<group>"; };
 		65F8FD932A57C39E00C4E686 /* FRUserConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRUserConfigurator.h; sourceTree = "<group>"; };
 		65F8FD942A57C39E00C4E686 /* FRUserConfigurator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRUserConfigurator.m; sourceTree = "<group>"; };
 		65F8FD962A57C3A900C4E686 /* FRSettingsConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRSettingsConfigurator.h; sourceTree = "<group>"; };
@@ -111,15 +112,15 @@
 		65F8FDA82A57C57800C4E686 /* FRCityInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityInterface.h; sourceTree = "<group>"; };
 		65F8FDA92A57C59000C4E686 /* FRSettingsInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRSettingsInterface.h; sourceTree = "<group>"; };
 		65F8FDAA2A57C5EE00C4E686 /* FRUserInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRUserInterface.h; sourceTree = "<group>"; };
-		65F8FDAB2A57C5FC00C4E686 /* FRWeatherInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherInterface.h; sourceTree = "<group>"; };
+		65F8FDAB2A57C5FC00C4E686 /* FRHomeInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomeInterface.h; sourceTree = "<group>"; };
 		65F8FDAC2A57C62300C4E686 /* FRCityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityViewController.h; sourceTree = "<group>"; };
 		65F8FDAD2A57C62300C4E686 /* FRCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityViewController.m; sourceTree = "<group>"; };
 		65F8FDAF2A57C62E00C4E686 /* FRSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRSettingsViewController.h; sourceTree = "<group>"; };
 		65F8FDB02A57C62E00C4E686 /* FRSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRSettingsViewController.m; sourceTree = "<group>"; };
 		65F8FDB22A57C63B00C4E686 /* FRUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRUserViewController.h; sourceTree = "<group>"; };
 		65F8FDB32A57C63B00C4E686 /* FRUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRUserViewController.m; sourceTree = "<group>"; };
-		65F8FDB52A57C64600C4E686 /* FRWeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherViewController.h; sourceTree = "<group>"; };
-		65F8FDB62A57C64600C4E686 /* FRWeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherViewController.m; sourceTree = "<group>"; };
+		65F8FDB52A57C64600C4E686 /* FRHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomeViewController.h; sourceTree = "<group>"; };
+		65F8FDB62A57C64600C4E686 /* FRHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRHomeViewController.m; sourceTree = "<group>"; };
 		65F8FDBE2A58132C00C4E686 /* Mock.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Mock.bundle; sourceTree = "<group>"; };
 		65F8FDC42A581A3600C4E686 /* FRBundleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRBundleProvider.h; sourceTree = "<group>"; };
 		65F8FDC52A581A3600C4E686 /* FRBundleProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRBundleProvider.m; sourceTree = "<group>"; };
@@ -127,7 +128,7 @@
 		65F8FDF72A58515B00C4E686 /* FRNavigator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRNavigator.m; sourceTree = "<group>"; };
 		65F8FDF92A58885F00C4E686 /* FRHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHelper.h; sourceTree = "<group>"; };
 		65F8FDFA2A58885F00C4E686 /* FRHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRHelper.m; sourceTree = "<group>"; };
-		65F8FE042A589C4D00C4E686 /* FRConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRConfigurator.h; sourceTree = "<group>"; };
+		65F8FE042A589C4D00C4E686 /* FRFeatureConfigurator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRFeatureConfigurator.h; sourceTree = "<group>"; };
 		65F8FE062A58B6FB00C4E686 /* NSObject+JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSONModel.h"; sourceTree = "<group>"; };
 		65F8FE072A58B6FB00C4E686 /* NSObject+JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSONModel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,8 +183,6 @@
 			children = (
 				659F93422A5756C3000F7E2B /* AppDelegate.h */,
 				659F93432A5756C3000F7E2B /* AppDelegate.m */,
-				659F93482A5756C3000F7E2B /* FRMainViewController.h */,
-				659F93492A5756C3000F7E2B /* FRMainViewController.m */,
 				659F93532A5756C3000F7E2B /* Info.plist */,
 				65F8FD5B2A575C4000C4E686 /* Reference */,
 				65F8FDBA2A58103500C4E686 /* Resources */,
@@ -209,9 +208,21 @@
 			path = "Reference-iOS-ObjCUITests";
 			sourceTree = "<group>";
 		};
+		65AA0C1F2A5975C300FE3AA0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				65AA0C242A5983B900FE3AA0 /* UIColor+FRColor.h */,
+				65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */,
+				65AA0C202A5975E800FE3AA0 /* UIColor+FRHex.h */,
+				65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		65F8FD5B2A575C4000C4E686 /* Reference */ = {
 			isa = PBXGroup;
 			children = (
+				65AA0C1F2A5975C300FE3AA0 /* Extension */,
 				65F8FD652A575D1900C4E686 /* Feature */,
 				65F8FD662A575D2400C4E686 /* Networking */,
 				65F8FDC22A5819B500C4E686 /* Utils */,
@@ -224,9 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				65F8FD692A575D3E00C4E686 /* City */,
+				65F8FD6C2A575D5500C4E686 /* Home */,
 				65F8FD6A2A575D4200C4E686 /* Settings */,
-				65F8FD6B2A575D4E00C4E686 /* UserInfo */,
-				65F8FD6C2A575D5500C4E686 /* Weather */,
+				65F8FD6B2A575D4E00C4E686 /* User */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -294,7 +305,7 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		65F8FD6B2A575D4E00C4E686 /* UserInfo */ = {
+		65F8FD6B2A575D4E00C4E686 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				65F8FD932A57C39E00C4E686 /* FRUserConfigurator.h */,
@@ -307,23 +318,23 @@
 				65F8FDB22A57C63B00C4E686 /* FRUserViewController.h */,
 				65F8FDB32A57C63B00C4E686 /* FRUserViewController.m */,
 			);
-			path = UserInfo;
+			path = User;
 			sourceTree = "<group>";
 		};
-		65F8FD6C2A575D5500C4E686 /* Weather */ = {
+		65F8FD6C2A575D5500C4E686 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				65F8FD902A57C38E00C4E686 /* FRWeatherConfigurator.h */,
-				65F8FD912A57C38E00C4E686 /* FRWeatherConfigurator.m */,
-				65F8FD842A57C27400C4E686 /* FRWeatherInteractor.h */,
-				65F8FD852A57C27400C4E686 /* FRWeatherInteractor.m */,
-				65F8FDAB2A57C5FC00C4E686 /* FRWeatherInterface.h */,
-				65F8FD812A57C1C100C4E686 /* FRWeatherPresenter.h */,
-				65F8FD822A57C1C100C4E686 /* FRWeatherPresenter.m */,
-				65F8FDB52A57C64600C4E686 /* FRWeatherViewController.h */,
-				65F8FDB62A57C64600C4E686 /* FRWeatherViewController.m */,
+				65F8FD902A57C38E00C4E686 /* FRHomeConfigurator.h */,
+				65F8FD912A57C38E00C4E686 /* FRHomeConfigurator.m */,
+				65F8FD842A57C27400C4E686 /* FRHomeInteractor.h */,
+				65F8FD852A57C27400C4E686 /* FRHomeInteractor.m */,
+				65F8FDAB2A57C5FC00C4E686 /* FRHomeInterface.h */,
+				65F8FD812A57C1C100C4E686 /* FRHomePresenter.h */,
+				65F8FD822A57C1C100C4E686 /* FRHomePresenter.m */,
+				65F8FDB52A57C64600C4E686 /* FRHomeViewController.h */,
+				65F8FDB62A57C64600C4E686 /* FRHomeViewController.m */,
 			);
-			path = Weather;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		65F8FDBA2A58103500C4E686 /* Resources */ = {
@@ -341,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				659F93502A5756C3000F7E2B /* LaunchScreen.storyboard */,
-				659F934B2A5756C3000F7E2B /* Main.storyboard */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -351,7 +361,7 @@
 			children = (
 				65F8FDC42A581A3600C4E686 /* FRBundleProvider.h */,
 				65F8FDC52A581A3600C4E686 /* FRBundleProvider.m */,
-				65F8FE042A589C4D00C4E686 /* FRConfigurator.h */,
+				65F8FE042A589C4D00C4E686 /* FRFeatureConfigurator.h */,
 				65F8FDF92A58885F00C4E686 /* FRHelper.h */,
 				65F8FDFA2A58885F00C4E686 /* FRHelper.m */,
 				65F8FDF62A58515B00C4E686 /* FRNavigator.h */,
@@ -475,7 +485,6 @@
 				659F93522A5756C3000F7E2B /* LaunchScreen.storyboard in Resources */,
 				65F8FDBF2A58132C00C4E686 /* Mock.bundle in Resources */,
 				659F934F2A5756C3000F7E2B /* Assets.xcassets in Resources */,
-				659F934D2A5756C3000F7E2B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,29 +510,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				65F8FDC62A581A3600C4E686 /* FRBundleProvider.m in Sources */,
-				659F934A2A5756C3000F7E2B /* FRMainViewController.m in Sources */,
 				65F8FDAE2A57C62300C4E686 /* FRCityViewController.m in Sources */,
 				65F8FD9E2A57C46F00C4E686 /* FRSettingsPresenter.m in Sources */,
-				65F8FD862A57C27400C4E686 /* FRWeatherInteractor.m in Sources */,
+				65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */,
 				65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */,
 				65F8FDA72A57C4BF00C4E686 /* FRUserInteractor.m in Sources */,
 				65F8FD6F2A575DC500C4E686 /* FRWeatherResponse.m in Sources */,
 				65F8FD722A575E1200C4E686 /* FRUserResponse.m in Sources */,
 				65F8FD952A57C39E00C4E686 /* FRUserConfigurator.m in Sources */,
 				65F8FDA42A57C4AE00C4E686 /* FRUserPresenter.m in Sources */,
+				65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */,
 				65F8FD8C2A57C2A600C4E686 /* FRCityInteractor.m in Sources */,
 				659F93442A5756C3000F7E2B /* AppDelegate.m in Sources */,
 				65F8FDF82A58515B00C4E686 /* FRNavigator.m in Sources */,
-				65F8FD922A57C38E00C4E686 /* FRWeatherConfigurator.m in Sources */,
+				65F8FD922A57C38E00C4E686 /* FRHomeConfigurator.m in Sources */,
 				659F93552A5756C3000F7E2B /* main.m in Sources */,
 				65F8FE082A58B6FB00C4E686 /* NSObject+JSONModel.m in Sources */,
 				65F8FD982A57C3A900C4E686 /* FRSettingsConfigurator.m in Sources */,
 				65F8FD892A57C29200C4E686 /* FRCityPresenter.m in Sources */,
+				65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */,
 				65F8FD752A575E2300C4E686 /* FRCityResponse.m in Sources */,
-				65F8FDB72A57C64600C4E686 /* FRWeatherViewController.m in Sources */,
+				65F8FDB72A57C64600C4E686 /* FRHomeViewController.m in Sources */,
 				65F8FDB42A57C63B00C4E686 /* FRUserViewController.m in Sources */,
 				65F8FDFB2A58885F00C4E686 /* FRHelper.m in Sources */,
-				65F8FD832A57C1C100C4E686 /* FRWeatherPresenter.m in Sources */,
+				65F8FD832A57C1C100C4E686 /* FRHomePresenter.m in Sources */,
 				65F8FD8F2A57C38100C4E686 /* FRCityConfigurator.m in Sources */,
 				65F8FDA12A57C48E00C4E686 /* FRSettingsInteractor.m in Sources */,
 				65F8FDB12A57C62E00C4E686 /* FRSettingsViewController.m in Sources */,
@@ -562,14 +572,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		659F934B2A5756C3000F7E2B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				659F934C2A5756C3000F7E2B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		659F93502A5756C3000F7E2B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

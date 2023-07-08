@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRCityListResponse : NSObject
 
+@property (nonatomic, strong) NSString *adcode;
 @property (nonatomic, strong) NSString *name;
 
 @end

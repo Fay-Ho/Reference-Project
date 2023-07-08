@@ -11,16 +11,23 @@ import UIKit
 class Navigator {
     enum Destination {
         case city
+        case home
         case settings
         case user
-        case weather
+    }
+    
+    private var configurators: [Destination: FeatureConfigurator] {
+        get {
+            [
+                .city: CityConfigurator(),
+                .home: HomeConfigurator(),
+                .settings: SettingsConfigurator(),
+                .user: UserConfigurator()
+            ]
+        }
     }
     
     func navigate<P: Codable>(to: Destination, params: P) {
         
-    }
-    
-    func distinations() -> [Destination: UIViewController] {
-        [.city: CityConfigurator().makeViewController()]
     }
 }

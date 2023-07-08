@@ -7,6 +7,8 @@
 //
 
 #import "FRCityViewController.h"
+#import "UIColor+FRColor.h"
+#import "FRHelper.h"
 
 @interface FRCityViewController ()
 
@@ -14,14 +16,34 @@
 
 @implementation FRCityViewController
 
+NSString * const identifier = @"identifier";
+
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor cyanColor];
-    [self.interactor fetchData];
+    self.view.backgroundColor = UIColor.themeColor;
 }
 
-- (void)updateSubviewsWithResponse:(FRCityResponse * _Nonnull)response; {
-    NSLog(@"%@", response.cities[0].name);
+#pragma mark - UITableViewDataSource Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.models.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    cell.textLabel.text = self.models[indexPath.row].name;
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationHome navigationController:self.navigationController data:nil];
 }
 
 @end

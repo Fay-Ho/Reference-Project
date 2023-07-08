@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CityConfigurator {
+class CityConfigurator: FeatureConfigurator {
     func makeViewController() -> UIViewController {
         let interactor = CityInteractor()
         let presenter = CityPresenter()

@@ -1,5 +1,5 @@
 //
-//  FRCityInterface.h
+//  FRHomePresenter.h
 //  Reference-iOS-ObjC
 //
 //  Created by Fay on 2023/7/7.
@@ -7,18 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FRHomeInterface.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol FRCityInteractorInterface <NSObject>
+@interface FRHomePresenter : NSObject <FRHomePresenterInterface>
 
-@end
-
-@protocol FRCityPresenterInterface <NSObject>
-
-@end
-
-@protocol FRCityViewControllerInterface <NSObject>
+@property (nonatomic, weak) id<FRHomeViewControllerInterface> viewController;
 
 @end
 

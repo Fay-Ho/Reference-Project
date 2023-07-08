@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "FRCityInterface.h"
+#import "FRCityResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRCityViewController : UIViewController <FRCityViewControllerInterface>
+@interface FRCityViewController : UITableViewController <FRCityViewControllerInterface>
 
 @property (nonatomic, strong) id<FRCityInteractorInterface> interactor;
+@property (nonatomic, strong) NSArray<FRCityListResponse *> *models;
 
 @end
 

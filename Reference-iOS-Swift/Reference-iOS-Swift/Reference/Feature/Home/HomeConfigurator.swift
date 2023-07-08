@@ -1,5 +1,5 @@
 //
-//  UserConfigurator.swift
+//  HomeConfigurator.swift
 //  Reference-iOS-Swift
 //
 //  Created by Fay on 2023/7/7.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class UserConfigurator: FeatureConfigurator {
+class HomeConfigurator: FeatureConfigurator {
     func makeViewController() -> UIViewController {
-        let interactor = UserInteractor()
-        let presenter = UserPresenter()
-        let viewController = UserViewController()
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter()
+        let viewController = HomeViewController()
         
         interactor.presenter = presenter
         presenter.viewController = viewController

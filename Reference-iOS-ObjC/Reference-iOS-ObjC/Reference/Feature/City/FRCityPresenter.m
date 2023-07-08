@@ -10,8 +10,4 @@
 
 @implementation FRCityPresenter
 
-- (void)handleResponse:(FRCityResponse *)response {
-    [self.viewController updateSubviewsWithResponse:response];
-}
-
 @end

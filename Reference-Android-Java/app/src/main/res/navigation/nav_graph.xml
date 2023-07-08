@@ -8,8 +8,8 @@
 
     <fragment
         android:id="@+id/weather_fragment"
-        android:name="xyz.fay.reference.feature.weather.WeatherFragment"
-        tools:layout="@layout/weather_fragment">
+        android:name="xyz.fay.reference.feature.home.HomeFragment"
+        tools:layout="@layout/home_fragment">
 
         <action
             android:id="@+id/action_weather_fragment_to_settings_fragment"

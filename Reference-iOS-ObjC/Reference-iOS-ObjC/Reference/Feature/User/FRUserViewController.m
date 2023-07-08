@@ -1,18 +1,18 @@
 //
-//  FRSettingsViewController.m
+//  FRUserViewController.m
 //  Reference-iOS-ObjC
 //
 //  Created by Fay on 2023/7/7.
 //  Copyright © 2023 Fay. All rights reserved.
 //
 
-#import "FRSettingsViewController.h"
+#import "FRUserViewController.h"
 
-@interface FRSettingsViewController ()
+@interface FRUserViewController ()
 
 @end
 
-@implementation FRSettingsViewController
+@implementation FRUserViewController
 
 #pragma mark - View Lifecycle
 

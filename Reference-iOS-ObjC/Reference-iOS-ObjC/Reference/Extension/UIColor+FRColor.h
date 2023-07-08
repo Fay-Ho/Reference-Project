@@ -1,17 +1,18 @@
 //
-//  FRCityConfigurator.h
+//  UIColor+FRColor.h
 //  Reference-iOS-ObjC
 //
-//  Created by Fay on 2023/7/7.
+//  Created by Fay on 2023/7/8.
 //  Copyright © 2023 Fay. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "FRFeatureConfigurator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRCityConfigurator : NSObject <FRFeatureConfigurator>
+@interface UIColor (FRColor)
+
++ (UIColor *)themeColor;
 
 @end
 
