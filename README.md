@@ -5,7 +5,7 @@ A mobile weather application, the reference project for mobile app development.
 
 - Using `AMap.Weather` API
 
-#### Reference-Android-Java
+### Reference-Android-Java
 ---
 The `Java` project for the weather app building with `MVVM` architecture.
 
@@ -14,7 +14,7 @@ The `Java` project for the weather app building with `MVVM` architecture.
 
 ```
 
-#### Reference-Android-Kotlin
+### Reference-Android-Kotlin
 ---
 The `Kotlin` project for the weather app building with `MVVM` architecture.
 
@@ -23,7 +23,7 @@ The `Kotlin` project for the weather app building with `MVVM` architecture.
 
 ```
 
-#### Reference-iOS-ObjC
+### Reference-iOS-ObjC
 ---
 The `Objective-C` project for the weather app building with `VIP` architecture.
 
@@ -32,7 +32,7 @@ The `Objective-C` project for the weather app building with `VIP` architecture.
 
 ```
 
-#### Reference-iOS-Swift
+### Reference-iOS-Swift
 ---
 The `Swift` project for the weather app building with `VIP` architecture.
 
@@ -41,7 +41,7 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ```
 
-#### Reference-Model-Generator
+### Reference-Model-Generator
 ---
 The `Perl` project for auto generate data model.
 
@@ -126,7 +126,7 @@ struct Model: Codable {
 }
 ```
 
-#### Reference-Parcelize-Plugin
+### Reference-Parcelize-Plugin
 ---
 The `Intellij IDEA` / `Android Studio` plugin project for solve the code show error where `Java` project using `@Parcelize` `(xyz.fay.parcel.Parcelize)` annotation.
 
