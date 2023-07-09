@@ -141,14 +141,14 @@ import xyz.fay.parcel.Parcelable;
 
 @Parcelize
 public final class Person {
-	private final String name;
+    private final String name;
     private String age;
 
-	public Person(String name) {
-		this.name = name;
-	}
+    public Person(String name) {
+        this.name = name;
+    }
 
-	// Will auto generate `getName()` method here when java compile.
+    // Will auto generate `getName()` method here when java compile.
 
     // Will auto generate `getAge()` and `setAge(String age)` method here when java compile.
 }
