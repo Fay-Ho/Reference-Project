@@ -43,7 +43,7 @@ NSString * const identifier = @"identifier";
 #pragma mark - UITableViewDelegate Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationHome navigationController:self.navigationController data:nil];
+    [FRHelper.sharedInstance.navigator navigateTo:FRDestinationHome navigationController:self.navigationController data:nil];
 }
 
 @end

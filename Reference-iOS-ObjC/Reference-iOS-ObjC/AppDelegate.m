@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[FRHelper sharedInstance].navigator makeNavigationControllerWithDestination:FRDestinationHome];
+    self.window.rootViewController = [FRHelper.sharedInstance.navigator makeNavigationControllerWithDestination:FRDestinationHome];
     [self.window makeKeyAndVisible];
     return YES;
 }

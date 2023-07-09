@@ -48,7 +48,7 @@
 #pragma mark - FRHomeViewControllerInterface Methods
 
 - (void)showCityPageWithResponse:(FRCityResponse *)response {
-    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationCity navigationController:self.navigationController data:response];
+    [FRHelper.sharedInstance.navigator navigateTo:FRDestinationCity navigationController:self.navigationController data:response];
 }
 
 - (void)updateSubviewsWithResponse:(FRCityResponse * _Nonnull)response; {
