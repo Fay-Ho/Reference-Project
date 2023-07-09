@@ -2,7 +2,7 @@
   <id>xyz.fay.parcelize.plugin.id</id>
   <name>Parcelize</name>
   <version>0.0.1</version>
-  <vendor email="fay.hepengfei@gmail.com" url="xyz.fay.parcel">Parcelize Plugin</vendor>
+  <vendor email="fay.hepengfei@gmail.com" url="xyz.fay.parcel">Parcelize Annotation Plugin</vendor>
 
   <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
   <idea-version since-build="173.0"/>
@@ -15,6 +15,6 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-    <lang.psiAugmentProvider  implementation="xyz.fay.reference.ReferencePsiAugmentProviderImpl" />
+    <lang.psiAugmentProvider  implementation="xyz.fay.reference.ParcelizePsiAugmentProviderImpl" />
   </extensions>
 </idea-plugin>

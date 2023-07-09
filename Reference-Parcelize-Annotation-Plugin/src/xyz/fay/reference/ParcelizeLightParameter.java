@@ -10,17 +10,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 
-public class ReferenceLightParameter extends LightParameter implements SyntheticElement {
+public class ParcelizeLightParameter extends LightParameter implements SyntheticElement {
     private String myName;
-    private final ReferenceLightIdentifier myNameIdentifier;
+    private final ParcelizeLightIdentifier myNameIdentifier;
 
-    public ReferenceLightParameter(@NotNull String name, @NotNull PsiType type, PsiElement declarationScope, Language language) {
+    public ParcelizeLightParameter(@NotNull String name, @NotNull PsiType type, PsiElement declarationScope, Language language) {
         super(name, type, declarationScope, language);
         myName = name;
         PsiManager manager = declarationScope.getManager();
-        myNameIdentifier = new ReferenceLightIdentifier(manager, name);
-        ReferenceReflectionUtil.setFinalFieldPerReflection(LightVariableBuilder.class, this, LightModifierList.class,
-                new ReferenceLightModifierList(manager, language, Collections.emptySet()));
+        myNameIdentifier = new ParcelizeLightIdentifier(manager, name);
+        ParcelizeReflectionUtil.setFinalFieldPerReflection(LightVariableBuilder.class, this, LightModifierList.class,
+                new ParcelizeLightModifierList(manager, language, Collections.emptySet()));
     }
 
     @NotNull
@@ -48,9 +48,9 @@ public class ReferenceLightParameter extends LightParameter implements Synthetic
     }
 
     @Override
-    public ReferenceLightParameter setModifiers(String... modifiers) {
-        ReferenceLightModifierList modifierList = new ReferenceLightModifierList(getManager(), getLanguage(), Collections.emptySet(), modifiers);
-        ReferenceReflectionUtil.setFinalFieldPerReflection(LightVariableBuilder.class, this, LightModifierList.class, modifierList);
+    public ParcelizeLightParameter setModifiers(String... modifiers) {
+        ParcelizeLightModifierList modifierList = new ParcelizeLightModifierList(getManager(), getLanguage(), Collections.emptySet(), modifiers);
+        ParcelizeReflectionUtil.setFinalFieldPerReflection(LightVariableBuilder.class, this, LightModifierList.class, modifierList);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class ReferenceLightParameter extends LightParameter implements Synthetic
             return false;
         }
 
-        ReferenceLightParameter that = (ReferenceLightParameter) o;
+        ParcelizeLightParameter that = (ParcelizeLightParameter) o;
 
         final PsiType thisType = getType();
         final PsiType thatType = that.getType();

@@ -17,38 +17,38 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
-public class ReferenceLightMethodBuilder extends LightMethodBuilder implements SyntheticElement {
+public class ParcelizeLightMethodBuilder extends LightMethodBuilder implements SyntheticElement {
     private PsiMethod myMethod;
     private ASTNode myASTNode;
     private PsiCodeBlock myBodyCodeBlock;
     private String myReturnTypeAsText;
 
-    public ReferenceLightMethodBuilder(@NotNull PsiManager manager, @NotNull String name) {
+    public ParcelizeLightMethodBuilder(@NotNull PsiManager manager, @NotNull String name) {
         super(manager, JavaLanguage.INSTANCE, name,
-                new ReferenceLightParameterListBuilder(manager, JavaLanguage.INSTANCE),
-                new ReferenceLightModifierList(manager, JavaLanguage.INSTANCE, Collections.emptySet()),
-                new ReferenceLightReferenceListBuilder(manager, JavaLanguage.INSTANCE, PsiReferenceList.Role.THROWS_LIST),
+                new ParcelizeLightParameterListBuilder(manager, JavaLanguage.INSTANCE),
+                new ParcelizeLightModifierList(manager, JavaLanguage.INSTANCE, Collections.emptySet()),
+                new ParcelizeLightReferenceListBuilder(manager, JavaLanguage.INSTANCE, PsiReferenceList.Role.THROWS_LIST),
                 new LightTypeParameterListBuilder(manager, JavaLanguage.INSTANCE));
     }
 
-    public ReferenceLightMethodBuilder withNavigationElement(PsiElement navigationElement) {
+    public ParcelizeLightMethodBuilder withNavigationElement(PsiElement navigationElement) {
         setNavigationElement(navigationElement);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withModifier(@PsiModifier.ModifierConstant @NotNull @NonNls String modifier) {
+    public ParcelizeLightMethodBuilder withModifier(@PsiModifier.ModifierConstant @NotNull @NonNls String modifier) {
         addModifier(modifier);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withModifier(@PsiModifier.ModifierConstant @NotNull @NonNls String... modifiers) {
+    public ParcelizeLightMethodBuilder withModifier(@PsiModifier.ModifierConstant @NotNull @NonNls String... modifiers) {
         for (String modifier : modifiers) {
             addModifier(modifier);
         }
         return this;
     }
 
-    public ReferenceLightMethodBuilder withMethodReturnType(PsiType returnType) {
+    public ParcelizeLightMethodBuilder withMethodReturnType(PsiType returnType) {
         setMethodReturnType(returnType);
         return this;
     }
@@ -59,57 +59,57 @@ public class ReferenceLightMethodBuilder extends LightMethodBuilder implements S
         return super.setMethodReturnType(returnType);
     }
 
-    public ReferenceLightMethodBuilder withFinalParameter(@NotNull String name, @NotNull PsiType type) {
-        final ReferenceLightParameter referenceLightParameter = createParameter(name, type);
-        referenceLightParameter.setModifiers(PsiModifier.FINAL);
-        return withParameter(referenceLightParameter);
+    public ParcelizeLightMethodBuilder withFinalParameter(@NotNull String name, @NotNull PsiType type) {
+        final ParcelizeLightParameter parcelizeLightParameter = createParameter(name, type);
+        parcelizeLightParameter.setModifiers(PsiModifier.FINAL);
+        return withParameter(parcelizeLightParameter);
     }
 
-    public ReferenceLightMethodBuilder withParameter(@NotNull String name, @NotNull PsiType type) {
+    public ParcelizeLightMethodBuilder withParameter(@NotNull String name, @NotNull PsiType type) {
         return withParameter(createParameter(name, type));
     }
 
     @NotNull
-    private ReferenceLightParameter createParameter(@NotNull String name, @NotNull PsiType type) {
-        return new ReferenceLightParameter(name, type, this, JavaLanguage.INSTANCE);
+    private ParcelizeLightParameter createParameter(@NotNull String name, @NotNull PsiType type) {
+        return new ParcelizeLightParameter(name, type, this, JavaLanguage.INSTANCE);
     }
 
-    public ReferenceLightMethodBuilder withParameter(@NotNull PsiParameter psiParameter) {
+    public ParcelizeLightMethodBuilder withParameter(@NotNull PsiParameter psiParameter) {
         addParameter(psiParameter);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withException(@NotNull PsiClassType type) {
+    public ParcelizeLightMethodBuilder withException(@NotNull PsiClassType type) {
         addException(type);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withContainingClass(@NotNull PsiClass containingClass) {
+    public ParcelizeLightMethodBuilder withContainingClass(@NotNull PsiClass containingClass) {
         setContainingClass(containingClass);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withTypeParameter(@NotNull PsiTypeParameter typeParameter) {
+    public ParcelizeLightMethodBuilder withTypeParameter(@NotNull PsiTypeParameter typeParameter) {
         addTypeParameter(typeParameter);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withConstructor(boolean isConstructor) {
+    public ParcelizeLightMethodBuilder withConstructor(boolean isConstructor) {
         setConstructor(isConstructor);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withBody(@NotNull PsiCodeBlock codeBlock) {
+    public ParcelizeLightMethodBuilder withBody(@NotNull PsiCodeBlock codeBlock) {
         myBodyCodeBlock = codeBlock;
         return this;
     }
 
-    public ReferenceLightMethodBuilder withAnnotation(@NotNull String annotation) {
+    public ParcelizeLightMethodBuilder withAnnotation(@NotNull String annotation) {
         getModifierList().addAnnotation(annotation);
         return this;
     }
 
-    public ReferenceLightMethodBuilder withAnnotations(Collection<String> annotations) {
+    public ParcelizeLightMethodBuilder withAnnotations(Collection<String> annotations) {
         final PsiModifierList modifierList = getModifierList();
         annotations.forEach(modifierList::addAnnotation);
         return this;
@@ -129,7 +129,7 @@ public class ReferenceLightMethodBuilder extends LightMethodBuilder implements S
 
     @Override
     public PsiIdentifier getNameIdentifier() {
-        return new ReferenceLightIdentifier(myManager, getName());
+        return new ParcelizeLightIdentifier(myManager, getName());
     }
 
     @Override
@@ -233,7 +233,7 @@ public class ReferenceLightMethodBuilder extends LightMethodBuilder implements S
     }
 
     public String toString() {
-        return "ReferenceLightMethodBuilder: " + getName();
+        return "ParcelizeLightMethodBuilder: " + getName();
     }
 
     @Override
@@ -249,7 +249,7 @@ public class ReferenceLightMethodBuilder extends LightMethodBuilder implements S
 
     @Override
     public PsiElement setName(@NotNull String name) throws IncorrectOperationException {
-        ReferenceReflectionUtil.setFinalFieldPerReflection(LightMethodBuilder.class, this, String.class, name);
+        ParcelizeReflectionUtil.setFinalFieldPerReflection(LightMethodBuilder.class, this, String.class, name);
         return this;
     }
 
@@ -262,7 +262,7 @@ public class ReferenceLightMethodBuilder extends LightMethodBuilder implements S
             return false;
         }
 
-        ReferenceLightMethodBuilder that = (ReferenceLightMethodBuilder) o;
+        ParcelizeLightMethodBuilder that = (ParcelizeLightMethodBuilder) o;
 
         if (!getName().equals(that.getName())) {
             return false;

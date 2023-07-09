@@ -12,8 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class ReferencePsiAugmentProviderImpl extends PsiAugmentProvider {
-    public ReferencePsiAugmentProviderImpl() {
+public class ParcelizePsiAugmentProviderImpl extends PsiAugmentProvider {
+    public ParcelizePsiAugmentProviderImpl() {
         super();
     }
 
@@ -31,7 +31,7 @@ public class ReferencePsiAugmentProviderImpl extends PsiAugmentProvider {
 
         boolean isMethod = type.isAssignableFrom(PsiMethod.class);
         if (isMethod) {
-            new ReferenceAnnotationProcessor().process(result, psiClass, type);
+            new ParcelizeAnnotationProcessor().process(result, psiClass, type);
         }
 
         return result;

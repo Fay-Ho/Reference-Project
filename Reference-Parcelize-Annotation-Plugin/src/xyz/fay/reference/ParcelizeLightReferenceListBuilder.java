@@ -6,8 +6,8 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.SyntheticElement;
 import com.intellij.psi.impl.light.LightReferenceListBuilder;
 
-public class ReferenceLightReferenceListBuilder extends LightReferenceListBuilder implements SyntheticElement {
-    public ReferenceLightReferenceListBuilder(PsiManager manager, Language language, Role role) {
+public class ParcelizeLightReferenceListBuilder extends LightReferenceListBuilder implements SyntheticElement {
+    public ParcelizeLightReferenceListBuilder(PsiManager manager, Language language, Role role) {
         super(manager, language, role);
     }
 

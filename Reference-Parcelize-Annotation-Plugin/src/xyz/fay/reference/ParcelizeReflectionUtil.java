@@ -4,8 +4,8 @@ import com.intellij.openapi.diagnostic.Logger;
 
 import java.lang.reflect.Field;
 
-public final class ReferenceReflectionUtil {
-    private static final Logger LOG = Logger.getInstance(ReferenceReflectionUtil.class.getName());
+public final class ParcelizeReflectionUtil {
+    private static final Logger LOG = Logger.getInstance(ParcelizeReflectionUtil.class.getName());
 
     public static <T, R> void setFinalFieldPerReflection(Class<T> clazz, T instance, Class<R> fieldClass, R newValue) {
         try {

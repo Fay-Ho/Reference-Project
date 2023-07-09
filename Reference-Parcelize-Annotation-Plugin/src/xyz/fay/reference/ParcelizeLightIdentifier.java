@@ -8,10 +8,10 @@ import com.intellij.psi.impl.light.LightIdentifier;
 
 import java.util.Objects;
 
-public class ReferenceLightIdentifier extends LightIdentifier implements SyntheticElement {
+public class ParcelizeLightIdentifier extends LightIdentifier implements SyntheticElement {
     private String myText;
 
-    public ReferenceLightIdentifier(PsiManager manager, String text) {
+    public ParcelizeLightIdentifier(PsiManager manager, String text) {
         super(manager, text);
         myText = text;
     }
@@ -45,7 +45,7 @@ public class ReferenceLightIdentifier extends LightIdentifier implements Synthet
             return false;
         }
 
-        ReferenceLightIdentifier that = (ReferenceLightIdentifier) o;
+        ParcelizeLightIdentifier that = (ParcelizeLightIdentifier) o;
 
         return Objects.equals(myText, that.myText);
     }

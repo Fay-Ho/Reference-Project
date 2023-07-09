@@ -7,8 +7,8 @@ import com.intellij.psi.impl.light.LightParameterListBuilder;
 
 import java.util.Arrays;
 
-public class ReferenceLightParameterListBuilder extends LightParameterListBuilder implements SyntheticElement {
-    public ReferenceLightParameterListBuilder(PsiManager manager, Language language) {
+public class ParcelizeLightParameterListBuilder extends LightParameterListBuilder implements SyntheticElement {
+    public ParcelizeLightParameterListBuilder(PsiManager manager, Language language) {
         super(manager, language);
     }
 
@@ -21,7 +21,7 @@ public class ReferenceLightParameterListBuilder extends LightParameterListBuilde
             return false;
         }
 
-        ReferenceLightParameterListBuilder that = (ReferenceLightParameterListBuilder) o;
+        ParcelizeLightParameterListBuilder that = (ParcelizeLightParameterListBuilder) o;
 
         if (getParametersCount() != that.getParametersCount()) {
             return false;

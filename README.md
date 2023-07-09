@@ -129,7 +129,7 @@ struct Model: Codable {
 }
 ```
 
-### Reference-Parcelize-Plugin
+### Reference-Parcelize-Annotation-Plugin
 ---
 The `Intellij IDEA` / `Android Studio` plugin project for solve the code show error where `Java` project using `@Parcelize` `(xyz.fay.parcel.Parcelize)` annotation.
 

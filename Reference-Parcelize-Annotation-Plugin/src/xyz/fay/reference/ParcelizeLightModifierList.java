@@ -10,13 +10,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class ReferenceLightModifierList extends LightModifierList implements SyntheticElement {
+public class ParcelizeLightModifierList extends LightModifierList implements SyntheticElement {
     private static final Set<String> ALL_MODIFIERS = new HashSet<>(Arrays.asList(PsiModifier.MODIFIERS));
 
     private final Map<String, PsiAnnotation> myAnnotations;
     private final Set<String> myImplicitModifiers;
 
-    public ReferenceLightModifierList(PsiManager manager, final Language language, Collection<String> implicitModifiers, String... modifiers) {
+    public ParcelizeLightModifierList(PsiManager manager, final Language language, Collection<String> implicitModifiers, String... modifiers) {
         super(manager, language, modifiers);
         this.myAnnotations = new HashMap<>();
         this.myImplicitModifiers = new HashSet<>(implicitModifiers);
@@ -100,7 +100,7 @@ public class ReferenceLightModifierList extends LightModifierList implements Syn
     }
 
     public String toString() {
-        return "ReferenceLightModifierList";
+        return "ParcelizeLightModifierList";
     }
 
     @Override
@@ -112,7 +112,7 @@ public class ReferenceLightModifierList extends LightModifierList implements Syn
             return false;
         }
 
-        ReferenceLightModifierList that = (ReferenceLightModifierList) o;
+        ParcelizeLightModifierList that = (ParcelizeLightModifierList) o;
 
         return myAnnotations.equals(that.myAnnotations);
     }

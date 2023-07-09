@@ -6,7 +6,7 @@ import com.intellij.psi.*;
 
 import java.util.List;
 
-public class ReferenceAnnotationProcessor {
+public class ParcelizeAnnotationProcessor {
     private static final Key<PsiMethod> GETTER_KEY = Key.create("ANNOTATION_GETTER_KEY");
     private static final String PACKAGE_NAME = "xyz.fay.parcel.Parcelize";
     private static final String GETTER = "get";
@@ -63,7 +63,7 @@ public class ReferenceAnnotationProcessor {
         String methodName = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1, fieldName.length());
         String setterName = SETTER + methodName;
         PsiType returnType = PsiType.VOID;
-        ReferenceLightMethodBuilder methodBuilder = new ReferenceLightMethodBuilder(psiField.getManager(), setterName)
+        ParcelizeLightMethodBuilder methodBuilder = new ParcelizeLightMethodBuilder(psiField.getManager(), setterName)
                 .withMethodReturnType(returnType)
                 .withContainingClass(psiField.getContainingClass())
                 .withParameter(fieldName, psiField.getType())
