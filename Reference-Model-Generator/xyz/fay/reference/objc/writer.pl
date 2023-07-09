@@ -33,7 +33,9 @@ my $h_block = "\@interface %PREFIX%%CLASS% : NSObject
 
 \@end";
 
-my $h_define = "\@property (nonatomic, strong, nonnull) %VAR% *%NAME%;";
+my $h_map_define = "\@property (nonatomic, strong, nonnull) %VAR% *%NAME%;";
+
+my $h_list_define = "\@property (nonatomic, strong, nonnull) NSArray<%VAR% *> *%NAME%;";
 
 # ---------------------------------FRModel.m-------------------------------------
 
@@ -49,14 +51,14 @@ my $m_block = "\@implementation %PREFIX%%CLASS%
 # ---------------------------------------------------------------------------------
 
 sub write {
-    my $s_h_define_1 = $h_define =~ s/$global_var/NSString/gr;
+    my $s_h_define_1 = $h_map_define =~ s/$global_var/NSString/gr;
     $s_h_define_1 = $s_h_define_1 =~ s/$global_name/string/gr;
 
     my $s_h_block_1 = $h_block =~ s/$global_prefix/FR/gr;
     $s_h_block_1 = $s_h_block_1 =~ s/$global_class/Model/gr;
     $s_h_block_1 = $s_h_block_1 =~ s/$global_defines/$s_h_define_1/gr;
 
-    my $s_h_define_2 = $h_define =~ s/$global_var/NSString/gr;
+    my $s_h_define_2 = $h_map_define =~ s/$global_var/NSString/gr;
     $s_h_define_2 = $s_h_define_2 =~ s/$global_name/string/gr;
 
     my $s_h_block_2 = $h_block =~ s/$global_prefix/FR/gr;

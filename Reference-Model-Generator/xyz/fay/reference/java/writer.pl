@@ -35,7 +35,9 @@ public final class %CLASS% extends Parcelable {
 }
 ";
 
-my $java_define = "    private final %VAR% %NAME%;";
+my $java_map_define = "    private final %VAR% %NAME%;";
+
+my $java_list_define = "    private final %VAR%[] %NAME%;";
 
 my $java_param = "%VAR% %NAME%";
 
@@ -44,7 +46,7 @@ my $java_statement = "        this.%NAME% = %NAME%;";
 # ---------------------------------------------------------------------------------
 
 sub write {
-    my $s_define = $java_define =~ s/$global_var/String/gr;
+    my $s_define = $java_map_define =~ s/$global_var/String/gr;
     $s_define = $s_define =~ s/$global_name/string/gr;
 
     my $s_param = $java_param =~ s/$global_var/String/gr;

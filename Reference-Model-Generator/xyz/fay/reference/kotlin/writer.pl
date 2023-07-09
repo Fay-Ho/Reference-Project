@@ -31,18 +31,20 @@ data class %CLASS%(
 %DEFINES%
 ) : Parcelable";
 
-my $kt_define = "        val %NAME%: %VAR%";
+my $kt_map_define = "        val %NAME%: %VAR%";
+
+my $kt_list_define = "        val %NAME%: Array<%VAR%>";
 
 # ---------------------------------------------------------------------------------
 
 sub write {
-    my $s_define_1 = $kt_define =~ s/$global_name/string/gr;
+    my $s_define_1 = $kt_map_define =~ s/$global_name/string/gr;
     $s_define_1 = $s_define_1 =~ s/$global_var/String/gr;
 
     my $s_block_1 = $kt_block =~ s/$global_class/Model/gr;
     $s_block_1 = $s_block_1 =~ s/$global_defines/$s_define_1/gr;
 
-    my $s_define_2 = $kt_define =~ s/$global_name/string/gr;
+    my $s_define_2 = $kt_map_define =~ s/$global_name/string/gr;
     $s_define_2 = $s_define_2 =~ s/$global_var/String/gr;
 
     my $s_block_2 = $kt_block =~ s/$global_class/Model/gr;

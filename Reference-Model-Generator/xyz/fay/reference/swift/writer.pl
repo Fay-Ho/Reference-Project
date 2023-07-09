@@ -23,18 +23,20 @@ my $swift_block = "struct %CLASS% : Codable {
 %DEFINES%
 }";
 
-my $swift_define = "    let %NAME%: %VAR%";
+my $swift_map_define = "    let %NAME%: %VAR%";
+
+my $swift_list_define = "    let %NAME%: [%VAR%]";
 
 # ---------------------------------------------------------------------------------
 
 sub write {
-    my $s_define_1 = $swift_define =~ s/$global_name/string/gr;
+    my $s_define_1 = $swift_map_define =~ s/$global_name/string/gr;
     $s_define_1 = $s_define_1 =~ s/$global_var/String/gr;
 
     my $s_block_1 = $swift_block =~ s/$global_class/Model/gr;
     $s_block_1 = $s_block_1 =~ s/$global_defines/$s_define_1/gr;
 
-    my $s_define_2 = $swift_define =~ s/$global_name/string/gr;
+    my $s_define_2 = $swift_map_define =~ s/$global_name/string/gr;
     $s_define_2 = $s_define_2 =~ s/$global_var/String/gr;
 
     my $s_block_2 = $swift_block =~ s/$global_class/Model/gr;

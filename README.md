@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_END
 // Model.swift
 
 struct Model: Codable {
-	let string: String
+    let string: String
     let strings: [String]
 }
 ```
