@@ -41,7 +41,7 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ```
 
-### Reference-Feature-Generator
+### Reference-iOS-Feature-Generator
 ---
 The `JavaScript` project for auto generate iOS VIP module.
 
