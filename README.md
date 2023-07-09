@@ -45,15 +45,86 @@ The `Swift` project for the weather app building with `VIP` architecture.
 ---
 The `Perl` project for auto generate data model.
 
-The sample
 
-- Java (Model.java)
+- Java
 
-- Kotlin (Model.kotlin)
+```java
+// Model.java
 
-- Objective-C (FRModel.h, FRModel.m)
+package xyz.fay.reference;
 
-- Swift (Model.swift)
+import xyz.fay.parcel.Parcelable;
+import xyz.fay.parcel.Parcelize;
+
+@Parcelize
+public final class Model extends Parcelable {
+    private final String string;
+    private final String[] strings;
+
+    public Model(String string, String[] strings) {
+        this.string = string;
+        this.strings = strings;
+    }
+}
+
+```
+
+- Kotlin
+
+```kotlin
+// Model.kt
+
+package xyz.fay.reference
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Model(
+        val string: String,
+        val strings: Array<String>
+) : Parcelable
+
+```
+
+- Objective-C
+
+```objective-c
+// FRModel.h
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRModel : NSObject
+
+@property (nonatomic, strong) NSString *string;
+@property (nonatomic, strong) NSArray<NSString *> *strings;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+// FRModel.m
+
+#import "FRModel.h"
+
+@implementation FRModel
+
+@end
+```
+
+- Swift
+
+```swift
+// Model.swift
+
+struct Model: Codable {
+	let string: String
+    let strings: [String]
+}
+```
 
 #### Reference-Parcelize-Plugin
 ---
