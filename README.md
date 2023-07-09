@@ -133,16 +133,23 @@ The `Intellij IDEA` / `Android Studio` plugin project for solve the code show er
 - `@Parcelize` annotation is using for auto generate `Getter` / `Setter` method in Java.
 
 ```java
-import xyz.fay.parcel.Parcelize
+// Person.java
+
+package xyz.fay.reference;
+
+import xyz.fay.parcel.Parcelable;
 
 @Parcelize
 public final class Person {
 	private final String name;
+    private String age;
 
 	public Person(String name) {
 		this.name = name;
 	}
 
-	// Will auto generate `Getter` method here when java compile.
+	// Will auto generate `getName()` method here when java compile.
+
+    // Will auto generate `getAge()` and `setAge(String age)` method here when java compile.
 }
 ```
