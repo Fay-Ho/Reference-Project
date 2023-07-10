@@ -221,7 +221,7 @@ class Configurator {
 ```swift
 // Interactor
 
-class Interactor : InteractorInterface {
+class Interactor {
     var presenter: PresenterInterface?
 }
 
@@ -243,7 +243,7 @@ protocol ViewControllerInterface : NSObject {}
 ```swift
 // Presenter
 
-class Presenter : PresenterInterface {
+class Presenter {
     weak var viewController: ViewControllerInterface?
 }
 
