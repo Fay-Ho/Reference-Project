@@ -203,16 +203,18 @@ NS_ASSUME_NONNULL_END
 
 import UIKit
 
-func makeViewController() -> UIViewController {
-    let interactor = Interactor()
-    let presenter = Presenter()
-    let viewController = ViewController()
+class Configurator {
+    func makeViewController() -> UIViewController {
+        let interactor = Interactor()
+        let presenter = Presenter()
+        let viewController = ViewController()
 
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        viewController.interactor = interactor
 
-    return viewController
+        return viewController
+    }
 }
 ```
 
