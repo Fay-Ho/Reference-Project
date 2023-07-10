@@ -10,6 +10,30 @@ push(@INC, 'pwd');
 
 my $ln = "\n";
 
+my $read = '<';
+
+my $write = '>';
+
+my $out_java = '/out/java/';
+
+my $java = '.java';
+
+my $out_kotlin = '/out/kotlin/';
+
+my $kotlin = '.kt';
+
+my $out_objc = '/out/objc/';
+
+my $h = '.h';
+
+my $m = '.m';
+
+my $out_swift = '/out/swift/';
+
+my $swift = '.swift';
+
+my $error = 'Something went wrong! Write file error!';
+
 # -------------------------------------------------------------------------------------------------------------------- #
 
 my $flag_block = "%BLOCK%";
@@ -32,48 +56,48 @@ my $flag_var = "%VAR%";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my $flag_java_file = "package %PACKAGE%;
+my $flag_java_file = "package $flag_package;
 
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 \@Parcelize
-public final class %CLASS% extends Parcelable {
-%DEFINE%
+public final class $flag_class$flag_suffix extends Parcelable {
+$flag_define
 
-    public %CLASS%(%PARAM%) {
-%BLOCK%
+    public $flag_class$flag_suffix($flag_param) {
+$flag_block
     }
 }
 ";
 
-my $flag_java_type_define = "    private final %TYPE% %VAR%;";
+my $flag_java_type_define = "    private final $flag_type$flag_suffix $flag_var;";
 
-my $flag_java_type_list_define = "    private final %TYPE%[] %VAR%;";
+my $flag_java_type_list_define = "    private final $flag_type$flag_suffix\[] $flag_var;";
 
-my $flag_java_type_param = "%TYPE% %VAR%";
+my $flag_java_type_param = "$flag_type$flag_suffix $flag_var";
 
-my $flag_java_type_list_param = "%TYPE%[] %VAR%";
+my $flag_java_type_list_param = "$flag_type$flag_suffix\[] $flag_var";
 
-my $flag_java_block = "        this.%VAR% = %VAR%;";
+my $flag_java_block = "        this.$flag_var = $flag_var;";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my $flag_kotlin_file = "package %PACKAGE%
+my $flag_kotlin_file = "package $flag_package
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-%BLOCK%";
+$flag_block";
 
 my $flag_kotlin_block = "\@Parcelize
-data class %CLASS%(
-%DEFINE%
+data class $flag_class$flag_suffix(
+$flag_define
 ) : Parcelable";
 
-my $flag_kotlin_type_define = "        val %VAR%: %TYPE%";
+my $flag_kotlin_type_define = "        val $flag_var: $flag_type$flag_suffix";
 
-my $flag_kotlin_type_list_define = "        val %VAR%: Array<%TYPE%>";
+my $flag_kotlin_type_list_define = "        val $flag_var: Array<$flag_type$flag_suffix>";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
@@ -81,44 +105,44 @@ my $flag_objc_h_file = "#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-%BLOCK%
+$flag_block
 
 NS_ASSUME_NONNULL_END
 ";
 
-my $flag_objc_h_block = "\@interface %PREFIX%%CLASS% : NSObject
+my $flag_objc_h_block = "\@interface $flag_prefix$flag_class$flag_suffix : NSObject
 
-%DEFINE%
+$flag_define
 
 \@end";
 
-my $flag_objc_h_type_define = "\@property (nonatomic, strong, nonnull) %TYPE% *%VAR%;";
+my $flag_objc_h_type_define = "\@property (nonatomic, strong, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
 
-my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, nonnull) NSArray<%TYPE% *> *%VAR%;";
+my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
-my $flag_objc_m_file = "#import \"%PREFIX%%CLASS%.h\"
+my $flag_objc_m_file = "#import \"$flag_prefix$flag_class$flag_suffix.h\"
 
-%BLOCK%
+$flag_block
 ";
 
-my $flag_objc_m_block = "\@implementation %PREFIX%%CLASS%
+my $flag_objc_m_block = "\@implementation $flag_prefix$flag_class$flag_suffix
 
 \@end";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my $flag_swift_block = "struct %CLASS% : Codable {
-%DEFINE%
+my $flag_swift_block = "struct $flag_class$flag_suffix : Codable {
+$flag_define
 }";
 
-my $flag_swift_type_define = "    let %VAR%: %TYPE%";
+my $flag_swift_type_define = "    let $flag_var: $flag_type$flag_suffix";
 
-my $flag_swift_type_list_define = "    let %VAR%: [%TYPE%]";
+my $flag_swift_type_list_define = "    let $flag_var: [$flag_type$flag_suffix]";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_java {
-    my $target_suffix = pop;
+    my $target_suffix = ucfirst pop;
     my $target_prefix = pop;
     my $target_path = pop;
     my @data = @_;
@@ -134,16 +158,16 @@ sub generate_java {
                 my $sub_value = $$value{$sub_key};
 
                 if (ref $sub_value eq 'ARRAY') {
-                    $target_define = create_java_define($flag_java_type_list_define, ucfirst $sub_key, $sub_key, $target_define);
-                    $target_param = create_java_param($flag_java_type_list_param, ucfirst $sub_key, $sub_key, $target_param);
+                    $target_define = create_java_define($flag_java_type_list_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
+                    $target_param = create_java_param($flag_java_type_list_param, ucfirst $sub_key, $target_suffix, $sub_key, $target_param);
                     $target_block = create_java_block($sub_key, $target_block);
                 } elsif (ref $sub_value eq 'HASH') {
-                    $target_define = create_java_define($flag_java_type_define, ucfirst $sub_key, $sub_key, $target_define);
-                    $target_param = create_java_param($flag_java_type_param, ucfirst $sub_key, $sub_key, $target_param);
+                    $target_define = create_java_define($flag_java_type_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
+                    $target_param = create_java_param($flag_java_type_param, ucfirst $sub_key, $target_suffix, $sub_key, $target_param);
                     $target_block = create_java_block($sub_key, $target_block);
                 } else {
-                    $target_define = create_java_define($flag_java_type_define, 'String', $sub_key, $target_define);
-                    $target_param = create_java_param($flag_java_type_param, 'String', $sub_key, $target_param);
+                    $target_define = create_java_define($flag_java_type_define, 'String', '', $sub_key, $target_define);
+                    $target_param = create_java_param($flag_java_type_param, 'String', '', $sub_key, $target_param);
                     $target_block = create_java_block($sub_key, $target_block);
                 }
             }
@@ -151,11 +175,12 @@ sub generate_java {
             my $file = $flag_java_file =~ s/$flag_package/xyz.fay.reference/gr;
             my $java_class = ucfirst $target_file;
             $file = $file =~ s/$flag_class/$java_class/gr;
+            $file = $file =~ s/$flag_suffix/$target_suffix/gr;
             $file = $file =~ s/$flag_define/$target_define/gr;
             $file = $file =~ s/$flag_param/$target_param/gr;
             $file = $file =~ s/$flag_block/$target_block/gr;
 
-            create_java_file($target_path, $java_class, $file);
+            create_java_file($target_path, $java_class, $target_suffix, $file);
         }
     }
 }
@@ -163,26 +188,30 @@ sub generate_java {
 sub create_java_define {
     my $java_define = shift;
     my $java_type = shift;
+    my $java_suffix = shift;
     my $java_var = shift;
     my $target_define = shift;
 
     my $define = $java_define =~ s/$flag_type/$java_type/gr;
+    $define = $define =~ s/$flag_suffix/$java_suffix/gr;
     $define = $define =~ s/$flag_var/$java_var/gr;
 
     if ($target_define ne '') {
         $target_define = $target_define.$ln;
     }
 
-    return($target_define.$define);
+    return $target_define.$define;
 }
 
 sub create_java_param {
     my $java_param = shift;
     my $java_type = shift;
+    my $java_suffix = shift;
     my $java_var = shift;
     my $target_param = shift;
 
     my $param = $java_param =~ s/$flag_type/$java_type/gr;
+    $param = $param =~ s/$flag_suffix/$java_suffix/gr;
     $param = $param =~ s/$flag_var/$java_var/gr;
 
     if ($target_param ne '') {
@@ -210,12 +239,13 @@ sub create_java_file {
     if ($path eq '') {
         $path = './';
     }
-    my $target_path = $path.'/out/java/';
+    my $target_path = $path.$out_java;
     File::Path::make_path($target_path);
 
     my $target_file = shift;
+    my $target_suffix = shift;
 
-    open(my $fh, '>', $target_path.$target_file.'.java') or die 'Something went wrong! Write file error!';
+    open(my $fh, $write, $target_path.$target_file.$target_suffix.$java) or die $error;
     print($fh shift);
     close($fh);
 }
@@ -223,7 +253,7 @@ sub create_java_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_kotlin {
-    my $target_suffix = pop;
+    my $target_suffix = ucfirst pop;
     my $target_prefix = pop;
     my $target_path = pop;
     my $target_file = '';
@@ -244,31 +274,33 @@ sub generate_kotlin {
                 my $sub_value = $$value{$sub_key};
 
                 if (ref $sub_value eq 'ARRAY') {
-                    $target_define = create_kotlin_define($flag_kotlin_type_list_define, ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_kotlin_define($flag_kotlin_type_list_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } elsif (ref $sub_value eq 'HASH') {
-                    $target_define = create_kotlin_define($flag_kotlin_type_define, ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_kotlin_define($flag_kotlin_type_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } else {
-                    $target_define = create_kotlin_define($flag_kotlin_type_define, 'String', $sub_key, $target_define);
+                    $target_define = create_kotlin_define($flag_kotlin_type_define, 'String', '', $sub_key, $target_define);
                 }
             }
 
-            $target_block = create_kotlin_block(ucfirst $key, $target_define, $target_block)
+            $target_block = create_kotlin_block(ucfirst $key, $target_suffix, $target_define, $target_block)
         }
     }
 
     my $file = $flag_kotlin_file =~ s/$flag_package/xyz.fay.reference/gr;
     $file = $file =~ s/$flag_block/$target_block\n/gr;
 
-    create_kotlin_file($target_path, $target_file, $file);
+    create_kotlin_file($target_path, $target_file, $target_suffix, $file);
 }
 
 sub create_kotlin_define {
     my $kotlin_define = shift;
     my $kotlin_type = shift;
+    my $kotlin_suffix = shift;
     my $kotlin_var = shift;
     my $target_define = shift;
 
     my $define = $kotlin_define =~ s/$flag_type/$kotlin_type/gr;
+    $define = $define =~ s/$flag_suffix/$kotlin_suffix/gr;
     $define = $define =~ s/$flag_var/$kotlin_var/gr;
 
     if ($target_define ne '') {
@@ -280,10 +312,12 @@ sub create_kotlin_define {
 
 sub create_kotlin_block {
     my $kotlin_class = shift;
+    my $kotlin_suffix = shift;
     my $kotlin_define = shift;
     my $target_block = shift;
 
     my $block = $flag_kotlin_block =~ s/$flag_class/$kotlin_class/gr;
+    $block = $block =~ s/$flag_suffix/$kotlin_suffix/gr;
     $block = $block =~ s/$flag_define/$kotlin_define/gr;
 
     if ($target_block ne '') {
@@ -298,12 +332,13 @@ sub create_kotlin_file {
     if ($path eq '') {
         $path = './';
     }
-    my $target_path = $path.'/out/kotlin/';
+    my $target_path = $path.$out_kotlin;
     File::Path::make_path($target_path);
 
     my $target_file = shift;
+    my $target_suffix = shift;
 
-    open(my $fh, '>', $target_path.$target_file.'.kt') or die 'Something went wrong! Write file error!';
+    open(my $fh, $write, $target_path.$target_file.$target_suffix.$kotlin) or die $error;
     print($fh shift);
     close($fh);
 }
@@ -311,7 +346,7 @@ sub create_kotlin_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_objc {
-    my $target_suffix = pop;
+    my $target_suffix = ucfirst pop;
     my $target_prefix = uc pop;
     my $target_path = pop;
     my $target_file = '';
@@ -337,15 +372,15 @@ sub generate_objc {
                 my $sub_value = $$value{$sub_key};
 
                 if (ref $sub_value eq 'ARRAY') {
-                    $target_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix.ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_objc_h_define($flag_objc_h_type_list_define, $target_prefix, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } elsif (ref $sub_value eq 'HASH') {
-                    $target_define = create_objc_define($flag_objc_h_type_define, $target_prefix.ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_objc_h_define($flag_objc_h_type_define, $target_prefix, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } else {
-                    $target_define = create_objc_define($flag_objc_h_type_define, 'String', $sub_key, $target_define);
+                    $target_define = create_objc_h_define($flag_objc_h_type_define, '', 'String', '', $sub_key, $target_define);
                 }
             }
 
-            my @block = create_objc_block($target_prefix, ucfirst $key, $target_define, $target_h_block, $target_m_block);
+            my @block = create_objc_block($target_prefix, ucfirst $key, $target_suffix, $target_define, $target_h_block, $target_m_block);
             $target_h_block = $block[0];
             $target_m_block = $block[1];
         }
@@ -354,18 +389,23 @@ sub generate_objc {
     my $h_file = $flag_objc_h_file =~ s/$flag_block/$target_h_block/gr;
     my $m_file = $flag_objc_m_file =~ s/$flag_prefix/$target_prefix/gr;
     $m_file = $m_file =~ s/$flag_class/$target_file/gr;
+    $m_file = $m_file =~ s/$flag_suffix/$target_suffix/gr;
     $m_file = $m_file =~ s/$flag_block/$target_m_block/gr;
 
-    create_objc_file($target_path, $target_prefix, $target_file, $h_file, $m_file);
+    create_objc_file($target_path, $target_prefix, $target_file, $target_suffix, $h_file, $m_file);
 }
 
-sub create_objc_define {
+sub create_objc_h_define {
     my $h_define = shift;
+    my $h_prefix = shift;
     my $h_type = shift;
+    my $h_suffix = shift;
     my $h_var = shift;
     my $target_define = shift;
 
-    my $define = $h_define =~ s/$flag_type/$h_type/gr;
+    my $define = $h_define =~ s/$flag_prefix/$h_prefix/gr;
+    $define = $define =~ s/$flag_type/$h_type/gr;
+    $define = $define =~ s/$flag_suffix/$h_suffix/gr;
     $define = $define =~ s/$flag_var/$h_var/gr;
 
     if ($target_define ne '') {
@@ -378,12 +418,14 @@ sub create_objc_define {
 sub create_objc_block {
     my $objc_prefix = shift;
     my $objc_class = shift;
+    my $objc_suffix = shift;
     my $h_define = shift;
     my $target_h_block = shift;
     my $target_m_block = shift;
 
     my $h_block = $flag_objc_h_block =~ s/$flag_prefix/$objc_prefix/gr;
     $h_block = $h_block =~ s/$flag_class/$objc_class/gr;
+    $h_block = $h_block =~ s/$flag_suffix/$objc_suffix/gr;
     $h_block = $h_block =~ s/$flag_define/$h_define/gr;
 
     if ($target_h_block ne '') {
@@ -392,6 +434,8 @@ sub create_objc_block {
 
     my $m_block = $flag_objc_m_block =~ s/$flag_prefix/$objc_prefix/gr;
     $m_block = $m_block =~ s/$flag_class/$objc_class/gr;
+    $m_block = $m_block =~ s/$flag_suffix/$objc_suffix/gr;
+    $m_block = $m_block =~ s/$flag_suffix/$objc_suffix/gr;
 
     if ($target_m_block ne '') {
         $target_m_block = $target_m_block.$ln.$ln;
@@ -405,17 +449,18 @@ sub create_objc_file {
     if ($path eq '') {
         $path = './';
     }
-    my $target_path = $path.'/out/objc/';
+    my $target_path = $path.$out_objc;
     File::Path::make_path($target_path);
 
     my $target_prefix = shift;
     my $target_file = shift;
+    my $target_suffix = shift;
 
-    open(my $h_fh, '>', $target_path.$target_prefix.$target_file.'.h') or die 'Something went wrong! Write file error!';
+    open(my $h_fh, $write, $target_path.$target_prefix.$target_file.$target_suffix.$h) or die $error;
     print($h_fh shift);
     close($h_fh);
 
-    open(my $m_fh, '>', $target_path.$target_prefix.$target_file.'.m') or die 'Something went wrong! Write file error!';
+    open(my $m_fh, $write, $target_path.$target_prefix.$target_file.$target_suffix.$m) or die $error;
     print($m_fh shift);
     close($m_fh);
 }
@@ -423,7 +468,7 @@ sub create_objc_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_swift {
-    my $target_suffix = pop;
+    my $target_suffix = ucfirst pop;
     my $target_prefix = pop;
     my $target_path = pop;
     my $target_file = '';
@@ -444,30 +489,32 @@ sub generate_swift {
                 my $sub_value = $$value{$sub_key};
 
                 if (ref $sub_value eq 'ARRAY') {
-                    $target_define = create_swift_define($flag_swift_type_list_define, ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_swift_define($flag_swift_type_list_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } elsif (ref $sub_value eq 'HASH') {
-                    $target_define = create_swift_define($flag_swift_type_define, ucfirst $sub_key, $sub_key, $target_define);
+                    $target_define = create_swift_define($flag_swift_type_define, ucfirst $sub_key, $target_suffix, $sub_key, $target_define);
                 } else {
-                    $target_define = create_swift_define($flag_swift_type_define, 'String', $sub_key, $target_define);
+                    $target_define = create_swift_define($flag_swift_type_define, 'String', '', $sub_key, $target_define);
                 }
             }
 
-            $target_block = create_swift_block(ucfirst $swift_class, $target_define, $target_block)
+            $target_block = create_swift_block(ucfirst $swift_class, $target_suffix, $target_define, $target_block)
         }
     }
 
     my $file = $target_block.$ln;
 
-    create_swift_file($target_path, $target_file, $file);
+    create_swift_file($target_path, $target_file, $target_suffix, $file);
 }
 
 sub create_swift_define {
     my $swift_define = shift;
     my $swift_type = shift;
+    my $swift_suffix = shift;
     my $swift_var = shift;
     my $target_define = shift;
 
     my $define = $swift_define =~ s/$flag_type/$swift_type/gr;
+    $define = $define =~ s/$flag_suffix/$swift_suffix/gr;
     $define = $define =~ s/$flag_var/$swift_var/gr;
 
     if ($target_define ne '') {
@@ -479,10 +526,12 @@ sub create_swift_define {
 
 sub create_swift_block {
     my $swift_class = shift;
+    my $swift_suffix = shift;
     my $swift_define = shift;
     my $target_block = shift;
 
     my $block = $flag_swift_block =~ s/$flag_class/$swift_class/gr;
+    $block = $block =~ s/$flag_suffix/$swift_suffix/gr;
     $block = $block =~ s/$flag_define/$swift_define/gr;
 
     if ($target_block ne '') {
@@ -497,12 +546,13 @@ sub create_swift_file {
     if ($path eq '') {
         $path = './';
     }
-    my $target_path = $path.'/out/swift/';
+    my $target_path = $path.$out_swift;
     File::Path::make_path($target_path);
 
     my $target_file = shift;
+    my $target_suffix = shift;
 
-    open(my $fh, '>', $target_path.$target_file.'swift') or die 'Something went wrong! Write file error!';
+    open(my $fh, $write, $target_path.$target_file.$target_suffix.$swift) or die $error;
     print($fh shift);
     close($fh);
 }

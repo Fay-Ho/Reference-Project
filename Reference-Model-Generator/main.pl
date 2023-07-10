@@ -22,7 +22,7 @@ sub main {
     print $ln;
 
     print 'Please entry the prefix for `Objective-C` file:'.$ln;
-    print '<default is empty>'.$ln;
+    print '<default is FR>'.$ln;
     my $file_prefix = <STDIN>;
     chomp $file_prefix;
     print $ln;
