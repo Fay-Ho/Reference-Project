@@ -7,6 +7,18 @@ use JSON;
 
 push(@INC, 'pwd');
 
+# -------------------------------------------------------------------------------------------------------------------- #
+
+my $read = '<';
+
+my $error = 'Something went wrong! Please double check the json file!';
+
+my $array = 'ARRAY';
+
+my $hash = 'HASH';
+
+# -------------------------------------------------------------------------------------------------------------------- #
+
 my @data;
 
 sub read_path {
@@ -19,7 +31,7 @@ sub read_path {
 
 sub read_file {
     my $file;
-    open (my $fh, '<', shift) or die 'Something went wrong! Please double check the json file!';
+    open (my $fh, $read, shift) or die $error;
     while(<$fh>) {
         $file .= $_;
     }
@@ -29,7 +41,7 @@ sub read_file {
 
 sub parse_data {
     my ($key, $value) = @_;
-    if (ref $value eq 'ARRAY') {
+    if (ref $value eq $array) {
         my $data;
         for my $sub_value (@$value) {
             for my $sub_key (keys %$sub_value) {
@@ -37,7 +49,7 @@ sub parse_data {
             }
         }
         parse_data($key, $data);
-    } elsif (ref $value eq 'HASH') {
+    } elsif (ref $value eq $hash) {
         push @data, {$key => $value};
         for my $sub_key (keys %$value) {
             parse_data($sub_key, $$value{$sub_key});
