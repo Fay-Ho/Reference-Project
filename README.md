@@ -50,26 +50,147 @@ The `JavaScript` project for auto generate iOS VIP module.
 ```objective-c
 // Configurator
 
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRConfigurator : NSObject
+
++ (instancetype)configurator;
+
+- (UIViewController *)makeViewController;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+#import "FRConfigurator.h"
+#import "FRInteractor.h"
+#import "FRPresenter.h"
+#import "FRViewController.h"
+
+@implementation FRConfigurator
+
++ (instancetype)configurator {
+    return [[self alloc] init];
+}
+
+- (UIViewController *)makeViewController {
+    FRInteractor *interactor = [[FRInteractor alloc] init];
+    FRPresenter *presenter = [[FRPresenter alloc] init];
+    FRViewController *viewController = [[FRViewController alloc] init];
+    
+    interactor.presenter = presenter;
+    presenter.viewController = viewController;
+    viewController.interactor = interactor;
+    
+    return viewController;
+}
+
+@end
 ```
 
 ```objective-c
 // Interactor
 
+#import <Foundation/Foundation.h>
+#import "FRInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRInteractor : NSObject <FRInteractorInterface>
+
+@property (nonatomic, strong) id<FRPresenterInterface> presenter;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+#import "FRInteractor.h"
+
+@implementation FRInteractor
+
+@end
 ```
 
 ```objective-c
 // Interface
 
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol FRInteractorInterface <NSObject>
+
+@end
+
+@protocol FRPresenterInterface <NSObject>
+
+@end
+
+@protocol FRViewControllerInterface <NSObject>
+
+@end
+
+NS_ASSUME_NONNULL_END
 ```
 
 ```objective-c
 // Presenter
 
+#import <Foundation/Foundation.h>
+#import "FRInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRPresenter : NSObject <FRPresenterInterface>
+
+@property (nonatomic, weak) id<FRViewControllerInterface> viewController;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+#import FRPresenter.h"
+
+@implementation FRPresenter
+
+@end
 ```
 
 ```objective-c
 // ViewController
 
+#import <UIKit/UIKit.h>
+#import FRInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRViewController : UIViewController <FRViewControllerInterface>
+
+@property (nonatomic, strong) id<FRInteractorInterface> interactor;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+#import "FRViewController.h"
+
+@interface FRViewController ()
+
+@end
+
+@implementation FRViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+@end
 ```
 
 - Swift
@@ -130,6 +251,10 @@ import UIKit
 
 class ViewController: UIViewController {
     var interactor: InteractorInterface?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
 
 extension ViewController: ViewControllerInterface {}

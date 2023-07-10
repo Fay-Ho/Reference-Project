@@ -25,11 +25,8 @@ const view_controller_m = `#import "%PREFIX%%CLASS%ViewController.h"
 
 @implementation %PREFIX%%CLASS%ViewController
 
-#pragma mark - View Lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 @end`;
