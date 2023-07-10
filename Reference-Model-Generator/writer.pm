@@ -24,9 +24,9 @@ my $kotlin = '.kt';
 
 my $out_objc = '/out/objc/';
 
-my $h = '.h';
+my $objc_h = '.h';
 
-my $m = '.m';
+my $objc_m = '.m';
 
 my $out_swift = '/out/swift/';
 
@@ -218,7 +218,7 @@ sub create_java_param {
         $target_param = $target_param.", ";
     }
 
-    return($target_param.$param);
+    return $target_param.$param;
 }
 
 sub create_java_block {
@@ -231,7 +231,7 @@ sub create_java_block {
         $target_block = $target_block.$ln;
     }
 
-    return($target_block.$block);
+    return $target_block.$block;
 }
 
 sub create_java_file {
@@ -245,9 +245,7 @@ sub create_java_file {
     my $target_file = shift;
     my $target_suffix = shift;
 
-    open(my $fh, $write, $target_path.$target_file.$target_suffix.$java) or die $error;
-    print($fh shift);
-    close($fh);
+    create_file($target_path.$target_file.$target_suffix.$java, shift);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -307,7 +305,7 @@ sub create_kotlin_define {
         $target_define = $target_define.",\n";
     }
 
-    return($target_define.$define);
+    return $target_define.$define;
 }
 
 sub create_kotlin_block {
@@ -324,7 +322,7 @@ sub create_kotlin_block {
         $target_block = $target_block.$ln.$ln;
     }
 
-    return($target_block.$block);
+    return $target_block.$block;
 }
 
 sub create_kotlin_file {
@@ -338,9 +336,7 @@ sub create_kotlin_file {
     my $target_file = shift;
     my $target_suffix = shift;
 
-    open(my $fh, $write, $target_path.$target_file.$target_suffix.$kotlin) or die $error;
-    print($fh shift);
-    close($fh);
+    create_file($target_path.$target_file.$target_suffix.$kotlin, shift);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -412,7 +408,7 @@ sub create_objc_h_define {
         $target_define = $target_define.",\n";
     }
 
-    return($target_define.$define);
+    return $target_define.$define;
 }
 
 sub create_objc_block {
@@ -441,7 +437,7 @@ sub create_objc_block {
         $target_m_block = $target_m_block.$ln.$ln;
     }
 
-    return($target_h_block.$h_block, $target_m_block.$m_block);
+    return $target_h_block.$h_block, $target_m_block.$m_block;
 }
 
 sub create_objc_file {
@@ -456,13 +452,8 @@ sub create_objc_file {
     my $target_file = shift;
     my $target_suffix = shift;
 
-    open(my $h_fh, $write, $target_path.$target_prefix.$target_file.$target_suffix.$h) or die $error;
-    print($h_fh shift);
-    close($h_fh);
-
-    open(my $m_fh, $write, $target_path.$target_prefix.$target_file.$target_suffix.$m) or die $error;
-    print($m_fh shift);
-    close($m_fh);
+    create_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_h, shift);
+    create_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_m, shift);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -521,7 +512,7 @@ sub create_swift_define {
         $target_define = $target_define.$ln.$ln;
     }
 
-    return($target_define.$define);
+    return $target_define.$define;
 }
 
 sub create_swift_block {
@@ -538,7 +529,7 @@ sub create_swift_block {
         $target_block = $target_block.$ln.$ln;
     }
 
-    return($target_block.$block);
+    return $target_block.$block;
 }
 
 sub create_swift_file {
@@ -552,11 +543,15 @@ sub create_swift_file {
     my $target_file = shift;
     my $target_suffix = shift;
 
-    open(my $fh, $write, $target_path.$target_file.$target_suffix.$swift) or die $error;
-    print($fh shift);
-    close($fh);
+    create_file($target_path.$target_file.$target_suffix.$swift, shift);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
+
+sub create_file {
+    open(my $fh, $write, shift) or die $error;
+    print($fh shift);
+    close($fh);
+}
 
 1;
