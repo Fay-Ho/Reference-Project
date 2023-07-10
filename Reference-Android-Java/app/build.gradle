@@ -37,8 +37,6 @@ android {
 dependencies {
     // Local Java module
     implementation project(':annotation')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.wear:wear:1.0.0'
     annotationProcessor project(':annotation-processor')
 
     // Java only
