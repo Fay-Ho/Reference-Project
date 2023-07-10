@@ -5,7 +5,7 @@ A mobile weather application, the reference project for mobile app development.
 
 - Using `AMap.Weather` API
 
-### Reference-Android-Java
+### [Reference-Android-Java](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Java)
 ---
 The `Java` project for the weather app building with `MVVM` architecture.
 
@@ -14,7 +14,7 @@ The `Java` project for the weather app building with `MVVM` architecture.
 
 ```
 
-### Reference-Android-Kotlin
+### [Reference-Android-Kotlin](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Kotlin)
 ---
 The `Kotlin` project for the weather app building with `MVVM` architecture.
 
@@ -23,7 +23,7 @@ The `Kotlin` project for the weather app building with `MVVM` architecture.
 
 ```
 
-### Reference-iOS-ObjC
+### [Reference-iOS-ObjC](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-ObjC)
 ---
 The `Objective-C` project for the weather app building with `VIP` architecture.
 
@@ -32,7 +32,7 @@ The `Objective-C` project for the weather app building with `VIP` architecture.
 
 ```
 
-### Reference-iOS-Swift
+### [Reference-iOS-Swift](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Swift)
 ---
 The `Swift` project for the weather app building with `VIP` architecture.
 
@@ -41,7 +41,7 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ```
 
-### Reference-iOS-Feature-Generator
+### [Reference-iOS-Feature-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Feature-Generator)
 ---
 The `JavaScript` project for auto generate iOS VIP module.
 
@@ -260,7 +260,7 @@ class ViewController: UIViewController {
 extension ViewController: ViewControllerInterface {}
 ```
 
-### Reference-Data-Model-Generator
+### [Reference-Data-Model-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Data-Model-Generator)
 ---
 The `Perl` project for auto generate data model.
 
@@ -344,7 +344,7 @@ struct Model: Codable {
 }
 ```
 
-### Reference-Parcelize-Annotation-Plugin
+### [Reference-Parcelize-Annotation-Plugin](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Parcelize-Annotation-Plugin)
 ---
 The `Intellij IDEA` / `Android Studio` plugin project for solve the code show error where `Java` project using `@Parcelize` `(xyz.fay.parcel.Parcelize)` annotation.
 
