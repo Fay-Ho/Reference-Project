@@ -45,6 +45,96 @@ The `Swift` project for the weather app building with `VIP` architecture.
 ---
 The `JavaScript` project for auto generate iOS VIP module.
 
+- Objective-C
+
+```objective-c
+// Configurator
+
+```
+
+```objective-c
+// Interface
+
+```
+
+```objective-c
+// Interactor
+
+```
+
+```objective-c
+// Presenter
+
+```
+
+```objective-c
+// ViewController
+
+```
+
+- Swift
+```swift
+// Configurator
+
+import UIKit
+
+func makeViewController() -> UIViewController {
+    let interactor = Interactor()
+    let presenter = Presenter()
+    let viewController = ViewController()
+
+    interactor.presenter = presenter
+    presenter.viewController = viewController
+    viewController.interactor = interactor
+
+    return viewController
+}
+```
+
+```swift
+// Interface
+
+import Foundation
+
+protocol InteractorInterface {}
+
+protocol PresenterInterface {}
+
+protocol ViewControllerInterface : NSObject {}
+```
+
+```swift
+// Interactor
+
+class Interactor : InteractorInterface {
+    var presenter: PresenterInterface?
+}
+
+extension Interactor : InteractorInterface {}
+```
+
+```swift
+// Presenter
+
+class Presenter : PresenterInterface {
+    weak var viewController: ViewControllerInterface?
+}
+
+extension Presenter : PresenterInterface {}
+```
+
+```swift
+// ViewController
+
+import UIKit
+
+class ViewController: UIViewController {
+    var interactor: InteractorInterface?
+}
+
+extension ViewController: ViewControllerInterface {}
+```
+
 ### Reference-Data-Model-Generator
 ---
 The `Perl` project for auto generate data model.
