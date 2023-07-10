@@ -53,12 +53,12 @@ The `JavaScript` project for auto generate iOS VIP module.
 ```
 
 ```objective-c
-// Interface
+// Interactor
 
 ```
 
 ```objective-c
-// Interactor
+// Interface
 
 ```
 
@@ -92,6 +92,16 @@ func makeViewController() -> UIViewController {
 ```
 
 ```swift
+// Interactor
+
+class Interactor : InteractorInterface {
+    var presenter: PresenterInterface?
+}
+
+extension Interactor : InteractorInterface {}
+```
+
+```swift
 // Interface
 
 import Foundation
@@ -101,16 +111,6 @@ protocol InteractorInterface {}
 protocol PresenterInterface {}
 
 protocol ViewControllerInterface : NSObject {}
-```
-
-```swift
-// Interactor
-
-class Interactor : InteractorInterface {
-    var presenter: PresenterInterface?
-}
-
-extension Interactor : InteractorInterface {}
 ```
 
 ```swift
