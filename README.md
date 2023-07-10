@@ -63,8 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+```
 
-
+```objective-c
 #import "FRConfigurator.h"
 #import "FRInteractor.h"
 #import "FRPresenter.h"
@@ -106,8 +107,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+```
 
-
+```objective-c
 #import "FRInteractor.h"
 
 @implementation FRInteractor
@@ -152,8 +154,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+```
 
-
+```objective-c
 #import FRPresenter.h"
 
 @implementation FRPresenter
@@ -176,8 +179,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+```
 
-
+```objective-c
 #import "FRViewController.h"
 
 @interface FRViewController ()
@@ -249,7 +253,7 @@ extension Presenter : PresenterInterface {}
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController : UIViewController {
     var interactor: InteractorInterface?
     
     override func viewDidLoad() {
@@ -257,7 +261,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: ViewControllerInterface {}
+extension ViewController : ViewControllerInterface {}
 ```
 
 ### [Reference-Data-Model-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Data-Model-Generator)

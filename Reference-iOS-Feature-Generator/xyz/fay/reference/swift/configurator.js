@@ -10,7 +10,7 @@ protocol FeatureConfigurator {
 
 const configurator = `import UIKit
 
-class %CLASS%Configurator: FeatureConfigurator {
+class %CLASS%Configurator : FeatureConfigurator {
     func makeViewController() -> UIViewController {
         let interactor = %CLASS%Interactor()
         let presenter = %CLASS%Presenter()
