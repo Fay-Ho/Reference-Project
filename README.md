@@ -45,7 +45,7 @@ The `Swift` project for the weather app building with `VIP` architecture.
 ---
 The `JavaScript` project for auto generate iOS VIP module.
 
-### Reference-Model-Generator
+### Reference-Data-Model-Generator
 ---
 The `Perl` project for auto generate data model.
 
