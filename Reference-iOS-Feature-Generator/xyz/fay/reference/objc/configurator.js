@@ -43,9 +43,9 @@ const configurator_m = `#import "%PREFIX%%CLASS%Configurator.h"
 }
 
 - (UIViewController *)makeViewControllerWithData:(id)data {
-    %PREFIX%%CLASS%Interactor *interactor = [%PREFIX%%CLASS%Interactor new];
-    %PREFIX%%CLASS%Presenter *presenter = [%PREFIX%%CLASS%Presenter new];
-    %PREFIX%%CLASS%ViewController *viewController = [%PREFIX%%CLASS%ViewController new];
+    %PREFIX%%CLASS%Interactor *interactor = [[%PREFIX%%CLASS%Interactor alloc] init];
+    %PREFIX%%CLASS%Presenter *presenter = [[%PREFIX%%CLASS%Presenter alloc] init];
+    %PREFIX%%CLASS%ViewController *viewController = [[%PREFIX%%CLASS%ViewController alloc] init];
     
     interactor.presenter = presenter;
     presenter.viewController = viewController;
