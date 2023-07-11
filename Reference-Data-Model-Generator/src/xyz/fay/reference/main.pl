@@ -27,23 +27,28 @@ sub main {
 
     print 'Which platform\'s data model do you need to generate? (Java (j), Kotlin (k), Objective-C (o), Swift (s), default generate all platforms):'.$ln;
     my $develop_platform = <STDIN>;
-    chomp $input_path;
+    chomp $develop_platform;
     print $ln;
 
     my $file_prefix = $empty;
-    if ($develop_platform =~ /o/) {
-        print 'Please entry the prefix for `Objective-C` file (default is FR):'.$ln;
+    if ($develop_platform !~ /j/ and $develop_platform !~ /k/ and $develop_platform !~ /s/) {
+        print 'Please entry the prefix for `Objective-C` file (e.g. \'FRApi\', default is \'FR\'):'.$ln;
         $file_prefix = <STDIN>;
         chomp $file_prefix;
         print $ln;
     }
 
-    print 'Please entry the suffix for model file (default is empty):'.$ln;
+    print 'Please entry the suffix for data model (e.g. \'response\' to \'ApiResponse\', default is empty):'.$ln;
     my $file_suffix = <STDIN>;
     chomp $file_suffix;
     print $ln;
 
-    unshift(@data, $output_path, $file_prefix, $file_suffix);
+    print 'Please entry the copyright for you company or organization (default is MIT license):'.$ln;
+    my $file_copyright = <STDIN>;
+    chomp $file_copyright;
+    print $ln;
+
+    unshift(@data, $output_path, $file_prefix, $file_suffix, $file_copyright);
 
     if ($develop_platform =~ /j/) {
         writer::generate_java_file(@data);

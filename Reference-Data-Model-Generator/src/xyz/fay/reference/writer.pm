@@ -164,7 +164,8 @@ $flag_license_1
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-$flag_block";
+$flag_block
+";
 
 my $flag_kotlin_block = "\@Parcelize
 data class $flag_class$flag_suffix(
@@ -226,7 +227,7 @@ my $flag_swift_type_list_define = "    let $flag_var: [$flag_type$flag_suffix]";
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_java_file {
-    my ($target_path, $target_prefix, $target_suffix, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
     ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
     foreach my $data (@data) {
@@ -330,7 +331,7 @@ sub create_java_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_kotlin_file {
-    my ($target_path, $target_prefix, $target_suffix, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
     my ($target_file_name, $target_kotlin_block) = ($empty, $empty);
     ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
@@ -416,7 +417,7 @@ sub create_kotlin_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_objc_file {
-    my ($target_path, $target_prefix, $target_suffix, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
     my ($target_file_name, $target_objc_h_block, $target_objc_m_block) = ($empty, $empty, $empty);
     ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
@@ -527,7 +528,7 @@ sub create_objc_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_swift_file {
-    my ($target_path, $target_prefix, $target_suffix, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
     my ($target_file_name, $target_swift_block) = ($empty, $empty);
     ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
