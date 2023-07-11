@@ -32,13 +32,13 @@ sub main {
 
     my $file_prefix = $empty;
     if ($develop_platform !~ /j/ and $develop_platform !~ /k/ and $develop_platform !~ /s/) {
-        print 'Please entry the prefix for `Objective-C` file (e.g. \'FRApi\', default is \'FR\'):'.$ln;
+        print 'Please entry the prefix for `Objective-C` file (e.g. `FRApi`, default is `FR`):'.$ln;
         $file_prefix = <STDIN>;
         chomp $file_prefix;
         print $ln;
     }
 
-    print 'Please entry the suffix for data model (e.g. \'response\' to \'ApiResponse\', default is empty):'.$ln;
+    print 'Please entry the suffix for data model (e.g. `response` to `ApiResponse`, default is empty):'.$ln;
     my $file_suffix = <STDIN>;
     chomp $file_suffix;
     print $ln;
