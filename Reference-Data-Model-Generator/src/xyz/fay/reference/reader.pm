@@ -5,6 +5,7 @@ use warnings FATAL => 'all';
 use File::Basename;
 use File::Path;
 
+require './libs/CamelCase.pm';
 require './libs/JSON.pm';
 
 push(@INC, 'pwd');
@@ -66,7 +67,7 @@ sub parse_data {
     } elsif (ref $value eq $is_hash) {
         push @data, {$key => $value};
         for my $sub_key (keys %$value) {
-            parse_data($sub_key, $$value{$sub_key});
+            parse_data(camel_case($key).camel_case($sub_key), $$value{$sub_key});
         }
     }
 }
