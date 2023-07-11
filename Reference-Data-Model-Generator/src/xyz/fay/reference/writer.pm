@@ -566,7 +566,7 @@ sub create_swift_define {
     ));
 
     if ($target_define ne $empty) {
-        $target_define = $target_define.$ln.$ln;
+        $target_define = $target_define.$ln;
     }
 
     return $target_define.$new_define;
