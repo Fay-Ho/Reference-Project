@@ -236,16 +236,16 @@ sub generate_java_file {
                 ($$data{$target_class_name}, $empty, $empty, $empty);
 
             foreach my $target_define_name (sort (keys(%$target_class_value))) {
-                ($target_define_name, my $target_define_value) =
+                (my $target_define_type, my $target_define_value) =
                     (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
-                    $target_class_var_define = create_java_define($flag_java_type_list_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
-                    $target_class_var_param = create_java_param($flag_java_type_list_param, $target_define_name, $target_suffix, $target_define_name, $target_class_var_param);
+                    $target_class_var_define = create_java_define($flag_java_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_param = create_java_param($flag_java_type_list_param, $target_define_type, $target_suffix, $target_define_name, $target_class_var_param);
                     $target_class_var_block = create_java_block($target_define_name, $target_class_var_block);
                 } elsif (ref $target_define_value eq $is_hash) {
-                    $target_class_var_define = create_java_define($flag_java_type_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
-                    $target_class_var_param = create_java_param($flag_java_type_param, $target_define_name, $target_suffix, $target_define_name, $target_class_var_param);
+                    $target_class_var_define = create_java_define($flag_java_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_param = create_java_param($flag_java_type_param, $target_define_type, $target_suffix, $target_define_name, $target_class_var_param);
                     $target_class_var_block = create_java_block($target_define_name, $target_class_var_block);
                 } else {
                     $target_class_var_define = create_java_define($flag_java_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
@@ -344,13 +344,13 @@ sub generate_kotlin_file {
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
             foreach my $target_define_name (sort(keys(%$target_class_value))) {
-                ($target_define_name, my $target_define_value) =
+                (my $target_define_type, my $target_define_value) =
                     (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
-                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_list_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } elsif (ref $target_define_value eq $is_hash) {
-                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } else {
                     $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                 }
@@ -434,13 +434,13 @@ sub generate_objc_file {
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
             foreach my $target_define_name (sort(keys(%$target_class_value))) {
-                ($target_define_name, my $target_define_value) =
+                (my $target_define_type, my $target_define_value) =
                     (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
-                    $target_class_var_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } elsif (ref $target_define_value eq $is_hash) {
-                    $target_class_var_define = create_objc_define($flag_objc_h_type_define, $target_prefix, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_objc_define($flag_objc_h_type_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } else {
                     $target_class_var_define = create_objc_define($flag_objc_h_type_define, $default_prefix_ns, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                 }
@@ -541,13 +541,13 @@ sub generate_swift_file {
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
             foreach my $target_define_name (sort(keys(%$target_class_value))) {
-                ($target_define_name, my $target_define_value) =
+                (my $target_define_type, my $target_define_value) =
                     (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
-                    $target_class_var_define = create_swift_define($flag_swift_type_list_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_swift_define($flag_swift_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } elsif (ref $target_define_value eq $is_hash) {
-                    $target_class_var_define = create_swift_define($flag_swift_type_define, $target_define_name, $target_suffix, $target_define_name, $target_class_var_define);
+                    $target_class_var_define = create_swift_define($flag_swift_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                 } else {
                     $target_class_var_define = create_swift_define($flag_swift_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                 }
