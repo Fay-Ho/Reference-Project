@@ -11,14 +11,14 @@ sub main {
     my $ln = "\n";
 
     print 'Welcome to using Reference-Data-Model-Generator!!'.$ln;
-    print 'Please entry the local json file path:'.$ln;
+    print 'Please entry the local json file path. (Mandatory):'.$ln;
     my $input_path = <STDIN>;
     chomp $input_path;
     print $ln;
 
     my @data = reader::read_path($input_path);
 
-    print 'Please entry the output file path:'.$ln;
+    print 'Please entry the output file path. (Default is current user\'s `Desktop`):'.$ln;
     my $output_path = <STDIN>;
     chomp $output_path;
     print $ln;
@@ -32,18 +32,18 @@ sub main {
 
     my $file_prefix = $empty;
     if ($develop_platform !~ /j/ and $develop_platform !~ /k/ and $develop_platform !~ /s/) {
-        print 'Please entry the prefix for `Objective-C` file (e.g. `FRApi`, default is `FR`):'.$ln;
+        print 'Please entry the prefix for `Objective-C` file. (e.g. `FRApi`, default is `FR`):'.$ln;
         $file_prefix = <STDIN>;
         chomp $file_prefix;
         print $ln;
     }
 
-    print 'Please entry the suffix for data model (e.g. `response` to `ApiResponse`, default is empty):'.$ln;
+    print 'Please entry the suffix for data model. (e.g. `response` to `ApiResponse`, default is empty):'.$ln;
     my $file_suffix = <STDIN>;
     chomp $file_suffix;
     print $ln;
 
-    print 'Please entry the copyright for you company or organization (default is MIT license):'.$ln;
+    print 'Please entry the copyright for you company or organization. (Default is MIT license):'.$ln;
     my $file_copyright = <STDIN>;
     chomp $file_copyright;
     print $ln;
