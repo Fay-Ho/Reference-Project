@@ -41,6 +41,9 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ```
 
+### [Reference-Android-Annotation-Jar](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Annotation-Jar)
+---
+
 ### [Reference-iOS-Feature-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Feature-Generator)
 ---
 The `JavaScript` project for auto generate iOS VIP module.
