@@ -47,11 +47,11 @@
 
 #pragma mark - FRHomeViewControllerInterface Methods
 
-- (void)showCityPageWithResponse:(FRCityResponse *)response {
+- (void)showCityPageWithResponse:(FRGetCityResponse *)response {
     [FRHelper.sharedInstance.navigator navigateTo:FRDestinationCity navigationController:self.navigationController data:response];
 }
 
-- (void)updateSubviewsWithResponse:(FRCityResponse * _Nonnull)response; {
+- (void)updateSubviewsWithResponse:(FRGetCityResponse * _Nonnull)response; {
     
 }
 

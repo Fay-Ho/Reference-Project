@@ -8,21 +8,21 @@
 
 #import "FRHomeInteractor.h"
 #import "FRNetworkManager.h"
-#import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
+#import "FRGetCityResponse.h"
+#import "FRGetWeatherResponse.h"
 
 @implementation FRHomeInteractor
 
 - (void)fetchCityData {
-    FRNetworkManager<FRCityResponse *> *manager = [FRNetworkManager manager];
-    [manager getCity:^(FRCityResponse * _Nullable response) {
+    FRNetworkManager<FRGetCityResponse *> *manager = [FRNetworkManager manager];
+    [manager getCity:^(FRGetCityResponse * _Nullable response) {
         [self.presenter handleCityResponse:response];
     }];
 }
 
 - (void)fetchWeatherData {
-    FRNetworkManager<FRWeatherResponse *> *manager = [FRNetworkManager manager];
-    [manager getWeather:^(FRWeatherResponse * _Nullable response) {
+    FRNetworkManager<FRGetWeatherResponse *> *manager = [FRNetworkManager manager];
+    [manager getWeather:^(FRGetWeatherResponse * _Nullable response) {
         [self.presenter handleWeatherResponse:response];
     }];
 }

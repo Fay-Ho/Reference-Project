@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import xyz.fay.reference.databinding.CityAdapterBinding
-import xyz.fay.reference.networking.response.CityListResponse
+import xyz.fay.reference.networking.response.GetCityCitiesResponse
 
 class CityAdapter(
-        private val cities: Array<CityListResponse>,
+        private val cities: Array<GetCityCitiesResponse>,
         private val onClick: () -> Unit
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
+#import "FRGetCityResponse.h"
+#import "FRGetWeatherResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,17 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FRHomePresenterInterface <NSObject>
 
-- (void)handleCityResponse:(FRCityResponse * _Nonnull)response;
+- (void)handleCityResponse:(FRGetCityResponse * _Nonnull)response;
 
-- (void)handleWeatherResponse:(FRWeatherResponse * _Nonnull)response;
+- (void)handleWeatherResponse:(FRGetWeatherResponse * _Nonnull)response;
 
 @end
 
 @protocol FRHomeViewControllerInterface <NSObject>
 
-- (void)showCityPageWithResponse:(FRCityResponse * _Nonnull)response;
+- (void)showCityPageWithResponse:(FRGetCityResponse * _Nonnull)response;
 
-- (void)updateSubviewsWithResponse:(FRWeatherResponse * _Nonnull)response;
+- (void)updateSubviewsWithResponse:(FRGetWeatherResponse * _Nonnull)response;
 
 @end
 

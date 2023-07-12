@@ -4,16 +4,16 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
-import xyz.fay.reference.networking.response.CityResponse
-import xyz.fay.reference.networking.response.WeatherResponse
+import xyz.fay.reference.networking.response.GetCityResponse
+import xyz.fay.reference.networking.response.GetWeatherResponse
 
 class HomeViewModel : ViewModel() {
-    private val _cityResponse = MutableLiveData<CityResponse?>()
-    val cityResponse: MutableLiveData<CityResponse?>
+    private val _cityResponse = MutableLiveData<GetCityResponse?>()
+    val cityResponse: MutableLiveData<GetCityResponse?>
         get() = _cityResponse
 
-    private val _weatherResponse = MutableLiveData<WeatherResponse?>()
-    val weatherResponse: MutableLiveData<WeatherResponse?>
+    private val _weatherResponse = MutableLiveData<GetWeatherResponse?>()
+    val weatherResponse: MutableLiveData<GetWeatherResponse?>
         get() = _weatherResponse
 
     fun fetchCityData(context: Context) {

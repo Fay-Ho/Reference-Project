@@ -13,9 +13,9 @@ protocol CityInteractorInterface {
 }
 
 protocol CityPresenterInterface {
-    func handle(response: CityResponse)
+    func handle(response: GetCityResponse)
 }
 
 protocol CityViewControllerInterface: NSObject {
-    func undateSubviews(response: CityResponse)
+    func undateSubviews(response: GetCityResponse)
 }

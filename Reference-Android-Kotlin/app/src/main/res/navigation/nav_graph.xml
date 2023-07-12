@@ -28,7 +28,7 @@
 
         <argument
             android:name="models"
-            app:argType="xyz.fay.reference.networking.response.CityListResponse[]" />
+            app:argType="xyz.fay.reference.networking.response.GetCityCitiesResponse[]" />
 
     </fragment>
 

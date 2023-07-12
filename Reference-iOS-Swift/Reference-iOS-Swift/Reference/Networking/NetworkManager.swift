@@ -30,15 +30,15 @@ class NetworkManager {
         }
     }
     
-    func getCity(completion: ((_ response: CityResponse?) -> Void)?) {
+    func getCity(completion: ((_ response: GetCityResponse?) -> Void)?) {
         sendRequest(fileName: MockFile.city.rawValue, completion: completion)
     }
     
-    func getWeather(completion: ((_ response: CityResponse?) -> Void)?) {
+    func getWeather(completion: ((_ response: GetWeatherResponse?) -> Void)?) {
         sendRequest(fileName: MockFile.weather.rawValue, completion: completion)
     }
     
-    func postUser(completion: ((_ response: CityResponse?) -> Void)?) {
+    func postUser(completion: ((_ response: PostUserResponse?) -> Void)?) {
         sendRequest(fileName: MockFile.user.rawValue, completion: completion)
     }
 }

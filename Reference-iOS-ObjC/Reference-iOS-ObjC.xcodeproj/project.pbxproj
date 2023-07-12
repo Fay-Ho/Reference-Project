@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65168A762A5F26C6003D1681 /* FRGetWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65168A712A5F26C6003D1681 /* FRGetWeatherResponse.m */; };
+		65168A772A5F26C6003D1681 /* FRPostUserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65168A722A5F26C6003D1681 /* FRPostUserResponse.m */; };
+		65168A782A5F26C6003D1681 /* FRGetCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65168A732A5F26C6003D1681 /* FRGetCityResponse.m */; };
 		659F93442A5756C3000F7E2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93432A5756C3000F7E2B /* AppDelegate.m */; };
 		659F934F2A5756C3000F7E2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659F934E2A5756C3000F7E2B /* Assets.xcassets */; };
 		659F93522A5756C3000F7E2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 659F93502A5756C3000F7E2B /* LaunchScreen.storyboard */; };
@@ -15,9 +18,6 @@
 		659F936A2A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93692A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m */; };
 		65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */; };
 		65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */; };
-		65F8FD6F2A575DC500C4E686 /* FRWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD6E2A575DC500C4E686 /* FRWeatherResponse.m */; };
-		65F8FD722A575E1200C4E686 /* FRUserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD712A575E1200C4E686 /* FRUserResponse.m */; };
-		65F8FD752A575E2300C4E686 /* FRCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD742A575E2300C4E686 /* FRCityResponse.m */; };
 		65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */; };
 		65F8FD832A57C1C100C4E686 /* FRHomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD822A57C1C100C4E686 /* FRHomePresenter.m */; };
 		65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD852A57C27400C4E686 /* FRHomeInteractor.m */; };
@@ -60,6 +60,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65168A702A5F26C6003D1681 /* FRGetWeatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGetWeatherResponse.h; sourceTree = "<group>"; };
+		65168A712A5F26C6003D1681 /* FRGetWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGetWeatherResponse.m; sourceTree = "<group>"; };
+		65168A722A5F26C6003D1681 /* FRPostUserResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRPostUserResponse.m; sourceTree = "<group>"; };
+		65168A732A5F26C6003D1681 /* FRGetCityResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGetCityResponse.m; sourceTree = "<group>"; };
+		65168A742A5F26C6003D1681 /* FRPostUserResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRPostUserResponse.h; sourceTree = "<group>"; };
+		65168A752A5F26C6003D1681 /* FRGetCityResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGetCityResponse.h; sourceTree = "<group>"; };
 		659F933F2A5756C3000F7E2B /* Reference-iOS-ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reference-iOS-ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F93422A5756C3000F7E2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		659F93432A5756C3000F7E2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,12 +83,6 @@
 		65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRHex.m"; sourceTree = "<group>"; };
 		65AA0C242A5983B900FE3AA0 /* UIColor+FRColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRColor.h"; sourceTree = "<group>"; };
 		65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRColor.m"; sourceTree = "<group>"; };
-		65F8FD6D2A575DC500C4E686 /* FRWeatherResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherResponse.h; sourceTree = "<group>"; };
-		65F8FD6E2A575DC500C4E686 /* FRWeatherResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherResponse.m; sourceTree = "<group>"; };
-		65F8FD702A575E1200C4E686 /* FRUserResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRUserResponse.h; sourceTree = "<group>"; };
-		65F8FD712A575E1200C4E686 /* FRUserResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRUserResponse.m; sourceTree = "<group>"; };
-		65F8FD732A575E2300C4E686 /* FRCityResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRCityResponse.h; sourceTree = "<group>"; };
-		65F8FD742A575E2300C4E686 /* FRCityResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRCityResponse.m; sourceTree = "<group>"; };
 		65F8FD7E2A57B06100C4E686 /* FRNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRNetworkManager.h; sourceTree = "<group>"; };
 		65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRNetworkManager.m; sourceTree = "<group>"; };
 		65F8FD812A57C1C100C4E686 /* FRHomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomePresenter.h; sourceTree = "<group>"; };
@@ -263,12 +263,12 @@
 		65F8FD682A575D3700C4E686 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				65F8FD732A575E2300C4E686 /* FRCityResponse.h */,
-				65F8FD742A575E2300C4E686 /* FRCityResponse.m */,
-				65F8FD702A575E1200C4E686 /* FRUserResponse.h */,
-				65F8FD712A575E1200C4E686 /* FRUserResponse.m */,
-				65F8FD6D2A575DC500C4E686 /* FRWeatherResponse.h */,
-				65F8FD6E2A575DC500C4E686 /* FRWeatherResponse.m */,
+				65168A752A5F26C6003D1681 /* FRGetCityResponse.h */,
+				65168A732A5F26C6003D1681 /* FRGetCityResponse.m */,
+				65168A702A5F26C6003D1681 /* FRGetWeatherResponse.h */,
+				65168A712A5F26C6003D1681 /* FRGetWeatherResponse.m */,
+				65168A742A5F26C6003D1681 /* FRPostUserResponse.h */,
+				65168A722A5F26C6003D1681 /* FRPostUserResponse.m */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -511,25 +511,25 @@
 			files = (
 				65F8FDC62A581A3600C4E686 /* FRBundleProvider.m in Sources */,
 				65F8FDAE2A57C62300C4E686 /* FRCityViewController.m in Sources */,
+				65168A782A5F26C6003D1681 /* FRGetCityResponse.m in Sources */,
 				65F8FD9E2A57C46F00C4E686 /* FRSettingsPresenter.m in Sources */,
 				65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */,
 				65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */,
 				65F8FDA72A57C4BF00C4E686 /* FRUserInteractor.m in Sources */,
-				65F8FD6F2A575DC500C4E686 /* FRWeatherResponse.m in Sources */,
-				65F8FD722A575E1200C4E686 /* FRUserResponse.m in Sources */,
 				65F8FD952A57C39E00C4E686 /* FRUserConfigurator.m in Sources */,
 				65F8FDA42A57C4AE00C4E686 /* FRUserPresenter.m in Sources */,
+				65168A762A5F26C6003D1681 /* FRGetWeatherResponse.m in Sources */,
 				65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */,
 				65F8FD8C2A57C2A600C4E686 /* FRCityInteractor.m in Sources */,
 				659F93442A5756C3000F7E2B /* AppDelegate.m in Sources */,
 				65F8FDF82A58515B00C4E686 /* FRNavigator.m in Sources */,
+				65168A772A5F26C6003D1681 /* FRPostUserResponse.m in Sources */,
 				65F8FD922A57C38E00C4E686 /* FRHomeConfigurator.m in Sources */,
 				659F93552A5756C3000F7E2B /* main.m in Sources */,
 				65F8FE082A58B6FB00C4E686 /* NSObject+JSONModel.m in Sources */,
 				65F8FD982A57C3A900C4E686 /* FRSettingsConfigurator.m in Sources */,
 				65F8FD892A57C29200C4E686 /* FRCityPresenter.m in Sources */,
 				65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */,
-				65F8FD752A575E2300C4E686 /* FRCityResponse.m in Sources */,
 				65F8FDB72A57C64600C4E686 /* FRHomeViewController.m in Sources */,
 				65F8FDB42A57C63B00C4E686 /* FRUserViewController.m in Sources */,
 				65F8FDFB2A58885F00C4E686 /* FRHelper.m in Sources */,

@@ -10,7 +10,7 @@
 #import "FRCityInteractor.h"
 #import "FRCityPresenter.h"
 #import "FRCityViewController.h"
-#import "FRCityResponse.h"
+#import "FRGetCityResponse.h"
 
 @implementation FRCityConfigurator
 
@@ -19,7 +19,7 @@
 }
 
 - (UIViewController *)makeViewControllerWithData:(id)data {
-    FRCityResponse *response = data;
+    FRGetCityResponse *response = data;
     
     FRCityInteractor *interactor = [FRCityInteractor new];
     FRCityPresenter *presenter = [FRCityPresenter new];

@@ -7,18 +7,18 @@ import androidx.lifecycle.ViewModel;
 
 import xyz.fay.reference.networking.NetworkManager;
 import xyz.fay.reference.networking.RequestHandler;
-import xyz.fay.reference.networking.response.CityResponse;
-import xyz.fay.reference.networking.response.WeatherResponse;
+import xyz.fay.reference.networking.response.GetCityResponse;
+import xyz.fay.reference.networking.response.GetWeatherResponse;
 
 public class HomeViewModel extends ViewModel {
-    private final MutableLiveData<CityResponse> cityResponse = new MutableLiveData<>();
-    private final MutableLiveData<WeatherResponse> weatherResponse = new MutableLiveData<>();
+    private final MutableLiveData<GetCityResponse> cityResponse = new MutableLiveData<>();
+    private final MutableLiveData<GetWeatherResponse> weatherResponse = new MutableLiveData<>();
 
     public void fetchCityData(Context context) {
         NetworkManager manager = new NetworkManager();
-        manager.getCity(context, new RequestHandler<CityResponse>() {
+        manager.getCity(context, new RequestHandler<GetCityResponse>() {
             @Override
-            public void completion(CityResponse response) {
+            public void completion(GetCityResponse response) {
                 cityResponse.setValue(response);
             }
         });
@@ -30,9 +30,9 @@ public class HomeViewModel extends ViewModel {
 
     public void fetchWeatherData(Context context) {
         NetworkManager manager = new NetworkManager();
-        manager.getWeather(context, new RequestHandler<WeatherResponse>() {
+        manager.getWeather(context, new RequestHandler<GetWeatherResponse>() {
             @Override
-            public void completion(WeatherResponse response) {
+            public void completion(GetWeatherResponse response) {
                 weatherResponse.setValue(response);
             }
         });
@@ -42,11 +42,11 @@ public class HomeViewModel extends ViewModel {
 //        manager.getWeather(context, weatherResponse::setValue);
     }
 
-    public MutableLiveData<CityResponse> getCityResponse() {
+    public MutableLiveData<GetCityResponse> getCityResponse() {
         return cityResponse;
     }
 
-    public MutableLiveData<WeatherResponse> getWeatherResponse() {
+    public MutableLiveData<GetWeatherResponse> getWeatherResponse() {
         return weatherResponse;
     }
 }

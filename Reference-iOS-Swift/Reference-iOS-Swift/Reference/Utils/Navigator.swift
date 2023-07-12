@@ -17,14 +17,12 @@ class Navigator {
     }
     
     private var configurators: [Destination: FeatureConfigurator] {
-        get {
-            [
-                .city: CityConfigurator(),
-                .home: HomeConfigurator(),
-                .settings: SettingsConfigurator(),
-                .user: UserConfigurator()
-            ]
-        }
+        get {[
+            .city: CityConfigurator(),
+            .home: HomeConfigurator(),
+            .settings: SettingsConfigurator(),
+            .user: UserConfigurator()
+            ]}
     }
     
     func navigate<P: Codable>(to: Destination, params: P) {

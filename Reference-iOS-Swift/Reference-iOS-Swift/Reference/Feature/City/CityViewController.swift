@@ -18,7 +18,7 @@ class CityViewController: UIViewController {
 }
 
 extension CityViewController: CityViewControllerInterface {
-    func undateSubviews(response: CityResponse) {
+    func undateSubviews(response: GetCityResponse) {
         print(response.cities[0].name)
     }
 }

@@ -8,9 +8,9 @@
 
 #import "FRNetworkManager.h"
 #import "FRBundleProvider.h"
-#import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
-#import "FRUserResponse.h"
+#import "FRGetCityResponse.h"
+#import "FRGetWeatherResponse.h"
+#import "FRPostUserResponse.h"
 #import "NSObject+JSONModel.h"
 
 @interface FRNetworkManager ()
@@ -40,15 +40,15 @@ NSString * const POST_USER = @"post_user";
 }
 
 - (void)getCity:(FRCompletion)completion {
-    [self sendRequest:[FRCityResponse class] fileName:GET_CITY completion:completion];
+    [self sendRequest:[FRGetCityResponse class] fileName:GET_CITY completion:completion];
 }
 
 - (void)getWeather:(FRCompletion)completion {
-    [self sendRequest:[FRWeatherResponse class] fileName:GET_WEATHER completion:completion];
+    [self sendRequest:[FRGetWeatherResponse class] fileName:GET_WEATHER completion:completion];
 }
 
 - (void)postUser:(FRCompletion)completion {
-    [self sendRequest:[FRUserResponse class] fileName:POST_USER completion:completion];
+    [self sendRequest:[FRPostUserResponse class] fileName:POST_USER completion:completion];
 }
 
 @end

@@ -10,9 +10,9 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
-import xyz.fay.reference.networking.response.CityResponse;
-import xyz.fay.reference.networking.response.UserResponse;
-import xyz.fay.reference.networking.response.WeatherResponse;
+import xyz.fay.reference.networking.response.GetCityResponse;
+import xyz.fay.reference.networking.response.GetWeatherResponse;
+import xyz.fay.reference.networking.response.PostUserResponse;
 import xyz.fay.reference.utils.AssetProvider;
 
 public final class NetworkManager {
@@ -44,15 +44,15 @@ public final class NetworkManager {
         return gson.fromJson(data, (Type) response);
     }
 
-    public final void getCity(@NonNull Context context, @Nullable RequestHandler<CityResponse> requestHandler) {
-        sendRequest(context, CityResponse.class, MockFile.GET_CITY.getValue(), requestHandler);
+    public final void getCity(@NonNull Context context, @Nullable RequestHandler<GetCityResponse> requestHandler) {
+        sendRequest(context, GetCityResponse.class, MockFile.GET_CITY.getValue(), requestHandler);
     }
 
-    public final void getWeather(@NonNull Context context, @Nullable RequestHandler<WeatherResponse> requestHandler) {
-        sendRequest(context, WeatherResponse.class, MockFile.GET_WEATHER.getValue(), requestHandler);
+    public final void getWeather(@NonNull Context context, @Nullable RequestHandler<GetWeatherResponse> requestHandler) {
+        sendRequest(context, GetWeatherResponse.class, MockFile.GET_WEATHER.getValue(), requestHandler);
     }
 
-    public final void postUser(@NonNull Context context, @Nullable RequestHandler<UserResponse> requestHandler) {
-        sendRequest(context, UserResponse.class, MockFile.POST_USER.getValue(), requestHandler);
+    public final void postUser(@NonNull Context context, @Nullable RequestHandler<PostUserResponse> requestHandler) {
+        sendRequest(context, PostUserResponse.class, MockFile.POST_USER.getValue(), requestHandler);
     }
 }

@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import xyz.fay.reference.common.BaseFragment;
 import xyz.fay.reference.databinding.HomeFragmentBinding;
-import xyz.fay.reference.networking.response.CityResponse;
-import xyz.fay.reference.networking.response.WeatherResponse;
+import xyz.fay.reference.networking.response.GetCityResponse;
+import xyz.fay.reference.networking.response.GetWeatherResponse;
 
 public final class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeViewModel> {
     @NonNull
@@ -48,11 +48,11 @@ public final class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeVi
     }
 
     private void observeCityResponse() {
-        viewModel.getCityResponse().observe(getViewLifecycleOwner(), new Observer<CityResponse>() {
+        viewModel.getCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
             @Override
-            public void onChanged(CityResponse response) {
+            public void onChanged(GetCityResponse getCityResponse) {
                 NavController navController = NavHostFragment.findNavController(HomeFragment.this);
-                navController.navigate(HomeFragmentDirections.actionHomeFragmentToCityFragment(response.getCities()));
+                navController.navigate(HomeFragmentDirections.actionHomeFragmentToCityFragment(getCityResponse.getCities()));
             }
         });
 //        viewModel.getCityResponse().observe(getViewLifecycleOwner(), response -> {
@@ -62,9 +62,9 @@ public final class HomeFragment extends BaseFragment<HomeFragmentBinding, HomeVi
     }
 
     private void observeWeatherResponse() {
-        viewModel.getWeatherResponse().observe(getViewLifecycleOwner(), new Observer<WeatherResponse>() {
+        viewModel.getWeatherResponse().observe(getViewLifecycleOwner(), new Observer<GetWeatherResponse>() {
             @Override
-            public void onChanged(WeatherResponse response) {}
+            public void onChanged(GetWeatherResponse getWeatherResponse) {}
         });
 //        viewModel.getWeatherResponse().observe(getViewLifecycleOwner(), response -> {});
         viewModel.fetchWeatherData(requireContext());

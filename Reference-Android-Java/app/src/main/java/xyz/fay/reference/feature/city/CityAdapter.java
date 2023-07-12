@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.fay.reference.databinding.CityAdapterBinding;
-import xyz.fay.reference.networking.response.CityListResponse;
+import xyz.fay.reference.networking.response.GetCityCitiesResponse;
 
 public final class CityAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final CityListResponse[] cities;
+    private final GetCityCitiesResponse[] cities;
     private final OnClickListener onClickListener;
 
-    public CityAdapter(CityListResponse[] cities, OnClickListener onClickListener) {
+    public CityAdapter(GetCityCitiesResponse[] cities, OnClickListener onClickListener) {
         this.cities = cities;
         this.onClickListener = onClickListener;
     }

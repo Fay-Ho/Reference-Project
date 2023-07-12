@@ -3,9 +3,7 @@ package xyz.fay.reference.networking
 import android.content.Context
 import android.os.Parcelable
 import com.google.gson.Gson
-import xyz.fay.reference.networking.response.CityResponse
-import xyz.fay.reference.networking.response.UserResponse
-import xyz.fay.reference.networking.response.WeatherResponse
+import xyz.fay.reference.networking.response.*
 import xyz.fay.reference.utils.AssetProvider
 import kotlin.reflect.KClass
 
@@ -26,12 +24,12 @@ class NetworkManager {
     private fun <R: Parcelable> parseData(data: String, response: KClass<R>): R =
         Gson().fromJson(data, response.java)
 
-    fun getCity(context: Context, completion: ((response: CityResponse?) -> Unit)?) =
-            sendRequest(context, CityResponse::class, MockFile.GET_CITY.value, completion)
+    fun getCity(context: Context, completion: ((response: GetCityResponse?) -> Unit)?) =
+            sendRequest(context, GetCityResponse::class, MockFile.GET_CITY.value, completion)
 
-    fun getWeather(context: Context, completion: ((response: WeatherResponse?) -> Unit)?) =
-        sendRequest(context, WeatherResponse::class, MockFile.GET_WEATHER.value, completion)
+    fun getWeather(context: Context, completion: ((response: GetWeatherResponse?) -> Unit)?) =
+        sendRequest(context, GetWeatherResponse::class, MockFile.GET_WEATHER.value, completion)
 
-    fun postUser(context: Context, completion: ((response: UserResponse?) -> Unit)?) =
-        sendRequest(context, UserResponse::class, MockFile.POST_USER.value, completion)
+    fun postUser(context: Context, completion: ((response: PostUserResponse?) -> Unit)?) =
+        sendRequest(context, PostUserResponse::class, MockFile.POST_USER.value, completion)
 }

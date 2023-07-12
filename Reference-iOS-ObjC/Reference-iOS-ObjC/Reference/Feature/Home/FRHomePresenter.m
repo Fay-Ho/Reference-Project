@@ -10,11 +10,11 @@
 
 @implementation FRHomePresenter
 
-- (void)handleCityResponse:(FRCityResponse *)response {
+- (void)handleCityResponse:(FRGetCityResponse *)response {
     [self.viewController showCityPageWithResponse:response];
 }
 
-- (void)handleWeatherResponse:(FRWeatherResponse *)response {
+- (void)handleWeatherResponse:(FRGetWeatherResponse *)response {
     [self.viewController updateSubviewsWithResponse:response];
 }
 

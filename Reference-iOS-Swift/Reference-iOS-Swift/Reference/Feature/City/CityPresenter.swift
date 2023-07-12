@@ -11,7 +11,7 @@ class CityPresenter {
 }
 
 extension CityPresenter: CityPresenterInterface {
-    func handle(response: CityResponse) {
+    func handle(response: GetCityResponse) {
         viewController?.undateSubviews(response: response)
     }
 }
