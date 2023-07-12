@@ -1,6 +1,6 @@
 package xyz.fay.reference.networking.response
 
-/**
+/*
   MIT License
 
   Copyright (c) 2023 Fay-Ho

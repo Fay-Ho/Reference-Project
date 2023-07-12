@@ -1,6 +1,6 @@
 package xyz.fay.reference.networking.response;
 
-/**
+/*
   MIT License
 
   Copyright (c) 2023 Fay-Ho
@@ -24,16 +24,18 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 public final class GetWeatherResponse extends Parcelable {
-    private final String count;
-    private final String info;
-    private final String infocode;
-    private final GetWeatherLivesResponse[] lives;
-    private final String status;
+    @NonNull private final String count;
+    @NonNull private final String info;
+    @NonNull private final String infocode;
+    @NonNull private final GetWeatherLivesResponse[] lives;
+    @NonNull private final String status;
 
     public GetWeatherResponse(String count, String info, String infocode, GetWeatherLivesResponse[] lives, String status) {
         this.count = count;

@@ -28,27 +28,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRGetWeatherLivesResponse : NSObject
 
-@property (nonatomic, strong, nonnull) NSString *adcode;
-@property (nonatomic, strong, nonnull) NSString *city;
-@property (nonatomic, strong, nonnull) NSString *humidity;
-@property (nonatomic, strong, nonnull) NSString *humidity_float;
-@property (nonatomic, strong, nonnull) NSString *province;
-@property (nonatomic, strong, nonnull) NSString *reporttime;
-@property (nonatomic, strong, nonnull) NSString *temperature;
-@property (nonatomic, strong, nonnull) NSString *temperature_float;
-@property (nonatomic, strong, nonnull) NSString *weather;
-@property (nonatomic, strong, nonnull) NSString *winddirection;
-@property (nonatomic, strong, nonnull) NSString *windpower;
+@property (nonatomic, strong, readonly, nonnull) NSString *adcode;
+@property (nonatomic, strong, readonly, nonnull) NSString *city;
+@property (nonatomic, strong, readonly, nonnull) NSString *humidity;
+@property (nonatomic, strong, readonly, nonnull) NSString *humidity_float;
+@property (nonatomic, strong, readonly, nonnull) NSString *province;
+@property (nonatomic, strong, readonly, nonnull) NSString *reporttime;
+@property (nonatomic, strong, readonly, nonnull) NSString *temperature;
+@property (nonatomic, strong, readonly, nonnull) NSString *temperature_float;
+@property (nonatomic, strong, readonly, nonnull) NSString *weather;
+@property (nonatomic, strong, readonly, nonnull) NSString *winddirection;
+@property (nonatomic, strong, readonly, nonnull) NSString *windpower;
 
 @end
 
 @interface FRGetWeatherResponse : NSObject
 
-@property (nonatomic, strong, nonnull) NSString *count;
-@property (nonatomic, strong, nonnull) NSString *info;
-@property (nonatomic, strong, nonnull) NSString *infocode;
-@property (nonatomic, strong, nonnull) NSArray<FRGetWeatherLivesResponse *> *lives;
-@property (nonatomic, strong, nonnull) NSString *status;
+@property (nonatomic, strong, readonly, nonnull) NSString *count;
+@property (nonatomic, strong, readonly, nonnull) NSString *info;
+@property (nonatomic, strong, readonly, nonnull) NSString *infocode;
+@property (nonatomic, strong, readonly, nonnull) NSArray<FRGetWeatherLivesResponse *> *lives;
+@property (nonatomic, strong, readonly, nonnull) NSString *status;
 
 @end
 

@@ -1,6 +1,6 @@
 package xyz.fay.reference.networking.response;
 
-/**
+/*
   MIT License
 
   Copyright (c) 2023 Fay-Ho
@@ -24,22 +24,24 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 public final class GetWeatherLivesResponse extends Parcelable {
-    private final String adcode;
-    private final String city;
-    private final String humidity;
-    private final String humidity_float;
-    private final String province;
-    private final String reporttime;
-    private final String temperature;
-    private final String temperature_float;
-    private final String weather;
-    private final String winddirection;
-    private final String windpower;
+    @NonNull private final String adcode;
+    @NonNull private final String city;
+    @NonNull private final String humidity;
+    @NonNull private final String humidity_float;
+    @NonNull private final String province;
+    @NonNull private final String reporttime;
+    @NonNull private final String temperature;
+    @NonNull private final String temperature_float;
+    @NonNull private final String weather;
+    @NonNull private final String winddirection;
+    @NonNull private final String windpower;
 
     public GetWeatherLivesResponse(String adcode, String city, String humidity, String humidity_float, String province, String reporttime, String temperature, String temperature_float, String weather, String winddirection, String windpower) {
         this.adcode = adcode;

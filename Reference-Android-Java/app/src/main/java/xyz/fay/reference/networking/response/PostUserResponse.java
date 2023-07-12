@@ -1,6 +1,6 @@
 package xyz.fay.reference.networking.response;
 
-/**
+/*
   MIT License
 
   Copyright (c) 2023 Fay-Ho
@@ -24,14 +24,16 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 public final class PostUserResponse extends Parcelable {
-    private final String age;
-    private final String name;
-    private final String sex;
+    @NonNull private final String age;
+    @NonNull private final String name;
+    @NonNull private final String sex;
 
     public PostUserResponse(String age, String name, String sex) {
         this.age = age;

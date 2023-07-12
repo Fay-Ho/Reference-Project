@@ -28,9 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRPostUserResponse : NSObject
 
-@property (nonatomic, strong, nonnull) NSString *age;
-@property (nonatomic, strong, nonnull) NSString *name;
-@property (nonatomic, strong, nonnull) NSString *sex;
+@property (nonatomic, strong, readonly, nonnull) NSString *age;
+@property (nonatomic, strong, readonly, nonnull) NSString *name;
+@property (nonatomic, strong, readonly, nonnull) NSString *sex;
 
 @end
 

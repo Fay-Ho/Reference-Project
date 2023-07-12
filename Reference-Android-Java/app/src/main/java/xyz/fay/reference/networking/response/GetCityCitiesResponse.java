@@ -1,6 +1,6 @@
 package xyz.fay.reference.networking.response;
 
-/**
+/*
   MIT License
 
   Copyright (c) 2023 Fay-Ho
@@ -24,13 +24,15 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 public final class GetCityCitiesResponse extends Parcelable {
-    private final String adcode;
-    private final String name;
+    @NonNull private final String adcode;
+    @NonNull private final String name;
 
     public GetCityCitiesResponse(String adcode, String name) {
         this.adcode = adcode;
