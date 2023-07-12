@@ -330,7 +330,7 @@ sub create_java_file {
 
     $target_path = create_path($target_path, $java_dir);
 
-    generate_file($target_path.$target_file.$target_suffix.$java, $java_file);
+    create_file($target_path.$target_file.$target_suffix.$java, $java_file);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -411,7 +411,7 @@ sub create_kotlin_file {
 
     $target_path = create_path($target_path, $kotlin_dir);
 
-    generate_file($target_path.$target_file.$target_suffix.$kotlin, $kotlin_file);
+    create_file($target_path.$target_file.$target_suffix.$kotlin, $kotlin_file);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -517,8 +517,8 @@ sub create_objc_file {
 
     $target_path = create_path($target_path, $objc_dir);
 
-    generate_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_h, $objc_h_file);
-    generate_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_m, $objc_m_file);
+    create_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_h, $objc_h_file);
+    create_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_m, $objc_m_file);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -598,7 +598,7 @@ sub create_swift_file {
 
     $target_path = create_path($target_path, $swift_dir);
 
-    generate_file($target_path.$target_file.$target_suffix.$swift, $swift_file);
+    create_file($target_path.$target_file.$target_suffix.$swift, $swift_file);
 }
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -630,7 +630,7 @@ sub create_path {
     return $target_path;
 }
 
-sub generate_file {
+sub create_file {
     open(my $fh, $write, shift) or die $error;
     print($fh shift);
     close($fh);

@@ -7,6 +7,7 @@ use File::Path;
 
 require './libs/CamelCase.pm';
 require './libs/JSON.pm';
+require './src/xyz/fay/reference/writer.pm';
 
 push(@INC, 'pwd');
 
@@ -28,7 +29,7 @@ my $is_hash = 'HASH';
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my @data;
+my @format;
 
 sub remove_path {
     my $path = shift;
@@ -41,6 +42,8 @@ sub read_path {
     my $name = basename($path, qw(.json));
     my $json = read_file($path);
     parse_data($name, $json);
+    my @data = @format;
+    @format = ();
     return @data;
 }
 
@@ -65,15 +68,11 @@ sub parse_data {
         }
         parse_data($key, $data);
     } elsif (ref $value eq $is_hash) {
-        push @data, {camel_case($key) => $value};
+        push @format, {writer::camel_case($key) => $value};
         for my $sub_key (sort keys %$value) {
-            parse_data(camel_case($key).camel_case($sub_key), $$value{$sub_key});
+            parse_data(writer::camel_case($key).writer::camel_case($sub_key), $$value{$sub_key});
         }
     }
-}
-
-sub camel_case {
-    return String::CamelCase::camelize(shift);
 }
 
 1;

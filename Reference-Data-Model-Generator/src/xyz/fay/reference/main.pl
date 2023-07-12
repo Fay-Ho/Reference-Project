@@ -21,14 +21,10 @@ sub main {
     chomp $input_path;
     print $ln;
 
-    my @data = reader::read_path($input_path);
-
     print 'Please entry the output file path. (Default is current user\'s `./`):'.$ln;
     my $output_path = <STDIN>;
     chomp $output_path;
     print $ln;
-
-    reader::remove_path($output_path);
 
     print 'Which platform\'s data model do you need to generate? (Java (j), Kotlin (k), Objective-C (o), Swift (s), default generate all platforms):'.$ln;
     my $develop_platform = <STDIN>;
@@ -61,26 +57,41 @@ sub main {
     chomp $file_copyright;
     print $ln;
 
-    unshift(@data, $output_path, uc $file_prefix, camel_case($file_suffix), $file_package, $file_copyright);
+    reader::remove_path($output_path);
 
-    if ($develop_platform =~ /j/) {
-        writer::generate_java_file(@data);
-    } elsif ($develop_platform =~ /k/) {
-        writer::generate_kotlin_file(@data);
-    } elsif ($develop_platform =~ /o/) {
-        writer::generate_objc_file(@data);
-    } elsif ($develop_platform =~ /s/) {
-        writer::generate_swift_file(@data);
+    my @info = ($develop_platform, $output_path, uc $file_prefix, writer::camel_case($file_suffix), $file_package, $file_copyright);
+
+    if (-d $input_path) {
+        my @dir = <$input_path/*.json>;
+        foreach (@dir) {
+            my @data = reader::read_path($_);
+            unshift @data, @info;
+            generate_file(@data);
+        }
     } else {
-        writer::generate_java_file(@data);
-        writer::generate_kotlin_file(@data);
-        writer::generate_objc_file(@data);
-        writer::generate_swift_file(@data);
+        my @data = reader::read_path($input_path);
+        unshift @data, @info;
+        generate_file(@data);
     }
 }
 
-sub camel_case {
-    return String::CamelCase::camelize(ucfirst shift);
+sub generate_file {
+    my $develop_platform = shift;
+
+    if ($develop_platform =~ /j/) {
+        writer::generate_java_file(@_);
+    } elsif ($develop_platform =~ /k/) {
+        writer::generate_kotlin_file(@_);
+    } elsif ($develop_platform =~ /o/) {
+        writer::generate_objc_file(@_);
+    } elsif ($develop_platform =~ /s/) {
+        writer::generate_swift_file(@_);
+    } else {
+        writer::generate_java_file(@_);
+        writer::generate_kotlin_file(@_);
+        writer::generate_objc_file(@_);
+        writer::generate_swift_file(@_);
+    }
 }
 
 main();
