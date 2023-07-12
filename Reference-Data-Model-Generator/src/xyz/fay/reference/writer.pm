@@ -62,6 +62,8 @@ my $flag_block = '%BLOCK%';
 
 my $flag_class = '%CLASS%';
 
+my $flag_copyright = '%COPYRIGHT%';
+
 my $flag_define = '%DEFINE%';
 
 my $flag_package = '%PACKAGE%';
@@ -78,8 +80,9 @@ my $flag_type = '%TYPE%';
 
 my $flag_var = '%VAR%';
 
-my $flag_license_1 = '/**
-  MIT License
+# -------------------------------------------------------------------------------------------------------------------- #
+
+my $mit_license_android = 'MIT License
 
   Copyright (c) 2023 Fay-Ho
 
@@ -99,11 +102,9 @@ my $flag_license_1 = '/**
   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-*/';
+  SOFTWARE.';
 
-my $flag_license_2 = '//
-//  MIT License
+my $mit_license_ios = 'MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
 //
@@ -123,14 +124,15 @@ my $flag_license_2 = '//
 //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
-//';
+//  SOFTWARE.';
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
 my $flag_java_file = "package $flag_package;
 
-$flag_license_1
+/**
+  $flag_copyright
+*/
 
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
@@ -159,7 +161,9 @@ my $flag_java_block = "        this.$flag_var = $flag_var;";
 
 my $flag_kotlin_file = "package $flag_package
 
-$flag_license_1
+/**
+  $flag_copyright
+*/
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -178,7 +182,9 @@ my $flag_kotlin_type_list_define = "        val $flag_var: Array<$flag_type$flag
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my $flag_objc_h_file = "$flag_license_2
+my $flag_objc_h_file = "//
+//  $flag_copyright
+//
 
 #import <Foundation/Foundation.h>
 
@@ -199,7 +205,9 @@ my $flag_objc_h_type_define = "\@property (nonatomic, strong, nonnull) $flag_pre
 
 my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
-my $flag_objc_m_file = "$flag_license_2
+my $flag_objc_m_file = "//
+//  $flag_copyright
+//
 
 #import \"$flag_prefix$flag_class$flag_suffix.h\"
 
@@ -212,7 +220,9 @@ my $flag_objc_m_block = "\@implementation $flag_prefix$flag_class$flag_suffix
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my $flag_swift_file = "$flag_license_2
+my $flag_swift_file = "//
+//  $flag_copyright
+//
 
 $flag_block";
 
@@ -227,18 +237,17 @@ my $flag_swift_type_list_define = "    let $flag_var: [$flag_type$flag_suffix]";
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_java_file {
-    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
-    ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
+    my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
 
     foreach my $data (@data) {
 
-        foreach my $target_class_name (keys(%$data)) {
+        foreach my $target_class_name (keys %$data) {
             my ($target_class_value, $target_class_var_define, $target_class_var_param, $target_class_var_block) =
                 ($$data{$target_class_name}, $empty, $empty, $empty);
 
-            foreach my $target_define_name (sort (keys(%$target_class_value))) {
+            foreach my $target_define_name (sort keys %$target_class_value) {
                 (my $target_define_type, my $target_define_value) =
-                    (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
+                    ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
                     $target_class_var_define = create_java_define($flag_java_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
@@ -255,7 +264,7 @@ sub generate_java_file {
                 }
             }
 
-            create_java_file($target_path, camel_case($target_class_name), $target_suffix, $target_class_var_define, $target_class_var_param, $target_class_var_block);
+            create_java_file($target_path, $target_class_name, $target_suffix, $target_package, $target_copyright, $target_class_var_define, $target_class_var_param, $target_class_var_block);
         }
     }
 }
@@ -307,23 +316,19 @@ sub create_java_block {
 }
 
 sub create_java_file {
-    my ($target_path, $target_file, $target_suffix, $target_class_var_define, $target_class_var_param, $target_class_var_block) = @_;
+    my ($target_path, $target_file, $target_suffix, $target_package, $target_copyright, $target_class_var_define, $target_class_var_param, $target_class_var_block) = @_;
 
     my $java_file = replace_string($flag_java_file, (
-        $flag_package => $default_package,
-        $flag_class   => $target_file,
-        $flag_suffix  => $target_suffix,
-        $flag_define  => $target_class_var_define,
-        $flag_param   => $target_class_var_param,
-        $flag_block   => $target_class_var_block
+        $flag_package   => $target_package ne $empty ? $target_package : $default_package,
+        $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_android,
+        $flag_class     => $target_file,
+        $flag_suffix    => $target_suffix,
+        $flag_define    => $target_class_var_define,
+        $flag_param     => $target_class_var_param,
+        $flag_block     => $target_class_var_block
     ));
 
-    if ($target_path eq $empty) {
-        $target_path = $def_dir;
-    }
-    $target_path = $target_path.$out_dir.$java_dir;
-
-    File::Path::make_path($target_path);
+    $target_path = create_path($target_path, $java_dir);
 
     generate_file($target_path.$target_file.$target_suffix.$java, $java_file);
 }
@@ -331,22 +336,21 @@ sub create_java_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_kotlin_file {
-    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
     my ($target_file_name, $target_kotlin_block) = ($empty, $empty);
-    ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
     foreach (keys @data) {
         my $data = $data[$_];
 
-        foreach my $target_class_name (keys(%$data)) {
+        foreach my $target_class_name (keys %$data) {
             if ($_ == 0) {
-                $target_file_name = camel_case($target_class_name);
+                $target_file_name = $target_class_name;
             }
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
-            foreach my $target_define_name (sort(keys(%$target_class_value))) {
+            foreach my $target_define_name (sort keys %$target_class_value) {
                 (my $target_define_type, my $target_define_value) =
-                    (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
+                    ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
                     $target_class_var_define = create_kotlin_define($flag_kotlin_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
@@ -357,11 +361,11 @@ sub generate_kotlin_file {
                 }
             }
 
-            $target_kotlin_block = create_kotlin_block(camel_case($target_class_name), $target_suffix, $target_class_var_define, $target_kotlin_block)
+            $target_kotlin_block = create_kotlin_block($target_class_name, $target_suffix, $target_class_var_define, $target_kotlin_block)
         }
     }
 
-    create_kotlin_file($target_path, $target_file_name, $target_suffix, $target_kotlin_block);
+    create_kotlin_file($target_path, $target_file_name, $target_suffix, $target_package, $target_copyright, $target_kotlin_block);
 }
 
 sub create_kotlin_define {
@@ -397,19 +401,15 @@ sub create_kotlin_block {
 }
 
 sub create_kotlin_file {
-    my ($target_path, $target_file, $target_suffix, $target_kotlin_block) = @_;
+    my ($target_path, $target_file, $target_suffix, $target_package, $target_copyright, $target_kotlin_block) = @_;
 
     my $kotlin_file = replace_string($flag_kotlin_file, (
-        $flag_package => $default_package,
-        $flag_block   => $target_kotlin_block
+        $flag_package   => $target_package ne $empty ? $target_package : $default_package,
+        $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_android,
+        $flag_block     => $target_kotlin_block
     ));
 
-    if ($target_path eq $empty) {
-        $target_path = $def_dir;
-    }
-    $target_path = $target_path.$out_dir.$kotlin_dir;
-
-    File::Path::make_path($target_path);
+    $target_path = create_path($target_path, $kotlin_dir);
 
     generate_file($target_path.$target_file.$target_suffix.$kotlin, $kotlin_file);
 }
@@ -417,9 +417,8 @@ sub create_kotlin_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_objc_file {
-    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
     my ($target_file_name, $target_objc_h_block, $target_objc_m_block) = ($empty, $empty, $empty);
-    ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
     if ($target_prefix eq $empty) {
         $target_prefix = $default_prefix_fr;
@@ -428,15 +427,15 @@ sub generate_objc_file {
     foreach (reverse keys @data) {
         my $data = $data[$_];
 
-        foreach my $target_class_name (keys(%$data)) {
+        foreach my $target_class_name (keys %$data) {
             if ($_ == 0) {
-                $target_file_name = camel_case($target_class_name);
+                $target_file_name = $target_class_name;
             }
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
-            foreach my $target_define_name (sort(keys(%$target_class_value))) {
+            foreach my $target_define_name (sort keys %$target_class_value) {
                 (my $target_define_type, my $target_define_value) =
-                    (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
+                    ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
                     $target_class_var_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
@@ -447,13 +446,13 @@ sub generate_objc_file {
                 }
             }
 
-            my @objc_block = create_objc_block($target_prefix, camel_case($target_class_name), $target_suffix, $target_class_var_define, $target_objc_h_block, $target_objc_m_block);
+            my @objc_block = create_objc_block($target_prefix, $target_class_name, $target_suffix, $target_class_var_define, $target_objc_h_block, $target_objc_m_block);
             $target_objc_h_block = $objc_block[0];
             $target_objc_m_block = $objc_block[1];
         }
     }
 
-    create_objc_file($target_path, $target_prefix, $target_file_name, $target_suffix, $target_objc_h_block, $target_objc_m_block);
+    create_objc_file($target_path, $target_prefix, $target_file_name, $target_suffix, $target_copyright, $target_objc_h_block, $target_objc_m_block);
 }
 
 sub create_objc_define {
@@ -501,25 +500,22 @@ sub create_objc_block {
 }
 
 sub create_objc_file {
-    my ($target_path, $target_prefix, $target_file, $target_suffix, $target_objc_h_block, $target_objc_m_block) = @_;
+    my ($target_path, $target_prefix, $target_file, $target_suffix, $target_copyright, $target_objc_h_block, $target_objc_m_block) = @_;
 
     my $objc_h_file = replace_string($flag_objc_h_file, (
-        $flag_block => $target_objc_h_block
+        $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_ios,
+        $flag_block     => $target_objc_h_block
     ));
 
     my $objc_m_file = replace_string($flag_objc_m_file, (
-        $flag_prefix => $target_prefix,
-        $flag_class  => $target_file,
-        $flag_suffix => $target_suffix,
-        $flag_block  => $target_objc_m_block
+        $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_ios,
+        $flag_prefix    => $target_prefix,
+        $flag_class     => $target_file,
+        $flag_suffix    => $target_suffix,
+        $flag_block     => $target_objc_m_block
     ));
 
-    if ($target_path eq $empty) {
-        $target_path = $def_dir;
-    }
-    $target_path = $target_path.$out_dir.$objc_dir;
-
-    File::Path::make_path($target_path);
+    $target_path = create_path($target_path, $objc_dir);
 
     generate_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_h, $objc_h_file);
     generate_file($target_path.$target_prefix.$target_file.$target_suffix.$objc_m, $objc_m_file);
@@ -528,22 +524,21 @@ sub create_objc_file {
 # -------------------------------------------------------------------------------------------------------------------- #
 
 sub generate_swift_file {
-    my ($target_path, $target_prefix, $target_suffix, $target_copyright, @data) = @_;
+    my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
     my ($target_file_name, $target_swift_block) = ($empty, $empty);
-    ($target_prefix, $target_suffix) = (uc $target_prefix, camel_case($target_suffix));
 
     foreach (keys @data) {
         my $data = $data[$_];
 
-        foreach my $target_class_name (keys(%$data)) {
+        foreach my $target_class_name (keys %$data) {
             if ($_ == 0) {
-                $target_file_name = camel_case($target_class_name);
+                $target_file_name = $target_class_name;
             }
             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
 
-            foreach my $target_define_name (sort(keys(%$target_class_value))) {
+            foreach my $target_define_name (sort keys %$target_class_value) {
                 (my $target_define_type, my $target_define_value) =
-                    (camel_case($target_class_name).camel_case($target_define_name), $$target_class_value{$target_define_name});
+                    ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
 
                 if (ref $target_define_value eq $is_array) {
                     $target_class_var_define = create_swift_define($flag_swift_type_list_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
@@ -554,11 +549,11 @@ sub generate_swift_file {
                 }
             }
 
-            $target_swift_block = create_swift_block(camel_case($target_class_name), $target_suffix, $target_class_var_define, $target_swift_block)
+            $target_swift_block = create_swift_block($target_class_name, $target_suffix, $target_class_var_define, $target_swift_block)
         }
     }
 
-    create_swift_file($target_path, $target_file_name, $target_suffix, $target_swift_block);
+    create_swift_file($target_path, $target_file_name, $target_suffix, $target_copyright, $target_swift_block);
 }
 
 sub create_swift_define {
@@ -581,9 +576,9 @@ sub create_swift_block {
     my ($swift_class, $swift_suffix, $swift_var_define, $target_block) = @_;
 
     my $new_block = replace_string($flag_swift_block, (
-        $flag_class   => $swift_class,
+        $flag_class  => $swift_class,
         $flag_suffix => $swift_suffix,
-        $flag_define    => $swift_var_define
+        $flag_define => $swift_var_define
     ));
 
     if ($target_block ne $empty) {
@@ -594,18 +589,14 @@ sub create_swift_block {
 }
 
 sub create_swift_file {
-    my ($target_path, $target_file, $target_suffix, $target_swift_block) = @_;
+    my ($target_path, $target_file, $target_suffix, $target_copyright, $target_swift_block) = @_;
 
     my $swift_file = replace_string($flag_swift_file, (
-        $flag_block => $target_swift_block.$ln
+        $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_ios,
+        $flag_block     => $target_swift_block.$ln
     ));
 
-    if ($target_path eq $empty) {
-        $target_path = $def_dir;
-    }
-    $target_path = $target_path.$out_dir.$swift_dir;
-
-    File::Path::make_path($target_path);
+    $target_path = create_path($target_path, $swift_dir);
 
     generate_file($target_path.$target_file.$target_suffix.$swift, $swift_file);
 }
@@ -624,6 +615,19 @@ sub replace_string {
     $string =~ s/($regex)/$replacement{$1}/g;
 
     return $string;
+}
+
+sub create_path {
+    my ($target_path, $target_dir) = @_;
+
+    if ($target_path eq $empty) {
+        $target_path = $def_dir;
+    }
+    $target_path = $target_path.$out_dir.$target_dir;
+
+    File::Path::make_path($target_path);
+
+    return $target_path;
 }
 
 sub generate_file {

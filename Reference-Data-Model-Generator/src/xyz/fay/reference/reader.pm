@@ -65,8 +65,8 @@ sub parse_data {
         }
         parse_data($key, $data);
     } elsif (ref $value eq $is_hash) {
-        push @data, {$key => $value};
-        for my $sub_key (keys %$value) {
+        push @data, {camel_case($key) => $value};
+        for my $sub_key (sort keys %$value) {
             parse_data(camel_case($key).camel_case($sub_key), $$value{$sub_key});
         }
     }

@@ -2,14 +2,19 @@
 use strict;
 use warnings FATAL => 'all';
 
+require './libs/CamelCase.pm';
 require './src/xyz/fay/reference/reader.pm';
 require './src/xyz/fay/reference/writer.pm';
 
+# -------------------------------------------------------------------------------------------------------------------- #
+
+my $ln = "\n";
+
 my $empty = '';
 
-sub main {
-    my $ln = "\n";
+# -------------------------------------------------------------------------------------------------------------------- #
 
+sub main {
     print 'Welcome to using Reference-Data-Model-Generator!!'.$ln;
     print 'Please entry the local json file path. (Mandatory):'.$ln;
     my $input_path = <STDIN>;
@@ -18,7 +23,7 @@ sub main {
 
     my @data = reader::read_path($input_path);
 
-    print 'Please entry the output file path. (Default is current user\'s `Desktop`):'.$ln;
+    print 'Please entry the output file path. (Default is current user\'s `./`):'.$ln;
     my $output_path = <STDIN>;
     chomp $output_path;
     print $ln;
@@ -43,12 +48,20 @@ sub main {
     chomp $file_suffix;
     print $ln;
 
+    my $file_package = $empty;
+    if ($develop_platform !~ /o/ and $develop_platform !~ /s/) {
+        print 'Please entry the package name for `Java` and `Kotlin` file. (Default is `xyz.fay.reference`):'.$ln;
+        $file_package = <STDIN>;
+        chomp $file_package;
+        print $ln;
+    }
+
     print 'Please entry the copyright for you company or organization. (Default is MIT license):'.$ln;
     my $file_copyright = <STDIN>;
     chomp $file_copyright;
     print $ln;
 
-    unshift(@data, $output_path, $file_prefix, $file_suffix, $file_copyright);
+    unshift(@data, $output_path, uc $file_prefix, camel_case($file_suffix), $file_package, $file_copyright);
 
     if ($develop_platform =~ /j/) {
         writer::generate_java_file(@data);
@@ -64,6 +77,10 @@ sub main {
         writer::generate_objc_file(@data);
         writer::generate_swift_file(@data);
     }
+}
+
+sub camel_case {
+    return String::CamelCase::camelize(ucfirst shift);
 }
 
 main();
