@@ -23,11 +23,16 @@
 //
 
 #import "FRGetCityResponse.h"
+#import "NSObject+JSONModel.h"
 
 @implementation FRGetCityCitiesResponse
 
 @end
 
 @implementation FRGetCityResponse
+
+- (NSDictionary<NSString *,NSString *> *)unkeyedContainer {
+    return @{@"cities": @"FRGetCityCitiesResponse"};
+}
 
 @end

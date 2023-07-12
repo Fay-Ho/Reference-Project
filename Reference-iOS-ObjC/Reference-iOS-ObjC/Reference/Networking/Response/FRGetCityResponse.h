@@ -28,14 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRGetCityCitiesResponse : NSObject
 
-@property (nonatomic, strong, nonnull) NSString *adcode;
-@property (nonatomic, strong, nonnull) NSString *name;
+@property (nonatomic, strong, readonly, nonnull) NSString *adcode;
+@property (nonatomic, strong, readonly, nonnull) NSString *name;
 
 @end
 
 @interface FRGetCityResponse : NSObject
 
-@property (nonatomic, strong, nonnull) NSArray<FRGetCityCitiesResponse *> *cities;
+@property (nonatomic, strong, readonly, nonnull) NSArray<FRGetCityCitiesResponse *> *cities;
 
 @end
 

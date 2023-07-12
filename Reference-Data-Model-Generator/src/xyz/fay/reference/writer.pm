@@ -134,6 +134,8 @@ my $flag_java_file = "package $flag_package;
   $flag_copyright
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
@@ -147,9 +149,9 @@ $flag_block
 }
 ";
 
-my $flag_java_type_define = "    private final $flag_type$flag_suffix $flag_var;";
+my $flag_java_type_define = "    \@NonNull private final $flag_type$flag_suffix $flag_var;";
 
-my $flag_java_type_list_define = "    private final $flag_type$flag_suffix\[] $flag_var;";
+my $flag_java_type_list_define = "    \@NonNull private final $flag_type$flag_suffix\[] $flag_var;";
 
 my $flag_java_type_param = "$flag_type$flag_suffix $flag_var";
 
@@ -201,9 +203,9 @@ $flag_define
 
 \@end";
 
-my $flag_objc_h_type_define = "\@property (nonatomic, strong, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
+my $flag_objc_h_type_define = "\@property (nonatomic, strong, readonly, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
 
-my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
+my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, readonly, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
 my $flag_objc_m_file = "//
 //  $flag_copyright
