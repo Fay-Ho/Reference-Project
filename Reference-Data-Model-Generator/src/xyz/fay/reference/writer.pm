@@ -130,7 +130,7 @@ my $mit_license_ios = 'MIT License
 
 my $flag_java_file = "package $flag_package;
 
-/**
+/*
   $flag_copyright
 */
 
@@ -161,7 +161,7 @@ my $flag_java_block = "        this.$flag_var = $flag_var;";
 
 my $flag_kotlin_file = "package $flag_package
 
-/**
+/*
   $flag_copyright
 */
 
