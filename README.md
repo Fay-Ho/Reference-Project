@@ -43,6 +43,13 @@ The `Swift` project for the weather app building with `VIP` architecture.
 
 ### [Reference-Android-Annotation-Jar](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Annotation-Jar)
 ---
+The `Android` project for generate annotation and annotation processor.
+
+- Parcelable (xyz.fay.parcel.Parcelable)
+
+- Parcelize (xyz.fay.parcel.Parcelize)
+
+- ParcelizeProcessor (xyz.fay.parcel.ParcelizeProcessor)
 
 ### [Reference-iOS-Feature-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Feature-Generator)
 ---
