@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,10 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
-}
+import Foundation
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
+protocol CityInteractorInterface {}
 
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
+protocol CityPresenterInterface {}
 
-module.exports = {
-    createFileS
-};
+protocol CityViewControllerInterface: NSObject {}

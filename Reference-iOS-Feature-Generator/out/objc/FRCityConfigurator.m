@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,27 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
+#import "FRCityConfigurator.h"
+#import "FRCityInteractor.h"
+#import "FRCityPresenter.h"
+#import "FRCityViewController.h"
+
+@implementation FRCityConfigurator
+
++ (instancetype)configurator {
+    return [[self alloc] init];
 }
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
-
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
+- (UIViewController *)makeViewControllerWithData:(id)data {
+    FRCityInteractor *interactor = [[FRCityInteractor alloc] init];
+    FRCityPresenter *presenter = [[FRCityPresenter alloc] init];
+    FRCityViewController *viewController = [[FRCityViewController alloc] init];
+    
+    interactor.presenter = presenter;
+    presenter.viewController = viewController;
+    viewController.interactor = interactor;
+    
+    return viewController;
 }
 
-module.exports = {
-    createFileS
-};
+@end

@@ -1,10 +1,30 @@
-"use strict";
+'use strict';
 
-const global_prefix = /%PREFIX%/g;
+const h = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
 
-const global_class = /%CLASS%/g;
-
-const interactor_h = `#import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 #import "%PREFIX%%CLASS%Interface.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,18 +35,51 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END`;
+NS_ASSUME_NONNULL_END
+`;
 
-const interactor_m = `#import "%PREFIX%%CLASS%Interactor.h"
+const m = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+
+#import "%PREFIX%%CLASS%Interactor.h"
 
 @implementation %PREFIX%%CLASS%Interactor
 
-@end`;
+@end
+`;
 
-let interactor_h_s = interactor_h.replace(global_prefix, "FR");
-interactor_h_s = interactor_h_s.replace(global_class, "Person");
-console.log(interactor_h_s);
+function createFileH(flagPrefix, targetPrefix, flagClass, targetClass) {
+    return h.replace(flagPrefix, targetPrefix)
+        .replace(flagClass, targetClass);
+}
 
-let interactor_m_s = interactor_m.replace(global_prefix, "FR");
-interactor_m_s = interactor_m_s.replace(global_class, "Person");
-console.log(interactor_m_s);
+function createFileM(flagPrefix, targetPrefix, flagClass, targetClass) {
+    return m.replace(flagPrefix, targetPrefix)
+        .replace(flagClass, targetClass);
+}
+
+module.exports = {
+    createFileH,
+    createFileM
+};

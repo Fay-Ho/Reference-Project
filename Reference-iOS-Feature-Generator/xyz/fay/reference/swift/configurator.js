@@ -1,14 +1,61 @@
-"use strict";
+'use strict';
 
-const global_class = /%CLASS%/g;
+const i =`//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
 
-const configurator_i =`import UIKit
+import UIKit
 
 protocol FeatureConfigurator {
     func makeViewController() -> UIViewController
-}`;
+}
+`;
 
-const configurator = `import UIKit
+const s = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+
+import UIKit
 
 class %CLASS%Configurator : FeatureConfigurator {
     func makeViewController() -> UIViewController {
@@ -22,10 +69,18 @@ class %CLASS%Configurator : FeatureConfigurator {
         
         return viewController
     }
-}`;
+}
+`;
 
-let configurator_i_s = configurator_i.replace(global_class, "Person");
-console.log(configurator_i_s);
+function createFileI() {
+    return i;
+}
 
-let configurator_s = configurator.replace(global_class, "Person");
-console.log(configurator_s);
+function createFileS(flagClass, targetClass) {
+    return s.replace(flagClass, targetClass);
+}
+
+module.exports = {
+    createFileI,
+    createFileS
+};

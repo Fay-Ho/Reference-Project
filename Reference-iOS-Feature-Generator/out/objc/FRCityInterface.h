@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,20 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
-}
+#import <Foundation/Foundation.h>
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
+NS_ASSUME_NONNULL_BEGIN
 
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
+@protocol FRCityInteractorInterface <NSObject>
 
-module.exports = {
-    createFileS
-};
+@end
+
+@protocol FRCityPresenterInterface <NSObject>
+
+@end
+
+@protocol FRCityViewControllerInterface <NSObject>
+
+@end
+
+NS_ASSUME_NONNULL_END

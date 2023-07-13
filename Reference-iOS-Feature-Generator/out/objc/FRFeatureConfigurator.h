@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,16 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
-}
+#import <Foundation/Foundation.h>
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
+NS_ASSUME_NONNULL_BEGIN
 
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
+@protocol FRFeatureConfigurator <NSObject>
 
-module.exports = {
-    createFileS
-};
++ (instancetype)configurator;
+
+- (UIViewController *)makeViewControllerWithData:(id _Nullable)data;
+
+@end
+
+NS_ASSUME_NONNULL_END

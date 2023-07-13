@@ -1,10 +1,30 @@
-"use strict";
+'use strict';
 
-const global_prefix = /%PREFIX%/g;
+const i = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
 
-const global_class = /%CLASS%/g;
-
-const configurator_i = `#import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +39,31 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 `;
 
-const configurator_h = `#import <UIKit/UIKit.h>
+const h = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+
+#import <UIKit/UIKit.h>
 #import "%PREFIX%FeatureConfigurator.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -31,7 +75,31 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 `;
 
-const configurator_m = `#import "%PREFIX%%CLASS%Configurator.h"
+const m = `//
+//  MIT License
+//
+//  Copyright (c) 2023 Fay-Ho
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
+
+#import "%PREFIX%%CLASS%Configurator.h"
 #import "%PREFIX%%CLASS%Interactor.h"
 #import "%PREFIX%%CLASS%Presenter.h"
 #import "%PREFIX%%CLASS%ViewController.h"
@@ -54,16 +122,25 @@ const configurator_m = `#import "%PREFIX%%CLASS%Configurator.h"
     return viewController;
 }
 
-@end`;
+@end
+`;
 
-let configurator_i_s = configurator_i.replace(global_prefix, "FR");
-configurator_i_s = configurator_i_s.replace(global_class, "Person");
-console.log(configurator_i_s);
+function createFileI(flagPrefix, targetPrefix) {
+    return i.replace(flagPrefix, targetPrefix);
+}
 
-let configurator_h_s = configurator_h.replace(global_prefix, "FR");
-configurator_h_s = configurator_h_s.replace(global_class, "Person");
-console.log(configurator_h_s);
+function createFileH(flagPrefix, targetPrefix, flagClass, targetClass) {
+    return h.replace(flagPrefix, targetPrefix)
+        .replace(flagClass, targetClass);
+}
 
-let configurator_m_s = configurator_m.replace(global_prefix, "FR");
-configurator_m_s = configurator_m_s.replace(global_class, "Person");
-console.log(configurator_m_s);
+function createFileM(flagPrefix, targetPrefix, flagClass, targetClass) {
+    return m.replace(flagPrefix, targetPrefix)
+        .replace(flagClass, targetClass);
+}
+
+module.exports = {
+    createFileI,
+    createFileH,
+    createFileM
+};

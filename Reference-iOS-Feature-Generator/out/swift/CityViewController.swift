@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,14 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
+import UIKit
+
+class CityViewController : UIViewController {
+    var interactor: CityInteractorInterface?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
-
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
-
-module.exports = {
-    createFileS
-};
+extension CityViewController : CityViewControllerInterface {}

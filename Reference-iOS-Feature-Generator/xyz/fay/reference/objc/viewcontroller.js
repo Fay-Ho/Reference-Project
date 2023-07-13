@@ -24,14 +24,14 @@ const h = `//
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "%PREFIX%%CLASS%Interface.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface %PREFIX%%CLASS%Presenter : NSObject <%PREFIX%%CLASS%PresenterInterface>
+@interface %PREFIX%%CLASS%ViewController : UIViewController <%PREFIX%%CLASS%ViewControllerInterface>
 
-@property (nonatomic, weak) id<%PREFIX%%CLASS%ViewControllerInterface> viewController;
+@property (nonatomic, strong) id<%PREFIX%%CLASS%InteractorInterface> interactor;
 
 @end
 
@@ -62,9 +62,17 @@ const m = `//
 //  SOFTWARE.
 //
 
-#import "%PREFIX%%CLASS%Presenter.h"
+#import "%PREFIX%%CLASS%ViewController.h"
 
-@implementation %PREFIX%%CLASS%Presenter
+@interface %PREFIX%%CLASS%ViewController ()
+
+@end
+
+@implementation %PREFIX%%CLASS%ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
 
 @end
 `;

@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,8 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
-}
+#import "FRCityPresenter.h"
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
+@implementation FRCityPresenter
 
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
-
-module.exports = {
-    createFileS
-};
+@end

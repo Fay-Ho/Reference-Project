@@ -1,6 +1,4 @@
-'use strict';
-
-const s = `//
+//
 //  MIT License
 //
 //  Copyright (c) 2023 Fay-Ho
@@ -24,17 +22,13 @@ const s = `//
 //  SOFTWARE.
 //
 
-class %CLASS%Interactor {
-    var presenter: %CLASS%PresenterInterface?
-}
+#import <UIKit/UIKit.h>
+#import "FRFeatureConfigurator.h"
 
-extension %CLASS%Interactor : %CLASS%InteractorInterface {}
-`;
+NS_ASSUME_NONNULL_BEGIN
 
-function createFileS(flagClass, targetClass) {
-    return s.replace(flagClass, targetClass);
-}
+@interface FRCityConfigurator : NSObject <FRFeatureConfigurator>
 
-module.exports = {
-    createFileS
-};
+@end
+
+NS_ASSUME_NONNULL_END
