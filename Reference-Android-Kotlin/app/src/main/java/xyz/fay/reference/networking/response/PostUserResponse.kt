@@ -29,7 +29,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PostUserResponse(
-        val age: String,
-        val name: String,
-        val sex: String
+    val age: String,
+    val name: String,
+    val sex: String
 ) : Parcelable

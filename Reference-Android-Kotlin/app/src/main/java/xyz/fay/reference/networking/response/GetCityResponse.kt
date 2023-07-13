@@ -29,11 +29,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GetCityResponse(
-        val cities: Array<GetCityCitiesResponse>
+    val cities: Array<GetCityCitiesResponse>
 ) : Parcelable
 
 @Parcelize
 data class GetCityCitiesResponse(
-        val adcode: String,
-        val name: String
+    val adcode: String,
+    val name: String
 ) : Parcelable

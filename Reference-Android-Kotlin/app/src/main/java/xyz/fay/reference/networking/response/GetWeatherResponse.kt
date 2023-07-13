@@ -29,24 +29,24 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GetWeatherResponse(
-        val count: String,
-        val info: String,
-        val infocode: String,
-        val lives: Array<GetWeatherLivesResponse>,
-        val status: String
+    val count: String,
+    val info: String,
+    val infocode: String,
+    val lives: Array<GetWeatherLivesResponse>,
+    val status: String
 ) : Parcelable
 
 @Parcelize
 data class GetWeatherLivesResponse(
-        val adcode: String,
-        val city: String,
-        val humidity: String,
-        val humidity_float: String,
-        val province: String,
-        val reporttime: String,
-        val temperature: String,
-        val temperature_float: String,
-        val weather: String,
-        val winddirection: String,
-        val windpower: String
+    val adcode: String,
+    val city: String,
+    val humidity: String,
+    val humidity_float: String,
+    val province: String,
+    val reporttime: String,
+    val temperature: String,
+    val temperature_float: String,
+    val weather: String,
+    val winddirection: String,
+    val windpower: String
 ) : Parcelable

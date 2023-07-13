@@ -19,7 +19,7 @@
 }
 
 - (UIViewController *)makeViewControllerWithData:(id)data {
-    FRGetCityResponse *response = data;
+    NSArray<FRGetCityCitiesResponse *> *cities = data;
     
     FRCityInteractor *interactor = [FRCityInteractor new];
     FRCityPresenter *presenter = [FRCityPresenter new];
@@ -28,7 +28,7 @@
     interactor.presenter = presenter;
     presenter.viewController = viewController;
     viewController.interactor = interactor;
-    viewController.models = response.cities;
+    viewController.models = cities;
     
     return viewController;
 }

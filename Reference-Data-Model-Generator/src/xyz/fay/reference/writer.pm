@@ -178,9 +178,9 @@ data class $flag_class$flag_suffix(
 $flag_define
 ) : Parcelable";
 
-my $flag_kotlin_type_define = "        val $flag_var: $flag_type$flag_suffix";
+my $flag_kotlin_type_define = "    val $flag_var: $flag_type$flag_suffix";
 
-my $flag_kotlin_type_list_define = "        val $flag_var: Array<$flag_type$flag_suffix>";
+my $flag_kotlin_type_list_define = "    val $flag_var: Array<$flag_type$flag_suffix>";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
