@@ -16,8 +16,10 @@
 		659F93552A5756C3000F7E2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93542A5756C3000F7E2B /* main.m */; };
 		659F935F2A5756C3000F7E2B /* Reference_iOS_ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F935E2A5756C3000F7E2B /* Reference_iOS_ObjCTests.m */; };
 		659F936A2A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F93692A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m */; };
-		65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */; };
-		65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */; };
+		65D431C42A5FF1F500E94CB3 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D431C32A5FF1F500E94CB3 /* BaseViewController.m */; };
+		65D431C72A5FFA4A00E94CB3 /* UIStackView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D431C62A5FFA4A00E94CB3 /* UIStackView+FRExtension.m */; };
+		65D431CA2A5FFE4D00E94CB3 /* UIColor+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D431C92A5FFE4D00E94CB3 /* UIColor+FRExtension.m */; };
+		65D431CD2A5FFF1900E94CB3 /* UIColor+FRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D431CC2A5FFF1900E94CB3 /* UIColor+FRTheme.m */; };
 		65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */; };
 		65F8FD832A57C1C100C4E686 /* FRHomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD822A57C1C100C4E686 /* FRHomePresenter.m */; };
 		65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F8FD852A57C27400C4E686 /* FRHomeInteractor.m */; };
@@ -79,10 +81,14 @@
 		659F93652A5756C3000F7E2B /* Reference-iOS-ObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reference-iOS-ObjCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F93692A5756C3000F7E2B /* Reference_iOS_ObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reference_iOS_ObjCUITests.m; sourceTree = "<group>"; };
 		659F936B2A5756C3000F7E2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65AA0C202A5975E800FE3AA0 /* UIColor+FRHex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRHex.h"; sourceTree = "<group>"; };
-		65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRHex.m"; sourceTree = "<group>"; };
-		65AA0C242A5983B900FE3AA0 /* UIColor+FRColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRColor.h"; sourceTree = "<group>"; };
-		65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRColor.m"; sourceTree = "<group>"; };
+		65D431C22A5FF1F500E94CB3 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		65D431C32A5FF1F500E94CB3 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		65D431C52A5FFA4A00E94CB3 /* UIStackView+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStackView+FRExtension.h"; sourceTree = "<group>"; };
+		65D431C62A5FFA4A00E94CB3 /* UIStackView+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStackView+FRExtension.m"; sourceTree = "<group>"; };
+		65D431C82A5FFE4D00E94CB3 /* UIColor+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRExtension.h"; sourceTree = "<group>"; };
+		65D431C92A5FFE4D00E94CB3 /* UIColor+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRExtension.m"; sourceTree = "<group>"; };
+		65D431CB2A5FFF1900E94CB3 /* UIColor+FRTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRTheme.h"; sourceTree = "<group>"; };
+		65D431CC2A5FFF1900E94CB3 /* UIColor+FRTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRTheme.m"; sourceTree = "<group>"; };
 		65F8FD7E2A57B06100C4E686 /* FRNetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRNetworkManager.h; sourceTree = "<group>"; };
 		65F8FD7F2A57B06100C4E686 /* FRNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRNetworkManager.m; sourceTree = "<group>"; };
 		65F8FD812A57C1C100C4E686 /* FRHomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRHomePresenter.h; sourceTree = "<group>"; };
@@ -211,17 +217,25 @@
 		65AA0C1F2A5975C300FE3AA0 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				65AA0C242A5983B900FE3AA0 /* UIColor+FRColor.h */,
-				65AA0C252A5983B900FE3AA0 /* UIColor+FRColor.m */,
-				65AA0C202A5975E800FE3AA0 /* UIColor+FRHex.h */,
-				65AA0C212A5975E800FE3AA0 /* UIColor+FRHex.m */,
+				65D431CB2A5FFF1900E94CB3 /* UIColor+FRTheme.h */,
+				65D431CC2A5FFF1900E94CB3 /* UIColor+FRTheme.m */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		65D431BE2A5FF09800E94CB3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65D431C22A5FF1F500E94CB3 /* BaseViewController.h */,
+				65D431C32A5FF1F500E94CB3 /* BaseViewController.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		65F8FD5B2A575C4000C4E686 /* Reference */ = {
 			isa = PBXGroup;
 			children = (
+				65D431BE2A5FF09800E94CB3 /* Common */,
 				65AA0C1F2A5975C300FE3AA0 /* Extension */,
 				65F8FD652A575D1900C4E686 /* Feature */,
 				65F8FD662A575D2400C4E686 /* Networking */,
@@ -375,6 +389,10 @@
 			children = (
 				65F8FE062A58B6FB00C4E686 /* NSObject+JSONModel.h */,
 				65F8FE072A58B6FB00C4E686 /* NSObject+JSONModel.m */,
+				65D431C82A5FFE4D00E94CB3 /* UIColor+FRExtension.h */,
+				65D431C92A5FFE4D00E94CB3 /* UIColor+FRExtension.m */,
+				65D431C52A5FFA4A00E94CB3 /* UIStackView+FRExtension.h */,
+				65D431C62A5FFA4A00E94CB3 /* UIStackView+FRExtension.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -514,12 +532,15 @@
 				65168A782A5F26C6003D1681 /* FRGetCityResponse.m in Sources */,
 				65F8FD9E2A57C46F00C4E686 /* FRSettingsPresenter.m in Sources */,
 				65F8FD862A57C27400C4E686 /* FRHomeInteractor.m in Sources */,
+				65D431CA2A5FFE4D00E94CB3 /* UIColor+FRExtension.m in Sources */,
+				65D431C72A5FFA4A00E94CB3 /* UIStackView+FRExtension.m in Sources */,
+				65D431C42A5FF1F500E94CB3 /* BaseViewController.m in Sources */,
 				65F8FD802A57B06100C4E686 /* FRNetworkManager.m in Sources */,
 				65F8FDA72A57C4BF00C4E686 /* FRUserInteractor.m in Sources */,
 				65F8FD952A57C39E00C4E686 /* FRUserConfigurator.m in Sources */,
 				65F8FDA42A57C4AE00C4E686 /* FRUserPresenter.m in Sources */,
 				65168A762A5F26C6003D1681 /* FRGetWeatherResponse.m in Sources */,
-				65AA0C262A5983B900FE3AA0 /* UIColor+FRColor.m in Sources */,
+				65D431CD2A5FFF1900E94CB3 /* UIColor+FRTheme.m in Sources */,
 				65F8FD8C2A57C2A600C4E686 /* FRCityInteractor.m in Sources */,
 				659F93442A5756C3000F7E2B /* AppDelegate.m in Sources */,
 				65F8FDF82A58515B00C4E686 /* FRNavigator.m in Sources */,
@@ -529,7 +550,6 @@
 				65F8FE082A58B6FB00C4E686 /* NSObject+JSONModel.m in Sources */,
 				65F8FD982A57C3A900C4E686 /* FRSettingsConfigurator.m in Sources */,
 				65F8FD892A57C29200C4E686 /* FRCityPresenter.m in Sources */,
-				65AA0C222A5975E800FE3AA0 /* UIColor+FRHex.m in Sources */,
 				65F8FDB72A57C64600C4E686 /* FRHomeViewController.m in Sources */,
 				65F8FDB42A57C63B00C4E686 /* FRUserViewController.m in Sources */,
 				65F8FDFB2A58885F00C4E686 /* FRHelper.m in Sources */,

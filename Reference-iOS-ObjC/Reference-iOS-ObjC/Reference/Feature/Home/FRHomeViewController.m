@@ -8,7 +8,7 @@
 
 #import "FRHomeViewController.h"
 #import "FRHelper.h"
-#import "UIColor+FRColor.h"
+#import "UIColor+FRTheme.h"
 
 @interface FRHomeViewController ()
 
@@ -22,11 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.themeColor;
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(100, 100, 100, 100);
-    [button setTitle:@"BUTTON" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    [self setupSubviews];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,6 +35,20 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+#pragma mark - View Management
+
+- (void)setupSubviews {
+    
+}
+
+- (void)setupContinueButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(100, 100, 100, 100);
+    [button setTitle:@"BUTTON" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
 #pragma mark - Event Management
 
 - (void)click:(UIButton *)button {
@@ -48,7 +58,7 @@
 #pragma mark - FRHomeViewControllerInterface Methods
 
 - (void)showCityPageWithResponse:(FRGetCityResponse *)response {
-    [FRHelper.sharedInstance.navigator navigateTo:FRDestinationCity navigationController:self.navigationController data:response.cities];
+    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationCity navigationController:self.navigationController data:response.cities];
 }
 
 - (void)updateSubviewsWithResponse:(FRGetCityResponse * _Nonnull)response; {

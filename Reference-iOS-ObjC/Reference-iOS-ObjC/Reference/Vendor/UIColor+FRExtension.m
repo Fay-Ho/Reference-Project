@@ -1,14 +1,14 @@
 //
-//  UIColor+FRHex.m
+//  UIColor+FRExtension.m
 //  Reference-iOS-ObjC
 //
-//  Created by Fay on 2023/7/8.
+//  Created by Fay on 2023/7/13.
 //  Copyright © 2023 Fay. All rights reserved.
 //
 
-#import "UIColor+FRHex.h"
+#import "UIColor+FRExtension.h"
 
-@implementation UIColor (FRHex)
+@implementation UIColor (FRExtension)
 
 + (UIColor *)colorWithHex:(NSString *)hex {
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];

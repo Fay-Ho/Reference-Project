@@ -1,8 +1,8 @@
 //
-//  UIColor+FRHex.h
+//  UIColor+FRTheme.h
 //  Reference-iOS-ObjC
 //
-//  Created by Fay on 2023/7/8.
+//  Created by Fay on 2023/7/13.
 //  Copyright © 2023 Fay. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIColor (FRHex)
+@interface UIColor (FRTheme)
 
-+ (UIColor *)colorWithHex:(NSString *)hex;
++ (UIColor *)themeColor;
 
 @end
 

@@ -1,4 +1,4 @@
-package xyz.fay.tools;
+package xyz.fay.reference.extension;
 
 public final class Pair<T, U> {
     private final T first;

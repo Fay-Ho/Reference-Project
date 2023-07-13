@@ -11,7 +11,7 @@
 #import "FRSettingsConfigurator.h"
 #import "FRUserConfigurator.h"
 #import "FRHomeConfigurator.h"
-#import "UIColor+FRColor.h"
+#import "UIColor+FRTheme.h"
 
 @interface FRNavigator ()
 

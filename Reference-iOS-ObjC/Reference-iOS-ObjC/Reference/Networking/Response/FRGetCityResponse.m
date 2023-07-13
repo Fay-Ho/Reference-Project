@@ -32,7 +32,9 @@
 @implementation FRGetCityResponse
 
 - (NSDictionary<NSString *,NSString *> *)unkeyedContainer {
-    return @{@"cities": @"FRGetCityCitiesResponse"};
+    return @{
+        @"cities": @"FRGetCityCitiesResponse"
+    };
 }
 
 @end

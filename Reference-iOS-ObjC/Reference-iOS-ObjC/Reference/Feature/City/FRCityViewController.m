@@ -7,7 +7,7 @@
 //
 
 #import "FRCityViewController.h"
-#import "UIColor+FRColor.h"
+#import "UIColor+FRTheme.h"
 #import "FRHelper.h"
 
 @interface FRCityViewController ()
