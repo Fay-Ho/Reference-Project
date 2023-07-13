@@ -29,7 +29,7 @@ my $is_hash = 'HASH';
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
-my @format;
+my @formatted_data;
 
 sub remove_path {
     my $path = shift;
@@ -42,8 +42,8 @@ sub read_path {
     my $name = basename($path, qw(.json));
     my $json = read_file($path);
     parse_data($name, $json);
-    my @data = @format;
-    @format = ();
+    my @data = @formatted_data;
+    @formatted_data = ();
     return @data;
 }
 
@@ -68,7 +68,7 @@ sub parse_data {
         }
         parse_data($key, $data);
     } elsif (ref $value eq $is_hash) {
-        push @format, {writer::camel_case($key) => $value};
+        push @formatted_data, {writer::camel_case($key) => $value};
         for my $sub_key (sort keys %$value) {
             parse_data(writer::camel_case($key).writer::camel_case($sub_key), $$value{$sub_key});
         }
