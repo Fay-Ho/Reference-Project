@@ -1,4 +1,4 @@
-[Reference-Project](https://github.com/Fay-Ho/Reference-Project)
+# [Reference-Project](https://github.com/Fay-Ho/Reference-Project)
 ---
 
 A mobile weather application, the reference project for mobile app development.
