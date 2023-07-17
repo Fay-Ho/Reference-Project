@@ -131,10 +131,14 @@ NS_ASSUME_NONNULL_END
 
 #import "FRModel.h"
 
-@implementation FRModel
+@interface FRModel ()
 
 @property (nonatomic, strong, readwrite, nonnull) NSString *string;
 @property (nonatomic, strong, readwrite, nonnull) NSArray<NSString *> *strings;
+
+@end
+
+@implementation FRModel
 
 @end
 
