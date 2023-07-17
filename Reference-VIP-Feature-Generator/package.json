@@ -1,0 +1,12 @@
+{
+  "name": "reference-vip-feature-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node ./main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

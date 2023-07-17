@@ -1,3 +1,0 @@
-include ':parcel'
-include ':app'
-rootProject.name = "Reference-Android-Annotation-Jar"

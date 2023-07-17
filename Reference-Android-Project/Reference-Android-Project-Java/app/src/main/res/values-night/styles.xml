@@ -1,0 +1,6 @@
+<resources>
+    <style name="Widget.Theme.ReferenceAndroidProjectJava.ActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/theme_height_light</item>
+        <item name="android:textColorPrimary">@color/theme_height_light</item>
+    </style>
+</resources>

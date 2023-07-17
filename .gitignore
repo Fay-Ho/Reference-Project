@@ -34,10 +34,10 @@ google-services.json
 
 .DS_Store
 
-Reference-iOS-ObjC/Reference-iOS-ObjC.xcodeproj/project.xcworkspace/xcuserdata/fay.xcuserdatad/UserInterfaceState.xcuserstate
-
-Reference-iOS-Swift/Reference-iOS-Swift.xcodeproj/project.xcworkspace/xcuserdata/fay.xcuserdatad/UserInterfaceState.xcuserstate
-
 Reference-Data-Model-Generator/out/
 
-Reference-iOS-Feature-Generator/out/
+Reference-VIP-Feature-Generator/out/
+
+Reference-iOS-Project/Reference-iOS-Project-ObjC/Reference-iOS-Project-ObjC.xcodeproj/project.xcworkspace/xcuserdata/fay.xcuserdatad/UserInterfaceState.xcuserstate
+
+Reference-iOS-Project/Reference-iOS-Project-Swift/Reference-iOS-Project-Swift.xcodeproj/project.xcworkspace/xcuserdata/fay.xcuserdatad/UserInterfaceState.xcuserstate

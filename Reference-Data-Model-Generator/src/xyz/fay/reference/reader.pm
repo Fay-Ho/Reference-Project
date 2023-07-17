@@ -5,8 +5,8 @@ use warnings FATAL => 'all';
 use File::Basename;
 use File::Path;
 
-require './libs/CamelCase.pm';
-require './libs/JSON.pm';
+require './lib/CamelCase.pm';
+require './lib/JSON.pm';
 require './src/xyz/fay/reference/writer.pm';
 
 push(@INC, 'pwd');

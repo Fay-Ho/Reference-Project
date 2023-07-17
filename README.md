@@ -1,286 +1,71 @@
-[Reference-Project](https://github.com/Fay-Ho/Reference-Project/tree/develop)
+[Reference-Project](https://github.com/Fay-Ho/Reference-Project)
 ---
-
 A mobile weather application, the reference project for mobile app development.
 
-- Using `AMap.Weather` API
+- **Using `AMap.Weather` API**
 
-### [Reference-Android-Java](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Java)
----
-The `Java` project for the weather app building with `MVVM` architecture.
-
-```java
-
-
-```
-
-### [Reference-Android-Kotlin](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Kotlin)
----
-The `Kotlin` project for the weather app building with `MVVM` architecture.
-
-```kotlin
-
-
-```
-
-### [Reference-iOS-ObjC](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-ObjC)
----
-The `Objective-C` project for the weather app building with `VIP` architecture.
-
-```objective-c
-
-
-```
-
-### [Reference-iOS-Swift](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Swift)
----
-The `Swift` project for the weather app building with `VIP` architecture.
-
-```swift
-
-
-```
-
-### [Reference-Android-Annotation-Jar](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Android-Annotation-Jar)
----
-The `Android` project for generate annotation and annotation processor.
-
-- Parcelable (xyz.fay.parcel.Parcelable)
-
-- Parcelize (xyz.fay.parcel.Parcelize)
-
-- ParcelizeProcessor (xyz.fay.parcel.ParcelizeProcessor)
-
-### [Reference-iOS-Feature-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-iOS-Feature-Generator)
----
-The `JavaScript` project for auto generate iOS VIP module.
-
-- Objective-C
-
-```objective-c
-// Configurator
-
-#import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FRConfigurator : NSObject
-
-+ (instancetype)configurator;
-
-- (UIViewController *)makeViewController;
-
-@end
-
-NS_ASSUME_NONNULL_END
-```
-
-```objective-c
-#import "FRConfigurator.h"
-#import "FRInteractor.h"
-#import "FRPresenter.h"
-#import "FRViewController.h"
-
-@implementation FRConfigurator
-
-+ (instancetype)configurator {
-    return [[self alloc] init];
-}
-
-- (UIViewController *)makeViewController {
-    FRInteractor *interactor = [[FRInteractor alloc] init];
-    FRPresenter *presenter = [[FRPresenter alloc] init];
-    FRViewController *viewController = [[FRViewController alloc] init];
+- **Project Tree**
     
-    interactor.presenter = presenter;
-    presenter.viewController = viewController;
-    viewController.interactor = interactor;
-    
-    return viewController;
-}
+    - [README.md](https://github.com/Fay-Ho/Reference-Project/README.md)
 
-@end
-```
+    - [Reference-Android-Annotation-Project/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project)
 
-```objective-c
-// Interactor
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project/README.md)
 
-#import <Foundation/Foundation.h>
-#import "FRInterface.h"
+        - [Reference-Android-Annotation-Project-One-Android-Library/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project/Reference-Android-Annotation-Project-One-Android-Library)
 
-NS_ASSUME_NONNULL_BEGIN
+        - [Reference-Android-Annotation-Project-One-Java-Library/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project/Reference-Android-Annotation-Project-One-Java-Library)
 
-@interface FRInteractor : NSObject <FRInteractorInterface>
+        - [Reference-Android-Annotation-Project-Two-Java-Library/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project/Reference-Android-Annotation-Project-Two-Java-Library)
 
-@property (nonatomic, strong) id<FRPresenterInterface> presenter;
+    - [Reference-Android-Project/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Project)
 
-@end
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Project/README.md)
 
-NS_ASSUME_NONNULL_END
-```
+        - [Reference-Android-Project-Java/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Project/Reference-Android-Project-Java)
 
-```objective-c
-#import "FRInteractor.h"
+        - [Reference-Android-Project-Kotlin/](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Project/Reference-Android-Project-Kotlin)
 
-@implementation FRInteractor
+    - [Reference-Data-Model-Generator/](https://github.com/Fay-Ho/Reference-Project/Reference-Data-Model-Generator)
 
-@end
-```
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-Data-Model-Generator/README.md)
 
-```objective-c
-// Interface
+    - [Reference-Parcelize-Annotation/](https://github.com/Fay-Ho/Reference-Project/Reference-Parcelize-Annotation)
 
-#import <Foundation/Foundation.h>
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-Parcelize-Annotation/README.md)
 
-NS_ASSUME_NONNULL_BEGIN
+        - [Reference-Parcelize-Annotation-Generator/](https://github.com/Fay-Ho/Reference-Project/Reference-Parcelize-Annotation/Reference-Parcelize-Annotation-Generator)
 
-@protocol FRInteractorInterface <NSObject>
+        - [Reference-Parcelize-Annotation-Plugin/](https://github.com/Fay-Ho/Reference-Project/Reference-Parcelize-Annotation/Reference-Parcelize-Annotation-Plugin)
 
-@end
+    - [Reference-VIP-Feature-Generator/](https://github.com/Fay-Ho/Reference-Project/Reference-VIP-Feature-Generator)
 
-@protocol FRPresenterInterface <NSObject>
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-VIP-Feature-Generator/README.md)
 
-@end
+    - [Reference-iOS-Project/](https://github.com/Fay-Ho/Reference-Project/Reference-iOS-Project)
 
-@protocol FRViewControllerInterface <NSObject>
+        - [README.md](https://github.com/Fay-Ho/Reference-Project/Reference-iOS-Project/README.md)
 
-@end
+        - [Reference-iOS-Project-ObjC/](https://github.com/Fay-Ho/Reference-Project/Reference-iOS-Project/Reference-iOS-Project-ObjC)
 
-NS_ASSUME_NONNULL_END
-```
+        - [Reference-iOS-Project-Swift/](https://github.com/Fay-Ho/Reference-Project/Reference-iOS-Project/Reference-iOS-Project-Swift)
 
-```objective-c
-// Presenter
 
-#import <Foundation/Foundation.h>
-#import "FRInterface.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FRPresenter : NSObject <FRPresenterInterface>
-
-@property (nonatomic, weak) id<FRViewControllerInterface> viewController;
-
-@end
-
-NS_ASSUME_NONNULL_END
-```
-
-```objective-c
-#import "FRPresenter.h"
-
-@implementation FRPresenter
-
-@end
-```
-
-```objective-c
-// ViewController
-
-#import <UIKit/UIKit.h>
-#import "FRInterface.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FRViewController : UIViewController <FRViewControllerInterface>
-
-@property (nonatomic, strong) id<FRInteractorInterface> interactor;
-
-@end
-
-NS_ASSUME_NONNULL_END
-```
-
-```objective-c
-#import "FRViewController.h"
-
-@interface FRViewController ()
-
-@end
-
-@implementation FRViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-@end
-```
-
-- Swift
-```swift
-// Configurator
-
-import UIKit
-
-class Configurator {
-    func makeViewController() -> UIViewController {
-        let interactor = Interactor()
-        let presenter = Presenter()
-        let viewController = ViewController()
-
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        viewController.interactor = interactor
-
-        return viewController
-    }
-}
-```
-
-```swift
-// Interactor
-
-class Interactor {
-    var presenter: PresenterInterface?
-}
-
-extension Interactor : InteractorInterface {}
-```
-
-```swift
-// Interface
-
-import Foundation
-
-protocol InteractorInterface {}
-
-protocol PresenterInterface {}
-
-protocol ViewControllerInterface : NSObject {}
-```
-
-```swift
-// Presenter
-
-class Presenter {
-    weak var viewController: ViewControllerInterface?
-}
-
-extension Presenter : PresenterInterface {}
-```
-
-```swift
-// ViewController
-
-import UIKit
-
-class ViewController : UIViewController {
-    var interactor: InteractorInterface?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
-
-extension ViewController : ViewControllerInterface {}
-```
-
-### [Reference-Data-Model-Generator](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Data-Model-Generator)
+### [Reference-Android-Annotation-Project](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Annotation-Project)
 ---
-The `Perl` project for auto generate data model.
+The **`Android`** project for generate annotation and annotation processor.
 
-- Java
+
+### [Reference-Android-Project](https://github.com/Fay-Ho/Reference-Project/Reference-Android-Project)
+---
+The **`Android`** project for the weather app building with **`MVVM`** architecture.
+
+
+### [Reference-Data-Model-Generator](https://github.com/Fay-Ho/Reference-Project/Reference-Data-Model-Generator)
+---
+The **`Perl`** project for auto generate data model.
+
+- **Java**
 
 ```java
 // Model.java
@@ -303,7 +88,7 @@ public final class Model extends Parcelable {
 
 ```
 
-- Kotlin
+- **Kotlin**
 
 ```kotlin
 // Model.kt
@@ -315,13 +100,13 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Model(
-        val string: String,
-        val strings: Array<String>
+    val string: String,
+    val strings: Array<String>
 ) : Parcelable
 
 ```
 
-- Objective-C
+- **Objective-C**
 
 ```objective-c
 // FRModel.h
@@ -332,24 +117,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRModel : NSObject
 
-@property (nonatomic, strong) NSString *string;
-@property (nonatomic, strong) NSArray<NSString *> *strings;
+@property (nonatomic, strong, readonly, nonnull) NSString *string;
+@property (nonatomic, strong, readonly, nonnull) NSArray<NSString *> *strings;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
+```
 
+```objective-c
 // FRModel.m
 
 #import "FRModel.h"
 
 @implementation FRModel
 
+@property (nonatomic, strong, readwrite, nonnull) NSString *string;
+@property (nonatomic, strong, readwrite, nonnull) NSArray<NSString *> *strings;
+
 @end
+
 ```
 
-- Swift
+- **Swift**
 
 ```swift
 // Model.swift
@@ -358,32 +149,321 @@ struct Model: Codable {
     let string: String
     let strings: [String]
 }
+
 ```
 
-### [Reference-Parcelize-Annotation-Plugin](https://github.com/Fay-Ho/Reference-Project/tree/develop/Reference-Parcelize-Annotation-Plugin)
+
+### [Reference-Parcelize-Annotation](https://github.com/Fay-Ho/Reference-Project/Reference-Parcelize-Annotation)
 ---
-The `Intellij IDEA` / `Android Studio` plugin project for solve the code show error where `Java` project using `@Parcelize` `(xyz.fay.parcel.Parcelize)` annotation.
+The **`Android`** project. The **`Java`** project.
 
-- `@Parcelize` annotation is using for auto generate `Getter` / `Setter` method in Java.
 
-```java
-// Person.java
+### [Reference-VIP-Feature-Generator](https://github.com/Fay-Ho/Reference-Project/Reference-VIP-Feature-Generator)
+---
+The **`JavaScript`** project for auto generate **`iOS VIP`** module.
 
-package xyz.fay.reference;
+##### Objective-C
 
-import xyz.fay.parcel.Parcelable;
+- **FeatureConfigurator**
 
-@Parcelize
-public final class Person {
-    private final String name;
-    private String age;
+```objective-c
+// FeatureConfigurator.h
 
-    public Person(String name) {
-        this.name = name;
-    }
+#import <UIKit/UIKit.h>
 
-    // Will auto generate `getName()` method here when java compile.
+NS_ASSUME_NONNULL_BEGIN
 
-    // Will auto generate `getAge()` and `setAge(String age)` method here when java compile.
-}
+@protocol FRFeatureConfigurator <NSObject>
+
++ (instancetype)configurator;
+
+- (UIViewController *)makeViewControllerWithDataModel:(id _Nullable)model;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
 ```
+
+- **Configurator**
+
+```objective-c
+// Configurator.h
+
+#import <Foundation/Foundation.h>
+#import "FRFeatureConfigurator.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRSampleConfigurator : NSObject <FRFeatureConfigurator>
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+```
+
+```objective-c
+// Configurator.m
+
+#import "FRSampleConfigurator.h"
+#import "FRSampleInteractor.h"
+#import "FRSamplePresenter.h"
+#import "FRSampleViewController.h"
+
+@implementation FRSampleConfigurator
+
++ (instancetype)configurator {
+    return [[self alloc] init];
+}
+
+- (UIViewController *)makeViewControllerWithDataModel:(id)model {
+    FRSampleInteractor *interactor = [[FRSampleInteractor alloc] init];
+    FRSamplePresenter *presenter = [[FRSamplePresenter alloc] init];
+    FRSampleViewController *viewController = [[FRSampleViewController alloc] init];
+    
+    interactor.presenter = presenter;
+    presenter.viewController = viewController;
+    viewController.interactor = interactor;
+    
+    return viewController;
+}
+
+@end
+
+```
+
+- **Interactor**
+
+```objective-c
+// Interactor.h
+
+#import <Foundation/Foundation.h>
+#import "FRSampleInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRSampleInteractor : NSObject <FRSampleInteractorInterface>
+
+@property (nonatomic, strong) id<FRSamplePresenterInterface> presenter;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+```
+
+```objective-c
+// Interactor.m
+
+#import "FRSampleInteractor.h"
+
+@implementation FRSampleInteractor
+
+#pragma mark - FRSampleInteractorInterface Implementation
+
+@end
+
+```
+
+- **Interface**
+
+```objective-c
+// Interface.h
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol FRSampleInteractorInterface <NSObject>
+
+@end
+
+@protocol FRSamplePresenterInterface <NSObject>
+
+@end
+
+@protocol FRSampleViewControllerInterface <NSObject>
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+```
+
+- **Presenter**
+
+```objective-c
+// Presenter.h
+
+#import <Foundation/Foundation.h>
+#import "FRSampleInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRSamplePresenter : NSObject <FRSamplePresenterInterface>
+
+@property (nonatomic, weak) id<FRSampleViewControllerInterface> viewController;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+```
+
+```objective-c
+// Presenter.m
+
+#import "FRSamplePresenter.h"
+
+@implementation FRSamplePresenter
+
+#pragma mark - FRSamplePresenterInterface Implementation
+
+@end
+
+```
+
+- **ViewController**
+
+```objective-c
+// ViewController.h
+
+#import <UIKit/UIKit.h>
+#import "FRSampleInterface.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRSampleViewController : UIViewController <FRSampleViewControllerInterface>
+
+@property (nonatomic, strong) id<FRSampleInteractorInterface> interactor;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+```
+
+```objective-c
+// ViewController.m
+
+#import "FRSampleViewController.h"
+
+@interface FRSampleViewController ()
+
+@end
+
+@implementation FRSampleViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+#pragma mark - FRSampleViewControllerInterface Implementation
+
+@end
+
+```
+
+##### Swift
+
+- **FeatureConfigurator**
+
+```swift
+// FeatureConfigurator.swift
+
+import UIKit
+
+protocol FeatureConfigurator {
+    func makeViewController(dataModel model: Codable?) -> UIViewController
+}
+
+```
+
+- **Configurator**
+
+```swift
+// Configurator.swift
+
+import UIKit
+
+class SampleConfigurator : FeatureConfigurator {
+    func makeViewController(dataModel model: Codable?) -> UIViewController {
+        let interactor = SampleInteractor()
+        let presenter = SamplePresenter()
+        let viewController = SampleViewController()
+        
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        viewController.interactor = interactor
+        
+        return viewController
+    }
+}
+
+```
+
+- **Interactor**
+
+```swift
+// Interactor.swift
+
+class SampleInteractor {
+    var presenter: SamplePresenterInterface?
+}
+
+extension SampleInteractor : SampleInteractorInterface {}
+
+```
+
+- **Interface**
+
+```swift
+// Interface.swift
+
+import Foundation
+
+protocol SampleInteractorInterface {}
+
+protocol SamplePresenterInterface {}
+
+protocol SampleViewControllerInterface: NSObject {}
+
+```
+
+- **Presenter**
+
+```swift
+// Presenter.swift
+
+class SamplePresenter {
+    weak var viewController: SampleViewControllerInterface?
+}
+
+extension SamplePresenter : SamplePresenterInterface {}
+
+```
+
+- **ViewController**
+
+```swift
+// ViewController.swift
+
+import UIKit
+
+class SampleViewController : UIViewController {
+    var interactor: SampleInteractorInterface?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+extension SampleViewController : SampleViewControllerInterface {}
+
+```
+
+
+### [Reference-iOS-Project](https://github.com/Fay-Ho/Reference-Project/Reference-iOS-Project)
+---
+The **`iOS`** project for the weather app building with **`VIP`** architecture..

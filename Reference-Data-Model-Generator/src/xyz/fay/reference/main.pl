@@ -2,7 +2,7 @@
 use strict;
 use warnings FATAL => 'all';
 
-require './libs/CamelCase.pm';
+require './lib/CamelCase.pm';
 require './src/xyz/fay/reference/reader.pm';
 require './src/xyz/fay/reference/writer.pm';
 

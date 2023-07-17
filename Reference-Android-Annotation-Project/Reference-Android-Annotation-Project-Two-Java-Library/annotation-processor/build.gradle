@@ -1,0 +1,17 @@
+import org.gradle.internal.jvm.Jvm
+
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation files(Jvm.current().toolsJar)
+    implementation project(':annotation')
+    implementation 'com.google.auto.service:auto-service-annotations:1.0'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0'
+}

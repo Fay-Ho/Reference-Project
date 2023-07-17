@@ -4,7 +4,7 @@ use warnings FATAL => 'all';
 
 use File::Path;
 
-require './libs/CamelCase.pm';
+require './lib/CamelCase.pm';
 
 push(@INC, 'pwd');
 
@@ -192,6 +192,8 @@ my $flag_objc_h_file = "//
 
 NS_ASSUME_NONNULL_BEGIN
 
+\@class $flag_class;
+
 $flag_block
 
 NS_ASSUME_NONNULL_END
@@ -216,9 +218,19 @@ my $flag_objc_m_file = "//
 $flag_block
 ";
 
-my $flag_objc_m_block = "\@implementation $flag_prefix$flag_class$flag_suffix
+my $flag_objc_m_block = "\@interface $flag_prefix$flag_class$flag_suffix ()
+
+$flag_define
+
+\@end
+
+\@implementation $flag_prefix$flag_class$flag_suffix
 
 \@end";
+
+my $flag_objc_m_type_define = "\@property (nonatomic, strong, readwrite, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
+
+my $flag_objc_m_type_list_define = "\@property (nonatomic, strong, readwrite, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
@@ -418,64 +430,120 @@ sub create_kotlin_file {
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
+# sub generate_objc_file {
+#     my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
+#     my ($target_file_name, $target_objc_h_block, $target_objc_m_block) = ($empty, $empty, $empty);
+#
+#     if ($target_prefix eq $empty) {
+#         $target_prefix = $default_prefix_fr;
+#     }
+#
+#     foreach (reverse keys @data) {
+#         my $data = $data[$_];
+#
+#         foreach my $target_class_name (keys %$data) {
+#             if ($_ == 0) {
+#                 $target_file_name = $target_class_name;
+#             }
+#             my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
+#
+#             foreach my $target_define_name (sort keys %$target_class_value) {
+#                 (my $target_define_type, my $target_define_value) =
+#                     ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
+#
+#                 if (ref $target_define_value eq $is_array) {
+#                     $target_class_var_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+#                 } elsif (ref $target_define_value eq $is_hash) {
+#                     $target_class_var_define = create_objc_define($flag_objc_h_type_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+#                 } else {
+#                     $target_class_var_define = create_objc_define($flag_objc_h_type_define, $default_prefix_ns, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
+#                 }
+#             }
+#
+#             my @objc_block = create_objc_block($target_prefix, $target_class_name, $target_suffix, $target_class_var_define, $target_objc_h_block, $target_objc_m_block);
+#             $target_objc_h_block = $objc_block[0];
+#             $target_objc_m_block = $objc_block[1];
+#         }
+#     }
+#
+#     create_objc_file($target_path, $target_prefix, $target_file_name, $target_suffix, $target_copyright, $target_objc_h_block, $target_objc_m_block);
+# }
+
 sub generate_objc_file {
     my ($target_path, $target_prefix, $target_suffix, $target_package, $target_copyright, @data) = @_;
-    my ($target_file_name, $target_objc_h_block, $target_objc_m_block) = ($empty, $empty, $empty);
+    my ($target_file_name, $target_class, $target_objc_h_block, $target_objc_m_block) = ($empty, $empty, $empty, $empty);
 
     if ($target_prefix eq $empty) {
         $target_prefix = $default_prefix_fr;
     }
 
-    foreach (reverse keys @data) {
+    foreach (keys @data) {
         my $data = $data[$_];
 
         foreach my $target_class_name (keys %$data) {
-            if ($_ == 0) {
-                $target_file_name = $target_class_name;
-            }
-            my ($target_class_value, $target_class_var_define) = ($$data{$target_class_name}, $empty);
+            my ($target_class_value, $target_class_h_var_define, $target_class_m_var_define) = ($$data{$target_class_name}, $empty, $empty);
 
             foreach my $target_define_name (sort keys %$target_class_value) {
                 (my $target_define_type, my $target_define_value) =
                     ($target_class_name.camel_case($target_define_name), $$target_class_value{$target_define_name});
 
+                my @objc_define = ($target_class_h_var_define, $target_class_m_var_define);
                 if (ref $target_define_value eq $is_array) {
-                    $target_class_var_define = create_objc_define($flag_objc_h_type_list_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                    @objc_define = create_objc_define($flag_objc_h_type_list_define, $flag_objc_m_type_list_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
                 } elsif (ref $target_define_value eq $is_hash) {
-                    $target_class_var_define = create_objc_define($flag_objc_h_type_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                    @objc_define = create_objc_define($flag_objc_h_type_define, $flag_objc_m_type_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
                 } else {
-                    $target_class_var_define = create_objc_define($flag_objc_h_type_define, $default_prefix_ns, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
+                    @objc_define = create_objc_define($flag_objc_h_type_define, $flag_objc_m_type_define, $default_prefix_ns, $flag_string_type, $empty, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
                 }
+                $target_class_h_var_define = $objc_define[0];
+                $target_class_m_var_define = $objc_define[1];
             }
 
-            my @objc_block = create_objc_block($target_prefix, $target_class_name, $target_suffix, $target_class_var_define, $target_objc_h_block, $target_objc_m_block);
+            my @objc_block = create_objc_block($target_prefix, $target_class_name, $target_suffix, $target_class_h_var_define, $target_class_m_var_define, $target_objc_h_block, $target_objc_m_block);
             $target_objc_h_block = $objc_block[0];
             $target_objc_m_block = $objc_block[1];
+
+            if ($_ == 0) {
+                $target_file_name = $target_class_name;
+            } else {
+                $target_class = create_objc_class($target_prefix, $target_class_name, $target_suffix, $target_class);
+            }
         }
     }
 
-    create_objc_file($target_path, $target_prefix, $target_file_name, $target_suffix, $target_copyright, $target_objc_h_block, $target_objc_m_block);
+    create_objc_file($target_path, $target_prefix, $target_file_name, $target_suffix, $target_copyright, $target_class, $target_objc_h_block, $target_objc_m_block);
 }
 
 sub create_objc_define {
-    my ($objc_h_define_type, $objc_prefix, $objc_type, $objc_suffix, $objc_var, $target_define) = @_;
+    my ($objc_h_define_type, $objc_m_define_type, $objc_prefix, $objc_type, $objc_suffix, $objc_var, $target_h_define, $target_m_define) = @_;
 
-    my $new_define = replace_string($objc_h_define_type, (
+    my $new_h_define = replace_string($objc_h_define_type, (
         $flag_prefix => $objc_prefix,
         $flag_type   => $objc_type,
         $flag_suffix => $objc_suffix,
         $flag_var    => $objc_var
     ));
 
-    if ($target_define ne $empty) {
-        $target_define = $target_define.$ln;
+    my $new_m_define = replace_string($objc_m_define_type, (
+        $flag_prefix => $objc_prefix,
+        $flag_type   => $objc_type,
+        $flag_suffix => $objc_suffix,
+        $flag_var    => $objc_var
+    ));
+
+    if ($target_h_define ne $empty) {
+        $target_h_define = $target_h_define.$ln;
     }
 
-    return $target_define.$new_define;
+    if ($target_m_define ne $empty) {
+        $target_m_define = $target_m_define.$ln;
+    }
+
+    return ($target_h_define.$new_h_define, $target_m_define.$new_m_define);
 }
 
 sub create_objc_block {
-    my ($objc_prefix, $objc_class, $objc_suffix, $objc_h_define, $target_h_block, $target_m_block) = @_;
+    my ($objc_prefix, $objc_class, $objc_suffix, $objc_h_define, $objc_m_define, $target_h_block, $target_m_block) = @_;
 
     my $new_h_block = replace_string($flag_objc_h_block, (
         $flag_prefix => $objc_prefix,
@@ -487,7 +555,8 @@ sub create_objc_block {
     my $new_m_block = replace_string($flag_objc_m_block, (
         $flag_prefix => $objc_prefix,
         $flag_class  => $objc_class,
-        $flag_suffix => $objc_suffix
+        $flag_suffix => $objc_suffix,
+        $flag_define => $objc_m_define
     ));
 
     if ($target_h_block ne $empty) {
@@ -501,11 +570,25 @@ sub create_objc_block {
     return ($target_h_block.$new_h_block, $target_m_block.$new_m_block);
 }
 
+sub create_objc_class {
+    my ($target_prefix, $target_class_name, $target_suffix, $target_class) = @_;
+
+    $target_class_name = $target_prefix.$target_class_name.$target_suffix;
+    if ($target_class ne $empty) {
+        $target_class_name = $comma.$space.$target_class_name;
+    }
+
+    $target_class = $target_class.$target_class_name;
+
+    return $target_class;
+}
+
 sub create_objc_file {
-    my ($target_path, $target_prefix, $target_file, $target_suffix, $target_copyright, $target_objc_h_block, $target_objc_m_block) = @_;
+    my ($target_path, $target_prefix, $target_file, $target_suffix, $target_copyright, $target_class, $target_objc_h_block, $target_objc_m_block) = @_;
 
     my $objc_h_file = replace_string($flag_objc_h_file, (
         $flag_copyright => $target_copyright ne $empty ? $target_copyright : $mit_license_ios,
+        $flag_class     => $target_class,
         $flag_block     => $target_objc_h_block
     ));
 

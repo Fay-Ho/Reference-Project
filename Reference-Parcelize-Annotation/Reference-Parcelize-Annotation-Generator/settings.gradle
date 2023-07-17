@@ -1,0 +1,3 @@
+include ':parcel'
+include ':app'
+rootProject.name = "Reference-Parcelize-Annotation-Generator"
