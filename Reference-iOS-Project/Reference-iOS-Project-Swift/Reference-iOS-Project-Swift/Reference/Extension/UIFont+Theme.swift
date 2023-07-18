@@ -22,23 +22,14 @@
 //  SOFTWARE.
 //
 
-#import "FRWeatherPresenter.h"
-#import "NSObject+JSONModel.h"
-#import "NSArray+FRExtension.h"
+import UIKit
 
-@implementation FRWeatherPresenter
-
-#pragma mark - FRWeatherPresenterInterface Implementation
-
-- (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherDashboardItemViewData *viewData = [FRWeatherDashboardItemViewData viewData];
-    viewData.temperature = [response.lives[0].temperature stringByAppendingString:@" °C"];
-    [self.viewController updateDashboardItemWithViewData:viewData];
+extension UIFont {
+    class var boldLarge: UIFont {
+        .boldSystemFont(ofSize: 80)
+    }
+    
+    class var large: UIFont {
+        .systemFont(ofSize: 80)
+    }
 }
-
-- (void)handleGetCityResponse:(FRGetCityResponse *)response {
-    NSData *model = [NSJSONSerialization dataWithJSONObject:response.JSON options:kNilOptions error:NULL];
-    [self.viewController showLocationPageWithDataModel:model];
-}
-
-@end

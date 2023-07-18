@@ -27,6 +27,8 @@ import UIKit
 class WeatherViewController : BaseViewController {
     var interactor: WeatherInteractorInterface?
     
+    // MARK: - UI Component
+    
     private lazy var locationButton: UIImageView = {
         let imageView: UIImageView = .make(image: UIImage(named: "ImgLocation"))
         imageView.isUserInteractionEnabled = true
@@ -38,10 +40,18 @@ class WeatherViewController : BaseViewController {
         return imageView
     }()
     
+    private lazy var dashboardItem: WeatherDashboardItem = {
+        let viewData = WeatherDashboardItem.ViewData(temperature: "20")
+        let item: WeatherDashboardItem = .init(viewData: viewData)
+        return item
+    }()
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        layoutSubviews()
+        setupLayouts()
         updateStyling()
     }
     
@@ -56,16 +66,20 @@ class WeatherViewController : BaseViewController {
     }
 }
 
+// MARK: - Subview Management
+
 extension WeatherViewController {
     func setupSubviews() {
         view.addSubview(locationButton)
+        container.addArrangedSubview(dashboardItem)
     }
     
-    func layoutSubviews() {
+    func setupLayouts() {
+        let margin: CGFloat = 24
         locationButton
-            .top(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24)
-            .trailing(equalTo: view.trailingAnchor, constant: -24)
-            .width(equalToConstant: 24)
+            .top(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin)
+            .trailing(equalTo: view.trailingAnchor, constant: -margin)
+            .width(equalToConstant: margin)
             .height(equalTo: locationButton.widthAnchor)
     }
     
@@ -74,11 +88,15 @@ extension WeatherViewController {
     }
 }
 
+// MARK: - Event Management
+
 extension WeatherViewController {
     @objc func nextPage(_ sender: Any) {
         interactor?.fetchData()
     }
 }
+
+// MARK: - WeatherViewControllerInterface Implementation
 
 extension WeatherViewController : WeatherViewControllerInterface {
     func showLocationPage(dataModel model: Codable) {

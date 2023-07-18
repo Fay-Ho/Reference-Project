@@ -53,18 +53,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupSubviews];
-    [self layoutSubviews];
+    [self fr_setupSubviews];
+    [self fr_setupLayouts];
 }
 
 #pragma mark - Subview Management
 
-- (void)setupSubviews {
+- (void)fr_setupSubviews {
     [self.view addSubview:self.root];
     [self.root addSubview:self.container];
 }
 
-- (void)layoutSubviews {
+- (void)fr_setupLayouts {
     [self.root verticalEqualToView:self.view safeArea:YES];
     [self.root horizontalEqualToView:self.view];
     

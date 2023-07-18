@@ -36,6 +36,10 @@
 
 @implementation FRGetWeatherResponse
 
+- (NSDictionary<NSString *,NSString *> *)unkeyedContainer {
+    return @{@"lives": @"FRGetWeatherLivesResponse"};
+}
+
 @end
 
 @interface FRGetWeatherLivesResponse ()

@@ -28,8 +28,4 @@ extension UIColor {
     class var theme: UIColor {
         UIColor(hex: "#ebebeb")
     }
-    
-    class var item: UIColor {
-        UIColor(hex: "#886644")
-    }
 }

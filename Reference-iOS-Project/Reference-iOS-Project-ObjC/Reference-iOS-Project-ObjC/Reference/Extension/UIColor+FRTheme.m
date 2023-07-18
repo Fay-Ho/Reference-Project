@@ -28,7 +28,7 @@
 @implementation UIColor (FRTheme)
 
 + (UIColor *)themeColor {
-    return [UIColor colorWithHex:@"#ebebebff"];
+    return [UIColor colorWithHex:@"#ebebeb"];
 }
 
 @end

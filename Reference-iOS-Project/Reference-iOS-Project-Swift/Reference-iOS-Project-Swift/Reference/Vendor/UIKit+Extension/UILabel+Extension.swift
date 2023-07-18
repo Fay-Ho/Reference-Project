@@ -22,23 +22,13 @@
 //  SOFTWARE.
 //
 
-#import "FRWeatherPresenter.h"
-#import "NSObject+JSONModel.h"
-#import "NSArray+FRExtension.h"
+import UIKit
 
-@implementation FRWeatherPresenter
-
-#pragma mark - FRWeatherPresenterInterface Implementation
-
-- (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherDashboardItemViewData *viewData = [FRWeatherDashboardItemViewData viewData];
-    viewData.temperature = [response.lives[0].temperature stringByAppendingString:@" °C"];
-    [self.viewController updateDashboardItemWithViewData:viewData];
+extension UILabel {
+    static func make(text: String?) -> Self {
+        let label = Self()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        return label
+    }
 }
-
-- (void)handleGetCityResponse:(FRGetCityResponse *)response {
-    NSData *model = [NSJSONSerialization dataWithJSONObject:response.JSON options:kNilOptions error:NULL];
-    [self.viewController showLocationPageWithDataModel:model];
-}
-
-@end

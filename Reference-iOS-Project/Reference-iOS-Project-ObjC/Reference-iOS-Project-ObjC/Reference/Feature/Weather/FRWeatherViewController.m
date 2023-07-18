@@ -25,10 +25,12 @@
 #import "FRWeatherViewController.h"
 #import "FRHelper.h"
 #import "UIColor+FRTheme.h"
+#import "FRWeatherDashboardItem.h"
 
 @interface FRWeatherViewController ()
 
 @property (nonatomic, strong) UIImageView *locationButton;
+@property (nonatomic, strong) FRWeatherDashboardItem *dashboardItem;
 
 @end
 
@@ -40,7 +42,7 @@
     if (!_locationButton) {
         _locationButton = [UIImageView makeWithImage:[UIImage imageNamed:@"ImgLocation"]];
         _locationButton.userInteractionEnabled = YES;
-        
+
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
         [recognizer addTarget:self action:@selector(nextPage:)];
         [_locationButton addGestureRecognizer:recognizer];
@@ -48,14 +50,23 @@
     return _locationButton;
 }
 
+- (FRWeatherDashboardItem *)dashboardItem {
+    if (!_dashboardItem) {
+        FRWeatherDashboardItemViewData *viewModel = [FRWeatherDashboardItemViewData viewData];
+        viewModel.temperature = @"20 °C";
+        _dashboardItem = [FRWeatherDashboardItem itemWithViewData:viewModel];
+    }
+    return _dashboardItem;
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor themeColor];
     [self setupSubviews];
-    [self layoutSubviews];
+    [self setupLayouts];
     [self updateStyling];
+    [self.interactor viewIsReady];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,12 +83,14 @@
 
 - (void)setupSubviews {
     [self.view addSubview:self.locationButton];
+    [self.container addArrangedSubview:self.dashboardItem];
 }
 
-- (void)layoutSubviews {
-    [self.locationButton topEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:24];
-    [self.locationButton trailingEqualToAnchor:self.view.trailingAnchor constant:-24];
-    [self.locationButton widthEqualToConstant:24];
+- (void)setupLayouts {
+    CGFloat margin = 24;
+    [self.locationButton topEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:margin];
+    [self.locationButton trailingEqualToAnchor:self.view.trailingAnchor constant:-margin];
+    [self.locationButton widthEqualToConstant:margin];
     [self.locationButton heightEqualToAnchor:self.locationButton.widthAnchor];
 }
 
@@ -91,7 +104,11 @@
     [self.interactor fetchData];
 }
 
-#pragma mark - FRDashboardViewControllerInterface Implementation
+#pragma mark - FRWeatherViewControllerInterface Implementation
+
+- (void)updateDashboardItemWithViewData:(FRWeatherDashboardItemViewData *)viewData {
+    [self.dashboardItem updateViewData:viewData];
+}
 
 - (void)showLocationPageWithDataModel:(NSData *)model {
     [[FRHelper sharedInstance].navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:model];

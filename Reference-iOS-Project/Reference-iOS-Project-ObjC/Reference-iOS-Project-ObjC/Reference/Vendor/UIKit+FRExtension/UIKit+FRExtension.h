@@ -29,6 +29,8 @@
 
 #import "UIImageView+FRExtension.h"
 
+#import "UILabel+FRExtension.h"
+
 #import "UIStackView+FRExtension.h"
 
 #import "UIView+CGRect.h"

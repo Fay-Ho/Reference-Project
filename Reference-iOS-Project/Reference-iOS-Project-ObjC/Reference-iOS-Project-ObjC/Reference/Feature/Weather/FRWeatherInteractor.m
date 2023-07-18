@@ -31,10 +31,17 @@
 
 #pragma mark - FRWeatherInteractorInterface Implementation
 
+- (void)viewIsReady {
+    FRNetworkManager<FRGetWeatherResponse *> *manager = [FRNetworkManager manager];
+    [manager getWeather:^(FRGetWeatherResponse * _Nullable response) {
+        [self.presenter handleGetWeatherResponse:response];
+    }];
+}
+
 - (void)fetchData {
-    FRNetworkManager<FRGetCityResponse *> *manager = [[FRNetworkManager alloc] init];
+    FRNetworkManager<FRGetCityResponse *> *manager = [FRNetworkManager manager];
     [manager getCity:^(FRGetCityResponse * _Nullable response) {
-        [self.presenter handleResponse:response];
+        [self.presenter handleGetCityResponse:response];
     }];
 }
 

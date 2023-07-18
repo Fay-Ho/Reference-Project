@@ -22,23 +22,54 @@
 //  SOFTWARE.
 //
 
-#import "FRWeatherPresenter.h"
-#import "NSObject+JSONModel.h"
-#import "NSArray+FRExtension.h"
+import UIKit
 
-@implementation FRWeatherPresenter
-
-#pragma mark - FRWeatherPresenterInterface Implementation
-
-- (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherDashboardItemViewData *viewData = [FRWeatherDashboardItemViewData viewData];
-    viewData.temperature = [response.lives[0].temperature stringByAppendingString:@" °C"];
-    [self.viewController updateDashboardItemWithViewData:viewData];
+class WeatherDashboardItem: UIView {
+    private lazy var temperatureLabel: UILabel = {
+        let label: UILabel = .make(text: viewData.temperature)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let viewData: ViewData
+    
+    init(viewData: ViewData) {
+        self.viewData = viewData
+        super.init(frame: .zero)
+        setupSubviews()
+        setupLayout()
+        updateStyling()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-- (void)handleGetCityResponse:(FRGetCityResponse *)response {
-    NSData *model = [NSJSONSerialization dataWithJSONObject:response.JSON options:kNilOptions error:NULL];
-    [self.viewController showLocationPageWithDataModel:model];
+extension WeatherDashboardItem {
+    func setupSubviews() {
+        addSubview(temperatureLabel)
+    }
+    
+    func setupLayout() {
+        temperatureLabel
+            .vertical(equalTo: self, constant: 100)
+            .horizontal(equalTo: self, constant: 50)
+    }
+    
+    func updateStyling() {
+        temperatureLabel.font = .boldLarge
+    }
 }
 
-@end
+extension WeatherDashboardItem {
+    func updateTemperature(_ temperature: String) {
+        temperatureLabel.text = temperature
+    }
+}
+
+extension WeatherDashboardItem {
+    struct ViewData {
+        let temperature: String
+    }
+}

@@ -36,7 +36,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        layoutSubviews()
+        setupLayouts()
     }
 }
 
@@ -46,7 +46,7 @@ extension BaseViewController {
         root.addSubview(container)
     }
     
-    private func layoutSubviews() {
+    private func setupLayouts() {
         root
             .vertical(equalTo: view, safeArea: true)
             .horizontal(equalTo: view)
