@@ -45,7 +45,7 @@ class Navigator {
         return navigation
     }
     
-    func navigate(to destination: Destination, from navigation: UINavigationController, dataModel model: Codable) {
+    func navigate(to destination: Destination, from navigation: UINavigationController, dataModel model: Codable?) {
         guard let configurator = configurators[destination] else { return }
         let viewController = configurator.makeViewController(dataModel: model)
         navigation.pushViewController(viewController, animated: true)
