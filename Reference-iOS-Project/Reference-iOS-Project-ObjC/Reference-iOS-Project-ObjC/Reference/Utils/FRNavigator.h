@@ -30,11 +30,11 @@ typedef NSString *FRDestination NS_STRING_ENUM;
 FOUNDATION_EXPORT FRDestination const FRDestinationWeather;
 FOUNDATION_EXPORT FRDestination const FRDestinationLocation;
 
-@interface FRNavigator<M> : NSObject
+@interface FRNavigator : NSObject
 
 - (UINavigationController * _Nullable)makeNavigationWithDestination:(FRDestination)destination;
 
-- (void)navigateTo:(FRDestination _Nonnull)destination from:(UINavigationController * _Nonnull)navigation dataModel:(M _Nullable)model;
+- (void)navigateTo:(FRDestination _Nonnull)destination from:(UINavigationController * _Nonnull)navigation dataModel:(id _Nullable)model;
 
 @end
 

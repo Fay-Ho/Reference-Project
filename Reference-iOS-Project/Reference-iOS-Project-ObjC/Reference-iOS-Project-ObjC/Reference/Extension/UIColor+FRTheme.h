@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (FRTheme)
 
-+ (UIColor *)themeColor;
+@property (class, nonatomic, readonly) UIColor *themeColor;
 
 @end
 

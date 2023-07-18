@@ -22,22 +22,14 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class FRLocationTableViewRowModel;
-
-@interface FRLocationTableViewModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
-
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+extension UIColor {
+    class var theme: UIColor {
+        UIColor(hex: "#ebebeb")
+    }
+    
+    class var item: UIColor {
+        UIColor(hex: "#886644")
+    }
+}

@@ -24,11 +24,11 @@
 
 import UIKit
 
-class WeatherViewController : UIViewController {
+class WeatherViewController : BaseViewController {
     var interactor: WeatherInteractorInterface?
     
     private lazy var locationButton: UIImageView = {
-        let imageView: UIImageView = .make()
+        let imageView: UIImageView = .make(image: UIImage(named: "ImgLocation"))
         imageView.isUserInteractionEnabled = true
         
         let recognizer = UITapGestureRecognizer()
@@ -42,6 +42,7 @@ class WeatherViewController : UIViewController {
         super.viewDidLoad()
         setupSubviews()
         layoutSubviews()
+        updateStyling()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +68,10 @@ extension WeatherViewController {
             .width(equalToConstant: 24)
             .height(equalTo: locationButton.widthAnchor)
     }
+    
+    func updateStyling() {
+        view.backgroundColor = .theme
+    }
 }
 
 extension WeatherViewController {
@@ -76,13 +81,8 @@ extension WeatherViewController {
 }
 
 extension WeatherViewController : WeatherViewControllerInterface {
-    func showLocationPage(dataModel model: GetCityResponse) {
+    func showLocationPage(dataModel model: Codable) {
         guard let navigation = navigationController else { return }
-        do {
-            let model = try JSONEncoder().encode(model)
-            Helper.shared.navigator.navigate(to: .location, from: navigation, dataModel: model)
-        } catch {
-            return
-        }
+        Helper.shared.navigator.navigate(to: .location, from: navigation, dataModel: model)
     }
 }

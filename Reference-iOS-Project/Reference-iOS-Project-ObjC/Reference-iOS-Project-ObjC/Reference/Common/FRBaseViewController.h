@@ -23,16 +23,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import "UIView+FRExtension.h"
-#import "UIView+NSLayoutConstraint.h"
+#import "UIKit+FRExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FRBaseViewController : UIViewController
 
 @property (nonatomic, strong, readonly) UIScrollView *root;
-
 @property (nonatomic, strong, readonly) UIStackView *container;
 
 @end

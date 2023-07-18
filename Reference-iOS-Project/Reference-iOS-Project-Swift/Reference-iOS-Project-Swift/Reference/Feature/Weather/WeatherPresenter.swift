@@ -22,12 +22,19 @@
 //  SOFTWARE.
 //
 
+import Foundation
+
 class WeatherPresenter {
     weak var viewController: WeatherViewControllerInterface?
 }
 
 extension WeatherPresenter : WeatherPresenterInterface {
     func handleResponse(_ response: GetCityResponse) {
-        viewController?.showLocationPage(dataModel: response)
+        do {
+            let model = try JSONEncoder().encode(response)
+            viewController?.showLocationPage(dataModel: model)
+        } catch {
+            return
+        }
     }
 }

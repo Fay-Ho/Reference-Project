@@ -31,7 +31,7 @@ class LocationPresenter {
 
 extension LocationPresenter : LocationPresenterInterface {
     func handleTableViewModel() {
-        guard let model = model, let data = model as? Data else { return }
+        guard let data = model as? Data else { return }
         do {
             let model = try JSONDecoder().decode(LocationTableViewModel.self, from: data)
             viewController?.updateTableView(model: model)

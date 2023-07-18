@@ -30,6 +30,13 @@ class LocationViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewIsReady()
+        updateStyling()
+    }
+}
+
+extension LocationViewController {
+    func updateStyling() {
+        view.backgroundColor = .theme
     }
 }
 

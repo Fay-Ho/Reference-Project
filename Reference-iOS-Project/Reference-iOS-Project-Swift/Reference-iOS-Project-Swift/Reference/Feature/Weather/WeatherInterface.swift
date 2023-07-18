@@ -33,5 +33,5 @@ protocol WeatherPresenterInterface {
 }
 
 protocol WeatherViewControllerInterface: NSObject {
-    func showLocationPage(dataModel model: GetCityResponse)
+    func showLocationPage(dataModel model: Codable)
 }

@@ -23,6 +23,7 @@
 //
 
 #import "FRLocationViewController.h"
+#import "UIColor+FRTheme.h"
 
 @interface FRLocationViewController ()
 
@@ -35,6 +36,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.interactor viewIsReady];
+    [self updateStyling];
+}
+
+#pragma mark - Subview Management
+
+- (void)updateStyling {
+    self.view.backgroundColor = [UIColor themeColor];
 }
 
 #pragma mark - FRLocationViewControllerInterface Implementation

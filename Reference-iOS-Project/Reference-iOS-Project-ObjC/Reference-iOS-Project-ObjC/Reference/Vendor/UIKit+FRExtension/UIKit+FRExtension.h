@@ -22,22 +22,17 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef UIKit_FRExtension_h
+#define UIKit_FRExtension_h
 
-NS_ASSUME_NONNULL_BEGIN
+#import "UIColor+FRExtension.h"
 
-@class FRLocationTableViewRowModel;
+#import "UIImageView+FRExtension.h"
 
-@interface FRLocationTableViewModel : NSObject
+#import "UIStackView+FRExtension.h"
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
+#import "UIView+CGRect.h"
+#import "UIView+FRExtension.h"
+#import "UIView+NSLayoutConstraint.h"
 
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+#endif /* UIKit_FRExtension_h */

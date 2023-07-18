@@ -22,21 +22,17 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FRLocationTableViewRowModel;
+@interface UIView (FRExtension)
 
-@interface FRLocationTableViewModel : NSObject
++ (instancetype)make;
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
++ (instancetype)copyView:(UIView *)view;
 
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
+- (void)addSubviews:(NSArray<__kindof UIView *> *)subviews;
 
 @end
 

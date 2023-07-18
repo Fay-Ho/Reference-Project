@@ -31,10 +31,10 @@ class Navigator {
     }
     
     private var configurators: [Destination: FeatureConfigurator] {
-        get {[
+        [
             .location: LocationConfigurator(),
             .weather: WeatherConfigurator()
-            ]}
+        ]
     }
     
     func makeNavigation(destination: Destination) -> UINavigationController? {
@@ -45,7 +45,7 @@ class Navigator {
         return navigation
     }
     
-    func navigate<M: Codable>(to destination: Destination, from navigation: UINavigationController, dataModel model: M) {
+    func navigate(to destination: Destination, from navigation: UINavigationController, dataModel model: Codable) {
         guard let configurator = configurators[destination] else { return }
         let viewController = configurator.makeViewController(dataModel: model)
         navigation.pushViewController(viewController, animated: true)

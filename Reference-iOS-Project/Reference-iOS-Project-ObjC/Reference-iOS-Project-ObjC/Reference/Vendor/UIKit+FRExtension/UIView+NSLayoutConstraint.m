@@ -63,23 +63,37 @@
 }
 
 - (void)verticalEqualToView:(UIView *)view {
-    [self topEqualToAnchor:view.topAnchor constant:0];
-    [self bottomEqualToAnchor:view.bottomAnchor constant:0];
+    [self verticalEqualToView:view constant:0 safeArea:NO];
 }
 
 - (void)verticalEqualToView:(UIView *)view constant:(CGFloat)constant {
-    [self topEqualToAnchor:view.topAnchor constant:fabs(constant)];
-    [self bottomEqualToAnchor:view.bottomAnchor constant:-fabs(constant)];
+    [self verticalEqualToView:view constant:constant safeArea:NO];
+}
+
+- (void)verticalEqualToView:(UIView *)view safeArea:(BOOL)safeArea {
+    [self verticalEqualToView:view constant:0 safeArea:safeArea];
+}
+
+- (void)verticalEqualToView:(UIView *)view constant:(CGFloat)constant safeArea:(BOOL)safeArea {
+    [self topEqualToAnchor:safeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor constant:fabs(constant)];
+    [self bottomEqualToAnchor:safeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor constant:-fabs(constant)];
 }
 
 - (void)horizontalEqualToView:(UIView *)view {
-    [self leadingEqualToAnchor:view.leadingAnchor constant:0];
-    [self trailingEqualToAnchor:view.trailingAnchor constant:0];
+    [self horizontalEqualToView:view constant:0 safeArea:NO];
 }
 
 - (void)horizontalEqualToView:(UIView *)view constant:(CGFloat)constant {
-    [self leadingEqualToAnchor:view.leadingAnchor constant:fabs(constant)];
-    [self trailingEqualToAnchor:view.trailingAnchor constant:-fabs(constant)];
+    [self horizontalEqualToView:view constant:constant safeArea:NO];
+}
+
+- (void)horizontalEqualToView:(UIView *)view safeArea:(BOOL)safeArea {
+    [self horizontalEqualToView:view constant:0 safeArea:safeArea];
+}
+
+- (void)horizontalEqualToView:(UIView *)view constant:(CGFloat)constant safeArea:(BOOL)safeArea {
+    [self leadingEqualToAnchor:safeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor constant:fabs(constant)];
+    [self trailingEqualToAnchor:safeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor constant:-fabs(constant)];
 }
 
 - (void)centerXEqualToAnchor:(NSLayoutXAxisAnchor *)anchor {

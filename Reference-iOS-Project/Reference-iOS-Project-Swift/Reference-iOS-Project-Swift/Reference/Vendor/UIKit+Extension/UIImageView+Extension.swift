@@ -22,27 +22,12 @@
 //  SOFTWARE.
 //
 
-#import "UIView+FRExtension.h"
+import UIKit
 
-@implementation UIView (FRExtension)
-
-+ (instancetype)make {
-    UIView *_view = [[self alloc] init];
-    _view.translatesAutoresizingMaskIntoConstraints = NO;
-    return _view;
+extension UIImageView {
+    static func make(image: UIImage?) -> Self {
+        let view = Self(image: image)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
 }
-
-+ (instancetype)copyView:(UIView *)view {
-    UIView *_view = [[self alloc] initWithFrame:view.frame];
-    _view.translatesAutoresizingMaskIntoConstraints = NO;
-    _view.backgroundColor = view.backgroundColor;
-    return _view;
-}
-
-- (void)addSubviews:(NSArray<__kindof UIView *> *)views {
-    [views enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self addSubview:view];
-    }];
-}
-
-@end

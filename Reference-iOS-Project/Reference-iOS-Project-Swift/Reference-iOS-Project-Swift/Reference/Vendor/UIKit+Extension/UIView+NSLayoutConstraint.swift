@@ -25,7 +25,6 @@
 import UIKit
 
 extension UIView {
-    
     /**
      Align the top anchor of current view and target view.
      
@@ -135,19 +134,23 @@ extension UIView {
      
      // example 2:
      view1.vertical(equalTo: view2, constant: 16)
+     
+     // example 3:
+     view1.vertical(equalTo: view2, constant: 16, safeArea: true)
      ```
      
      - Parameters:
      - view: The target view
      - constant: The distance from the target view
+     - safeArea: Is using safe area layout guide
      
      - Returns:
      The current view
      */
     @discardableResult
-    func vertical(equalTo view: UIView, constant: CGFloat = 0) -> UIView {
-        top(equalTo: view.topAnchor, constant: abs(constant))
-        bottom(equalTo: view.bottomAnchor, constant: -abs(constant))
+    func vertical(equalTo view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
+        top(equalTo: safeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor, constant: abs(constant))
+        bottom(equalTo: safeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor, constant: -abs(constant))
         return self
     }
     
@@ -160,19 +163,23 @@ extension UIView {
      
      // example 2:
      view1.horizontal(equalTo: view2, constant: 16)
+     
+     // example 3:
+     view1.horizontal(equalTo: view2, constant: 16, safeArea: true)
      ```
      
      - Parameters:
      - anchor: The target view
      - constant: The distance from the target view
+     - safeArea: Is using safe area layout guide
      
      - Returns:
      The current view
      */
     @discardableResult
-    func horizontal(equalTo view: UIView, constant: CGFloat = 0) -> UIView {
-        leading(equalTo: view.leadingAnchor, constant: abs(constant))
-        trailing(equalTo: view.trailingAnchor, constant: -abs(constant))
+    func horizontal(equalTo view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
+        leading(equalTo: safeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor, constant: abs(constant))
+        trailing(equalTo: safeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor, constant: -abs(constant))
         return self
     }
     

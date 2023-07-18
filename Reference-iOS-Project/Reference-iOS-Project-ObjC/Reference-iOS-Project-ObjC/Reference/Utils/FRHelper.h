@@ -31,7 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) FRNavigator *navigator;
 
-+ (instancetype)sharedHelper;
++ (instancetype)sharedInstance;
+
++ (instancetype)alloc __attribute__((unavailable("replace with 'sharedInstance'")));
+
++ (instancetype)new __attribute__((unavailable("replace with 'sharedInstance'")));
+
+- (instancetype)copy __attribute__((unavailable("replace with 'sharedInstance'")));
+
+- (instancetype)mutableCopy __attribute__((unavailable("replace with 'sharedInstance'")));
 
 @end
 

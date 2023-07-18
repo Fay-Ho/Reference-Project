@@ -22,22 +22,20 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class FRLocationTableViewRowModel;
-
-@interface FRLocationTableViewModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
-
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+extension UIStackView {
+    static func make(spacing: CGFloat, axis: NSLayoutConstraint.Axis = .vertical) -> Self {
+        let view = Self()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.distribution = .fill
+        view.alignment = .fill
+        view.spacing = spacing
+        view.axis = axis
+        return view
+    }
+    
+    func addArrangedSubviews(_ subviews: [UIView]) {
+        subviews.forEach(addArrangedSubview)
+    }
+}

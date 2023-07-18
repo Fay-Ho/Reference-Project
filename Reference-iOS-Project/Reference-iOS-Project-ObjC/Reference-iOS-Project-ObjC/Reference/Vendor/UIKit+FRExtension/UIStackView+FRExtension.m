@@ -22,22 +22,28 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "UIStackView+FRExtension.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation UIStackView (FRExtension)
 
-@class FRLocationTableViewRowModel;
++ (instancetype)makeWithSpacing:(CGFloat)spacing {
+    return [self makeWithSpacing:spacing axis:UILayoutConstraintAxisVertical];
+}
 
-@interface FRLocationTableViewModel : NSObject
++ (instancetype)makeWithSpacing:(CGFloat)spacing axis:(UILayoutConstraintAxis)axis {
+    UIStackView *view = [[self alloc] init];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    view.distribution = UIStackViewDistributionFill;
+    view.alignment = UIStackViewAlignmentFill;
+    view.spacing = spacing;
+    view.axis = UILayoutConstraintAxisVertical;
+    return view;
+}
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
+- (void)addArrangedSubviews:(NSArray<UIView *> *)subviews {
+    [subviews enumerateObjectsUsingBlock:^(UIView * _Nonnull subview, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self addArrangedSubview:subview];
+    }];
+}
 
 @end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END

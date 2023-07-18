@@ -30,7 +30,8 @@
 #pragma mark - FRLocationPresenterInterface Implementation
 
 - (void)handleTableViewModel {
-    FRLocationTableViewModel *model = [FRLocationTableViewModel modelWithJSON:[self.model JSON]];
+    id json = [NSJSONSerialization JSONObjectWithData:self.model options:0 error:NULL];
+    FRLocationTableViewModel *model = [FRLocationTableViewModel modelWithJSON:json];
     [self.viewController updateTableViewWithModel:model];
 }
 

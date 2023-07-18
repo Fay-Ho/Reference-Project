@@ -27,13 +27,15 @@
 		650814322A6142DE00242F55 /* UIColor+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814312A6142DE00242F55 /* UIColor+FRExtension.m */; };
 		650814352A61439B00242F55 /* UIColor+FRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814342A61439B00242F55 /* UIColor+FRTheme.m */; };
 		650814382A6151E200242F55 /* NSObject+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814362A6151E200242F55 /* NSObject+JSONModel.m */; };
+		655D80022A66DC0F006BCA74 /* UIImageView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D80012A66DC0F006BCA74 /* UIImageView+FRExtension.m */; };
+		655D80082A66DC1F006BCA74 /* UIStackView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D80072A66DC1F006BCA74 /* UIStackView+FRExtension.m */; };
+		655D800F2A66DC60006BCA74 /* UIView+CGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D800E2A66DC60006BCA74 /* UIView+CGRect.m */; };
 		65984FEB2A6303D90058F69E /* FRLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FEA2A6303D90058F69E /* FRLocationModel.m */; };
 		65984FFB2A63B7F70058F69E /* FRWeatherPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FF42A63B7F60058F69E /* FRWeatherPresenter.m */; };
 		65984FFC2A63B7F70058F69E /* FRWeatherInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FF62A63B7F60058F69E /* FRWeatherInteractor.m */; };
 		65984FFD2A63B7F70058F69E /* FRWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FF72A63B7F60058F69E /* FRWeatherViewController.m */; };
 		65984FFE2A63B7F70058F69E /* FRWeatherConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FFA2A63B7F70058F69E /* FRWeatherConfigurator.m */; };
 		659850122A63DDCA0058F69E /* UIView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 659850112A63DDCA0058F69E /* UIView+FRExtension.m */; };
-		659850172A63E8B20058F69E /* UIView+FRLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 659850142A63E8B20058F69E /* UIView+FRLayout.m */; };
 		659850182A63E8B20058F69E /* UIView+NSLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */; };
 		6598501E2A63F1EE0058F69E /* FRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6598501D2A63F1EE0058F69E /* FRBaseViewController.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,13 @@
 		650814342A61439B00242F55 /* UIColor+FRTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRTheme.m"; sourceTree = "<group>"; };
 		650814362A6151E200242F55 /* NSObject+JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSONModel.m"; sourceTree = "<group>"; };
 		650814372A6151E200242F55 /* NSObject+JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSONModel.h"; sourceTree = "<group>"; };
+		655D80002A66DC0F006BCA74 /* UIImageView+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FRExtension.h"; sourceTree = "<group>"; };
+		655D80012A66DC0F006BCA74 /* UIImageView+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FRExtension.m"; sourceTree = "<group>"; };
+		655D80062A66DC1F006BCA74 /* UIStackView+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStackView+FRExtension.h"; sourceTree = "<group>"; };
+		655D80072A66DC1F006BCA74 /* UIStackView+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStackView+FRExtension.m"; sourceTree = "<group>"; };
+		655D800C2A66DC3D006BCA74 /* UIKit+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIKit+FRExtension.h"; sourceTree = "<group>"; };
+		655D800D2A66DC60006BCA74 /* UIView+CGRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CGRect.h"; sourceTree = "<group>"; };
+		655D800E2A66DC60006BCA74 /* UIView+CGRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CGRect.m"; sourceTree = "<group>"; };
 		65984FE92A6303D90058F69E /* FRLocationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRLocationModel.h; sourceTree = "<group>"; };
 		65984FEA2A6303D90058F69E /* FRLocationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRLocationModel.m; sourceTree = "<group>"; };
 		65984FF22A63B7F60058F69E /* FRWeatherInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRWeatherInterface.h; sourceTree = "<group>"; };
@@ -112,8 +121,6 @@
 		659850102A63DDCA0058F69E /* UIView+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+FRExtension.h"; sourceTree = "<group>"; };
 		659850112A63DDCA0058F69E /* UIView+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+FRExtension.m"; sourceTree = "<group>"; };
 		659850132A63E8B20058F69E /* UIView+NSLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NSLayoutConstraint.h"; sourceTree = "<group>"; };
-		659850142A63E8B20058F69E /* UIView+FRLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FRLayout.m"; sourceTree = "<group>"; };
-		659850152A63E8B20058F69E /* UIView+FRLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FRLayout.h"; sourceTree = "<group>"; };
 		659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NSLayoutConstraint.m"; sourceTree = "<group>"; };
 		6598501C2A63F1EE0058F69E /* FRBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRBaseViewController.h; sourceTree = "<group>"; };
 		6598501D2A63F1EE0058F69E /* FRBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRBaseViewController.m; sourceTree = "<group>"; };
@@ -221,9 +228,9 @@
 		650813C72A61020600242F55 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				650813F72A61071E00242F55 /* FRFeatureConfigurator.h */,
 				6598501C2A63F1EE0058F69E /* FRBaseViewController.h */,
 				6598501D2A63F1EE0058F69E /* FRBaseViewController.m */,
+				650813F72A61071E00242F55 /* FRFeatureConfigurator.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -231,16 +238,8 @@
 		650813C82A61020D00242F55 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				650814302A6142DE00242F55 /* UIColor+FRExtension.h */,
-				650814312A6142DE00242F55 /* UIColor+FRExtension.m */,
 				650814332A61439B00242F55 /* UIColor+FRTheme.h */,
 				650814342A61439B00242F55 /* UIColor+FRTheme.m */,
-				659850102A63DDCA0058F69E /* UIView+FRExtension.h */,
-				659850112A63DDCA0058F69E /* UIView+FRExtension.m */,
-				659850152A63E8B20058F69E /* UIView+FRLayout.h */,
-				659850142A63E8B20058F69E /* UIView+FRLayout.m */,
-				659850132A63E8B20058F69E /* UIView+NSLayoutConstraint.h */,
-				659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -281,8 +280,8 @@
 		650813CC2A61025800242F55 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				650814372A6151E200242F55 /* NSObject+JSONModel.h */,
-				650814362A6151E200242F55 /* NSObject+JSONModel.m */,
+				65EF336D2A66CB3A00992D1C /* NSObject+JSONModel */,
+				65EF336C2A66CB2B00992D1C /* UIKit+FRExtension */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -337,6 +336,35 @@
 				65984FF72A63B7F60058F69E /* FRWeatherViewController.m */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		65EF336C2A66CB2B00992D1C /* UIKit+FRExtension */ = {
+			isa = PBXGroup;
+			children = (
+				650814302A6142DE00242F55 /* UIColor+FRExtension.h */,
+				650814312A6142DE00242F55 /* UIColor+FRExtension.m */,
+				655D80002A66DC0F006BCA74 /* UIImageView+FRExtension.h */,
+				655D80012A66DC0F006BCA74 /* UIImageView+FRExtension.m */,
+				655D800C2A66DC3D006BCA74 /* UIKit+FRExtension.h */,
+				655D80062A66DC1F006BCA74 /* UIStackView+FRExtension.h */,
+				655D80072A66DC1F006BCA74 /* UIStackView+FRExtension.m */,
+				655D800D2A66DC60006BCA74 /* UIView+CGRect.h */,
+				655D800E2A66DC60006BCA74 /* UIView+CGRect.m */,
+				659850102A63DDCA0058F69E /* UIView+FRExtension.h */,
+				659850112A63DDCA0058F69E /* UIView+FRExtension.m */,
+				659850132A63E8B20058F69E /* UIView+NSLayoutConstraint.h */,
+				659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */,
+			);
+			path = "UIKit+FRExtension";
+			sourceTree = "<group>";
+		};
+		65EF336D2A66CB3A00992D1C /* NSObject+JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				650814372A6151E200242F55 /* NSObject+JSONModel.h */,
+				650814362A6151E200242F55 /* NSObject+JSONModel.m */,
+			);
+			path = "NSObject+JSONModel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,8 +498,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				650813FA2A61071E00242F55 /* FRHelper.m in Sources */,
-				659850172A63E8B20058F69E /* UIView+FRLayout.m in Sources */,
+				655D80022A66DC0F006BCA74 /* UIImageView+FRExtension.m in Sources */,
 				650813EF2A6106A300242F55 /* FRLocationPresenter.m in Sources */,
+				655D800F2A66DC60006BCA74 /* UIView+CGRect.m in Sources */,
 				659850122A63DDCA0058F69E /* UIView+FRExtension.m in Sources */,
 				650814382A6151E200242F55 /* NSObject+JSONModel.m in Sources */,
 				650814322A6142DE00242F55 /* UIColor+FRExtension.m in Sources */,
@@ -485,6 +514,7 @@
 				650813EE2A6106A300242F55 /* FRLocationViewController.m in Sources */,
 				65984FEB2A6303D90058F69E /* FRLocationModel.m in Sources */,
 				650814012A61074F00242F55 /* FRNetworkManager.m in Sources */,
+				655D80082A66DC1F006BCA74 /* UIStackView+FRExtension.m in Sources */,
 				65984FFD2A63B7F70058F69E /* FRWeatherViewController.m in Sources */,
 				65984FFC2A63B7F70058F69E /* FRWeatherInteractor.m in Sources */,
 				650813F92A61071E00242F55 /* FRBundleProvider.m in Sources */,

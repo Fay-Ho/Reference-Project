@@ -27,7 +27,6 @@
 @interface FRBaseViewController ()
 
 @property (nonatomic, strong, readwrite) UIScrollView *root;
-
 @property (nonatomic, strong, readwrite) UIStackView *container;
 
 @end
@@ -45,7 +44,7 @@
 
 - (UIStackView *)container {
     if (!_container) {
-        _container = [UIStackView make];
+        _container = [UIStackView makeWithSpacing:0];
     }
     return _container;
 }
@@ -61,14 +60,16 @@
 #pragma mark - Subview Management
 
 - (void)setupSubviews {
-    [self.view addSubviews:@[self.root, self.container]];
+    [self.view addSubview:self.root];
+    [self.root addSubview:self.container];
 }
 
 - (void)layoutSubviews {
-    [self.root edgeEqualToView:self.view];
+    [self.root verticalEqualToView:self.view safeArea:YES];
+    [self.root horizontalEqualToView:self.view];
     
-    [self.container edgeEqualToView:self.view];
-    [self.container widthEqualToAnchor:self.view.widthAnchor];
+    [self.container edgeEqualToView:self.root];
+    [self.container widthEqualToAnchor:self.root.widthAnchor];
 }
 
 @end

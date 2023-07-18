@@ -22,21 +22,17 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FRLocationTableViewRowModel;
+@interface UIStackView (FRExtension)
 
-@interface FRLocationTableViewModel : NSObject
++ (instancetype)makeWithSpacing:(CGFloat)spacing;
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
++ (instancetype)makeWithSpacing:(CGFloat)spacing axis:(UILayoutConstraintAxis)axis;
 
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
+- (void)addArrangedSubviews:(NSArray<UIView *> *)subviews;
 
 @end
 

@@ -23,13 +23,15 @@
 //
 
 #import "FRWeatherPresenter.h"
+#import "NSObject+JSONModel.h"
 
 @implementation FRWeatherPresenter
 
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleResponse:(FRGetCityResponse *)response {
-    [self.viewController showLocationPageWithDataModel:response];
+    NSData *model = [NSJSONSerialization dataWithJSONObject:response.JSON options:kNilOptions error:NULL];
+    [self.viewController showLocationPageWithDataModel:model];
 }
 
 @end

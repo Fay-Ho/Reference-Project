@@ -26,14 +26,27 @@
 
 @implementation FRHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)sharedInstance {
     static FRHelper *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
+        sharedInstance = [[super allocWithZone:nil] init];
         sharedInstance.navigator = [[FRNavigator alloc] init];
     });
     return sharedInstance;
 }
 
++ (id)allocWithZone:(NSZone *)zone {
+    return [self sharedInstance];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    return [[self class] sharedInstance];
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    return [[self class] sharedInstance];
+}
+
 @end
+    

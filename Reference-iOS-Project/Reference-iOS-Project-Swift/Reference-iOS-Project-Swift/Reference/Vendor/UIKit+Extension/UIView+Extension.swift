@@ -22,22 +22,24 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class FRLocationTableViewRowModel;
-
-@interface FRLocationTableViewModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
-
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+extension UIView {
+    static func make() -> Self {
+        let view = Self()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    static func copy(view: UIView) -> Self {
+        let _view = Self(frame: view.frame)
+        _view.translatesAutoresizingMaskIntoConstraints = false
+        _view.backgroundColor = view.backgroundColor
+        return _view
+    }
+    
+    func addSubviews(_ subviews: [UIView]) {
+        subviews.forEach(addSubview)
+    }
+}
+    

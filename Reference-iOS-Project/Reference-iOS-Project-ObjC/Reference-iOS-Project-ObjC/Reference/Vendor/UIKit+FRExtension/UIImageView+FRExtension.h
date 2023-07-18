@@ -26,13 +26,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (FRExtension)
+@interface UIImageView (FRExtension)
 
-+ (instancetype)make;
-
-+ (instancetype)copyView:(UIView *)view;
-
-- (void)addSubviews:(NSArray<__kindof UIView *> *)views;
++ (instancetype)makeWithImage:(UIImage *)image;
 
 @end
 

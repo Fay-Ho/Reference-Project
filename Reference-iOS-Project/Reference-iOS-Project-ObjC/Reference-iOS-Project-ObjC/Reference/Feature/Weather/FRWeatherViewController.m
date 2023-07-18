@@ -25,8 +25,6 @@
 #import "FRWeatherViewController.h"
 #import "FRHelper.h"
 #import "UIColor+FRTheme.h"
-#import "UIView+FRExtension.h"
-#import "UIView+NSLayoutConstraint.h"
 
 @interface FRWeatherViewController ()
 
@@ -40,8 +38,7 @@
 
 - (UIImageView *)locationButton {
     if (!_locationButton) {
-        _locationButton = [UIImageView make];
-        _locationButton.image = [UIImage imageNamed:@"ImgLocation"];
+        _locationButton = [UIImageView makeWithImage:[UIImage imageNamed:@"ImgLocation"]];
         _locationButton.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
@@ -55,8 +52,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor themeColor];
     [self setupSubviews];
     [self layoutSubviews];
+    [self updateStyling];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,8 +71,6 @@
 #pragma mark - Subview Management
 
 - (void)setupSubviews {
-    self.view.backgroundColor = [UIColor themeColor];
-    
     [self.view addSubview:self.locationButton];
 }
 
@@ -84,6 +81,10 @@
     [self.locationButton heightEqualToAnchor:self.locationButton.widthAnchor];
 }
 
+- (void)updateStyling {
+    self.view.backgroundColor = [UIColor themeColor];
+}
+
 #pragma mark - Event Management
 
 - (void)nextPage:(id)sender {
@@ -92,8 +93,8 @@
 
 #pragma mark - FRDashboardViewControllerInterface Implementation
 
-- (void)showLocationPageWithDataModel:(FRGetCityResponse *)model {
-    [[FRHelper sharedHelper].navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:model];
+- (void)showLocationPageWithDataModel:(NSData *)model {
+    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:model];
 }
 
 @end

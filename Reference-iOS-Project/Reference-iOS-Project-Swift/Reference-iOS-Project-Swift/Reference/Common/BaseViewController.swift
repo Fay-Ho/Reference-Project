@@ -22,22 +22,37 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
+class BaseViewController: UIViewController {
+    private(set) lazy var root: UIScrollView = {
+        .make()
+    }()
+    
+    private(set) lazy var container: UIStackView = {
+        .make(spacing: 0)
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupSubviews()
+        layoutSubviews()
+    }
+}
 
-@class FRLocationTableViewRowModel;
+extension BaseViewController {
+    private func setupSubviews() {
+        view.addSubview(root)
+        root.addSubview(container)
+    }
+    
+    private func layoutSubviews() {
+        root
+            .vertical(equalTo: view, safeArea: true)
+            .horizontal(equalTo: view)
 
-@interface FRLocationTableViewModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
-
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+        container
+            .edge(equalTo: root)
+            .width(equalTo: root.widthAnchor)
+    }
+}

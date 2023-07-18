@@ -22,22 +22,27 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "UIView+FRExtension.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation UIView (FRExtension)
 
-@class FRLocationTableViewRowModel;
++ (instancetype)make {
+    UIView *view = [[self alloc] init];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    return view;
+}
 
-@interface FRLocationTableViewModel : NSObject
++ (instancetype)copyView:(UIView *)view {
+    UIView *_view = [[self alloc] initWithFrame:view.frame];
+    _view.translatesAutoresizingMaskIntoConstraints = NO;
+    _view.backgroundColor = view.backgroundColor;
+    return _view;
+}
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
+- (void)addSubviews:(NSArray<__kindof UIView *> *)subviews {
+    [subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull subview, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self addSubview:subview];
+    }];
+}
 
 @end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END

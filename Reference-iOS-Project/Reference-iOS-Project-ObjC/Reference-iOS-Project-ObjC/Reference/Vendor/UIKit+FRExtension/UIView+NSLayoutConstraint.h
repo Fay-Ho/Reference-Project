@@ -154,6 +154,33 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)verticalEqualToView:(UIView *)view constant:(CGFloat)constant;
 
 /*!
+ Align the top anchor and  bottom anchor of current view and target view.
+
+ @code
+ // example:
+ [view1 verticalEqualToView:view2 safeArea:16];
+ @endcode
+
+ @param view The target view
+ @param safeArea Is using safe area layout guide
+ */
+- (void)verticalEqualToView:(UIView *)view safeArea:(BOOL)safeArea;
+
+/*!
+ Align the top anchor and  bottom anchor of current view and target view.
+
+ @code
+ // example:
+ [view1 verticalEqualToView:view2 constant:16 safeArea:NO];
+ @endcode
+
+ @param view The target view
+ @param constant The distance from the target view
+ @param safeArea Is using safe area layout guide
+ */
+- (void)verticalEqualToView:(UIView *)view constant:(CGFloat)constant safeArea:(BOOL)safeArea;
+
+/*!
  Align the leading anchor and trailing anchor of current view and target view.
 
  @code
@@ -177,6 +204,33 @@ NS_ASSUME_NONNULL_BEGIN
  @param constant The distance from the target view
  */
 - (void)horizontalEqualToView:(UIView *)view constant:(CGFloat)constant;
+
+/*!
+ Align the leading anchor and trailing anchor of current view and target view.
+
+ @code
+ // example:
+ [view1 horizontalEqualToView:view2 constant:16];
+ @endcode
+
+ @param view The target view
+ @param safeArea Is using safe area layout guide
+ */
+- (void)horizontalEqualToView:(UIView *)view safeArea:(BOOL)safeArea;
+
+/*!
+ Align the leading anchor and trailing anchor of current view and target view.
+
+ @code
+ // example:
+ [view1 horizontalEqualToView:view2 constant:16 safeArea:NO];
+ @endcode
+
+ @param view The target view
+ @param constant The distance from the target view
+ @param safeArea Is using safe area layout guide
+ */
+- (void)horizontalEqualToView:(UIView *)view constant:(CGFloat)constant safeArea:(BOOL)safeArea;
 
 /*!
  Align the center x anchor of current view and target view.

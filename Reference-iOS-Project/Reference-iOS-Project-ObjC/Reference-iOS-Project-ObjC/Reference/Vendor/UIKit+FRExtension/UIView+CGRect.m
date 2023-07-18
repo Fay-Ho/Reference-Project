@@ -22,7 +22,7 @@
 //  SOFTWARE.
 //
 
-#import "UIView+FRLayout.h"
+#import "UIView+CGRect.h"
 
 @implementation UIView (CGRect)
 

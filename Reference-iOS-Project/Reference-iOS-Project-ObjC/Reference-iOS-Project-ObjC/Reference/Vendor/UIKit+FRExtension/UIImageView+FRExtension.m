@@ -22,19 +22,14 @@
 //  SOFTWARE.
 //
 
-import UIKit
+#import "UIImageView+FRExtension.h"
 
-extension UIView {
-    static func make() -> Self {
-        let _view = Self()
-        _view.translatesAutoresizingMaskIntoConstraints = false
-        return _view
-    }
-    
-    static func copy(view: UIView) -> Self {
-        let _view = Self(frame: view.frame)
-        _view.translatesAutoresizingMaskIntoConstraints = false
-        _view.backgroundColor = view.backgroundColor
-        return _view
-    }
+@implementation UIImageView (FRExtension)
+
++ (instancetype)makeWithImage:(UIImage *)image {
+    UIImageView *view = [[self alloc] initWithImage:image];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    return view;
 }
+
+@end

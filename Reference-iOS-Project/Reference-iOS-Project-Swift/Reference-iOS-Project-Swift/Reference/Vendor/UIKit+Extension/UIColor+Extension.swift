@@ -22,22 +22,23 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class FRLocationTableViewRowModel;
-
-@interface FRLocationTableViewModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
-
-@end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END
+extension UIColor {
+    public convenience init(hex: String) {
+        var string = hex.replacingOccurrences(of: "#", with: "")
+        if string.count == 6 {
+            string += "ff"
+        }
+        let scanner = Scanner(string: string)
+        var number: UInt64 = 0
+        scanner.scanHexInt64(&number)
+        
+        let red = CGFloat((number & 0xff000000) >> 24) / 255
+        let green = CGFloat((number & 0x00ff0000) >> 16) / 255
+        let blue = CGFloat((number & 0x0000ff00) >> 8) / 255
+        let alpha = CGFloat((number & 0x000000ff) >> 0) / 255
+            
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
