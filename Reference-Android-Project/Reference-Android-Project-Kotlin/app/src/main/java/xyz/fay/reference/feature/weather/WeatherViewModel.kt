@@ -62,22 +62,21 @@ class WeatherViewModel : ViewModel() {
             }
         }
     }
-}
-
-//fun fetchCityData(context: Context) {
-//    val manager = NetworkManager()
-//    manager.getCity(context) {
-//        it?.let {
-//            // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//            _getCityResponse::setValue
-//            _getCityResponse::postValue
+//    fun fetchCityData(context: Context) {
+//        val manager = NetworkManager()
+//        manager.getCity(context) {
+//            it?.let {
+//                // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//                _getCityResponse::setValue
+//                _getCityResponse::postValue
 //
-//            // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//            _getCityResponse.value = it
-//            _getCityResponse.postValue(it)
+//                // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//                _getCityResponse.value = it
+//                _getCityResponse.postValue(it)
+//            }
 //        }
+//        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//        manager.getCity(context, _getCityResponse::setValue)
+//        manager.getCity(context, _getCityResponse::postValue)
 //    }
-//    // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//    manager.getCity(context, _getCityResponse::setValue)
-//    manager.getCity(context, _getCityResponse::postValue)
-//}
+}

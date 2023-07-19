@@ -52,8 +52,6 @@ public class LocationViewModel extends ViewModel {
             adapterDataModel.postValue(dataModel);
         }
     }
-}
-
 //    void handleGetCityResponse(@Nullable GetCityResponse response) {
 //        if (response != null) {
 //            List<GetCityCitiesResponse> responses = Arrays.asList(response.getCities());
@@ -63,3 +61,4 @@ public class LocationViewModel extends ViewModel {
 //            locationAdapterModel.postValue(dataModel);
 //        }
 //    }
+}

@@ -97,10 +97,6 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
             }
         });
     }
-
-    //endregion
-}
-
 //    private void setupImageView() {
 //        binding.imageView.setOnClickListener(v -> {
 //            viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
@@ -110,3 +106,6 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 //            viewModel.fetchCityData(requireContext());
 //        });
 //    }
+
+    //endregion
+}

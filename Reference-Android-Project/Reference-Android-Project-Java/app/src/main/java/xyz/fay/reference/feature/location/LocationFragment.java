@@ -68,6 +68,15 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
         LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
         viewModel.handleGetCityResponse(args.getResponse());
     }
+//    @Override
+//    protected void onCreateView() {
+//        viewModel.getAdapterDataModel().observe(getViewLifecycleOwner(), dataModel -> {
+//            binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+//            binding.recyclerView.setAdapter(new LocationAdapter(dataModel));
+//        });
+//        LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
+//        viewModel.handleGetCityResponse(args.getResponse());
+//    }
 
     //endregion
 
@@ -81,13 +90,3 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
 
     //endregion
 }
-
-//    @Override
-//    protected void onCreateView() {
-//        viewModel.getAdapterDataModel().observe(getViewLifecycleOwner(), dataModel -> {
-//            binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-//            binding.recyclerView.setAdapter(new LocationAdapter(dataModel));
-//        });
-//        LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
-//        viewModel.handleGetCityResponse(args.getResponse());
-//    }

@@ -75,8 +75,6 @@ public class WeatherViewModel extends ViewModel {
             }
         });
     }
-}
-
 //    public void fetchCityData(Context context) {
 //        NetworkManager manager = new NetworkManager();
 //        manager.getCity(context, new RequestHandler<GetCityResponse>() {
@@ -98,3 +96,4 @@ public class WeatherViewModel extends ViewModel {
 //        manager.getCity(context, getCityResponse::setValue);
 //        manager.getCity(context, getCityResponse::postValue);
 //    }
+}
