@@ -54,12 +54,6 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
 
     protected abstract fun onCreateView()
 
-    protected fun <P: Parcelable> shift(args: Parcelable, cls: KClass<P>): P {
-        return Gson().let {
-            it.fromJson(it.toJson(args), cls.java)
-        }
-    }
-
     protected fun hideActionBar() {
         (activity as AppCompatActivity).supportActionBar?.hide()
     }

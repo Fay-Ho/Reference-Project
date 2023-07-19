@@ -25,16 +25,14 @@ package xyz.fay.reference.feature.location
 */
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class LocationAdapterModel(
-    @SerializedName("cities")
-    val rows: Array<LocationAdapterRowModel>
+data class LocationAdapterDataModel(
+    val rows: Array<LocationAdapterRowDataModel>
 ) : Parcelable
 
 @Parcelize
-data class LocationAdapterRowModel(
+data class LocationAdapterRowDataModel(
     val name: String
 ) : Parcelable

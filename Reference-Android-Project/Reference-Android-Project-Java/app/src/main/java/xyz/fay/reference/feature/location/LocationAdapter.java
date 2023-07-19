@@ -34,10 +34,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import xyz.fay.reference.databinding.LocationAdapterBinding;
 
 public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final LocationAdapterModel model;
+    private final LocationAdapterDataModel dataModel;
 
-    public LocationAdapter(LocationAdapterModel model) {
-        this.model = model;
+    public LocationAdapter(LocationAdapterDataModel dataModel) {
+        this.dataModel = dataModel;
     }
 
     @NonNull
@@ -48,12 +48,12 @@ public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder) holder).titleView.setText(model.getRows()[position].getName());
+        ((ViewHolder) holder).titleView.setText(dataModel.getRows()[position].getName());
     }
 
     @Override
     public int getItemCount() {
-        return model.getRows().length;
+        return dataModel.getRows().length;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

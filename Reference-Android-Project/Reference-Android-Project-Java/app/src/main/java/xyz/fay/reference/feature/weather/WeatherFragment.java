@@ -25,13 +25,10 @@ package xyz.fay.reference.feature.weather;
 */
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +38,8 @@ import xyz.fay.reference.databinding.WeatherFragmentBinding;
 import xyz.fay.reference.networking.response.GetCityResponse;
 
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
+    //region --- ViewBinding / ViewModel ---
+
     @NonNull
     @Override
     protected WeatherFragmentBinding createViewBinding(LayoutInflater inflater, ViewGroup container) {
@@ -53,10 +52,20 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         return WeatherViewModel.class;
     }
 
+    //endregion
+
+    //region --- View Lifecycle ---
+
     @Override
     protected void onCreateView() {
         hideActionBar();
         setupSubviews();
+        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDashboardItemDataModel>() {
+            @Override
+            public void onChanged(WeatherDashboardItemDataModel dataModel) {}
+        });
+//        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
+        viewModel.viewIsReady(requireContext());
     }
 
     @Override
@@ -64,6 +73,10 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         super.onDestroyView();
         showActionBar();
     }
+
+    //endregion
+
+    //region --- Subview Management ---
 
     private void setupSubviews() {
         setupImageView();
@@ -73,27 +86,27 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                observeGetCityResponse();
-                viewModel.fetchData(requireContext());
+                viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
+                    @Override
+                    public void onChanged(GetCityResponse response) {
+                        NavController navController = NavHostFragment.findNavController(WeatherFragment.this);
+                        navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
+                    }
+                });
+                viewModel.fetchCityData(requireContext());
             }
         });
-//        binding.imageView.setOnClickListener(v -> {
-//            observeGetCityResponse();
-//            viewModel.fetchData(requireContext());
-//        });
     }
 
-    private void observeGetCityResponse() {
-        viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
-            @Override
-            public void onChanged(GetCityResponse response) {
-                NavController navController = NavHostFragment.findNavController(WeatherFragment.this);
-                navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
-            }
-        });
-//        viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
-//            NavController navController = NavHostFragment.findNavController(this);
-//            navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
-//        });
-    }
+    //endregion
 }
+
+//    private void setupImageView() {
+//        binding.imageView.setOnClickListener(v -> {
+//            viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
+//                NavController navController = NavHostFragment.findNavController(this);
+//                navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
+//            });
+//            viewModel.fetchCityData(requireContext());
+//        });
+//    }

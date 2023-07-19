@@ -31,15 +31,23 @@ import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.databinding.WeatherFragmentBinding
 
 class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>() {
+    //region --- ViewBinding / ViewModel ---
+
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
         WeatherFragmentBinding.inflate(inflater, container, false)
 
     override fun createViewModel() =
         WeatherViewModel::class
 
+    //endregion
+
+    //region --- View Lifecycle ---
+
     override fun onCreateView() {
         hideActionBar()
         setupSubviews()
+        viewModel.dashboardItemDataModel.observe(viewLifecycleOwner) {}
+        viewModel.viewIsReady(requireContext())
     }
 
     override fun onDestroyView() {
@@ -47,20 +55,22 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>()
         showActionBar()
     }
 
-    fun setupSubviews() {
+    //endregion
+
+    //region --- Subview Management ---
+
+    private fun setupSubviews() {
         setupImageView()
     }
 
-    fun setupImageView() {
+    private fun setupImageView() {
         binding.imageView.setOnClickListener {
-            observeGetCityResponse()
-            viewModel.fetchData(requireContext())
+            viewModel.getCityResponse.observe(viewLifecycleOwner) {
+                findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))
+            }
+            viewModel.fetchCityData(requireContext())
         }
     }
 
-    fun observeGetCityResponse() {
-        viewModel.getCityResponse.observe(viewLifecycleOwner) {
-            findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))
-        }
-    }
+    //endregion
 }

@@ -1,4 +1,4 @@
-package xyz.fay.reference.feature.location
+package xyz.fay.reference.feature.weather
 
 /*
   MIT License
@@ -24,27 +24,12 @@ package xyz.fay.reference.feature.location
   SOFTWARE.
 */
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import xyz.fay.reference.databinding.LocationAdapterBinding
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-class LocationAdapter(
-    private val dataModel: LocationAdapterDataModel
-
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder =
-        ViewHolder(LocationAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        dataModel.rows[position].name.let {
-            (holder as ViewHolder).titleView.text = it
-        }
-
-    override fun getItemCount() =
-        dataModel.rows.size
-
-    private inner class ViewHolder(binding: LocationAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
-        val titleView = binding.titleView
-    }
-}
+@Parcelize
+data class WeatherDashboardItemDataModel(
+    val temperature: String,
+    val weather: String,
+    val wind: String
+) : Parcelable

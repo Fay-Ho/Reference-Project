@@ -33,15 +33,38 @@ import androidx.lifecycle.ViewModel;
 import xyz.fay.reference.networking.NetworkManager;
 import xyz.fay.reference.networking.RequestHandler;
 import xyz.fay.reference.networking.response.GetCityResponse;
+import xyz.fay.reference.networking.response.GetWeatherResponse;
 
 public class WeatherViewModel extends ViewModel {
+    private final MutableLiveData<WeatherDashboardItemDataModel> dashboardItemDataModel = new MutableLiveData<>();
     private final MutableLiveData<GetCityResponse> getCityResponse = new MutableLiveData<>();
+
+    public MutableLiveData<WeatherDashboardItemDataModel> getDashboardItemDataModel() {
+        return dashboardItemDataModel;
+    }
 
     public MutableLiveData<GetCityResponse> getGetCityResponse() {
         return getCityResponse;
     }
 
-    public void fetchData(Context context) {
+    public void viewIsReady(Context context) {
+        NetworkManager manager = new NetworkManager();
+        manager.getWeather(context, new RequestHandler<GetWeatherResponse>() {
+            @Override
+            public void completion(@Nullable GetWeatherResponse response) {
+                if (response != null) {
+                    WeatherDashboardItemDataModel dataModel = new WeatherDashboardItemDataModel(
+                            response.getLives()[0].getTemperature(),
+                            response.getLives()[0].getWeather(),
+                            response.getLives()[0].getWinddirection() + response.getLives()[0].getWindpower()
+                    );
+                    dashboardItemDataModel.postValue(dataModel);
+                }
+            }
+        });
+    }
+
+    public void fetchCityData(Context context) {
         NetworkManager manager = new NetworkManager();
         manager.getCity(context, new RequestHandler<GetCityResponse>() {
             @Override
@@ -51,9 +74,27 @@ public class WeatherViewModel extends ViewModel {
                 }
             }
         });
-//        manager.getCity(context, response -> {
-//            getCityResponse.postValue(response);
-//        });
-//        manager.getCity(context, getCityResponse::postValue);
     }
 }
+
+//    public void fetchCityData(Context context) {
+//        NetworkManager manager = new NetworkManager();
+//        manager.getCity(context, new RequestHandler<GetCityResponse>() {
+//            @Override
+//            public void completion(@Nullable GetCityResponse response) {
+//                if (response != null) {
+//                    // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//                    getCityResponse.setValue(response);
+//                    getCityResponse.postValue(response);
+//                }
+//            }
+//        });
+//        manager.getCity(context, response -> {
+//            // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//            getCityResponse.setValue(response);
+//            getCityResponse.postValue(response);
+//        });
+//        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+//        manager.getCity(context, getCityResponse::setValue);
+//        manager.getCity(context, getCityResponse::postValue);
+//    }

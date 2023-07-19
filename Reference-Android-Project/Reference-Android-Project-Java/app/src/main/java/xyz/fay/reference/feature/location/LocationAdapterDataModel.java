@@ -28,10 +28,10 @@ import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-public class LocationAdapterRowModel extends Parcelable {
-    private final String name;
+class LocationAdapterDataModel extends Parcelable {
+    private final LocationAdapterRowDataModel[] rows;
 
-    public LocationAdapterRowModel(String name) {
-        this.name = name;
+    public LocationAdapterDataModel(LocationAdapterRowDataModel[] rows) {
+        this.rows = rows;
     }
 }

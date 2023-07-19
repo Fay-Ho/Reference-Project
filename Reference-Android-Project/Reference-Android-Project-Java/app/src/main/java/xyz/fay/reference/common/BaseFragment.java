@@ -25,7 +25,6 @@ package xyz.fay.reference.common;
 */
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +37,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
-
-import com.google.gson.Gson;
 
 public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment {
     protected VB binding;
@@ -61,11 +58,6 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
     protected abstract Class<VM> createViewModel();
 
     protected abstract void onCreateView();
-
-    protected <P extends Parcelable> P shift(Parcelable args, Class<P> cls) {
-        Gson gson = new Gson();
-        return gson.fromJson(gson.toJson(args), cls);
-    }
 
     protected void hideActionBar() {
         ActionBar actionBar = getActionBar();

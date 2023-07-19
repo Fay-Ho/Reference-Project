@@ -24,8 +24,22 @@ package xyz.fay.reference.feature.location
   SOFTWARE.
 */
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import xyz.fay.reference.networking.response.GetCityResponse
 
 class LocationViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    private val _adapterDataModel = MutableLiveData<LocationAdapterDataModel>()
+    val adapterDataModel: MutableLiveData<LocationAdapterDataModel>
+        get() = _adapterDataModel
+
+    fun handleGetCityResponse(response: GetCityResponse?) {
+        response?.let {
+            val rows: Array<LocationAdapterRowDataModel> = it.cities.map {
+                LocationAdapterRowDataModel(it.name)
+            }.toTypedArray()
+            val dataModel = LocationAdapterDataModel(rows)
+            _adapterDataModel.postValue(dataModel)
+        }
+    }
 }

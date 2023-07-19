@@ -25,6 +25,7 @@ package xyz.fay.reference.feature.location;
 */
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +38,8 @@ import xyz.fay.reference.common.OnBackPressedListener;
 import xyz.fay.reference.databinding.LocationFragmentBinding;
 
 public class LocationFragment extends BaseFragment<LocationFragmentBinding, LocationViewModel> implements OnBackPressedListener {
+    //region --- ViewBinding / ViewModel ---
+
     @NonNull
     @Override
     protected LocationFragmentBinding createViewBinding(LayoutInflater inflater, ViewGroup container) {
@@ -49,17 +52,42 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
         return LocationViewModel.class;
     }
 
+    //endregion
+
+    //region --- View Lifecycle ---
+
     @Override
     protected void onCreateView() {
+        viewModel.getAdapterDataModel().observe(getViewLifecycleOwner(), new Observer<LocationAdapterDataModel>() {
+            @Override
+            public void onChanged(LocationAdapterDataModel dataModel) {
+                binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                binding.recyclerView.setAdapter(new LocationAdapter(dataModel));
+            }
+        });
         LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
-        LocationAdapterModel model = shift(args.getModel(), LocationAdapterModel.class);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recyclerView.setAdapter(new LocationAdapter(model));
+        viewModel.handleGetCityResponse(args.getResponse());
     }
+
+    //endregion
+
+    //region --- Event Management ---
 
     @Override
     public void pop() {
         NavController navController = NavHostFragment.findNavController(this);
         navController.popBackStack();
     }
+
+    //endregion
 }
+
+//    @Override
+//    protected void onCreateView() {
+//        viewModel.getAdapterDataModel().observe(getViewLifecycleOwner(), dataModel -> {
+//            binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+//            binding.recyclerView.setAdapter(new LocationAdapter(dataModel));
+//        });
+//        LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
+//        viewModel.handleGetCityResponse(args.getResponse());
+//    }

@@ -34,22 +34,34 @@ import xyz.fay.reference.common.OnBackPressedListener
 import xyz.fay.reference.databinding.LocationFragmentBinding
 
 class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel>(), OnBackPressedListener {
+    //region --- ViewBinding / ViewModel ---
+
     override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
         LocationFragmentBinding.inflate(inflater, container, false)
 
     override fun createViewModel() =
         LocationViewModel::class
 
+    //endregion
+
+    //region --- View Lifecycle ---
+
     override fun onCreateView() {
-        val args: LocationFragmentArgs by navArgs()
-        args.model?.let {
-            val model = shift(it, LocationAdapterModel::class)
+        viewModel.adapterDataModel.observe(viewLifecycleOwner) {
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            binding.recyclerView.adapter = LocationAdapter(model)
+            binding.recyclerView.adapter = LocationAdapter(it)
         }
+        val args: LocationFragmentArgs by navArgs()
+        viewModel.handleGetCityResponse(args.response)
     }
+
+    //endregion
+
+    //region --- Event Management ---
 
     override fun pop() {
         findNavController().popBackStack()
     }
+
+    //endregion
 }

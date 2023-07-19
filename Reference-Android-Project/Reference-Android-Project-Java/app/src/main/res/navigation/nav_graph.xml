@@ -20,7 +20,7 @@
         android:name="xyz.fay.reference.feature.location.LocationFragment"
         tools:layout="@layout/location_fragment">
         <argument
-            android:name="model"
+            android:name="response"
             app:argType="xyz.fay.reference.networking.response.GetCityResponse"
             app:nullable="true" />
     </fragment>

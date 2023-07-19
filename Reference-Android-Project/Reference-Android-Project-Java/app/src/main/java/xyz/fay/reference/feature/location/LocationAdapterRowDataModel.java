@@ -24,17 +24,14 @@ package xyz.fay.reference.feature.location;
   SOFTWARE.
 */
 
-import com.google.gson.annotations.SerializedName;
-
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-public class LocationAdapterModel extends Parcelable {
-    @SerializedName("cities")
-    private final LocationAdapterRowModel[] rows;
+class LocationAdapterRowDataModel extends Parcelable {
+    private final String name;
 
-    public LocationAdapterModel(LocationAdapterRowModel[] rows) {
-        this.rows = rows;
+    public LocationAdapterRowDataModel(String name) {
+        this.name = name;
     }
 }

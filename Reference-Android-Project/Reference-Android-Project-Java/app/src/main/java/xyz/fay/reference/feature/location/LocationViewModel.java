@@ -24,8 +24,42 @@ package xyz.fay.reference.feature.location;
   SOFTWARE.
 */
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import xyz.fay.reference.networking.response.GetCityCitiesResponse;
+import xyz.fay.reference.networking.response.GetCityResponse;
+
 public class LocationViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+    private final MutableLiveData<LocationAdapterDataModel> adapterDataModel = new MutableLiveData<>();
+
+    public MutableLiveData<LocationAdapterDataModel> getAdapterDataModel() {
+        return adapterDataModel;
+    }
+
+    void handleGetCityResponse(@Nullable GetCityResponse response) {
+        if (response != null) {
+            List<LocationAdapterRowDataModel> rows = new ArrayList<>();
+            for (GetCityCitiesResponse getCityCitiesResponse : response.getCities()) {
+                LocationAdapterRowDataModel row = new LocationAdapterRowDataModel(getCityCitiesResponse.getName());
+                rows.add(row);
+            }
+            LocationAdapterDataModel dataModel = new LocationAdapterDataModel(rows.toArray(new LocationAdapterRowDataModel[0]));
+            adapterDataModel.postValue(dataModel);
+        }
+    }
 }
+
+//    void handleGetCityResponse(@Nullable GetCityResponse response) {
+//        if (response != null) {
+//            List<GetCityCitiesResponse> responses = Arrays.asList(response.getCities());
+//            LocationAdapterDataModel dataModel = new LocationAdapterDataModel(responses.stream().map(getCityCitiesResponse -> {
+//                return new LocationAdapterRowDataModel(getCityCitiesResponse.getName());
+//            }).toArray(LocationAdapterRowDataModel[]::new));
+//            locationAdapterModel.postValue(dataModel);
+//        }
+//    }
