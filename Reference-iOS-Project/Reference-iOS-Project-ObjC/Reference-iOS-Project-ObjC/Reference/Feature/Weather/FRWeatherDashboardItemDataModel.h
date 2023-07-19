@@ -22,21 +22,18 @@
 //  SOFTWARE.
 //
 
-#import "FRLocationModel.h"
-#import "NSObject+JSONModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation FRLocationTableViewModel
+NS_ASSUME_NONNULL_BEGIN
 
-- (NSDictionary<NSString *, NSString *> *)codingKeys {
-    return @{@"cities": @"rows"};
-}
+@interface FRWeatherDashboardItemDataModel : NSObject
 
-- (NSDictionary<NSString *,NSString *> *)unkeyedContainer {
-    return @{@"rows": @"FRLocationTableViewRowModel"};
-}
+@property (nonatomic, strong, nullable) NSString *temperature;
+@property (nonatomic, strong, nullable) NSString *weather;
+@property (nonatomic, strong, nullable) NSString *wind;
 
-@end
-
-@implementation FRLocationTableViewRowModel
++ (instancetype)dataModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

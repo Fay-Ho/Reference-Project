@@ -38,7 +38,7 @@
     }];
 }
 
-- (void)fetchData {
+- (void)fetchCityData {
     FRNetworkManager<FRGetCityResponse *> *manager = [FRNetworkManager manager];
     [manager getCity:^(FRGetCityResponse * _Nullable response) {
         [self.presenter handleGetCityResponse:response];

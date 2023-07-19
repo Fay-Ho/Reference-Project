@@ -24,24 +24,50 @@
 
 import UIKit
 
-class LocationViewController : UIViewController {
+class LocationViewController : UITableViewController {
     var interactor: LocationInteractorInterface?
+    var tableViewDataModel: LocationTableViewDataModel?
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewIsReady()
         updateStyling()
+        interactor?.viewIsReady()
     }
 }
+
+// MARK: - Subview Management
 
 extension LocationViewController {
     func updateStyling() {
-        view.backgroundColor = .theme
+        view.backgroundColor = .wallpaper
     }
 }
 
+// MARK: - UITableViewDataSource Implementation
+
+extension LocationViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableViewDataModel?.rows.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "identifier")
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "identifier")
+            cell?.textLabel?.textColor = .font
+            cell?.backgroundColor = .clear
+        }
+        cell?.textLabel?.text = tableViewDataModel?.rows[indexPath.row].name
+        return cell!
+    }
+}
+
+// MARK: - LocationViewControllerInterface Implementation
+
 extension LocationViewController : LocationViewControllerInterface {
-    func updateTableView(model: LocationTableViewModel) {
-        print(model.rows[1].name)
+    func updateTableView(dataModel: LocationTableViewDataModel) {
+        tableViewDataModel = dataModel
     }
 }

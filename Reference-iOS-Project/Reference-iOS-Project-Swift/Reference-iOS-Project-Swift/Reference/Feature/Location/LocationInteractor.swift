@@ -26,8 +26,10 @@ class LocationInteractor {
     var presenter: LocationPresenterInterface?
 }
 
+// MARK: - LocationInteractorInterface Implementation
+
 extension LocationInteractor : LocationInteractorInterface {
     func viewIsReady() {
-        presenter?.handleTableViewModel()
+        presenter?.handleGetCityResponse()
     }
 }

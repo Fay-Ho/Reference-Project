@@ -41,8 +41,8 @@ class WeatherViewController : BaseViewController {
     }()
     
     private lazy var dashboardItem: WeatherDashboardItem = {
-        let viewData = WeatherDashboardItem.ViewData(temperature: "20")
-        let item: WeatherDashboardItem = .init(viewData: viewData)
+        let dataModel = WeatherDashboardItem.DataModel(temperature: nil, weather: nil, wind: nil)
+        let item = WeatherDashboardItem(dataModel: dataModel)
         return item
     }()
     
@@ -53,6 +53,7 @@ class WeatherViewController : BaseViewController {
         setupSubviews()
         setupLayouts()
         updateStyling()
+        interactor?.viewIsReady()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,16 +76,15 @@ extension WeatherViewController {
     }
     
     func setupLayouts() {
-        let margin: CGFloat = 24
         locationButton
-            .top(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: margin)
-            .trailing(equalTo: view.trailingAnchor, constant: -margin)
-            .width(equalToConstant: margin)
+            .top(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+            .trailing(equalTo: view.trailingAnchor, constant: -24)
+            .width(equalToConstant: 24)
             .height(equalTo: locationButton.widthAnchor)
     }
     
     func updateStyling() {
-        view.backgroundColor = .theme
+        view.backgroundColor = .wallpaper
     }
 }
 
@@ -92,15 +92,19 @@ extension WeatherViewController {
 
 extension WeatherViewController {
     @objc func nextPage(_ sender: Any) {
-        interactor?.fetchData()
+        interactor?.fetchCityData()
     }
 }
 
 // MARK: - WeatherViewControllerInterface Implementation
 
 extension WeatherViewController : WeatherViewControllerInterface {
-    func showLocationPage(dataModel model: Codable) {
+    func updateDashboardItem(dataModel: WeatherDashboardItem.DataModel) {
+        dashboardItem.update(dataModel: dataModel)
+    }
+    
+    func showLocationPage(dataModel: Codable) {
         guard let navigation = navigationController else { return }
-        Helper.shared.navigator.navigate(to: .location, from: navigation, dataModel: model)
+        navigator?.navigate(to: .location, from: navigation, dataModel: dataModel)
     }
 }

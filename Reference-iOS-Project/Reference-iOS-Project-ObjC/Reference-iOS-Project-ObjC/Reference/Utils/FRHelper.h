@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
++ (void)attempDealloc;
+
 + (instancetype)alloc __attribute__((unavailable("replace with 'sharedInstance'")));
 
 + (instancetype)new __attribute__((unavailable("replace with 'sharedInstance'")));

@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)configurator;
 
-- (UIViewController *)makeViewControllerWithDataModel:(id _Nullable)model;
+- (UIViewController *)makeViewControllerWithDataModel:(id _Nullable)dataModel;
 
 @end
 
@@ -44,7 +44,7 @@ const m = `%LICENSE%
     return [[self alloc] init];
 }
 
-- (UIViewController *)makeViewControllerWithDataModel:(id)model {
+- (UIViewController *)makeViewControllerWithDataModel:(id)dataModel {
     %PREFIX%%NAME%Interactor *interactor = [[%PREFIX%%NAME%Interactor alloc] init];
     %PREFIX%%NAME%Presenter *presenter = [[%PREFIX%%NAME%Presenter alloc] init];
     %PREFIX%%NAME%ViewController *viewController = [[%PREFIX%%NAME%ViewController alloc] init];
@@ -64,7 +64,7 @@ const si =`%LICENSE%
 import UIKit
 
 protocol FeatureConfigurator {
-    func makeViewController(dataModel model: Codable?) -> UIViewController
+    func makeViewController(dataModel: Codable?) -> UIViewController
 }
 `;
 
@@ -73,7 +73,7 @@ const s = `%LICENSE%
 import UIKit
 
 class %NAME%Configurator : FeatureConfigurator {
-    func makeViewController(dataModel model: Codable?) -> UIViewController {
+    func makeViewController(dataModel: Codable?) -> UIViewController {
         let interactor = %NAME%Interactor()
         let presenter = %NAME%Presenter()
         let viewController = %NAME%ViewController()

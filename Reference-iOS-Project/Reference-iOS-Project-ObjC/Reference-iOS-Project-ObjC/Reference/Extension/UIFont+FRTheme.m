@@ -26,12 +26,16 @@
 
 @implementation UIFont (FRTheme)
 
-+ (UIFont *)boldLargeFont {
-    return [UIFont boldSystemFontOfSize:80];
++ (UIFont *)size80Font {
+    return [UIFont systemFontOfSize:80];
 }
 
-+ (UIFont *)largeFont {
-    return [UIFont systemFontOfSize:80];
++ (UIFont *)size30Font {
+    return [UIFont systemFontOfSize:30];
+}
+
++ (UIFont *)size16Font {
+    return [UIFont systemFontOfSize:16];
 }
 
 @end

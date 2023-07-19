@@ -22,22 +22,34 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSArray+FRExtension.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation NSArray (FRExtension)
 
-@class FRLocationTableViewRowModel;
+- (NSArray *)map:(id _Nonnull (^)(id _Nonnull))transform {
+    NSMutableArray *array = [NSMutableArray array];
+    [self enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:transform(obj)];
+    }];
+    return array;
+}
 
-@interface FRLocationTableViewModel : NSObject
+- (NSArray *)flatMap:(id _Nonnull (^)(id _Nonnull))transform {
+    NSMutableArray *array = [NSMutableArray array];
+    [self enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObjectsFromArray:transform(obj)];
+    }];
+    return array;
+}
 
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowModel *> *rows;
+- (NSArray *)compactMap:(BOOL (^)(id _Nonnull))transform {
+    NSMutableArray *array = [NSMutableArray array];
+    [self enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (transform(obj)) {
+            [array addObject:obj];
+        }
+    }];
+    return array;
+}
 
 @end
-
-@interface FRLocationTableViewRowModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END

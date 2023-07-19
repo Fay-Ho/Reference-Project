@@ -31,14 +31,15 @@
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherDashboardItemViewData *viewData = [FRWeatherDashboardItemViewData viewData];
-    viewData.temperature = [response.lives[0].temperature stringByAppendingString:@" °C"];
-    [self.viewController updateDashboardItemWithViewData:viewData];
+    FRWeatherDashboardItemDataModel *dataModel = [FRWeatherDashboardItemDataModel dataModel];
+    dataModel.temperature = response.lives.firstObject.temperature;
+    dataModel.weather = response.lives.firstObject.weather;
+    dataModel.wind = [response.lives.firstObject.winddirection stringByAppendingString:response.lives.firstObject.windpower];
+    [self.viewController updateDashboardItemWithDataModel:dataModel];
 }
 
 - (void)handleGetCityResponse:(FRGetCityResponse *)response {
-    NSData *model = [NSJSONSerialization dataWithJSONObject:response.JSON options:kNilOptions error:NULL];
-    [self.viewController showLocationPageWithDataModel:model];
+    [self.viewController showLocationPageWithDataModel:response];
 }
 
 @end

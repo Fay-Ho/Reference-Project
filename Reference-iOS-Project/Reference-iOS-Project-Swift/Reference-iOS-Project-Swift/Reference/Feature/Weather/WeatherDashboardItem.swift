@@ -25,20 +25,49 @@
 import UIKit
 
 class WeatherDashboardItem: UIView {
-    private let viewData: ViewData
+    private let dataModel: DataModel
     
     // MARK: - UI Component
     
+    private lazy var container: UIView = {
+        let view: UIView = .make()
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
     private lazy var temperatureLabel: UILabel = {
-        let label: UILabel = .make(text: viewData.temperature)
+        let label: UILabel = .make(text: nil)
         label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var celsiusLabel: UILabel = {
+        let label: UILabel = .make(text: "°C")
+        label.textAlignment = .natural
+        return label
+    }()
+    
+    private lazy var weatherLabel: UILabel = {
+        let label: UILabel = .make(text: nil)
+        label.textAlignment = .natural
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
+        return label
+    }()
+    
+    private lazy var windLabel: UILabel = {
+        let label: UILabel = .make(text: nil)
+        label.textAlignment = .natural
+        label.layer.cornerRadius = 5
+        label.layer.masksToBounds = true
         return label
     }()
     
     // MARK: - Lifecycle
     
-    init(viewData: ViewData) {
-        self.viewData = viewData
+    init(dataModel: DataModel) {
+        self.dataModel = dataModel
         super.init(frame: .zero)
         setupSubviews()
         setupLayouts()
@@ -54,32 +83,69 @@ class WeatherDashboardItem: UIView {
 
 extension WeatherDashboardItem {
     func setupSubviews() {
-        addSubview(temperatureLabel)
+        addSubview(container)
+        container.addSubviews([temperatureLabel, celsiusLabel, weatherLabel, windLabel])
     }
     
     func setupLayouts() {
+        container
+            .top(equalTo: topAnchor, constant: 60)
+            .bottom(equalTo: bottomAnchor, constant: 10)
+            .horizontal(equalTo: self, constant: 10)
+        
         temperatureLabel
-            .vertical(equalTo: self, constant: 100)
-            .horizontal(equalTo: self, constant: 50)
+            .vertical(equalTo: container, constant: 100)
+            .horizontal(equalTo: container, constant: 150)
+        
+        celsiusLabel
+            .top(equalTo: container.topAnchor, constant: 100)
+            .trailing(equalTo: container.trailingAnchor, constant: 100)
+            .leading(equalTo: temperatureLabel.trailingAnchor)
+        
+        weatherLabel
+            .top(equalTo: temperatureLabel.bottomAnchor, constant: 10)
+            .centerX(equalTo: container.centerXAnchor, constant: -50)
+        
+        windLabel
+            .top(equalTo: temperatureLabel.bottomAnchor, constant: 10)
+            .centerX(equalTo: container.centerXAnchor, constant: 50)
     }
     
     func updateStyling() {
-        temperatureLabel.font = .boldLarge
+        container.backgroundColor = .dashboard
+        
+        temperatureLabel.font = .size80
+        temperatureLabel.textColor = .font
+        
+        celsiusLabel.font = .size30
+        celsiusLabel.textColor = .font
+        
+        weatherLabel.font = .size16
+        weatherLabel.textColor = .font
+        weatherLabel.backgroundColor = .label
+        
+        windLabel.font = .size16
+        windLabel.textColor = .font
+        windLabel.backgroundColor = .label
     }
 }
 
 // MARK: -
 
 extension WeatherDashboardItem {
-    func updateViewData(_ viewData: ViewData) {
-        temperatureLabel.text = viewData.temperature
+    func update(dataModel: DataModel) {
+        temperatureLabel.text = dataModel.temperature
+        weatherLabel.text = dataModel.weather
+        windLabel.text = dataModel.wind
     }
 }
 
-// MARK: - View Data
+// MARK: - Data Model
 
 extension WeatherDashboardItem {
-    struct ViewData {
-        let temperature: String
+    struct DataModel {
+        let temperature: String?
+        let weather: String?
+        let wind: String?
     }
 }

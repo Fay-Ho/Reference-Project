@@ -25,13 +25,16 @@
 import Foundation
 
 protocol WeatherInteractorInterface {
-    func fetchData()
+    func viewIsReady()
+    func fetchCityData()
 }
 
 protocol WeatherPresenterInterface {
-    func handleResponse(_ response: GetCityResponse)
+    func handleGetWeatherResponse(_ response: GetWeatherResponse)
+    func handleGetCityResponse(_ response: GetCityResponse)
 }
 
 protocol WeatherViewControllerInterface: NSObject {
-    func showLocationPage(dataModel model: Codable)
+    func updateDashboardItem(dataModel: WeatherDashboardItem.DataModel)
+    func showLocationPage(dataModel: Codable)
 }

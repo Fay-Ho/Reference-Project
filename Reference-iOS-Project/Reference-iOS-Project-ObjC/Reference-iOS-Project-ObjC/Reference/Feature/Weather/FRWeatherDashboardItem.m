@@ -23,13 +23,18 @@
 //
 
 #import "FRWeatherDashboardItem.h"
-#import "UIFont+FRTheme.h"
 #import "UIKit+FRExtension.h"
+#import "UIKit+FRTheme.h"
 
 @interface FRWeatherDashboardItem ()
 
+@property (nonatomic, strong) FRWeatherDashboardItemDataModel *dataModel;
+
+@property (nonatomic, strong) UIView *container;
 @property (nonatomic, strong) UILabel *temperatureLabel;
-@property (nonatomic, strong) FRWeatherDashboardItemViewData *viewData;
+@property (nonatomic, strong) UILabel *celsiusLabel;
+@property (nonatomic, strong) UILabel *weatherLabel;
+@property (nonatomic, strong) UILabel *windLabel;
 
 @end
 
@@ -37,19 +42,56 @@
 
 #pragma mark - UI Component
 
+- (UIView *)container {
+    if (!_container) {
+        _container = [UIView make];
+        _container.layer.cornerRadius = 10;
+        _container.layer.masksToBounds = YES;
+    }
+    return _container;
+}
+
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
-        _temperatureLabel = [UILabel makeWithText:_viewData.temperature];
+        _temperatureLabel = [UILabel makeWithText:nil];
         _temperatureLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _temperatureLabel;
 }
 
+- (UILabel *)celsiusLabel {
+    if (!_celsiusLabel) {
+        _celsiusLabel = [UILabel makeWithText:@"°C"];
+        _celsiusLabel.textAlignment = NSTextAlignmentNatural;
+    }
+    return _celsiusLabel;
+}
+
+- (UILabel *)weatherLabel {
+    if (!_weatherLabel) {
+        _weatherLabel = [UILabel makeWithText:nil];
+        _weatherLabel.textAlignment = NSTextAlignmentCenter;
+        _weatherLabel.layer.cornerRadius = 5;
+        _weatherLabel.layer.masksToBounds = YES;
+    }
+    return _weatherLabel;
+}
+
+- (UILabel *)windLabel {
+    if (!_windLabel) {
+        _windLabel = [UILabel makeWithText:nil];
+        _windLabel.textAlignment = NSTextAlignmentCenter;
+        _windLabel.layer.cornerRadius = 5;
+        _windLabel.layer.masksToBounds = YES;
+    }
+    return _windLabel;
+}
+
 #pragma mark - Lifecycle
 
-+ (instancetype)itemWithViewData:(FRWeatherDashboardItemViewData *)viewData {
++ (instancetype)itemWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel {
     FRWeatherDashboardItem *item = [[self alloc] init];
-    item.viewData = viewData;
+    item.dataModel = dataModel;
     [item setupSubviews];
     [item setupLayouts];
     [item updateStyling];
@@ -59,22 +101,53 @@
 #pragma mark - Subview Management
 
 - (void)setupSubviews {
-    [self addSubview:self.temperatureLabel];
+    [self addSubview:self.container];
+    [self.container addSubviews:@[self.temperatureLabel, self.celsiusLabel, self.weatherLabel, self.windLabel]];
 }
 
 - (void)setupLayouts {
-    [self.temperatureLabel verticalEqualToView:self constant:100];
-    [self.temperatureLabel horizontalEqualToView:self constant:50];
+    [self.container topEqualToAnchor:self.topAnchor constant:60];
+    [self.container bottomEqualToAnchor:self.bottomAnchor constant:10];
+    [self.container horizontalEqualToView:self constant:10];
+    
+    [self.temperatureLabel verticalEqualToView:self.container constant:100];
+    [self.temperatureLabel horizontalEqualToView:self.container constant:150];
+    
+    [self.celsiusLabel topEqualToAnchor:self.container.topAnchor constant:100];
+    [self.celsiusLabel trailingEqualToAnchor:self.container.trailingAnchor constant:100];
+    [self.celsiusLabel leadingEqualToAnchor:self.temperatureLabel.trailingAnchor];
+    
+    [self.weatherLabel topEqualToAnchor:self.temperatureLabel.bottomAnchor constant:10];
+    [self.weatherLabel centerXEqualToAnchor:self.container.centerXAnchor constant:-50];
+    
+    [self.windLabel topEqualToAnchor:self.temperatureLabel.bottomAnchor constant:10];
+    [self.windLabel centerXEqualToAnchor:self.container.centerXAnchor constant:50];
 }
 
 - (void)updateStyling {
-    self.temperatureLabel.font = [UIFont boldLargeFont];
+    self.container.backgroundColor = [UIColor dashboardColor];
+    
+    self.temperatureLabel.font = [UIFont size80Font];
+    self.temperatureLabel.textColor = [UIColor fontColor];
+    
+    self.celsiusLabel.font = [UIFont size30Font];
+    self.celsiusLabel.textColor = [UIColor fontColor];
+    
+    self.weatherLabel.font = [UIFont size16Font];
+    self.weatherLabel.textColor = [UIColor fontColor];
+    self.weatherLabel.backgroundColor = [UIColor labelColor];
+    
+    self.windLabel.font = [UIFont size16Font];
+    self.windLabel.textColor = [UIColor fontColor];
+    self.windLabel.backgroundColor = [UIColor labelColor];
 }
 
 #pragma mark -
 
-- (void)updateViewData:(FRWeatherDashboardItemViewData *)viewData {
-    self.temperatureLabel.text = viewData.temperature;
+- (void)updateWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel {
+    self.temperatureLabel.text = dataModel.temperature;
+    self.weatherLabel.text = dataModel.weather;
+    self.windLabel.text = dataModel.wind;
 }
 
 @end

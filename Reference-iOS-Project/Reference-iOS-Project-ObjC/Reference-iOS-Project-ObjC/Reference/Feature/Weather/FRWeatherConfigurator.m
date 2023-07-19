@@ -33,7 +33,7 @@
     return [[self alloc] init];
 }
 
-- (UIViewController *)makeViewControllerWithDataModel:(id)model {
+- (UIViewController *)makeViewControllerWithDataModel:(id)dataModel {
     FRWeatherInteractor *interactor = [[FRWeatherInteractor alloc] init];
     FRWeatherPresenter *presenter = [[FRWeatherPresenter alloc] init];
     FRWeatherViewController *viewController = [[FRWeatherViewController alloc] init];

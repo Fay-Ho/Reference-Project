@@ -23,16 +23,24 @@
 //
 
 #import "FRLocationPresenter.h"
-#import "NSObject+JSONModel.h"
+#import "NSArray+FRExtension.h"
+#import "FRLocationTableViewDataModel.h"
+#import "FRGetCityResponse.h"
 
 @implementation FRLocationPresenter
 
 #pragma mark - FRLocationPresenterInterface Implementation
 
-- (void)handleTableViewModel {
-    id json = [NSJSONSerialization JSONObjectWithData:self.model options:0 error:NULL];
-    FRLocationTableViewModel *model = [FRLocationTableViewModel modelWithJSON:json];
-    [self.viewController updateTableViewWithModel:model];
+- (void)handleGetCityResponse {
+    FRGetCityResponse *response = (FRGetCityResponse *)self.dataModel;
+    NSArray<FRLocationTableViewRowDataModel *> *rows = [response.cities map:^id _Nonnull(FRGetCityCitiesResponse * _Nonnull element) {
+        FRLocationTableViewRowDataModel *row = [[FRLocationTableViewRowDataModel alloc] init];
+        row.name = element.name;
+        return row;
+    }];
+    FRLocationTableViewDataModel *dataModel = [[FRLocationTableViewDataModel alloc] init];
+    dataModel.rows = rows;
+    [self.viewController updateTableViewWithDataModel:dataModel];
 }
 
 @end

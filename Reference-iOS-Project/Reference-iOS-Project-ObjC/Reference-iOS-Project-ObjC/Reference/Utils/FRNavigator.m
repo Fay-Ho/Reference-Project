@@ -56,9 +56,9 @@ NSString * const FRDestinationWeather = @"FRWeatherConfigurator";
     return navigation;
 }
 
-- (void)navigateTo:(FRDestination)destination from:(UINavigationController *)navigation dataModel:(id)model {
+- (void)navigateTo:(FRDestination)destination from:(UINavigationController *)navigation dataModel:(id)dataModel {
     id<FRFeatureConfigurator> configurator = self.configurators[destination];
-    UIViewController *viewController = [configurator makeViewControllerWithDataModel:model];
+    UIViewController *viewController = [configurator makeViewControllerWithDataModel:dataModel];
     [navigation pushViewController:viewController animated:YES];
 }
 

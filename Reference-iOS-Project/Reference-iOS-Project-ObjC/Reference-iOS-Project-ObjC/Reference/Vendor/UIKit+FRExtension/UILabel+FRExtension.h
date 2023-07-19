@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (FRExtension)
 
-+ (instancetype)makeWithText:(NSString *)text;
++ (instancetype)makeWithText:(NSString * _Nullable)text;
 
 @end
 

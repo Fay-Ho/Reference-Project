@@ -25,5 +25,5 @@
 import UIKit
 
 protocol FeatureConfigurator {
-    func makeViewController(dataModel model: Codable?) -> UIViewController
+    func makeViewController(dataModel: Codable?) -> UIViewController
 }

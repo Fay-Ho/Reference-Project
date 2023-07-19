@@ -33,14 +33,14 @@
     return [[self alloc] init];
 }
 
-- (UIViewController *)makeViewControllerWithDataModel:(id)model {
+- (UIViewController *)makeViewControllerWithDataModel:(id)dataModel {
     FRLocationInteractor *interactor = [[FRLocationInteractor alloc] init];
     FRLocationPresenter *presenter = [[FRLocationPresenter alloc] init];
     FRLocationViewController *viewController = [[FRLocationViewController alloc] init];
     
     interactor.presenter = presenter;
     presenter.viewController = viewController;
-    presenter.model = model;
+    presenter.dataModel = dataModel;
     viewController.interactor = interactor;
     
     return viewController;

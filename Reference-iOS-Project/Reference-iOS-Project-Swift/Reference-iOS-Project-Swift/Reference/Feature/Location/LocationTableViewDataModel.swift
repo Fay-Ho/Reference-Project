@@ -22,18 +22,10 @@
 //  SOFTWARE.
 //
 
-import UIKit
+struct LocationTableViewDataModel : Codable {
+    let rows: [LocationTableViewRowDataModel]
+}
 
-extension UIFont {
-    class var size80: UIFont {
-        .systemFont(ofSize: 80)
-    }
-    
-    class var size30: UIFont {
-        .systemFont(ofSize: 30)
-    }
-    
-    class var size16: UIFont {
-        .systemFont(ofSize: 16)
-    }
+struct LocationTableViewRowDataModel : Codable {
+    let name: String
 }

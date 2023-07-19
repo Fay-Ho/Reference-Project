@@ -22,18 +22,10 @@
 //  SOFTWARE.
 //
 
-import UIKit
+#ifndef UIKit_FRTheme_h
+#define UIKit_FRTheme_h
 
-extension UIFont {
-    class var size80: UIFont {
-        .systemFont(ofSize: 80)
-    }
-    
-    class var size30: UIFont {
-        .systemFont(ofSize: 30)
-    }
-    
-    class var size16: UIFont {
-        .systemFont(ofSize: 16)
-    }
-}
+#import "UIColor+FRTheme.h"
+#import "UIFont+FRTheme.h"
+
+#endif /* UIKit_FRTheme_h */

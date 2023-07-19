@@ -22,12 +22,12 @@
 //  SOFTWARE.
 //
 
-#import "FRWeatherDashboardItemViewData.h"
+#import "FRWeatherDashboardItemDataModel.h"
 
-@implementation FRWeatherDashboardItemViewData
+@implementation FRWeatherDashboardItemDataModel
 
-+ (instancetype)viewData {
-    return [[self alloc] init];;
++ (instancetype)dataModel {
+    return [[self alloc] init];
 }
 
 @end

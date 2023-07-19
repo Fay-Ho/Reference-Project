@@ -25,6 +25,12 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    weak var navigator: Navigator? {
+        Helper.shared.navigator
+    }
+    
+    // MARK: - UI Component
+    
     private(set) lazy var root: UIScrollView = {
         .make()
     }()
@@ -33,12 +39,16 @@ class BaseViewController: UIViewController {
         .make(spacing: 0)
     }()
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
         setupLayouts()
     }
 }
+
+// MARK: - Subview Management
 
 extension BaseViewController {
     private func setupSubviews() {

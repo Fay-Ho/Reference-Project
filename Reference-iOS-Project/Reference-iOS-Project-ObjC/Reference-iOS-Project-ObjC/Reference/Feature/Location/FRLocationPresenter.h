@@ -27,11 +27,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRLocationPresenter<M> : NSObject <FRLocationPresenterInterface>
+@interface FRLocationPresenter : NSObject <FRLocationPresenterInterface>
 
 @property (nonatomic, weak) id<FRLocationViewControllerInterface> viewController;
 
-@property (nonatomic, strong) M model;
+@property (nonatomic, strong) id dataModel;
 
 @end
 

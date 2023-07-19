@@ -25,7 +25,7 @@
 import UIKit
 
 class WeatherConfigurator : FeatureConfigurator {
-    func makeViewController(dataModel model: Codable?) -> UIViewController {
+    func makeViewController(dataModel: Codable?) -> UIViewController {
         let interactor = WeatherInteractor()
         let presenter = WeatherPresenter()
         let viewController = WeatherViewController()

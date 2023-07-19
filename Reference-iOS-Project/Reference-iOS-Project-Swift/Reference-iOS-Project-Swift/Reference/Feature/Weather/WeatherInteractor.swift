@@ -26,12 +26,22 @@ class WeatherInteractor {
     var presenter: WeatherPresenterInterface?
 }
 
+// MARK: - WeatherInteractorInterface Implementation
+
 extension WeatherInteractor : WeatherInteractorInterface {
-    func fetchData() {
+    func viewIsReady() {
+        let manager = NetworkManager()
+        manager.getWeather { [weak self] in
+            guard let response = $0 else { return }
+            self?.presenter?.handleGetWeatherResponse(response)
+        }
+    }
+    
+    func fetchCityData() {
         let manager = NetworkManager()
         manager.getCity { [weak self] in
             guard let response = $0 else { return }
-            self?.presenter?.handleResponse(response)
+            self?.presenter?.handleGetCityResponse(response)
         }
     }
 }

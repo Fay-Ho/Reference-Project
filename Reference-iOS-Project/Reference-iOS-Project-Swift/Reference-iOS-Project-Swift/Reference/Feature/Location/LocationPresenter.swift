@@ -26,17 +26,16 @@ import Foundation
 
 class LocationPresenter {
     weak var viewController: LocationViewControllerInterface?
-    var model: Codable?
+    var dataModel: Codable?
 }
 
+// MARK: - LocationPresenterInterface Implementation
+
 extension LocationPresenter : LocationPresenterInterface {
-    func handleTableViewModel() {
-        guard let data = model as? Data else { return }
-        do {
-            let model = try JSONDecoder().decode(LocationTableViewModel.self, from: data)
-            viewController?.updateTableView(model: model)
-        } catch {
-            return
-        }
+    func handleGetCityResponse() {
+        guard let dataModel = dataModel as? GetCityResponse else { return }
+        let rows = dataModel.cities.map { LocationTableViewRowDataModel(name: $0.name) }
+        let model = LocationTableViewDataModel(rows: rows)
+        viewController?.updateTableView(dataModel: model)
     }
 }

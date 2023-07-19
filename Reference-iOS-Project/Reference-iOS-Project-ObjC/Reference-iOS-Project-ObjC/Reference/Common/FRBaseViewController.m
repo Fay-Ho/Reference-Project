@@ -23,6 +23,7 @@
 //
 
 #import "FRBaseViewController.h"
+#import "FRHelper.h"
 
 @interface FRBaseViewController ()
 
@@ -32,6 +33,10 @@
 @end
 
 @implementation FRBaseViewController
+
+- (FRNavigator *)navigator {
+    return [FRHelper sharedInstance].navigator;
+}
 
 #pragma mark - UI Component
 

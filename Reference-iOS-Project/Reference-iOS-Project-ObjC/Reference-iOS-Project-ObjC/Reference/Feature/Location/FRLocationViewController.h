@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRLocationViewController : UIViewController <FRLocationViewControllerInterface>
+@interface FRLocationViewController : UITableViewController <FRLocationViewControllerInterface>
 
 @property (nonatomic, strong) id<FRLocationInteractorInterface> interactor;
 

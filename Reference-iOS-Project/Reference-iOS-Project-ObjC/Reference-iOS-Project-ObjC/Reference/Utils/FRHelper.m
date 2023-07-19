@@ -26,9 +26,10 @@
 
 @implementation FRHelper
 
+static FRHelper *sharedInstance = nil;
+static dispatch_once_t onceToken;
+
 + (instancetype)sharedInstance {
-    static FRHelper *sharedInstance = nil;
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[super allocWithZone:nil] init];
         sharedInstance.navigator = [[FRNavigator alloc] init];
@@ -37,15 +38,20 @@
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [self sharedInstance];
+    return sharedInstance;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return [[self class] sharedInstance];
+    return sharedInstance;
 }
 
 - (id)mutableCopyWithZone:(NSZone *)zone {
-    return [[self class] sharedInstance];
+    return sharedInstance;
+}
+
++ (void)attempDealloc {
+    onceToken = 0;
+    sharedInstance = nil;
 }
 
 @end

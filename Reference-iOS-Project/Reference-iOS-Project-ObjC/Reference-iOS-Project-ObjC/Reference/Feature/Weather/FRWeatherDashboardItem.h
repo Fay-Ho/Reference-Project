@@ -23,15 +23,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FRWeatherDashboardItemViewData.h"
+#import "FRWeatherDashboardItemDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FRWeatherDashboardItem : UIView
 
-+ (instancetype)itemWithViewData:(FRWeatherDashboardItemViewData *)viewData;
-
-- (void)updateViewData:(FRWeatherDashboardItemViewData *)viewData;
++ (instancetype)itemWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel;
+- (void)updateWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel;
 
 @end
 

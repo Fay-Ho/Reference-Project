@@ -22,14 +22,24 @@
 //  SOFTWARE.
 //
 
-struct LocationTableViewModel : Codable {
-    let rows: [LocationTableViewRowModel]
-    
-    enum CodingKeys: String, CodingKey {
-        case rows = "cities"
-    }
-}
+#import <Foundation/Foundation.h>
 
-struct LocationTableViewRowModel : Codable {
-    let name: String
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSArray<T> (FRExtension)
+
+/*!
+ */
+- (NSArray *)map:(id (^)(T element))transform;
+
+/*!
+ */
+- (NSArray *)flatMap:(T (^)(T element))transform;
+
+/*!
+ */
+- (NSArray *)compactMap:(BOOL (^)(T element))transform;
+
+@end
+
+NS_ASSUME_NONNULL_END

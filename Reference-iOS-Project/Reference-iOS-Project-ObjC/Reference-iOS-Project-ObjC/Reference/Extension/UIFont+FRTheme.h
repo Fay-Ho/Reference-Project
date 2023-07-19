@@ -28,8 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIFont (FRTheme)
 
-@property (class, nonatomic, readonly) UIFont *boldLargeFont;
-@property (class, nonatomic, readonly) UIFont *largeFont;
+@property (class, nonatomic, readonly) UIFont *size80Font;
+@property (class, nonatomic, readonly) UIFont *size30Font;
+@property (class, nonatomic, readonly) UIFont *size16Font;
 
 @end
 

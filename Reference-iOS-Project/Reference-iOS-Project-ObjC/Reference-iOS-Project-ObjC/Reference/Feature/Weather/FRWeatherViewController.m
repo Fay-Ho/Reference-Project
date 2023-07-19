@@ -23,8 +23,7 @@
 //
 
 #import "FRWeatherViewController.h"
-#import "FRHelper.h"
-#import "UIColor+FRTheme.h"
+#import "UIKit+FRTheme.h"
 #import "FRWeatherDashboardItem.h"
 
 @interface FRWeatherViewController ()
@@ -52,9 +51,8 @@
 
 - (FRWeatherDashboardItem *)dashboardItem {
     if (!_dashboardItem) {
-        FRWeatherDashboardItemViewData *viewModel = [FRWeatherDashboardItemViewData viewData];
-        viewModel.temperature = @"20 °C";
-        _dashboardItem = [FRWeatherDashboardItem itemWithViewData:viewModel];
+        FRWeatherDashboardItemDataModel *viewModel = [FRWeatherDashboardItemDataModel dataModel];
+        _dashboardItem = [FRWeatherDashboardItem itemWithDataModel:viewModel];
     }
     return _dashboardItem;
 }
@@ -87,31 +85,30 @@
 }
 
 - (void)setupLayouts {
-    CGFloat margin = 24;
-    [self.locationButton topEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:margin];
-    [self.locationButton trailingEqualToAnchor:self.view.trailingAnchor constant:-margin];
-    [self.locationButton widthEqualToConstant:margin];
+    [self.locationButton topEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:16];
+    [self.locationButton trailingEqualToAnchor:self.view.trailingAnchor constant:-24];
+    [self.locationButton widthEqualToConstant:24];
     [self.locationButton heightEqualToAnchor:self.locationButton.widthAnchor];
 }
 
 - (void)updateStyling {
-    self.view.backgroundColor = [UIColor themeColor];
+    self.view.backgroundColor = [UIColor wallpaperColor];
 }
 
 #pragma mark - Event Management
 
 - (void)nextPage:(id)sender {
-    [self.interactor fetchData];
+    [self.interactor fetchCityData];
 }
 
 #pragma mark - FRWeatherViewControllerInterface Implementation
 
-- (void)updateDashboardItemWithViewData:(FRWeatherDashboardItemViewData *)viewData {
-    [self.dashboardItem updateViewData:viewData];
+- (void)updateDashboardItemWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel {
+    [self.dashboardItem updateWithDataModel:dataModel];
 }
 
-- (void)showLocationPageWithDataModel:(NSData *)model {
-    [[FRHelper sharedInstance].navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:model];
+- (void)showLocationPageWithDataModel:(id)dataModel {
+    [self.navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:dataModel];
 }
 
 @end

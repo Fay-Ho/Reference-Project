@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = Helper.shared.navigator.makeNavigation(destination: .weather)
+        let navigator = Navigator()
+        window?.rootViewController = navigator.makeNavigation(destination: .weather)
         window?.makeKeyAndVisible()
         return true
     }

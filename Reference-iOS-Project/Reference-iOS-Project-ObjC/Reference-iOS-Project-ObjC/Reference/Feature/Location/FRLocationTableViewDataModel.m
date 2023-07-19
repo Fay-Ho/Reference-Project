@@ -22,16 +22,12 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "FRLocationTableViewDataModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FRWeatherDashboardItemViewData : NSObject
-
-@property (nonatomic, strong) NSString *temperature;
-
-+ (instancetype)viewData;
+@implementation FRLocationTableViewDataModel
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation FRLocationTableViewRowDataModel
+
+@end

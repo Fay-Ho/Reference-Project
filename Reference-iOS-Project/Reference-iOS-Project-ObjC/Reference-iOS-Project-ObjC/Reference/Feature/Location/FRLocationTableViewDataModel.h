@@ -22,18 +22,22 @@
 //  SOFTWARE.
 //
 
-import UIKit
+#import <Foundation/Foundation.h>
 
-extension UIFont {
-    class var size80: UIFont {
-        .systemFont(ofSize: 80)
-    }
-    
-    class var size30: UIFont {
-        .systemFont(ofSize: 30)
-    }
-    
-    class var size16: UIFont {
-        .systemFont(ofSize: 16)
-    }
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@class FRLocationTableViewRowDataModel;
+
+@interface FRLocationTableViewDataModel : NSObject
+
+@property (nonatomic, strong) NSArray<FRLocationTableViewRowDataModel *> *rows;
+
+@end
+
+@interface FRLocationTableViewRowDataModel : NSObject
+
+@property (nonatomic, strong) NSString *name;
+
+@end
+
+NS_ASSUME_NONNULL_END

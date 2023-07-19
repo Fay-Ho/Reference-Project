@@ -25,14 +25,14 @@
 import UIKit
 
 class LocationConfigurator : FeatureConfigurator {
-    func makeViewController(dataModel model: Codable?) -> UIViewController {
+    func makeViewController(dataModel: Codable?) -> UIViewController {
         let interactor = LocationInteractor()
         let presenter = LocationPresenter()
         let viewController = LocationViewController()
         
         interactor.presenter = presenter
         presenter.viewController = viewController
-        presenter.model = model
+        presenter.dataModel = dataModel
         viewController.interactor = interactor
         
         return viewController

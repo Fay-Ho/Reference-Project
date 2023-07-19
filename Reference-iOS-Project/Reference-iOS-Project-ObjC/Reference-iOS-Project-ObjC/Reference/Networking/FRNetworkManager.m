@@ -28,17 +28,14 @@
 #import "FRGetWeatherResponse.h"
 #import "NSObject+JSONModel.h"
 
+@implementation FRNetworkManager
+
 typedef NSString *FRMockFile NS_STRING_ENUM;
-FOUNDATION_EXPORT FRMockFile const GET_CITY;
-FOUNDATION_EXPORT FRMockFile const GET_WEATHER;
+FRMockFile const GET_CITY = @"get_city";
+FRMockFile const GET_WEATHER = @"get_weather";
 
 NSString * const MOCK_BUNDLE = @"Mock.bundle";
 NSString * const JSON_FILE = @"json";
-
-@implementation FRNetworkManager
-
-NSString * const GET_CITY = @"get_city";
-NSString * const GET_WEATHER = @"get_weather";
 
 + (instancetype)manager {
     return [[self alloc] init];

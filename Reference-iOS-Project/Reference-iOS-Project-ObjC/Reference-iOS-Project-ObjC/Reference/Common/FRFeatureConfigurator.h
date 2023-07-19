@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)configurator;
 
-- (UIViewController *)makeViewControllerWithDataModel:(id _Nullable)model;
+- (UIViewController *)makeViewControllerWithDataModel:(id _Nullable)dataModel;
 
 @end
 

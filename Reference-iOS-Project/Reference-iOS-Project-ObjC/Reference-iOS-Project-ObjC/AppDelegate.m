@@ -23,7 +23,7 @@
 //
 
 #import "AppDelegate.h"
-#import "FRHelper.h"
+#import "FRNavigator.h"
 
 @interface AppDelegate ()
 
@@ -33,7 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[FRHelper sharedInstance].navigator makeNavigationWithDestination:FRDestinationWeather];
+    FRNavigator *navigator = [[FRNavigator alloc] init];
+    self.window.rootViewController = [navigator makeNavigationWithDestination:FRDestinationWeather];
     [self.window makeKeyAndVisible];
     return YES;
 }

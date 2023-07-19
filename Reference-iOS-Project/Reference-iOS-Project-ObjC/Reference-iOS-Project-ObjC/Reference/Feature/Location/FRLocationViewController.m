@@ -23,9 +23,11 @@
 //
 
 #import "FRLocationViewController.h"
-#import "UIColor+FRTheme.h"
+#import "UIKit+FRTheme.h"
 
 @interface FRLocationViewController ()
+
+@property (nonatomic, strong) FRLocationTableViewDataModel *tableViewDataModel;
 
 @end
 
@@ -35,20 +37,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.interactor viewIsReady];
     [self updateStyling];
+    [self.interactor viewIsReady];
 }
 
 #pragma mark - Subview Management
 
 - (void)updateStyling {
-    self.view.backgroundColor = [UIColor themeColor];
+    self.view.backgroundColor = [UIColor wallpaperColor];
+}
+
+#pragma mark - UITableViewDataSource Implementation
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tableViewDataModel.rows.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
+        cell.textLabel.textColor = [UIColor fontColor];
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    cell.textLabel.text = self.tableViewDataModel.rows[indexPath.row].name;
+    return cell;
 }
 
 #pragma mark - FRLocationViewControllerInterface Implementation
 
-- (void)updateTableViewWithModel:(FRLocationTableViewModel *)model {
-    NSLog(@"%@", model.rows[1].name);
+- (void)updateTableViewWithDataModel:(FRLocationTableViewDataModel *)dataModel {
+    self.tableViewDataModel = dataModel;
 }
 
 @end

@@ -24,10 +24,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UIKit+FRExtension.h"
+#import "FRNavigator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FRBaseViewController : UIViewController
+
+@property (nonatomic, weak, readonly) FRNavigator *navigator;
 
 @property (nonatomic, strong, readonly) UIScrollView *root;
 @property (nonatomic, strong, readonly) UIStackView *container;

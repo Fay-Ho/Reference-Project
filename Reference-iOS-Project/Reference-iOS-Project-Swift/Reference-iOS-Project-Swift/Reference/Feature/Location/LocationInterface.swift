@@ -29,9 +29,9 @@ protocol LocationInteractorInterface {
 }
 
 protocol LocationPresenterInterface {
-    func handleTableViewModel()
+    func handleGetCityResponse()
 }
 
 protocol LocationViewControllerInterface: NSObject {
-    func updateTableView(model: LocationTableViewModel)
+    func updateTableView(dataModel: LocationTableViewDataModel)
 }
