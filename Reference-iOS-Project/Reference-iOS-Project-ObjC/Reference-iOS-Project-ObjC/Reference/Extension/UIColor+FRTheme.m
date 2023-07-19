@@ -28,7 +28,7 @@
 @implementation UIColor (FRTheme)
 
 + (UIColor *)wallpaperColor {
-    return [UIColor colorWithHex:@"#ebebeb"];
+    return [UIColor colorWithHex:@"#EBEBEBFF"];
 }
 
 + (UIColor *)dashboardColor {
@@ -36,11 +36,11 @@
 }
 
 + (UIColor *)fontColor {
-    return [UIColor colorWithHex:@"#000066"];
+    return [UIColor colorWithHex:@"#000066FF"];
 }
 
 + (UIColor *)labelColor {
-    return [UIColor colorWithHex:@"#ffffff33"];
+    return [UIColor colorWithHex:@"#FFFFFF33"];
 }
 
 @end

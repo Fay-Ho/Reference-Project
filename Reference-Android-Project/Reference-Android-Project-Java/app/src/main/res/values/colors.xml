@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wallpaper">#EBEBEB</color>
-    <color name="dashboard">#FFFFFF</color>
-    <color name="font">#000066</color>
-    <color name="label">#FFFFFF</color>
+    <color name="wallpaper">#FFEBEBEB</color>
+    <color name="dashboard">#33000088</color>
+    <color name="font">#FF000066</color>
+    <color name="label">#33FFFFFF</color>
 </resources>
