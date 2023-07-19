@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="theme_background">#EBEBEB</color>
-    <color name="theme_height_light">#FF6666</color>
+    <color name="wallpaper">#FFEBEBEB</color>
+    <color name="dashboard">#33000088</color>
+    <color name="font">#FF000066</color>
+    <color name="label">#33FFFFFF</color>
 </resources>

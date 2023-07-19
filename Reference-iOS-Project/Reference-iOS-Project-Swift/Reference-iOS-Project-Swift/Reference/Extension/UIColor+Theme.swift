@@ -26,7 +26,7 @@ import UIKit
 
 extension UIColor {
     class var wallpaper: UIColor {
-        UIColor(hex: "#ebebeb")
+        UIColor(hex: "#ebebebff")
     }
     
     class var dashboard: UIColor {
@@ -34,7 +34,7 @@ extension UIColor {
     }
     
     class var font: UIColor {
-        UIColor(hex: "#000066")
+        UIColor(hex: "#000066ff")
     }
     
     class var label: UIColor {
