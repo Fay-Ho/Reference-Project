@@ -25,19 +25,23 @@
 import UIKit
 
 class WeatherDashboardItem: UIView {
+    private let viewData: ViewData
+    
+    // MARK: - UI Component
+    
     private lazy var temperatureLabel: UILabel = {
         let label: UILabel = .make(text: viewData.temperature)
         label.textAlignment = .center
         return label
     }()
     
-    private let viewData: ViewData
+    // MARK: - Lifecycle
     
     init(viewData: ViewData) {
         self.viewData = viewData
         super.init(frame: .zero)
         setupSubviews()
-        setupLayout()
+        setupLayouts()
         updateStyling()
     }
     
@@ -46,12 +50,14 @@ class WeatherDashboardItem: UIView {
     }
 }
 
+// MARK: - Subview Management
+
 extension WeatherDashboardItem {
     func setupSubviews() {
         addSubview(temperatureLabel)
     }
     
-    func setupLayout() {
+    func setupLayouts() {
         temperatureLabel
             .vertical(equalTo: self, constant: 100)
             .horizontal(equalTo: self, constant: 50)
@@ -62,11 +68,15 @@ extension WeatherDashboardItem {
     }
 }
 
+// MARK: -
+
 extension WeatherDashboardItem {
-    func updateTemperature(_ temperature: String) {
-        temperatureLabel.text = temperature
+    func updateViewData(_ viewData: ViewData) {
+        temperatureLabel.text = viewData.temperature
     }
 }
+
+// MARK: - View Data
 
 extension WeatherDashboardItem {
     struct ViewData {

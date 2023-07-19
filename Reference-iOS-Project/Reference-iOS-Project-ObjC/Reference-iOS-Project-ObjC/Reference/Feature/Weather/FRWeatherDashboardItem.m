@@ -35,7 +35,7 @@
 
 @implementation FRWeatherDashboardItem
 
-#pragma mark -
+#pragma mark - UI Component
 
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
@@ -45,7 +45,18 @@
     return _temperatureLabel;
 }
 
-#pragma mark -
+#pragma mark - Lifecycle
+
++ (instancetype)itemWithViewData:(FRWeatherDashboardItemViewData *)viewData {
+    FRWeatherDashboardItem *item = [[self alloc] init];
+    item.viewData = viewData;
+    [item setupSubviews];
+    [item setupLayouts];
+    [item updateStyling];
+    return item;
+}
+
+#pragma mark - Subview Management
 
 - (void)setupSubviews {
     [self addSubview:self.temperatureLabel];
@@ -61,15 +72,6 @@
 }
 
 #pragma mark -
-
-+ (instancetype)itemWithViewData:(FRWeatherDashboardItemViewData *)viewData {
-    FRWeatherDashboardItem *item = [[self alloc] init];
-    item.viewData = viewData;
-    [item setupSubviews];
-    [item setupLayouts];
-    [item updateStyling];
-    return item;
-}
 
 - (void)updateViewData:(FRWeatherDashboardItemViewData *)viewData {
     self.temperatureLabel.text = viewData.temperature;
