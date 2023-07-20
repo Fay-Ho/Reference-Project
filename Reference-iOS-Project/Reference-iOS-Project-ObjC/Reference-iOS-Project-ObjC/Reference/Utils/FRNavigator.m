@@ -25,7 +25,7 @@
 #import "FRNavigator.h"
 #import "FRLocationConfigurator.h"
 #import "FRWeatherConfigurator.h"
-#import "UIColor+FRTheme.h"
+#import "UIKit+FRTheme.h"
 
 @interface FRNavigator ()
 
