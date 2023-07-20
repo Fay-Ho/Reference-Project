@@ -44,15 +44,9 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = createViewBinding(inflater, container)
         viewModel = ViewModelProvider(this)[createViewModel().java]
-        onCreateView()
+        initialize()
         return binding.root
     }
-
-    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
-
-    protected abstract fun createViewModel(): KClass<VM>
-
-    protected abstract fun onCreateView()
 
     protected fun hideActionBar() {
         (activity as AppCompatActivity).supportActionBar?.hide()
@@ -61,4 +55,10 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
     protected fun showActionBar() {
         (activity as AppCompatActivity).supportActionBar?.show()
     }
+
+    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
+
+    protected abstract fun createViewModel(): KClass<VM>
+
+    protected abstract fun initialize()
 }

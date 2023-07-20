@@ -46,7 +46,7 @@ class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel
 
     //region --- View Lifecycle ---
 
-    override fun onCreateView() {
+    override fun initialize() {
         viewModel.adapterDataModel.observe(viewLifecycleOwner) {
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerView.adapter = LocationAdapter(it)

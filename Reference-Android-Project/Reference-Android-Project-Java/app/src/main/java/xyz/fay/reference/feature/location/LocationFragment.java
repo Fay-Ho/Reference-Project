@@ -57,7 +57,7 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
     //region --- View Lifecycle ---
 
     @Override
-    protected void onCreateView() {
+    protected void initialize() {
         viewModel.getAdapterDataModel().observe(getViewLifecycleOwner(), new Observer<LocationAdapterDataModel>() {
             @Override
             public void onChanged(LocationAdapterDataModel dataModel) {

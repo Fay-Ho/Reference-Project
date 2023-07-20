@@ -48,7 +48,8 @@ public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder) holder).titleView.setText(dataModel.getRows()[position].getName());
+        ViewHolder viewHolder = (ViewHolder) holder;
+        viewHolder.titleView.setText(dataModel.getRows()[position].getName());
     }
 
     @Override

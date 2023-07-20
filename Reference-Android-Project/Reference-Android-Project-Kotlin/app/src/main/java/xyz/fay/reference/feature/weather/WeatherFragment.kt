@@ -43,7 +43,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>()
 
     //region --- View Lifecycle ---
 
-    override fun onCreateView() {
+    override fun initialize() {
         hideActionBar()
         setupSubviews()
         viewModel.dashboardItemDataModel.observe(viewLifecycleOwner) {}

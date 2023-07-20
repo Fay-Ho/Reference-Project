@@ -57,14 +57,14 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     //region --- View Lifecycle ---
 
     @Override
-    protected void onCreateView() {
+    protected void initialize() {
         hideActionBar();
         setupSubviews();
         viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDashboardItemDataModel>() {
             @Override
             public void onChanged(WeatherDashboardItemDataModel dataModel) {}
         });
-//        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
+        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
         viewModel.viewIsReady(requireContext());
     }
 

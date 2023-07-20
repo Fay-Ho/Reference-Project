@@ -47,8 +47,26 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = createViewBinding(inflater, container);
         viewModel = new ViewModelProvider(this).get(createViewModel());
-        onCreateView();
+        initialize();
         return binding.getRoot();
+    }
+
+    protected void hideActionBar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            if (activity.getSupportActionBar() != null) {
+                activity.getSupportActionBar().hide();
+            }
+        }
+    }
+
+    protected void showActionBar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            if (activity.getSupportActionBar() != null) {
+                activity.getSupportActionBar().show();
+            }
+        }
     }
 
     @NonNull
@@ -57,27 +75,5 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
     @NonNull
     protected abstract Class<VM> createViewModel();
 
-    protected abstract void onCreateView();
-
-    protected void hideActionBar() {
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-    }
-
-    protected void showActionBar() {
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.show();
-        }
-    }
-
-    private ActionBar getActionBar() {
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        if (activity != null) {
-            return activity.getSupportActionBar();
-        }
-        return null;
-    }
+    protected abstract void initialize();
 }

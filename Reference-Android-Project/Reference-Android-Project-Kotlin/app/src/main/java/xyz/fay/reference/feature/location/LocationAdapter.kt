@@ -37,14 +37,14 @@ class LocationAdapter(
         ViewHolder(LocationAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        dataModel.rows[position].name.let {
-            (holder as ViewHolder).titleView.text = it
+        (holder as ViewHolder).run {
+            titleView.text = dataModel.rows[position].name
         }
 
     override fun getItemCount() =
         dataModel.rows.size
 
-    private inner class ViewHolder(binding: LocationAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
+    private class ViewHolder(binding: LocationAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
         val titleView = binding.titleView
     }
 }
