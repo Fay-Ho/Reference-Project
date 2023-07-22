@@ -33,5 +33,5 @@ protocol LocationPresenterInterface {
 }
 
 protocol LocationViewControllerInterface: NSObject {
-    func updateTableView(dataModel: LocationTableViewDataModel)
+    func updateTableView(dataModel: LocationDataModel)
 }

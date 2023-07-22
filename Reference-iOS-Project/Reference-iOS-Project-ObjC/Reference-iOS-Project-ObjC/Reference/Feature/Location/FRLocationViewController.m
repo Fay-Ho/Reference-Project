@@ -27,7 +27,7 @@
 
 @interface FRLocationViewController ()
 
-@property (nonatomic, strong) FRLocationTableViewDataModel *tableViewDataModel;
+@property (nonatomic, strong) FRLocationDataModel *tableViewDataModel;
 
 @end
 
@@ -66,7 +66,7 @@
 
 #pragma mark - FRLocationViewControllerInterface Implementation
 
-- (void)updateTableViewWithDataModel:(FRLocationTableViewDataModel *)dataModel {
+- (void)updateTableViewWithDataModel:(FRLocationDataModel *)dataModel {
     self.tableViewDataModel = dataModel;
 }
 

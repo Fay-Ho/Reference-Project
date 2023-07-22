@@ -32,7 +32,7 @@ class WeatherPresenter {
 
 extension WeatherPresenter : WeatherPresenterInterface {
     func handleGetWeatherResponse(_ response: GetWeatherResponse) {
-        let dataModel = WeatherDashboardItem.DataModel(
+        let dataModel = WeatherDataModel(
             temperature: response.lives.first?.temperature,
             weather: response.lives.first?.weather,
             wind: (response.lives.first?.winddirection ?? "") + (response.lives.first?.windpower ?? "")

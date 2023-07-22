@@ -22,10 +22,22 @@
 //  SOFTWARE.
 //
 
-struct LocationTableViewDataModel : Codable {
-    let rows: [LocationTableViewRowDataModel]
-}
+#import <Foundation/Foundation.h>
 
-struct LocationTableViewRowDataModel : Codable {
-    let name: String
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@class FRLocationRowDataModel;
+
+@interface FRLocationDataModel : NSObject
+
+@property (nonatomic, strong) NSArray<FRLocationRowDataModel *> *rows;
+
+@end
+
+@interface FRLocationRowDataModel : NSObject
+
+@property (nonatomic, strong) NSString *name;
+
+@end
+
+NS_ASSUME_NONNULL_END

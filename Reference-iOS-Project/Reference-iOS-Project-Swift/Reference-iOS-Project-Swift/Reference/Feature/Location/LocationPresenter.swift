@@ -34,8 +34,8 @@ class LocationPresenter {
 extension LocationPresenter : LocationPresenterInterface {
     func handleGetCityResponse() {
         guard let dataModel = dataModel as? GetCityResponse else { return }
-        let rows = dataModel.cities.map { LocationTableViewRowDataModel(name: $0.name) }
-        let model = LocationTableViewDataModel(rows: rows)
+        let rows = dataModel.cities.map { LocationRowDataModel(name: $0.name) }
+        let model = LocationDataModel(rows: rows)
         viewController?.updateTableView(dataModel: model)
     }
 }

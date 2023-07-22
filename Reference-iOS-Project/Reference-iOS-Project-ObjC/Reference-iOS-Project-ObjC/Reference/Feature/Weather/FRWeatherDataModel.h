@@ -22,12 +22,18 @@
 //  SOFTWARE.
 //
 
-#import "FRWeatherDashboardItemDataModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation FRWeatherDashboardItemDataModel
+NS_ASSUME_NONNULL_BEGIN
 
-+ (instancetype)dataModel {
-    return [[self alloc] init];
-}
+@interface FRWeatherDataModel : NSObject
+
+@property (nonatomic, strong, nullable) NSString *temperature;
+@property (nonatomic, strong, nullable) NSString *weather;
+@property (nonatomic, strong, nullable) NSString *wind;
+
++ (instancetype)dataModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

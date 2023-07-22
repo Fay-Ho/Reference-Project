@@ -25,7 +25,7 @@
 #import <Foundation/Foundation.h>
 #import "FRGetWeatherResponse.h"
 #import "FRGetCityResponse.h"
-#import "FRWeatherDashboardItemDataModel.h"
+#import "FRWeatherDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FRWeatherViewControllerInterface <NSObject>
 
-- (void)updateDashboardItemWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel;
+- (void)updateDashboardItemWithDataModel:(FRWeatherDataModel *)dataModel;
 - (void)showLocationPageWithDataModel:(id)dataModel;
 
 @end

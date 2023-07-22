@@ -22,18 +22,10 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+struct LocationDataModel : Codable {
+    let rows: [LocationRowDataModel]
+}
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface FRWeatherDashboardItemDataModel : NSObject
-
-@property (nonatomic, strong, nullable) NSString *temperature;
-@property (nonatomic, strong, nullable) NSString *weather;
-@property (nonatomic, strong, nullable) NSString *wind;
-
-+ (instancetype)dataModel;
-
-@end
-
-NS_ASSUME_NONNULL_END
+struct LocationRowDataModel : Codable {
+    let name: String
+}

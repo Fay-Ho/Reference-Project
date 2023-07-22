@@ -35,6 +35,6 @@ protocol WeatherPresenterInterface {
 }
 
 protocol WeatherViewControllerInterface: NSObject {
-    func updateDashboardItem(dataModel: WeatherDashboardItem.DataModel)
+    func updateDashboardItem(dataModel: WeatherDataModel)
     func showLocationPage(dataModel: Codable)
 }

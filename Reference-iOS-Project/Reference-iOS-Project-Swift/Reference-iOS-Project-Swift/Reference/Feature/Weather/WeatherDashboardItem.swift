@@ -25,7 +25,7 @@
 import UIKit
 
 class WeatherDashboardItem: UIView {
-    private let dataModel: DataModel
+    private let viewModel: ViewModel
     
     // MARK: - UI Component
     
@@ -66,8 +66,8 @@ class WeatherDashboardItem: UIView {
     
     // MARK: - Lifecycle
     
-    init(dataModel: DataModel) {
-        self.dataModel = dataModel
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         setupSubviews()
         setupLayouts()
@@ -133,17 +133,17 @@ extension WeatherDashboardItem {
 // MARK: -
 
 extension WeatherDashboardItem {
-    func update(dataModel: DataModel) {
-        temperatureLabel.text = dataModel.temperature
-        weatherLabel.text = dataModel.weather
-        windLabel.text = dataModel.wind
+    func update(viewModel: ViewModel) {
+        temperatureLabel.text = viewModel.temperature
+        weatherLabel.text = viewModel.weather
+        windLabel.text = viewModel.wind
     }
 }
 
 // MARK: - Data Model
 
 extension WeatherDashboardItem {
-    struct DataModel {
+    struct ViewModel {
         let temperature: String?
         let weather: String?
         let wind: String?

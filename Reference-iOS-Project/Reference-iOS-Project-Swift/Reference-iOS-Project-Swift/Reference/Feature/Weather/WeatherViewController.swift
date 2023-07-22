@@ -41,8 +41,8 @@ class WeatherViewController : BaseViewController {
     }()
     
     private lazy var dashboardItem: WeatherDashboardItem = {
-        let dataModel = WeatherDashboardItem.DataModel(temperature: nil, weather: nil, wind: nil)
-        let item = WeatherDashboardItem(dataModel: dataModel)
+        let dataModel = WeatherDashboardItem.ViewModel(temperature: nil, weather: nil, wind: nil)
+        let item = WeatherDashboardItem(viewModel: dataModel)
         return item
     }()
     
@@ -99,8 +99,13 @@ extension WeatherViewController {
 // MARK: - WeatherViewControllerInterface Implementation
 
 extension WeatherViewController : WeatherViewControllerInterface {
-    func updateDashboardItem(dataModel: WeatherDashboardItem.DataModel) {
-        dashboardItem.update(dataModel: dataModel)
+    func updateDashboardItem(dataModel: WeatherDataModel) {
+        let viewModel = WeatherDashboardItem.ViewModel(
+            temperature: dataModel.temperature,
+            weather: dataModel.weather,
+            wind: dataModel.wind
+        )
+        dashboardItem.update(viewModel: viewModel)
     }
     
     func showLocationPage(dataModel: Codable) {

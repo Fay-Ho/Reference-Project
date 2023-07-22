@@ -26,7 +26,7 @@ import UIKit
 
 class LocationViewController : UITableViewController {
     var interactor: LocationInteractorInterface?
-    var tableViewDataModel: LocationTableViewDataModel?
+    var tableViewDataModel: LocationDataModel?
     
     // MARK: - View Lifecycle
     
@@ -67,7 +67,7 @@ extension LocationViewController {
 // MARK: - LocationViewControllerInterface Implementation
 
 extension LocationViewController : LocationViewControllerInterface {
-    func updateTableView(dataModel: LocationTableViewDataModel) {
+    func updateTableView(dataModel: LocationDataModel) {
         tableViewDataModel = dataModel
     }
 }

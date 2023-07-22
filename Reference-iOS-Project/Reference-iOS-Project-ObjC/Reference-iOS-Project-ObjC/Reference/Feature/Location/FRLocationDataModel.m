@@ -22,12 +22,12 @@
 //  SOFTWARE.
 //
 
-#import "FRLocationTableViewDataModel.h"
+#import "FRLocationDataModel.h"
 
-@implementation FRLocationTableViewDataModel
+@implementation FRLocationDataModel
 
 @end
 
-@implementation FRLocationTableViewRowDataModel
+@implementation FRLocationRowDataModel
 
 @end

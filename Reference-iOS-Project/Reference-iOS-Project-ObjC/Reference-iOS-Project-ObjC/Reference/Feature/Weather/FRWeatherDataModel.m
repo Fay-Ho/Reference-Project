@@ -22,22 +22,12 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "FRWeatherDataModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation FRWeatherDataModel
 
-@class FRLocationTableViewRowDataModel;
-
-@interface FRLocationTableViewDataModel : NSObject
-
-@property (nonatomic, strong) NSArray<FRLocationTableViewRowDataModel *> *rows;
++ (instancetype)dataModel {
+    return [[self alloc] init];
+}
 
 @end
-
-@interface FRLocationTableViewRowDataModel : NSObject
-
-@property (nonatomic, strong) NSString *name;
-
-@end
-
-NS_ASSUME_NONNULL_END

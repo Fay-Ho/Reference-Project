@@ -51,7 +51,7 @@
 
 - (FRWeatherDashboardItem *)dashboardItem {
     if (!_dashboardItem) {
-        FRWeatherDashboardItemDataModel *viewModel = [FRWeatherDashboardItemDataModel dataModel];
+        FRWeatherDataModel *viewModel = [FRWeatherDataModel dataModel];
         _dashboardItem = [FRWeatherDashboardItem itemWithDataModel:viewModel];
     }
     return _dashboardItem;
@@ -103,7 +103,7 @@
 
 #pragma mark - FRWeatherViewControllerInterface Implementation
 
-- (void)updateDashboardItemWithDataModel:(FRWeatherDashboardItemDataModel *)dataModel {
+- (void)updateDashboardItemWithDataModel:(FRWeatherDataModel *)dataModel {
     [self.dashboardItem updateWithDataModel:dataModel];
 }
 
