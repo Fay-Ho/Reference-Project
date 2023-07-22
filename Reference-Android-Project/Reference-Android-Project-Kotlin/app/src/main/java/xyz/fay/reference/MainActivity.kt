@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 if (this is NavHostFragment) {
                     childFragmentManager.fragments.forEach {
                         if (it is OnBackPressedListener) {
-                            it.pop()
+                            it.onPop()
                         }
                     }
                 }

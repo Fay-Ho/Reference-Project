@@ -24,8 +24,6 @@ package xyz.fay.reference.feature.location
   SOFTWARE.
 */
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,11 +31,8 @@ import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.common.OnBackPressedListener
 import xyz.fay.reference.databinding.LocationFragmentBinding
 
-class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel>(), OnBackPressedListener {
-    //region --- ViewBinding / ViewModel ---
-
-    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        LocationFragmentBinding.inflate(inflater, container, false)
+class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel>(LocationFragmentBinding::inflate), OnBackPressedListener {
+    //region --- Override Methods ---
 
     override fun createViewModel() =
         LocationViewModel::class
@@ -46,7 +41,7 @@ class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel
 
     //region --- View Lifecycle ---
 
-    override fun initialize() {
+    override fun onCreateView() {
         viewModel.adapterDataModel.observe(viewLifecycleOwner) {
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerView.adapter = LocationAdapter(it)
@@ -59,7 +54,7 @@ class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel
 
     //region --- Event Management ---
 
-    override fun pop() {
+    override fun onPop() {
         findNavController().popBackStack()
     }
 

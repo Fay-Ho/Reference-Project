@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void accept(Fragment fragment) {
                     if (fragment instanceof OnBackPressedListener) {
-                        ((OnBackPressedListener) fragment).pop();
+                        ((OnBackPressedListener) fragment).onPop();
                     }
                 }
             });

@@ -24,17 +24,15 @@ package xyz.fay.reference.feature.weather
   SOFTWARE.
 */
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.databinding.WeatherFragmentBinding
 
-class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>() {
-    //region --- ViewBinding / ViewModel ---
+class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(WeatherFragmentBinding::inflate) {
+    //region --- Override Methods ---
 
-    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?) =
-        WeatherFragmentBinding.inflate(inflater, container, false)
+//    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToParent: Boolean) =
+//        WeatherFragmentBinding.inflate(inflater, container, attachToParent)
 
     override fun createViewModel() =
         WeatherViewModel::class
@@ -43,7 +41,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>()
 
     //region --- View Lifecycle ---
 
-    override fun initialize() {
+    override fun onCreateView() {
         hideActionBar()
         setupSubviews()
         viewModel.dashboardItemDataModel.observe(viewLifecycleOwner) {}

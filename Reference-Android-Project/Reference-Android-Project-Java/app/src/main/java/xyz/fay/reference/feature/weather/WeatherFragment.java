@@ -25,6 +25,7 @@ package xyz.fay.reference.feature.weather;
 */
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -34,17 +35,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.fay.reference.common.BaseFragment;
+import xyz.fay.reference.common.BindingCreator;
 import xyz.fay.reference.databinding.WeatherFragmentBinding;
 import xyz.fay.reference.networking.response.GetCityResponse;
 
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
-    //region --- ViewBinding / ViewModel ---
+    //region --- Override Methods ---
 
     @NonNull
     @Override
-    protected WeatherFragmentBinding createViewBinding(LayoutInflater inflater, ViewGroup container) {
-        return WeatherFragmentBinding.inflate(inflater, container, false);
+    protected BindingCreator<WeatherFragmentBinding> getBindingCreator() {
+        return new BindingCreator<WeatherFragmentBinding>() {
+            @Override
+            public WeatherFragmentBinding onCreate(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @NonNull Boolean attachToParent) {
+                return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
+            }
+        };
+//        return (layoutInflater, viewGroup, attachToParent) -> {
+//            return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
+//        };
+//        return (layoutInflater, viewGroup, attachToParent) -> WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
+//        return WeatherFragmentBinding::inflate;
     }
+//    @NonNull
+//    @Override
+//    protected WeatherFragmentBinding createViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Boolean attachToParent) {
+//        return WeatherFragmentBinding.inflate(inflater, container, attachToParent);
+//    }
 
     @NonNull
     @Override
@@ -57,15 +74,15 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     //region --- View Lifecycle ---
 
     @Override
-    protected void initialize() {
+    public void onCreateView() {
         hideActionBar();
         setupSubviews();
-        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDashboardItemDataModel>() {
+        getViewModel().getDashboardItemDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDashboardItemDataModel>() {
             @Override
             public void onChanged(WeatherDashboardItemDataModel dataModel) {}
         });
-        viewModel.getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
-        viewModel.viewIsReady(requireContext());
+//        getViewModel().getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
+        getViewModel().viewIsReady(requireContext());
     }
 
     @Override
@@ -83,29 +100,27 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     }
 
     private void setupImageView() {
-        binding.imageView.setOnClickListener(new View.OnClickListener() {
+        getBinding().imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
+                getViewModel().getGetCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
                     @Override
                     public void onChanged(GetCityResponse response) {
                         NavController navController = NavHostFragment.findNavController(WeatherFragment.this);
                         navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
                     }
                 });
-                viewModel.fetchCityData(requireContext());
+                getViewModel().fetchCityData(requireContext());
             }
         });
-    }
-//    private void setupImageView() {
-//        binding.imageView.setOnClickListener(v -> {
-//            viewModel.getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
+//        getBinding().imageView.setOnClickListener(v -> {
+//            getViewModel().getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
 //                NavController navController = NavHostFragment.findNavController(this);
 //                navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
 //            });
-//            viewModel.fetchCityData(requireContext());
+//            getViewModel().fetchCityData(requireContext());
 //        });
-//    }
+    }
 
     //endregion
 }

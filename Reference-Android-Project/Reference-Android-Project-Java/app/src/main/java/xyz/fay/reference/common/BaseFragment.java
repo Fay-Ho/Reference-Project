@@ -39,23 +39,31 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment {
-    protected VB binding;
-    protected VM viewModel;
+    private VB binding;
+    private VM viewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = createViewBinding(inflater, container);
+        binding = getBindingCreator().onCreate(inflater, container, false);
+//        binding = createViewBinding(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(createViewModel());
-        initialize();
+        onCreateView();
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     protected void hideActionBar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            if (activity.getSupportActionBar() != null) {
-                activity.getSupportActionBar().hide();
+            ActionBar actionBar = activity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.hide();
             }
         }
     }
@@ -63,17 +71,28 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
     protected void showActionBar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            if (activity.getSupportActionBar() != null) {
-                activity.getSupportActionBar().show();
+            ActionBar actionBar = activity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.show();
             }
         }
     }
 
+    public VB getBinding() {
+        return binding;
+    }
+
+    public VM getViewModel() {
+        return viewModel;
+    }
+
     @NonNull
-    protected abstract VB createViewBinding(LayoutInflater inflater, ViewGroup container);
+    protected abstract BindingCreator<VB> getBindingCreator();
+//    @NonNull
+//    protected abstract VB createViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Boolean attachToParent);
 
     @NonNull
     protected abstract Class<VM> createViewModel();
 
-    protected abstract void initialize();
+    public abstract void onCreateView();
 }

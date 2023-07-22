@@ -25,7 +25,6 @@ package xyz.fay.reference.common
 */
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,18 +33,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.google.gson.Gson
 import kotlin.reflect.KClass
 
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
-    protected lateinit var binding: VB
+abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: (LayoutInflater, ViewGroup?, Boolean) -> VB) : Fragment() {
+    private var _binding: VB? = null
+    protected val binding: VB get() = _binding!!
+
     protected lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = createViewBinding(inflater, container)
+        _binding = bindingCreator(inflater, container, false)
+//        _binding = createViewBinding(inflater, container, false)
         viewModel = ViewModelProvider(this)[createViewModel().java]
-        initialize()
-        return binding.root
+        onCreateView()
+        return _binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     protected fun hideActionBar() {
@@ -56,9 +62,9 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
     }
 
-    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
+//    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToParent: Boolean): VB
 
     protected abstract fun createViewModel(): KClass<VM>
 
-    protected abstract fun initialize()
+    abstract fun onCreateView()
 }
