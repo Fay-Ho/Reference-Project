@@ -29,17 +29,17 @@ import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.response.GetCityResponse
 
 class LocationViewModel : ViewModel() {
-    private val _adapterDataModel = MutableLiveData<LocationAdapterDataModel>()
-    val adapterDataModel: MutableLiveData<LocationAdapterDataModel>
-        get() = _adapterDataModel
+    private val _locationDataModel = MutableLiveData<LocationDataModel>()
+    val locationDataModel: MutableLiveData<LocationDataModel>
+        get() = _locationDataModel
 
     fun handleGetCityResponse(response: GetCityResponse?) {
         response?.let {
-            val rows: Array<LocationAdapterRowDataModel> = it.cities.map {
-                LocationAdapterRowDataModel(it.name)
+            val rows: Array<LocationRowDataModel> = it.cities.map {
+                LocationRowDataModel(it.name)
             }.toTypedArray()
-            val dataModel = LocationAdapterDataModel(rows)
-            _adapterDataModel.postValue(dataModel)
+            val dataModel = LocationDataModel(rows)
+            _locationDataModel.postValue(dataModel)
         }
     }
 }

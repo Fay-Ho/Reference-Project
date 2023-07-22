@@ -65,9 +65,9 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
 
     @Override
     public void onCreateView() {
-        getViewModel().getAdapterDataModel().observe(getViewLifecycleOwner(), new Observer<LocationAdapterDataModel>() {
+        getViewModel().getLocationDataModel().observe(getViewLifecycleOwner(), new Observer<LocationDataModel>() {
             @Override
-            public void onChanged(LocationAdapterDataModel dataModel) {
+            public void onChanged(LocationDataModel dataModel) {
                 getBinding().recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
                 getBinding().recyclerView.setAdapter(new LocationAdapter(dataModel));
             }

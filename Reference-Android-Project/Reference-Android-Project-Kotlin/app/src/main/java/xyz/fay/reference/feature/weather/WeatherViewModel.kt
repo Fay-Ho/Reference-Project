@@ -29,27 +29,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
 import xyz.fay.reference.networking.response.GetCityResponse
-import xyz.fay.reference.networking.response.GetWeatherResponse
 
 class WeatherViewModel : ViewModel() {
-    private val _dashboardItemDataModel = MutableLiveData<WeatherDashboardItemDataModel?>()
-    val dashboardItemDataModel: MutableLiveData<WeatherDashboardItemDataModel?>
-        get() = _dashboardItemDataModel
+    private val _weatherDataModel = MutableLiveData<WeatherDataModel?>()
+    val weatherDataModel: MutableLiveData<WeatherDataModel?> get() = _weatherDataModel
 
     private val _getCityResponse = MutableLiveData<GetCityResponse?>()
-    val getCityResponse: MutableLiveData<GetCityResponse?>
-        get() = _getCityResponse
+    val getCityResponse: MutableLiveData<GetCityResponse?> get() = _getCityResponse
 
     fun viewIsReady(context: Context) {
         val manager = NetworkManager()
         manager.getWeather(context) {
             it?.let {
-                val dataModel = WeatherDashboardItemDataModel(
+                val dataModel = WeatherDataModel(
                     it.lives.first().temperature,
                     it.lives.first().weather,
                     it.lives.first().winddirection + it.lives.first().windpower
                 )
-                _dashboardItemDataModel.postValue(dataModel)
+                _weatherDataModel.postValue(dataModel)
             }
         }
     }

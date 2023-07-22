@@ -1,4 +1,4 @@
-package xyz.fay.reference.feature.location;
+package xyz.fay.reference.feature.location
 
 /*
   MIT License
@@ -24,14 +24,15 @@ package xyz.fay.reference.feature.location;
   SOFTWARE.
 */
 
-import xyz.fay.parcel.Parcelable;
-import xyz.fay.parcel.Parcelize;
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class LocationAdapterDataModel extends Parcelable {
-    private final LocationAdapterRowDataModel[] rows;
+data class LocationDataModel(
+    val rows: Array<LocationRowDataModel>
+) : Parcelable
 
-    public LocationAdapterDataModel(LocationAdapterRowDataModel[] rows) {
-        this.rows = rows;
-    }
-}
+@Parcelize
+data class LocationRowDataModel(
+    val name: String
+) : Parcelable

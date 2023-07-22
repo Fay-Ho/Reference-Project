@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView
 import xyz.fay.reference.databinding.LocationAdapterBinding
 
 class LocationAdapter(
-    private val dataModel: LocationAdapterDataModel
+    private val dataModel: LocationDataModel
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder =

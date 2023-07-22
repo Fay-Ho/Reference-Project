@@ -1,4 +1,4 @@
-package xyz.fay.reference.feature.weather
+package xyz.fay.reference.feature.location;
 
 /*
   MIT License
@@ -24,12 +24,14 @@ package xyz.fay.reference.feature.weather
   SOFTWARE.
 */
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import xyz.fay.parcel.Parcelable;
+import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-data class WeatherDashboardItemDataModel(
-    val temperature: String,
-    val weather: String,
-    val wind: String
-) : Parcelable
+class LocationRowDataModel extends Parcelable {
+    private final String name;
+
+    public LocationRowDataModel(String name) {
+        this.name = name;
+    }
+}

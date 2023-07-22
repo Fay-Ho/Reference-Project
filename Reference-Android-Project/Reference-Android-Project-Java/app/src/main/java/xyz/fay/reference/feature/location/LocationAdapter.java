@@ -34,9 +34,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import xyz.fay.reference.databinding.LocationAdapterBinding;
 
 public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final LocationAdapterDataModel dataModel;
+    private final LocationDataModel dataModel;
 
-    public LocationAdapter(LocationAdapterDataModel dataModel) {
+    public LocationAdapter(LocationDataModel dataModel) {
         this.dataModel = dataModel;
     }
 

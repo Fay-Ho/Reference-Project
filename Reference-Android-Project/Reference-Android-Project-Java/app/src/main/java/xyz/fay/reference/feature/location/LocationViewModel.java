@@ -35,30 +35,25 @@ import xyz.fay.reference.networking.response.GetCityCitiesResponse;
 import xyz.fay.reference.networking.response.GetCityResponse;
 
 public class LocationViewModel extends ViewModel {
-    private final MutableLiveData<LocationAdapterDataModel> adapterDataModel = new MutableLiveData<>();
+    private final MutableLiveData<LocationDataModel> locationDataModel = new MutableLiveData<>();
 
-    public MutableLiveData<LocationAdapterDataModel> getAdapterDataModel() {
-        return adapterDataModel;
+    public MutableLiveData<LocationDataModel> getLocationDataModel() {
+        return locationDataModel;
     }
 
     void handleGetCityResponse(@Nullable GetCityResponse response) {
         if (response != null) {
-            List<LocationAdapterRowDataModel> rows = new ArrayList<>();
+            List<LocationRowDataModel> rows = new ArrayList<>();
             for (GetCityCitiesResponse getCityCitiesResponse : response.getCities()) {
-                LocationAdapterRowDataModel row = new LocationAdapterRowDataModel(getCityCitiesResponse.getName());
+                LocationRowDataModel row = new LocationRowDataModel(getCityCitiesResponse.getName());
                 rows.add(row);
             }
-            LocationAdapterDataModel dataModel = new LocationAdapterDataModel(rows.toArray(new LocationAdapterRowDataModel[0]));
-            adapterDataModel.postValue(dataModel);
+            LocationDataModel dataModel = new LocationDataModel(rows.toArray(new LocationRowDataModel[0]));
+//            List<GetCityCitiesResponse> responses = Arrays.asList(response.getCities());
+//            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(getCityCitiesResponse -> {
+//                return new LocationRowDataModel(getCityCitiesResponse.getName());
+//            }).toArray(LocationRowDataModel[]::new));
+            locationDataModel.postValue(dataModel);
         }
     }
-//    void handleGetCityResponse(@Nullable GetCityResponse response) {
-//        if (response != null) {
-//            List<GetCityCitiesResponse> responses = Arrays.asList(response.getCities());
-//            LocationAdapterDataModel dataModel = new LocationAdapterDataModel(responses.stream().map(getCityCitiesResponse -> {
-//                return new LocationAdapterRowDataModel(getCityCitiesResponse.getName());
-//            }).toArray(LocationAdapterRowDataModel[]::new));
-//            locationAdapterModel.postValue(dataModel);
-//        }
-//    }
 }

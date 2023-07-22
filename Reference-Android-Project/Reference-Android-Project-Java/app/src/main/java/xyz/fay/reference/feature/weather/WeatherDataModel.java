@@ -1,4 +1,4 @@
-package xyz.fay.reference.feature.location;
+package xyz.fay.reference.feature.weather;
 
 /*
   MIT License
@@ -28,10 +28,14 @@ import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-class LocationAdapterRowDataModel extends Parcelable {
-    private final String name;
+final class WeatherDataModel extends Parcelable {
+    private final String temperature;
+    private final String weather;
+    private final String wind;
 
-    public LocationAdapterRowDataModel(String name) {
-        this.name = name;
+    public WeatherDataModel(String temperature, String weather, String wind) {
+        this.temperature = temperature;
+        this.weather = weather;
+        this.wind = wind;
     }
 }
