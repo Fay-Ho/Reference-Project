@@ -42,6 +42,20 @@ import xyz.fay.reference.networking.response.GetCityResponse;
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
     //region --- Override Methods ---
 
+//    WeatherFragment() {
+//        super(new BindingCreator<WeatherFragmentBinding>() {
+//            @Override
+//            public WeatherFragmentBinding onCreate(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @NonNull Boolean attachToParent) {
+//                return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
+//            }
+//        });
+//        super((layoutInflater, viewGroup, attachToParent) -> {
+//            return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
+//        });
+//        super((layoutInflater, viewGroup, attachToParent) -> WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent));
+//        super(WeatherFragmentBinding::inflate);
+//    }
+
     @NonNull
     @Override
     protected BindingCreator<WeatherFragmentBinding> getBindingCreator() {
@@ -79,9 +93,17 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
         setupSubviews();
         getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDataModel>() {
             @Override
-            public void onChanged(WeatherDataModel dataModel) {}
+            public void onChanged(WeatherDataModel dataModel) {
+                getBinding().temperatureView.setText(dataModel.getTemperature());
+                getBinding().weatherView.setText(dataModel.getWeather());
+                getBinding().windView.setText(dataModel.getWind());
+            }
         });
-//        getViewModel().getDashboardItemDataModel().observe(getViewLifecycleOwner(), dataModel -> {});
+//        getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), dataModel -> {
+//            getBinding().temperatureView.setText(dataModel.getTemperature());
+//            getBinding().weatherView.setText(dataModel.getWeather());
+//            getBinding().windView.setText(dataModel.getWeather());
+//        });
         getViewModel().viewIsReady(requireContext());
     }
 
@@ -100,6 +122,7 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     }
 
     private void setupImageView() {
+        getBinding().imageView.bringToFront();
         getBinding().imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

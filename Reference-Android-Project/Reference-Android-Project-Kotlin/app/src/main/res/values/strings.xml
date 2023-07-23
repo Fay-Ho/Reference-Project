@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Reference Project</string>
+    <string name="celsius">°C</string>
 </resources>

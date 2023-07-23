@@ -31,11 +31,11 @@ import xyz.fay.reference.networking.NetworkManager
 import xyz.fay.reference.networking.response.GetCityResponse
 
 class WeatherViewModel : ViewModel() {
-    private val _weatherDataModel = MutableLiveData<WeatherDataModel?>()
-    val weatherDataModel: MutableLiveData<WeatherDataModel?> get() = _weatherDataModel
+    private val _weatherDataModel = MutableLiveData<WeatherDataModel>()
+    val weatherDataModel: MutableLiveData<WeatherDataModel> get() = _weatherDataModel
 
-    private val _getCityResponse = MutableLiveData<GetCityResponse?>()
-    val getCityResponse: MutableLiveData<GetCityResponse?> get() = _getCityResponse
+    private val _getCityResponse = MutableLiveData<GetCityResponse>()
+    val getCityResponse: MutableLiveData<GetCityResponse> get() = _getCityResponse
 
     fun viewIsReady(context: Context) {
         val manager = NetworkManager()

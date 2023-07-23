@@ -31,10 +31,8 @@
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModel];
-    dataModel.temperature = response.lives.firstObject.temperature;
-    dataModel.weather = response.lives.firstObject.weather;
-    dataModel.wind = [response.lives.firstObject.winddirection stringByAppendingString:response.lives.firstObject.windpower];
+    FRGetWeatherLivesResponse *livesResponse = response.lives.firstObject;
+    FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:livesResponse.temperature weather:livesResponse.weather wind:[livesResponse.winddirection stringByAppendingString:livesResponse.windpower]];
     [self.viewController updateDashboardItemWithDataModel:dataModel];
 }
 

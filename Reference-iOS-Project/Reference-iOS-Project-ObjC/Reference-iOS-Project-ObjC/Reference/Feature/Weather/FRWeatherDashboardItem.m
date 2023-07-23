@@ -28,7 +28,7 @@
 
 @interface FRWeatherDashboardItem ()
 
-@property (nonatomic, strong) FRWeatherDataModel *dataModel;
+@property (nonatomic, strong) FRWeatherDashboardItemViewModel *viewModel;
 
 @property (nonatomic, strong) UIView *container;
 @property (nonatomic, strong) UILabel *temperatureLabel;
@@ -89,9 +89,9 @@
 
 #pragma mark - Lifecycle
 
-+ (instancetype)itemWithDataModel:(FRWeatherDataModel *)dataModel {
++ (instancetype)itemWithViewModel:(FRWeatherDashboardItemViewModel *)viewModel {
     FRWeatherDashboardItem *item = [[self alloc] init];
-    item.dataModel = dataModel;
+    item.viewModel = viewModel;
     [item setupSubviews];
     [item setupLayouts];
     [item updateStyling];
@@ -144,10 +144,27 @@
 
 #pragma mark -
 
-- (void)updateWithDataModel:(FRWeatherDataModel *)dataModel {
-    self.temperatureLabel.text = dataModel.temperature;
-    self.weatherLabel.text = dataModel.weather;
-    self.windLabel.text = dataModel.wind;
+- (void)updateWithViewModel:(FRWeatherDashboardItemViewModel *)viewModel {
+    self.temperatureLabel.text = viewModel.temperature;
+    self.weatherLabel.text = viewModel.weather;
+    self.windLabel.text = viewModel.wind;
+}
+
+@end
+
+@implementation FRWeatherDashboardItemViewModel
+
++ (instancetype)viewModel {
+    FRWeatherDashboardItemViewModel *viewModel = [[self alloc] init];
+    return viewModel;
+}
+
++ (instancetype)viewModelWithTemperature:(NSString *)temperature weather:(NSString *)weather wind:(NSString *)wind {
+    FRWeatherDashboardItemViewModel *viewModel = [[self alloc] init];
+    viewModel.temperature = temperature;
+    viewModel.weather = weather;
+    viewModel.wind = wind;
+    return viewModel;
 }
 
 @end

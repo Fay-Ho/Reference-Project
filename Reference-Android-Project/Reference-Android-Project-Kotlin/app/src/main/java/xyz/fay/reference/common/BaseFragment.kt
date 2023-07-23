@@ -44,6 +44,10 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = bindingCreator(inflater, container, false)
 //        _binding = createViewBinding(inflater, container, false)
+//        val type = javaClass.genericSuperclass as ParameterizedType
+//        val cls = type.actualTypeArguments[0] as Class<*>
+//        val method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
+//        _binding = method.invoke(null, layoutInflater, container, false) as VB
         viewModel = ViewModelProvider(this)[createViewModel().java]
         onCreateView()
         return _binding?.root

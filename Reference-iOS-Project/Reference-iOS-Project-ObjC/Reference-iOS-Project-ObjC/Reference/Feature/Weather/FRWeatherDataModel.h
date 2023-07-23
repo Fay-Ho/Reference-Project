@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) NSString *wind;
 
 + (instancetype)dataModel;
++ (instancetype)dataModelWithTemperature:(NSString * _Nonnull)temperature weather:(NSString * _Nonnull)weather wind:(NSString * _Nonnull)wind;
 
 @end
 

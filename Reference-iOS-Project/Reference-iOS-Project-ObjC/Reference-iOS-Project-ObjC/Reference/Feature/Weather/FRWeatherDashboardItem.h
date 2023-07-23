@@ -27,10 +27,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class FRWeatherDashboardItemViewModel;
+
 @interface FRWeatherDashboardItem : UIView
 
-+ (instancetype)itemWithDataModel:(FRWeatherDataModel *)dataModel;
-- (void)updateWithDataModel:(FRWeatherDataModel *)dataModel;
++ (instancetype)itemWithViewModel:(FRWeatherDashboardItemViewModel *)viewModel;
+- (void)updateWithViewModel:(FRWeatherDashboardItemViewModel *)viewModel;
+
+@end
+
+@interface FRWeatherDashboardItemViewModel : NSObject
+
+@property (nonatomic, strong, nullable) NSString *temperature;
+@property (nonatomic, strong, nullable) NSString *weather;
+@property (nonatomic, strong, nullable) NSString *wind;
+
++ (instancetype)viewModel;
++ (instancetype)viewModelWithTemperature:(NSString * _Nonnull)temperature weather:(NSString * _Nonnull)weather wind:(NSString * _Nonnull)wind;
 
 @end
 

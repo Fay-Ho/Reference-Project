@@ -41,7 +41,7 @@
     if (!_locationButton) {
         _locationButton = [UIImageView makeWithImage:[UIImage imageNamed:@"ImgLocation"]];
         _locationButton.userInteractionEnabled = YES;
-
+        
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
         [recognizer addTarget:self action:@selector(nextPage:)];
         [_locationButton addGestureRecognizer:recognizer];
@@ -51,8 +51,8 @@
 
 - (FRWeatherDashboardItem *)dashboardItem {
     if (!_dashboardItem) {
-        FRWeatherDataModel *viewModel = [FRWeatherDataModel dataModel];
-        _dashboardItem = [FRWeatherDashboardItem itemWithDataModel:viewModel];
+        FRWeatherDashboardItemViewModel *viewModel = [FRWeatherDashboardItemViewModel viewModel];
+        _dashboardItem = [FRWeatherDashboardItem itemWithViewModel:viewModel];
     }
     return _dashboardItem;
 }
@@ -104,7 +104,8 @@
 #pragma mark - FRWeatherViewControllerInterface Implementation
 
 - (void)updateDashboardItemWithDataModel:(FRWeatherDataModel *)dataModel {
-    [self.dashboardItem updateWithDataModel:dataModel];
+    FRWeatherDashboardItemViewModel *viewModel = [FRWeatherDashboardItemViewModel viewModelWithTemperature:dataModel.temperature weather:dataModel.weather wind:dataModel.wind];
+    [self.dashboardItem updateWithViewModel:viewModel];
 }
 
 - (void)showLocationPageWithDataModel:(id)dataModel {

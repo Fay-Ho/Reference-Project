@@ -44,7 +44,11 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     override fun onCreateView() {
         hideActionBar()
         setupSubviews()
-        viewModel.weatherDataModel.observe(viewLifecycleOwner) {}
+        viewModel.weatherDataModel.observe(viewLifecycleOwner) {
+            binding.temperatureView.text = it.temperature
+            binding.weatherView.text = it.weather
+            binding.windView.text = it.wind
+        }
         viewModel.viewIsReady(requireContext())
     }
 

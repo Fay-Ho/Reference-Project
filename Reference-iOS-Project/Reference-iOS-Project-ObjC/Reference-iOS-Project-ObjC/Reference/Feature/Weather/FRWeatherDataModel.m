@@ -30,4 +30,12 @@
     return [[self alloc] init];
 }
 
++ (instancetype)dataModelWithTemperature:(NSString *)temperature weather:(NSString *)weather wind:(NSString *)wind {
+    FRWeatherDataModel *dataModel = [[self alloc] init];
+    dataModel.temperature = temperature;
+    dataModel.weather = weather;
+    dataModel.wind = wind;
+    return dataModel;
+}
+
 @end
