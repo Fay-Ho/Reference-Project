@@ -24,27 +24,35 @@ package xyz.fay.reference.feature.weather;
   SOFTWARE.
 */
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import xyz.fay.reference.R;
 import xyz.fay.reference.databinding.WeatherAdapterBinding;
 
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private Context context;
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
         return new ViewHolder(WeatherAdapterBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-//        viewHolder.imageView.setImageDrawable(Drawable.createFromPath("img_location"));
+        viewHolder.imageView.setImageDrawable(context.getDrawable(R.drawable.img_sun_fill));
+        viewHolder.timeTextView.setText("6时");
+        viewHolder.weatherTextView.setText("晴朗");
     }
 
     @Override
@@ -54,10 +62,14 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imageView;
+        private final TextView timeTextView;
+        private final TextView weatherTextView;
 
         private ViewHolder(@NonNull WeatherAdapterBinding binding) {
             super(binding.getRoot());
             imageView = binding.imageView;
+            timeTextView = binding.timeTextView;
+            weatherTextView = binding.weatherTextView;
         }
     }
 }
