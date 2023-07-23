@@ -1,4 +1,4 @@
-package xyz.fay.reference.feature.location;
+package xyz.fay.reference.feature.weather;
 
 /*
   MIT License
@@ -24,45 +24,40 @@ package xyz.fay.reference.feature.location;
   SOFTWARE.
 */
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import xyz.fay.reference.databinding.LocationAdapterBinding;
+import xyz.fay.reference.databinding.WeatherAdapterBinding;
 
-public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final LocationDataModel dataModel;
-
-    public LocationAdapter(LocationDataModel dataModel) {
-        this.dataModel = dataModel;
-    }
-
+public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LocationAdapterBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(WeatherAdapterBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.titleView.setText(dataModel.getRows()[position].getName());
+//        viewHolder.imageView.setImageDrawable(Drawable.createFromPath("img_location"));
     }
 
     @Override
     public int getItemCount() {
-        return dataModel.getRows().length;
+        return 10;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView titleView;
+        private final ImageView imageView;
 
-        private ViewHolder(@NonNull LocationAdapterBinding binding) {
+        private ViewHolder(@NonNull WeatherAdapterBinding binding) {
             super(binding.getRoot());
-            titleView = binding.titleView;
+            imageView = binding.imageView;
         }
     }
 }

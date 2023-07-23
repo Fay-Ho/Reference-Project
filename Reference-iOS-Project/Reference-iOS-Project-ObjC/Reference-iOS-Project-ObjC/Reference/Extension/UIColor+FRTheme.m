@@ -28,11 +28,11 @@
 @implementation UIColor (FRTheme)
 
 + (UIColor *)wallpaperColor {
-    return [UIColor colorWithHex:@"#EBEBEBFF"];
+    return [UIColor colorWithHex:@"#00008833"];
 }
 
 + (UIColor *)dashboardColor {
-    return [UIColor colorWithHex:@"#00008833"];
+    return [UIColor colorWithHex:@"#0000000F"];
 }
 
 + (UIColor *)fontColor {

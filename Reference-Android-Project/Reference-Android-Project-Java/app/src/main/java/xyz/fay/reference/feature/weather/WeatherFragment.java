@@ -29,6 +29,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +99,10 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
                 getBinding().temperatureView.setText(dataModel.getTemperature());
                 getBinding().weatherView.setText(dataModel.getWeather());
                 getBinding().windView.setText(dataModel.getWind());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+                linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                getBinding().recyclerView.setLayoutManager(linearLayoutManager);
+                getBinding().recyclerView.setAdapter(new WeatherAdapter());
             }
         });
 //        getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), dataModel -> {
