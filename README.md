@@ -482,3 +482,9 @@ extension SampleViewController : SampleViewControllerInterface {}
 ---
 
 The **`iOS`** project for the weather app building with **`VIP`** architecture..
+
+
+### [Third party open source](https://github.com/Fay-Ho/Reference-Project)
+---
+
+- [https://remixicon.com](https://remixicon.com)
