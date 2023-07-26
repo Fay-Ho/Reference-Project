@@ -32,7 +32,7 @@
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherListItemDataModel *row = [FRWeatherListItemDataModel dataModelWithTime:@"123" image:[FRWeatherImage fileNameOf:@"晴朗"] weather:@"321"];
+    FRWeatherListItemDataModel *row = [FRWeatherListItemDataModel dataModelWithTime:@"12时" image:[FRWeatherImage fileNameOf:@"晴朗"] weather:@"25°C"];
     NSArray<FRWeatherListItemDataModel *> *listItems = @[row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row];
     FRGetWeatherLivesResponse *livesResponse = response.lives.firstObject;
     FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:livesResponse.temperature
