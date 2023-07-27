@@ -68,6 +68,6 @@ extension LocationViewController {
 
 extension LocationViewController : LocationViewControllerInterface {
     func updateTableView(dataModel: LocationDataModel) {
-        dataModel = dataModel
+        self.dataModel = dataModel
     }
 }

@@ -22,8 +22,6 @@
 //  SOFTWARE.
 //
 
-import Foundation
-
 class LocationPresenter {
     weak var viewController: LocationViewControllerInterface?
     var dataModel: Codable?
@@ -34,6 +32,6 @@ class LocationPresenter {
 extension LocationPresenter : LocationPresenterInterface {
     func handleGetCityListResponse() {
         guard let response = dataModel as? GetCityListResponse else { return }
-        viewController?.updateTableView(dataModel: LocationDataModel(rowDataModels: response.cities.map { LocationRowDataModel(name: $0.name) }))
+        viewController?.updateTableView(dataModel: .init(rowDataModels: response.cities.map { .init(name: $0.name) }))
     }
 }

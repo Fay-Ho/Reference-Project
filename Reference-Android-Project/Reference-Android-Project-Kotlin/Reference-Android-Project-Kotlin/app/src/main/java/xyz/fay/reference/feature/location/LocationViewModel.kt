@@ -35,11 +35,11 @@ class LocationViewModel : ViewModel() {
 
     fun handleGetCityResponse(response: GetCityListResponse?) {
         response?.let {
-            val rows: Array<LocationRowDataModel> = it.cities.map {
-                LocationRowDataModel(it.name)
-            }.toTypedArray()
-            val dataModel = LocationDataModel(rows)
-            _locationDataModel.postValue(dataModel)
+            _locationDataModel.postValue(LocationDataModel(
+                it.cities.map {
+                    LocationRowDataModel(it.name)
+                }.toTypedArray()
+            ))
         }
     }
 }
