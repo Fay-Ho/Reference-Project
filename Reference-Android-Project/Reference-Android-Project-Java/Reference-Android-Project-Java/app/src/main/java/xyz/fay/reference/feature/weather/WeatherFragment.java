@@ -40,6 +40,7 @@ import xyz.fay.reference.common.BaseFragment;
 import xyz.fay.reference.common.BindingCreator;
 import xyz.fay.reference.databinding.WeatherFragmentBinding;
 import xyz.fay.reference.networking.response.GetCityResponse;
+import xyz.fay.reference.utils.ImageProvider;
 
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
     //region --- Override Methods ---
@@ -128,7 +129,7 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     }
 
     private void setupImageView() {
-        getBinding().imageView.bringToFront();
+        getBinding().imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()));
         getBinding().imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,6 +26,7 @@
 #import "UIKit+FRTheme.h"
 #import "FRWeatherDashboardItem.h"
 #import "FRWeatherListItem.h"
+#import "FRImageProvider.h"
 
 @interface FRWeatherViewController ()
 
@@ -41,7 +42,7 @@
 
 - (UIImageView *)locationButton {
     if (!_locationButton) {
-        _locationButton = [UIImageView makeWithImage:[UIImage imageNamed:@"ImgLocation"]];
+        _locationButton = [UIImageView makeWithImage:[FRImageProvider loadImageWithRawValue:FRImageEnumLocation]];
         _locationButton.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];

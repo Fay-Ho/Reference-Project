@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FRWeatherListItem : UIView
 
 + (instancetype)item;
-- (void)updateWithDataModel:(NSArray<FRWeatherListItemDataModel *> * _Nonnull)dataModel;
+- (void)updateWithDataModel:(NSArray<FRWeatherListItemDataModel *> *)dataModel;
 
 @end
 

@@ -82,8 +82,7 @@
             android:layout_height="24dp"
             android:layout_gravity="end"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/img_location" />
+            android:layout_marginEnd="24dp" />
 
     </FrameLayout>
 

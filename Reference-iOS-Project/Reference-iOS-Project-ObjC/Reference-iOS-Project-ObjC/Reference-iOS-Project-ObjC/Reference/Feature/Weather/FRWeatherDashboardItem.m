@@ -26,6 +26,20 @@
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRWeatherDashboardItemViewModel ()
+
+@property (nonatomic, strong, nonnull) NSString *temperature;
+@property (nonatomic, strong, nonnull) NSString *weather;
+@property (nonatomic, strong, nonnull) NSString *wind;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+#pragma mark -
+
 @interface FRWeatherDashboardItem ()
 
 @property (nonatomic, strong) UIView *container;

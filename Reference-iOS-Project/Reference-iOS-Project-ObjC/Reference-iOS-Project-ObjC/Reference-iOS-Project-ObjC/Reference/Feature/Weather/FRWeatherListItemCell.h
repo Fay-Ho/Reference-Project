@@ -30,19 +30,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRWeatherListItemCell : UIView
 
-+ (instancetype)cellWithViewModel:(FRWeatherListItemCellViewModel * _Nonnull)viewModel;
++ (instancetype)cellWithViewModel:(FRWeatherListItemCellViewModel *)viewModel;
 
 @end
 
 @interface FRWeatherListItemCellViewModel : NSObject
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *image;
-@property (nonatomic, strong) NSString *value;
-
-+ (instancetype)viewModelWithTitle:(NSString * _Nonnull)title
-                             image:(NSString * _Nonnull)image
-                             value:(NSString * _Nonnull)value;
++ (instancetype)viewModelWithTitle:(NSString *)title
+                             image:(UIImage *)image
+                             value:(NSString *)value;
 
 @end
 

@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return 需要命名的类名
  */
-- (nonnull NSDictionary<NSString *, NSString *> *)unkeyedContainer;
+- (NSDictionary<NSString *, NSString *> *)unkeyedContainer;
 
 /*!
  更换属性名
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return 需要更名的属性列表
  */
-- (nonnull NSDictionary<NSString *, NSString *> *)codingKeys;
+- (NSDictionary<NSString *, NSString *> *)codingKeys;
 
 @end
 

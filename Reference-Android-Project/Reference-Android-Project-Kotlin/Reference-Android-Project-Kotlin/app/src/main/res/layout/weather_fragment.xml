@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="48dp"
-            android:background="@drawable/dashboard_item_board"
+            android:background="@drawable/item_border"
             android:orientation="vertical">
 
             <TextView
@@ -84,8 +84,7 @@
             android:layout_height="24dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="24dp"
-            android:layout_gravity="end"
-            android:src="@drawable/img_location" />
+            android:layout_gravity="end" />
 
     </FrameLayout>
 

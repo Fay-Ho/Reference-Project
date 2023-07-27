@@ -25,14 +25,14 @@
 #import "FRWeatherPresenter.h"
 #import "NSObject+JSONModel.h"
 #import "NSArray+FRExtension.h"
-#import "FRWeatherImage.h"
+#import "FRImageProvider.h"
 
 @implementation FRWeatherPresenter
 
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherListItemDataModel *row = [FRWeatherListItemDataModel dataModelWithTime:@"12时" image:[FRWeatherImage fileNameOf:@"晴朗"] weather:@"25°C"];
+    FRWeatherListItemDataModel *row = [FRWeatherListItemDataModel dataModelWithTime:@"12时" image:[FRImageProvider loadImageWithRawValue:@"晴朗"] weather:@"25°C"];
     NSArray<FRWeatherListItemDataModel *> *listItems = @[row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row];
     FRGetWeatherLivesResponse *livesResponse = response.lives.firstObject;
     FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:livesResponse.temperature

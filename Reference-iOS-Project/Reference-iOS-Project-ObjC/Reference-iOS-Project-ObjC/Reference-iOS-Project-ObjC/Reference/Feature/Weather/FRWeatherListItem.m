@@ -45,6 +45,7 @@
         _root.layer.cornerRadius = 10;
         _root.layer.masksToBounds = YES;
         _root.contentSize = CGSizeMake(_root.width, 0);
+        _root.showsHorizontalScrollIndicator = NO;
     }
     return _root;
 }
@@ -87,7 +88,7 @@
 }
 
 - (void)updateWithDataModel:(NSArray<FRWeatherListItemDataModel *> *)dataModel {
-    NSArray<FRWeatherListItemCell *> *cells = [dataModel map:^id _Nonnull(FRWeatherListItemDataModel * _Nonnull element) {
+    NSArray<FRWeatherListItemCell *> *cells = [dataModel map:^id _Nonnull (FRWeatherListItemDataModel * _Nonnull element) {
         FRWeatherListItemCellViewModel *viewModel = [FRWeatherListItemCellViewModel viewModelWithTitle:element.time
                                                                                                  image:element.image
                                                                                                  value:element.weather];

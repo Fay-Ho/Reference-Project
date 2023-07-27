@@ -24,6 +24,17 @@
 
 #import "FRWeatherDataModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRWeatherDataModel ()
+
+@property (nonatomic, strong, readwrite) NSString *temperature;
+@property (nonatomic, strong, readwrite) NSString *weather;
+@property (nonatomic, strong, readwrite) NSString *wind;
+@property (nonatomic, strong, readwrite) NSArray<FRWeatherListItemDataModel *> *listItems;
+
+@end
+
 @implementation FRWeatherDataModel
 
 + (instancetype)dataModelWithTemperature:(NSString *)temperature
@@ -40,11 +51,19 @@
 
 @end
 
+@interface FRWeatherListItemDataModel ()
+
+@property (nonatomic, strong, readwrite) NSString *time;
+@property (nonatomic, strong, readwrite) UIImage *image;
+@property (nonatomic, strong, readwrite) NSString *weather;
+
+@end
+
 @implementation FRWeatherListItemDataModel
 
-+ (instancetype)dataModelWithTime:(NSString * _Nonnull)time
-                            image:(NSString * _Nonnull)image
-                          weather:(NSString * _Nonnull)weather {
++ (instancetype)dataModelWithTime:(NSString *)time
+                            image:(UIImage *)image
+                          weather:(NSString *)weather {
     FRWeatherListItemDataModel *model = [[self alloc] init];
     model.time = time;
     model.image = image;
@@ -53,3 +72,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

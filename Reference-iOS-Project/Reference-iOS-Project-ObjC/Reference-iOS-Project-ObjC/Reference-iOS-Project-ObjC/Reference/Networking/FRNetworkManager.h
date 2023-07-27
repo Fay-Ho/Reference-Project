@@ -32,9 +32,9 @@ typedef void(^FRCompletion)(R _Nullable response);
 
 + (instancetype)manager;
 
-- (void)getCity:(FRCompletion _Nullable)completion;
+- (void)getCity:(nullable FRCompletion)completion;
 
-- (void)getWeather:(FRCompletion _Nullable)completion;
+- (void)getWeather:(nullable FRCompletion)completion;
 
 @end
 

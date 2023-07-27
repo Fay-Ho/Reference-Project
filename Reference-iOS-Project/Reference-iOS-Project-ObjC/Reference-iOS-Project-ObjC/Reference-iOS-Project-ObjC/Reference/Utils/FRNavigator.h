@@ -32,9 +32,9 @@ typedef NSString *FRDestination NS_STRING_ENUM;
 FOUNDATION_EXPORT FRDestination const FRDestinationLocation;
 FOUNDATION_EXPORT FRDestination const FRDestinationWeather;
 
-- (UINavigationController * _Nullable)makeNavigationWithDestination:(FRDestination)destination;
+- (UINavigationController *)makeNavigationWithDestination:(FRDestination)destination;
 
-- (void)navigateTo:(FRDestination _Nonnull)destination from:(UINavigationController * _Nonnull)navigation dataModel:(id _Nullable)dataModel;
+- (void)navigateTo:(FRDestination)destination from:(UINavigationController *)navigation dataModel:(id)dataModel;
 
 @end
 

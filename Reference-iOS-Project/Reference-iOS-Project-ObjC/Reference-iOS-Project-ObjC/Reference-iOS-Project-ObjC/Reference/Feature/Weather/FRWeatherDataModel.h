@@ -22,7 +22,7 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,27 +30,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRWeatherDataModel : NSObject
 
-@property (nonatomic, strong, nullable) NSString *temperature;
-@property (nonatomic, strong, nullable) NSString *weather;
-@property (nonatomic, strong, nullable) NSString *wind;
-@property (nonatomic, strong, nullable) NSArray<FRWeatherListItemDataModel *> *listItems;
+@property (nonatomic, strong, readonly) NSString *temperature;
+@property (nonatomic, strong, readonly) NSString *weather;
+@property (nonatomic, strong, readonly) NSString *wind;
+@property (nonatomic, strong, readonly) NSArray<FRWeatherListItemDataModel *> *listItems;
 
-+ (instancetype)dataModelWithTemperature:(NSString * _Nonnull)temperature
-                                 weather:(NSString * _Nonnull)weather
-                                    wind:(NSString * _Nonnull)wind
++ (instancetype)dataModelWithTemperature:(NSString *)temperature
+                                 weather:(NSString *)weather
+                                    wind:(NSString *)wind
                                listItems:(NSArray<FRWeatherListItemDataModel *> *)listItems;
 
 @end
 
 @interface FRWeatherListItemDataModel : NSObject
 
-@property (nonatomic, strong, nullable) NSString *time;
-@property (nonatomic, strong, nullable) NSString *image;
-@property (nonatomic, strong, nullable) NSString *weather;
+@property (nonatomic, strong, readonly) NSString *time;
+@property (nonatomic, strong, readonly) UIImage *image;
+@property (nonatomic, strong, readonly) NSString *weather;
 
-+ (instancetype)dataModelWithTime:(NSString * _Nonnull)time
-                            image:(NSString * _Nonnull)image
-                          weather:(NSString * _Nonnull)weather;
++ (instancetype)dataModelWithTime:(NSString *)time
+                            image:(UIImage *)image
+                          weather:(NSString *)weather;
 
 @end
 

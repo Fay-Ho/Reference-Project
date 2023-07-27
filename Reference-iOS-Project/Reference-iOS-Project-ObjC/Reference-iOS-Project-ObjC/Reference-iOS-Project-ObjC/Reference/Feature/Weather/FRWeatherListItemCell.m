@@ -26,6 +26,20 @@
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRWeatherListItemCellViewModel ()
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *value;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+#pragma mark -
+
 @interface FRWeatherListItemCell ()
 
 @property (nonatomic, strong) FRWeatherListItemCellViewModel *viewModel;
@@ -57,7 +71,7 @@
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UIImageView makeWithImage:[UIImage imageNamed:_viewModel.image]];
+        _imageView = [UIImageView makeWithImage:_viewModel.image];
     }
     return _imageView;
 }
@@ -104,7 +118,7 @@
 @implementation FRWeatherListItemCellViewModel
 
 + (instancetype)viewModelWithTitle:(NSString *)title
-                             image:(NSString *)image
+                             image:(UIImage *)image
                              value:(NSString *)value {
     FRWeatherListItemCellViewModel *viewModel = [[self alloc] init];
     viewModel.title = title;

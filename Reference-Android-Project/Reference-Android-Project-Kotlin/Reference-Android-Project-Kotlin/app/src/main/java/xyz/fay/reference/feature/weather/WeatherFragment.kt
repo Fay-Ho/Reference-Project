@@ -27,6 +27,7 @@ package xyz.fay.reference.feature.weather
 import androidx.navigation.fragment.findNavController
 import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.databinding.WeatherFragmentBinding
+import xyz.fay.reference.utils.ImageProvider
 
 class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(WeatherFragmentBinding::inflate) {
     //region --- Override Methods ---
@@ -66,6 +67,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     }
 
     private fun setupImageView() {
+        binding.imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()))
         binding.imageView.setOnClickListener {
             viewModel.getCityResponse.observe(viewLifecycleOwner) {
                 findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))

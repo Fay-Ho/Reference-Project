@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)provider;
 
-- (id)loadFile:(NSString * _Nonnull)filePath ofType:(NSString * _Nonnull)type;
+- (id)loadFile:(NSString *)filePath ofType:(NSString *)type;
 
 @end
 

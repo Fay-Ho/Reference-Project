@@ -30,7 +30,7 @@ class WeatherViewController : BaseViewController {
     // MARK: - UI Component
     
     private lazy var locationButton: UIImageView = {
-        let imageView: UIImageView = .make(image: UIImage(named: "ImgLocation"))
+        let imageView: UIImageView = .make(image: ImageProvider.location.loadImage())
         imageView.isUserInteractionEnabled = true
         
         let recognizer = UITapGestureRecognizer()

@@ -23,11 +23,12 @@
 //
 
 #import "FRGetCityResponse.h"
-#import "NSObject+JSONModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface FRGetCityResponse ()
 
-@property (nonatomic, strong, readwrite, nonnull) NSArray<FRGetCityCitiesResponse *> *cities;
+@property (nonatomic, strong, readwrite) NSArray<FRGetCityCitiesResponse *> *cities;
 
 @end
 
@@ -41,11 +42,13 @@
 
 @interface FRGetCityCitiesResponse ()
 
-@property (nonatomic, strong, readwrite, nonnull) NSString *adcode;
-@property (nonatomic, strong, readwrite, nonnull) NSString *name;
+@property (nonatomic, strong, readwrite) NSString *adcode;
+@property (nonatomic, strong, readwrite) NSString *name;
 
 @end
 
 @implementation FRGetCityCitiesResponse
 
 @end
+
+NS_ASSUME_NONNULL_END

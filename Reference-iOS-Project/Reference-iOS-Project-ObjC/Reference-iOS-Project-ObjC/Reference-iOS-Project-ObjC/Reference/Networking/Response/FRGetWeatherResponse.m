@@ -24,13 +24,15 @@
 
 #import "FRGetWeatherResponse.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FRGetWeatherResponse ()
 
-@property (nonatomic, strong, readwrite, nonnull) NSString *count;
-@property (nonatomic, strong, readwrite, nonnull) NSString *info;
-@property (nonatomic, strong, readwrite, nonnull) NSString *infocode;
-@property (nonatomic, strong, readwrite, nonnull) NSArray<FRGetWeatherLivesResponse *> *lives;
-@property (nonatomic, strong, readwrite, nonnull) NSString *status;
+@property (nonatomic, strong, readwrite) NSString *count;
+@property (nonatomic, strong, readwrite) NSString *info;
+@property (nonatomic, strong, readwrite) NSString *infocode;
+@property (nonatomic, strong, readwrite) NSArray<FRGetWeatherLivesResponse *> *lives;
+@property (nonatomic, strong, readwrite) NSString *status;
 
 @end
 
@@ -44,20 +46,22 @@
 
 @interface FRGetWeatherLivesResponse ()
 
-@property (nonatomic, strong, readwrite, nonnull) NSString *adcode;
-@property (nonatomic, strong, readwrite, nonnull) NSString *city;
-@property (nonatomic, strong, readwrite, nonnull) NSString *humidity;
-@property (nonatomic, strong, readwrite, nonnull) NSString *humidity_float;
-@property (nonatomic, strong, readwrite, nonnull) NSString *province;
-@property (nonatomic, strong, readwrite, nonnull) NSString *reporttime;
-@property (nonatomic, strong, readwrite, nonnull) NSString *temperature;
-@property (nonatomic, strong, readwrite, nonnull) NSString *temperature_float;
-@property (nonatomic, strong, readwrite, nonnull) NSString *weather;
-@property (nonatomic, strong, readwrite, nonnull) NSString *winddirection;
-@property (nonatomic, strong, readwrite, nonnull) NSString *windpower;
+@property (nonatomic, strong, readwrite) NSString *adcode;
+@property (nonatomic, strong, readwrite) NSString *city;
+@property (nonatomic, strong, readwrite) NSString *humidity;
+@property (nonatomic, strong, readwrite) NSString *humidity_float;
+@property (nonatomic, strong, readwrite) NSString *province;
+@property (nonatomic, strong, readwrite) NSString *reporttime;
+@property (nonatomic, strong, readwrite) NSString *temperature;
+@property (nonatomic, strong, readwrite) NSString *temperature_float;
+@property (nonatomic, strong, readwrite) NSString *weather;
+@property (nonatomic, strong, readwrite) NSString *winddirection;
+@property (nonatomic, strong, readwrite) NSString *windpower;
 
 @end
 
 @implementation FRGetWeatherLivesResponse
 
 @end
+
+NS_ASSUME_NONNULL_END

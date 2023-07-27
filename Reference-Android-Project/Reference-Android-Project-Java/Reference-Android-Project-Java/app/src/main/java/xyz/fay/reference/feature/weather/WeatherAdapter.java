@@ -25,7 +25,6 @@ package xyz.fay.reference.feature.weather;
 */
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.fay.reference.R;
 import xyz.fay.reference.databinding.WeatherAdapterBinding;
+import xyz.fay.reference.utils.ImageProvider;
 
 public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
@@ -50,7 +50,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.imageView.setImageDrawable(context.getDrawable(R.drawable.img_sun_fill));
+        viewHolder.imageView.setImageDrawable(ImageProvider.rawValue("雪天").loadImage(context));
         viewHolder.timeTextView.setText("6时");
         viewHolder.weatherTextView.setText("晴朗");
     }

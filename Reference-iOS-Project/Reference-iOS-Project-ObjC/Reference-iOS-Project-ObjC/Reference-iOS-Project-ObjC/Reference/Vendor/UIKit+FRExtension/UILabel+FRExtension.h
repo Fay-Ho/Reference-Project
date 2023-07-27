@@ -28,13 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (FRExtension)
 
-+ (instancetype)makeWithText:(NSString * _Nullable)text;
++ (instancetype)makeWithText:(nullable NSString *)text;
 
-+ (instancetype)makeWithText:(NSString * _Nullable)text numberOfLines:(int)numberOfLines;
++ (instancetype)makeWithText:(nullable NSString *)text numberOfLines:(int)numberOfLines;
 
-+ (instancetype)makeWithText:(NSString * _Nullable)text textAlignment:(NSTextAlignment)textAlignment;
++ (instancetype)makeWithText:(nullable NSString *)text textAlignment:(NSTextAlignment)textAlignment;
 
-+ (instancetype)makeWithText:(NSString * _Nullable)text numberOfLines:(int)numberOfLines textAlignment:(NSTextAlignment)textAlignment;
++ (instancetype)makeWithText:(nullable NSString *)text numberOfLines:(int)numberOfLines textAlignment:(NSTextAlignment)textAlignment;
 
 @end
 

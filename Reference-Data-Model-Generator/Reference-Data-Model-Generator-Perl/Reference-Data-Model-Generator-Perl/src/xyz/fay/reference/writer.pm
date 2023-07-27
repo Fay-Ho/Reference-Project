@@ -205,9 +205,9 @@ $flag_define
 
 \@end";
 
-my $flag_objc_h_type_define = "\@property (nonatomic, strong, readonly, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
+my $flag_objc_h_type_define = "\@property (nonatomic, strong, readonly) $flag_prefix$flag_type$flag_suffix *$flag_var;";
 
-my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, readonly, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
+my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, readonly) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
 my $flag_objc_m_file = "//
 //  $flag_copyright
@@ -215,7 +215,11 @@ my $flag_objc_m_file = "//
 
 #import \"$flag_prefix$flag_class$flag_suffix.h\"
 
+NS_ASSUME_NONNULL_BEGIN
+
 $flag_block
+
+NS_ASSUME_NONNULL_END
 ";
 
 my $flag_objc_m_block = "\@interface $flag_prefix$flag_class$flag_suffix ()
@@ -228,9 +232,9 @@ $flag_define
 
 \@end";
 
-my $flag_objc_m_type_define = "\@property (nonatomic, strong, readwrite, nonnull) $flag_prefix$flag_type$flag_suffix *$flag_var;";
+my $flag_objc_m_type_define = "\@property (nonatomic, strong, readwrite) $flag_prefix$flag_type$flag_suffix *$flag_var;";
 
-my $flag_objc_m_type_list_define = "\@property (nonatomic, strong, readwrite, nonnull) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
+my $flag_objc_m_type_list_define = "\@property (nonatomic, strong, readwrite) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
 # -------------------------------------------------------------------------------------------------------------------- #
 
