@@ -23,7 +23,6 @@
 //
 
 #import "FRWeatherPresenter.h"
-#import "NSObject+JSONModel.h"
 #import "NSArray+FRExtension.h"
 #import "FRImageProvider.h"
 
@@ -31,19 +30,23 @@
 
 #pragma mark - FRWeatherPresenterInterface Implementation
 
-- (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response {
-    FRWeatherListItemDataModel *row = [FRWeatherListItemDataModel dataModelWithTime:@"12时" image:[FRImageProvider loadImageWithRawValue:@"晴朗"] weather:@"25°C"];
-    NSArray<FRWeatherListItemDataModel *> *listItems = @[row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row, row];
-    FRGetWeatherLivesResponse *livesResponse = response.lives.firstObject;
+- (void)handleGetCityListResponse:(FRGetCityListResponse *)response {
+    [self.viewController showLocationPageWithDataModel:response];
+}
+
+- (void)handleGetLivesWeatherResponse:(FRGetLivesWeatherResponse *)getLivesWeatherResponse
+       andGetForecastsWeatherResponse:(FRGetForecastsWeatherResponse *)getForecastsWeatherResponse {
+    FRGetLivesWeatherLivesResponse *livesResponse = getLivesWeatherResponse.lives.firstObject;
+    NSArray<FRWeatherListItemDataModel *> *listItems = [getForecastsWeatherResponse.forecasts.firstObject.casts map:^id _Nonnull(FRGetForecastsWeatherForecastsCastsResponse * _Nonnull element) {
+        return [FRWeatherListItemDataModel dataModelWithTime:element.week
+                                                       image:[FRImageProvider loadImageWithRawValue:element.dayweather]
+                                                     weather:element.daytemp];
+    }];
     FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:livesResponse.temperature
                                                                          weather:livesResponse.weather
                                                                             wind:[livesResponse.winddirection stringByAppendingString:livesResponse.windpower]
                                                                        listItems:listItems];
     [self.viewController updateSubviewsWithDataModel:dataModel];
-}
-
-- (void)handleGetCityResponse:(FRGetCityResponse *)response {
-    [self.viewController showLocationPageWithDataModel:response];
 }
 
 @end

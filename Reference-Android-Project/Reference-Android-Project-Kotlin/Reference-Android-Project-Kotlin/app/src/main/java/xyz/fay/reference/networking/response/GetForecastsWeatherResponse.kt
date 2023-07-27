@@ -28,25 +28,35 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GetWeatherResponse(
+data class GetForecastsWeatherResponse(
     val count: String,
+    val forecasts: Array<GetForecastsWeatherForecastsResponse>,
     val info: String,
     val infocode: String,
-    val lives: Array<GetWeatherLivesResponse>,
     val status: String
 ) : Parcelable
 
 @Parcelize
-data class GetWeatherLivesResponse(
+data class GetForecastsWeatherForecastsResponse(
     val adcode: String,
+    val casts: Array<GetForecastsWeatherForecastsCastsResponse>,
     val city: String,
-    val humidity: String,
-    val humidity_float: String,
     val province: String,
-    val reporttime: String,
-    val temperature: String,
-    val temperature_float: String,
-    val weather: String,
-    val winddirection: String,
-    val windpower: String
+    val reporttime: String
+) : Parcelable
+
+@Parcelize
+data class GetForecastsWeatherForecastsCastsResponse(
+    val date: String,
+    val daypower: String,
+    val daytemp: String,
+    val daytemp_float: String,
+    val dayweather: String,
+    val daywind: String,
+    val nightpower: String,
+    val nighttemp: String,
+    val nighttemp_float: String,
+    val nightweather: String,
+    val nightwind: String,
+    val week: String
 ) : Parcelable

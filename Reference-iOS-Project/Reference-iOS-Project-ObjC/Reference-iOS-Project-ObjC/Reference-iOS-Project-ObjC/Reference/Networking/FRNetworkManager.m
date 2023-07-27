@@ -24,36 +24,58 @@
 
 #import "FRNetworkManager.h"
 #import "FRBundleProvider.h"
-#import "FRGetCityResponse.h"
-#import "FRGetWeatherResponse.h"
+#import "FRGetCityListResponse.h"
+#import "FRGetForecastsWeatherResponse.h"
+#import "FRGetLivesWeatherResponse.h"
 #import "NSObject+JSONModel.h"
 
 @implementation FRNetworkManager
 
 typedef NSString *FRMockFile NS_STRING_ENUM;
-FRMockFile const GET_CITY = @"get_city";
-FRMockFile const GET_WEATHER = @"get_weather";
+FRMockFile const GET_CITY = @"get_city_list";
+FRMockFile const GET_FORECASTS = @"get_forecasts_weather";
+FRMockFile const GET_LIVES = @"get_lives_weather";
+FRMockFile const MOCK_BUNDLE = @"Mock.bundle/";
+FRMockFile const JSON_FILE = @"json";
 
-NSString * const MOCK_BUNDLE = @"Mock.bundle";
-NSString * const JSON_FILE = @"json";
+#pragma mark -
 
 + (instancetype)manager {
-    return [[self alloc] init];
+    return [[super alloc] init];
 }
+
+#pragma mark -
 
 - (void)sendRequest:(Class)response fileName:(FRMockFile)fileName completion:(FRCompletion)completion {
     FRBundleProvider *provider = [FRBundleProvider provider];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", MOCK_BUNDLE, fileName];
+    NSString *filePath = [MOCK_BUNDLE stringByAppendingString:fileName];
     id JSON = [provider loadFile:filePath ofType:JSON_FILE];
     completion([response modelWithJSON:JSON]);
 }
 
-- (void)getCity:(FRCompletion)completion {
-    [self sendRequest:[FRGetCityResponse class] fileName:GET_CITY completion:completion];
+- (void)baseRequest {
+    NSURL *url = [NSURL URLWithString:@"https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"GET";
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error]);
+    }];
+    [dataTask resume];
 }
 
-- (void)getWeather:(FRCompletion)completion {
-    [self sendRequest:[FRGetWeatherResponse class] fileName:GET_WEATHER completion:completion];
+#pragma mark -
+
+- (void)getCityList:(void (^)(id _Nullable))completion {
+    [self sendRequest:[FRGetCityListResponse class] fileName:GET_CITY completion:completion];
+}
+
+- (void)getForecastsWeather:(void (^)(id _Nullable))completion {
+    [self sendRequest:[FRGetForecastsWeatherResponse class] fileName:GET_FORECASTS completion:completion];
+}
+
+- (void)getLivesWeather:(void (^)(id _Nullable))completion {
+    [self sendRequest:[FRGetLivesWeatherResponse class] fileName:GET_LIVES completion:completion];
 }
 
 @end

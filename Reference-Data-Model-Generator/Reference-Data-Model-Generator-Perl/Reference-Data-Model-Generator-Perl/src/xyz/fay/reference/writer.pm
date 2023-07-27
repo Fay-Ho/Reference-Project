@@ -143,7 +143,9 @@ import xyz.fay.parcel.Parcelize;
 public final class $flag_class$flag_suffix extends Parcelable {
 $flag_define
 
-    public $flag_class$flag_suffix($flag_param) {
+    public $flag_class$flag_suffix(
+$flag_param
+    ) {
 $flag_block
     }
 }
@@ -153,9 +155,9 @@ my $flag_java_type_define = "    \@NonNull private final $flag_type$flag_suffix 
 
 my $flag_java_type_list_define = "    \@NonNull private final $flag_type$flag_suffix\[] $flag_var;";
 
-my $flag_java_type_param = "$flag_type$flag_suffix $flag_var";
+my $flag_java_type_param = "            \@NonNull $flag_type$flag_suffix $flag_var";
 
-my $flag_java_type_list_param = "$flag_type$flag_suffix\[] $flag_var";
+my $flag_java_type_list_param = "            \@NonNull $flag_type$flag_suffix\[] $flag_var";
 
 my $flag_java_block = "        this.$flag_var = $flag_var;";
 
@@ -316,7 +318,7 @@ sub create_java_param {
     ));
 
     if ($target_param ne $empty) {
-        $target_param = $target_param.$comma.$space;
+        $target_param = $target_param.$comma.$ln;
     }
 
     return $target_param.$new_param;

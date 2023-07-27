@@ -31,7 +31,7 @@
 }
 
 + (instancetype)makeWithSpacing:(CGFloat)spacing axis:(UILayoutConstraintAxis)axis {
-    UIStackView *view = [[self alloc] init];
+    UIStackView *view = [[super alloc] init];
     view.translatesAutoresizingMaskIntoConstraints = NO;
     view.distribution = UIStackViewDistributionFill;
     view.alignment = UIStackViewAlignmentFill;

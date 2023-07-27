@@ -33,7 +33,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import xyz.fay.reference.R;
 import xyz.fay.reference.databinding.WeatherAdapterBinding;
 import xyz.fay.reference.utils.ImageProvider;
 

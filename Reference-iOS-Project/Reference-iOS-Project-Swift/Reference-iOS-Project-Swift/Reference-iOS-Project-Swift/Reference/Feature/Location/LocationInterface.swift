@@ -29,7 +29,7 @@ protocol LocationInteractorInterface {
 }
 
 protocol LocationPresenterInterface {
-    func handleGetCityResponse()
+    func handleGetCityListResponse()
 }
 
 protocol LocationViewControllerInterface: NSObject {

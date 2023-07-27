@@ -73,7 +73,7 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
             }
         });
         LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
-        getViewModel().handleGetCityResponse(args.getResponse());
+        getViewModel().handleGetCityListResponse(args.getResponse());
     }
 
     //endregion

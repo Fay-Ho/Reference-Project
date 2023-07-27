@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FRLocationPresenterInterface <NSObject>
 
-- (void)handleGetCityResponse;
+- (void)handleGetCityListResponse;
 
 @end
 

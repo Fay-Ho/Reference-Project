@@ -28,18 +28,18 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
-import xyz.fay.reference.networking.response.GetCityResponse
+import xyz.fay.reference.networking.response.GetCityListResponse
 
 class WeatherViewModel : ViewModel() {
     private val _weatherDataModel = MutableLiveData<WeatherDataModel>()
     val weatherDataModel: MutableLiveData<WeatherDataModel> get() = _weatherDataModel
 
-    private val _getCityResponse = MutableLiveData<GetCityResponse>()
-    val getCityResponse: MutableLiveData<GetCityResponse> get() = _getCityResponse
+    private val _getCityListResponse = MutableLiveData<GetCityListResponse>()
+    val getCityListResponse: MutableLiveData<GetCityListResponse> get() = _getCityListResponse
 
     fun viewIsReady(context: Context) {
         val manager = NetworkManager()
-        manager.getWeather(context) {
+        manager.getLivesWeather(context) {
             it?.let {
                 val dataModel = WeatherDataModel(
                     it.lives.first().temperature,
@@ -51,29 +51,10 @@ class WeatherViewModel : ViewModel() {
         }
     }
 
-    fun fetchCityData(context: Context) {
+    fun fetchCityList(context: Context) {
         val manager = NetworkManager()
-        manager.getCity(context) {
-            it?.let {
-                _getCityResponse.postValue(it)
-            }
-        }
+
+        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+        manager.getCityList(context, _getCityListResponse::postValue)
     }
-//    fun fetchCityData(context: Context) {
-//        val manager = NetworkManager()
-//        manager.getCity(context) {
-//            it?.let {
-//                // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//                _getCityResponse::setValue
-//                _getCityResponse::postValue
-//
-//                // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//                _getCityResponse.value = it
-//                _getCityResponse.postValue(it)
-//            }
-//        }
-//        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//        manager.getCity(context, _getCityResponse::setValue)
-//        manager.getCity(context, _getCityResponse::postValue)
-//    }
 }

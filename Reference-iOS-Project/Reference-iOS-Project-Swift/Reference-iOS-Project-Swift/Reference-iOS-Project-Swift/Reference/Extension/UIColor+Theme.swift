@@ -29,7 +29,7 @@ extension UIColor {
         UIColor(hex: "#00008833")
     }
     
-    class var dashboard: UIColor {
+    class var item: UIColor {
         UIColor(hex: "#0000000f")
     }
     

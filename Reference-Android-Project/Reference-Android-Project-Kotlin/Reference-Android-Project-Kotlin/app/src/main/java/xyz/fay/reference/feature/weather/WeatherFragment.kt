@@ -32,9 +32,6 @@ import xyz.fay.reference.utils.ImageProvider
 class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(WeatherFragmentBinding::inflate) {
     //region --- Override Methods ---
 
-//    override fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToParent: Boolean) =
-//        WeatherFragmentBinding.inflate(inflater, container, attachToParent)
-
     override fun createViewModel() =
         WeatherViewModel::class
 
@@ -69,10 +66,10 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     private fun setupImageView() {
         binding.imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()))
         binding.imageView.setOnClickListener {
-            viewModel.getCityResponse.observe(viewLifecycleOwner) {
+            viewModel.getCityListResponse.observe(viewLifecycleOwner) {
                 findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))
             }
-            viewModel.fetchCityData(requireContext())
+            viewModel.fetchCityList(requireContext())
         }
     }
 

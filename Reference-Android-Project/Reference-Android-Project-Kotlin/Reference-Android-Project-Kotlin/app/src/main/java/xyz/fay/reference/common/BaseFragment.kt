@@ -35,6 +35,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KClass
 
+// Implementation 1
 abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: (LayoutInflater, ViewGroup?, Boolean) -> VB) : Fragment() {
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
@@ -42,8 +43,13 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: 
     protected lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Implementation 1
         _binding = bindingCreator(inflater, container, false)
+
+        // Implementation 2
 //        _binding = createViewBinding(inflater, container, false)
+
+        // Implementation 3
 //        val type = javaClass.genericSuperclass as ParameterizedType
 //        val cls = type.actualTypeArguments[0] as Class<*>
 //        val method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
@@ -66,6 +72,7 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: 
         (activity as AppCompatActivity).supportActionBar?.show()
     }
 
+    // Implementation 2
 //    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToParent: Boolean): VB
 
     protected abstract fun createViewModel(): KClass<VM>

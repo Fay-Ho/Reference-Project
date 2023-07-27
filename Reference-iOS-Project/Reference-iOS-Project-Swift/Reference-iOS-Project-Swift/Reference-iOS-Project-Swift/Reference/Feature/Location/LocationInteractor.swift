@@ -30,6 +30,6 @@ class LocationInteractor {
 
 extension LocationInteractor : LocationInteractorInterface {
     func viewIsReady() {
-        presenter?.handleGetCityResponse()
+        presenter?.handleGetCityListResponse()
     }
 }

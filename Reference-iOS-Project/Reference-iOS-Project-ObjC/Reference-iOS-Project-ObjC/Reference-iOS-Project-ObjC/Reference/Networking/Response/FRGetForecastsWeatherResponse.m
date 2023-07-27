@@ -22,45 +22,64 @@
 //  SOFTWARE.
 //
 
-#import "FRGetWeatherResponse.h"
+#import "FRGetForecastsWeatherResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRGetWeatherResponse ()
+@interface FRGetForecastsWeatherResponse ()
 
 @property (nonatomic, strong, readwrite) NSString *count;
+@property (nonatomic, strong, readwrite) NSArray<FRGetForecastsWeatherForecastsResponse *> *forecasts;
 @property (nonatomic, strong, readwrite) NSString *info;
 @property (nonatomic, strong, readwrite) NSString *infocode;
-@property (nonatomic, strong, readwrite) NSArray<FRGetWeatherLivesResponse *> *lives;
 @property (nonatomic, strong, readwrite) NSString *status;
 
 @end
 
-@implementation FRGetWeatherResponse
+@implementation FRGetForecastsWeatherResponse
 
-- (NSDictionary<NSString *,NSString *> *)unkeyedContainer {
-    return @{@"lives": @"FRGetWeatherLivesResponse"};
+- (NSDictionary<NSString *, NSString *> *)unkeyedContainer {
+    return @{@"forecasts": @"FRGetForecastsWeatherForecastsResponse"};
 }
 
 @end
 
-@interface FRGetWeatherLivesResponse ()
+@interface FRGetForecastsWeatherForecastsResponse ()
 
 @property (nonatomic, strong, readwrite) NSString *adcode;
+@property (nonatomic, strong, readwrite) NSArray<FRGetForecastsWeatherForecastsCastsResponse *> *casts;
 @property (nonatomic, strong, readwrite) NSString *city;
-@property (nonatomic, strong, readwrite) NSString *humidity;
-@property (nonatomic, strong, readwrite) NSString *humidity_float;
 @property (nonatomic, strong, readwrite) NSString *province;
 @property (nonatomic, strong, readwrite) NSString *reporttime;
-@property (nonatomic, strong, readwrite) NSString *temperature;
-@property (nonatomic, strong, readwrite) NSString *temperature_float;
-@property (nonatomic, strong, readwrite) NSString *weather;
-@property (nonatomic, strong, readwrite) NSString *winddirection;
-@property (nonatomic, strong, readwrite) NSString *windpower;
 
 @end
 
-@implementation FRGetWeatherLivesResponse
+@implementation FRGetForecastsWeatherForecastsResponse
+
+- (NSDictionary<NSString *, NSString *> *)unkeyedContainer {
+    return @{@"casts": @"FRGetForecastsWeatherForecastsCastsResponse"};
+}
+
+@end
+
+@interface FRGetForecastsWeatherForecastsCastsResponse ()
+
+@property (nonatomic, strong, readwrite) NSString *date;
+@property (nonatomic, strong, readwrite) NSString *daypower;
+@property (nonatomic, strong, readwrite) NSString *daytemp;
+@property (nonatomic, strong, readwrite) NSString *daytemp_float;
+@property (nonatomic, strong, readwrite) NSString *dayweather;
+@property (nonatomic, strong, readwrite) NSString *daywind;
+@property (nonatomic, strong, readwrite) NSString *nightpower;
+@property (nonatomic, strong, readwrite) NSString *nighttemp;
+@property (nonatomic, strong, readwrite) NSString *nighttemp_float;
+@property (nonatomic, strong, readwrite) NSString *nightweather;
+@property (nonatomic, strong, readwrite) NSString *nightwind;
+@property (nonatomic, strong, readwrite) NSString *week;
+
+@end
+
+@implementation FRGetForecastsWeatherForecastsCastsResponse
 
 @end
 

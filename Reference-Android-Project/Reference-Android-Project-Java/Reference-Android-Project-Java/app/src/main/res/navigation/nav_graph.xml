@@ -21,7 +21,7 @@
         tools:layout="@layout/location_fragment">
         <argument
             android:name="response"
-            app:argType="xyz.fay.reference.networking.response.GetCityResponse"
+            app:argType="xyz.fay.reference.networking.response.GetCityListResponse"
             app:nullable="true" />
     </fragment>
 

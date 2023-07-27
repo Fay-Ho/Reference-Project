@@ -30,13 +30,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRLocationDataModel : NSObject
 
-@property (nonatomic, strong) NSArray<FRLocationRowDataModel *> *rows;
+@property (nonatomic, strong, readonly) NSArray<FRLocationRowDataModel *> *rowDataModels;
+
++ (instancetype)dataModelWithRowDataModels:(NSArray<FRLocationRowDataModel *> *)rowDataModels;
 
 @end
 
 @interface FRLocationRowDataModel : NSObject
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong, readonly) NSString *name;
+
++ (instancetype)dataModelWithName:(NSString *)name;
 
 @end
 

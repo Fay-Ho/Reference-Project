@@ -24,10 +24,38 @@
 
 #import "FRLocationDataModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface FRLocationDataModel ()
+
+@property (nonatomic, strong, readwrite) NSArray<FRLocationRowDataModel *> *rowDataModels;
+
+@end
+
 @implementation FRLocationDataModel
+
++ (instancetype)dataModelWithRowDataModels:(NSArray<FRLocationRowDataModel *> *)rowDataModels {
+    FRLocationDataModel *dataModel = [[super alloc] init];
+    dataModel.rowDataModels = rowDataModels;
+    return dataModel;
+}
+
+@end
+
+@interface FRLocationRowDataModel ()
+
+@property (nonatomic, strong, readwrite) NSString *name;
 
 @end
 
 @implementation FRLocationRowDataModel
 
++ (instancetype)dataModelWithName:(NSString *)name {
+    FRLocationRowDataModel *dataModel = [[super alloc] init];
+    dataModel.name = name;
+    return dataModel;
+}
+
 @end
+
+NS_ASSUME_NONNULL_END

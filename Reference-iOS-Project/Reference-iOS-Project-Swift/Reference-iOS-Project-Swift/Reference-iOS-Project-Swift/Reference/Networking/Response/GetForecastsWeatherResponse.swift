@@ -22,11 +22,33 @@
 //  SOFTWARE.
 //
 
-struct GetCityResponse : Codable {
-    let cities: [GetCityCitiesResponse]
+struct GetForecastsWeatherResponse : Codable {
+    let count: String
+    let forecasts: [GetForecastsWeatherForecastsResponse]
+    let info: String
+    let infocode: String
+    let status: String
 }
 
-struct GetCityCitiesResponse : Codable {
+struct GetForecastsWeatherForecastsResponse : Codable {
     let adcode: String
-    let name: String
+    let casts: [GetForecastsWeatherForecastsCastsResponse]
+    let city: String
+    let province: String
+    let reporttime: String
+}
+
+struct GetForecastsWeatherForecastsCastsResponse : Codable {
+    let date: String
+    let daypower: String
+    let daytemp: String
+    let daytemp_float: String
+    let dayweather: String
+    let daywind: String
+    let nightpower: String
+    let nighttemp: String
+    let nighttemp_float: String
+    let nightweather: String
+    let nightwind: String
+    let week: String
 }

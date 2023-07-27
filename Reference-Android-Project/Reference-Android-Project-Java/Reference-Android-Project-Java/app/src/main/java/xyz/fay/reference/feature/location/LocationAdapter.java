@@ -49,12 +49,12 @@ public class LocationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.titleView.setText(dataModel.getRows()[position].getName());
+        viewHolder.titleView.setText(dataModel.getRowDataModels()[position].getName());
     }
 
     @Override
     public int getItemCount() {
-        return dataModel.getRows().length;
+        return dataModel.getRowDataModels().length;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

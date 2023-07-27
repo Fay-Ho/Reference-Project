@@ -39,28 +39,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment {
-//    private final BindingCreator<VB> bindingCreator;
     private VB binding;
     private VM viewModel;
-
-//    public BaseFragment(BindingCreator<VB> bindingCreator) {
-//        this.bindingCreator = bindingCreator;
-//    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = getBindingCreator().onCreate(inflater, container, false);
-//        binding = bindingCreator.onCreate(inflater, container, false);
-//        binding = createViewBinding(inflater, container, false);
-//        Type superClass = getClass().getGenericSuperclass();
-//        Class<?> cls = (Class<?>) ((ParameterizedType) superClass).getActualTypeArguments()[0];
-//        try {
-//            Method method = cls.getDeclaredMethod("inflate", LayoutInflater.class, ViewGroup.class, Boolean.class);
-//            binding = (VB) method.invoke(null, inflater, container, false);
-//        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
         viewModel = new ViewModelProvider(this).get(createViewModel());
         onCreateView();
         return binding.getRoot();
@@ -102,8 +87,6 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
 
     @NonNull
     protected abstract BindingCreator<VB> getBindingCreator();
-//    @NonNull
-//    protected abstract VB createViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Boolean attachToParent);
 
     @NonNull
     protected abstract Class<VM> createViewModel();

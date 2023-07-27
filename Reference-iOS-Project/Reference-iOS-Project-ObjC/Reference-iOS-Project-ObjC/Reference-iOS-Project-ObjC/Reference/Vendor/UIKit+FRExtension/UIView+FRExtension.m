@@ -27,13 +27,13 @@
 @implementation UIView (FRExtension)
 
 + (instancetype)make {
-    UIView *view = [[self alloc] init];
+    UIView *view = [[super alloc] init];
     view.translatesAutoresizingMaskIntoConstraints = NO;
     return view;
 }
 
 + (instancetype)copyView:(UIView *)view {
-    UIView *_view = [[self alloc] initWithFrame:view.frame];
+    UIView *_view = [[super alloc] initWithFrame:view.frame];
     _view.translatesAutoresizingMaskIntoConstraints = NO;
     _view.backgroundColor = view.backgroundColor;
     return _view;

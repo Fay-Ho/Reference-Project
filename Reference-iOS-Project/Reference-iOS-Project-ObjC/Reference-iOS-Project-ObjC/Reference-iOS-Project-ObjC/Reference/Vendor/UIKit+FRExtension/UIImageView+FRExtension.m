@@ -27,7 +27,7 @@
 @implementation UIImageView (FRExtension)
 
 + (instancetype)makeWithImage:(UIImage *)image {
-    UIImageView *view = [[self alloc] initWithImage:image];
+    UIImageView *view = [[super alloc] initWithImage:image];
     view.translatesAutoresizingMaskIntoConstraints = NO;
     return view;
 }

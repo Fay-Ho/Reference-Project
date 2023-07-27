@@ -25,60 +25,24 @@ package xyz.fay.reference.feature.weather;
 */
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import xyz.fay.reference.common.BaseFragment;
 import xyz.fay.reference.common.BindingCreator;
 import xyz.fay.reference.databinding.WeatherFragmentBinding;
-import xyz.fay.reference.networking.response.GetCityResponse;
 import xyz.fay.reference.utils.ImageProvider;
 
 public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
     //region --- Override Methods ---
 
-//    WeatherFragment() {
-//        super(new BindingCreator<WeatherFragmentBinding>() {
-//            @Override
-//            public WeatherFragmentBinding onCreate(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @NonNull Boolean attachToParent) {
-//                return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-//            }
-//        });
-//        super((layoutInflater, viewGroup, attachToParent) -> {
-//            return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-//        });
-//        super((layoutInflater, viewGroup, attachToParent) -> WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent));
-//        super(WeatherFragmentBinding::inflate);
-//    }
-
     @NonNull
     @Override
     protected BindingCreator<WeatherFragmentBinding> getBindingCreator() {
-        return new BindingCreator<WeatherFragmentBinding>() {
-            @Override
-            public WeatherFragmentBinding onCreate(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @NonNull Boolean attachToParent) {
-                return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-            }
-        };
-//        return (layoutInflater, viewGroup, attachToParent) -> {
-//            return WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-//        };
-//        return (layoutInflater, viewGroup, attachToParent) -> WeatherFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-//        return WeatherFragmentBinding::inflate;
+        return WeatherFragmentBinding::inflate;
     }
-//    @NonNull
-//    @Override
-//    protected WeatherFragmentBinding createViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @NonNull Boolean attachToParent) {
-//        return WeatherFragmentBinding.inflate(inflater, container, attachToParent);
-//    }
 
     @NonNull
     @Override
@@ -94,24 +58,7 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     public void onCreateView() {
         hideActionBar();
         setupSubviews();
-        getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), new Observer<WeatherDataModel>() {
-            @Override
-            public void onChanged(WeatherDataModel dataModel) {
-                getBinding().temperatureView.setText(dataModel.getTemperature());
-                getBinding().weatherView.setText(dataModel.getWeather());
-                getBinding().windView.setText(dataModel.getWind());
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
-                linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-                getBinding().recyclerView.setLayoutManager(linearLayoutManager);
-                getBinding().recyclerView.setAdapter(new WeatherAdapter());
-            }
-        });
-//        getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), dataModel -> {
-//            getBinding().temperatureView.setText(dataModel.getTemperature());
-//            getBinding().weatherView.setText(dataModel.getWeather());
-//            getBinding().windView.setText(dataModel.getWeather());
-//        });
-        getViewModel().viewIsReady(requireContext());
+        observeWeatherDataModel();
     }
 
     @Override
@@ -130,26 +77,30 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 
     private void setupImageView() {
         getBinding().imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()));
-        getBinding().imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getViewModel().getGetCityResponse().observe(getViewLifecycleOwner(), new Observer<GetCityResponse>() {
-                    @Override
-                    public void onChanged(GetCityResponse response) {
-                        NavController navController = NavHostFragment.findNavController(WeatherFragment.this);
-                        navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
-                    }
-                });
-                getViewModel().fetchCityData(requireContext());
-            }
+        getBinding().imageView.setOnClickListener(v -> {
+            getViewModel().getGetCityListResponse().observe(getViewLifecycleOwner(), response -> {
+                NavController navController = NavHostFragment.findNavController(this);
+                navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
+            });
+            getViewModel().fetchCityList(requireContext());
         });
-//        getBinding().imageView.setOnClickListener(v -> {
-//            getViewModel().getGetCityResponse().observe(getViewLifecycleOwner(), response -> {
-//                NavController navController = NavHostFragment.findNavController(this);
-//                navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
-//            });
-//            getViewModel().fetchCityData(requireContext());
-//        });
+    }
+
+    //endregion
+
+    //region --- Event Management ---
+
+    private void observeWeatherDataModel() {
+        getViewModel().getWeatherDataModel().observe(getViewLifecycleOwner(), dataModel -> {
+            getBinding().temperatureView.setText(dataModel.getTemperature());
+            getBinding().weatherView.setText(dataModel.getWeather());
+            getBinding().windView.setText(dataModel.getWind());
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            getBinding().recyclerView.setLayoutManager(linearLayoutManager);
+            getBinding().recyclerView.setAdapter(new WeatherAdapter());
+        });
+        getViewModel().viewIsReady(requireContext());
     }
 
     //endregion

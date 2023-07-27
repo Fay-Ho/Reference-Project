@@ -30,6 +30,8 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Arrays;
+
 import xyz.fay.reference.R;
 
 public enum ImageProvider {
@@ -55,16 +57,10 @@ public enum ImageProvider {
 
     @Nullable
     public static ImageProvider rawValue(@NonNull String rawValue) {
-        for (ImageProvider imageProvider : values()) {
-            if (imageProvider.rawValue.equals(rawValue)) {
-                return imageProvider;
-            }
-        }
-        return null;
-//        return Arrays.stream(values())
-//                .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
-//                .findFirst()
-//                .orElse(null);
+        return Arrays.stream(values())
+                .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
+                .findFirst()
+                .orElse(null);
     }
 
     @Nullable

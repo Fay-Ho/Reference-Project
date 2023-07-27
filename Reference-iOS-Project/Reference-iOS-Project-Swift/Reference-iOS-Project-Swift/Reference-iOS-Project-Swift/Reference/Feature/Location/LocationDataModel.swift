@@ -23,7 +23,7 @@
 //
 
 struct LocationDataModel : Codable {
-    let rows: [LocationRowDataModel]
+    let rowDataModels: [LocationRowDataModel]
 }
 
 struct LocationRowDataModel : Codable {

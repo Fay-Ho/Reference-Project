@@ -26,18 +26,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FRGetCityCitiesResponse;
+@class FRGetLivesWeatherLivesResponse;
 
-@interface FRGetCityResponse : NSObject
+@interface FRGetLivesWeatherResponse : NSObject
 
-@property (nonatomic, strong, readonly) NSArray<FRGetCityCitiesResponse *> *cities;
+@property (nonatomic, strong, readonly) NSString *count;
+@property (nonatomic, strong, readonly) NSString *info;
+@property (nonatomic, strong, readonly) NSString *infocode;
+@property (nonatomic, strong, readonly) NSArray<FRGetLivesWeatherLivesResponse *> *lives;
+@property (nonatomic, strong, readonly) NSString *status;
 
 @end
 
-@interface FRGetCityCitiesResponse : NSObject
+@interface FRGetLivesWeatherLivesResponse : NSObject
 
 @property (nonatomic, strong, readonly) NSString *adcode;
-@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSString *city;
+@property (nonatomic, strong, readonly) NSString *humidity;
+@property (nonatomic, strong, readonly) NSString *humidity_float;
+@property (nonatomic, strong, readonly) NSString *province;
+@property (nonatomic, strong, readonly) NSString *reporttime;
+@property (nonatomic, strong, readonly) NSString *temperature;
+@property (nonatomic, strong, readonly) NSString *temperature_float;
+@property (nonatomic, strong, readonly) NSString *weather;
+@property (nonatomic, strong, readonly) NSString *winddirection;
+@property (nonatomic, strong, readonly) NSString *windpower;
 
 @end
 

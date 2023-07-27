@@ -26,7 +26,7 @@ import UIKit
 
 class LocationViewController : UITableViewController {
     var interactor: LocationInteractorInterface?
-    var tableViewDataModel: LocationDataModel?
+    var dataModel: LocationDataModel?
     
     // MARK: - View Lifecycle
     
@@ -49,7 +49,7 @@ extension LocationViewController {
 
 extension LocationViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableViewDataModel?.rows.count ?? 0
+        dataModel?.rowDataModels.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,7 +59,7 @@ extension LocationViewController {
             cell?.textLabel?.textColor = .font
             cell?.backgroundColor = .clear
         }
-        cell?.textLabel?.text = tableViewDataModel?.rows[indexPath.row].name
+        cell?.textLabel?.text = dataModel?.rowDataModels[indexPath.row].name
         return cell!
     }
 }
@@ -68,6 +68,6 @@ extension LocationViewController {
 
 extension LocationViewController : LocationViewControllerInterface {
     func updateTableView(dataModel: LocationDataModel) {
-        tableViewDataModel = dataModel
+        dataModel = dataModel
     }
 }

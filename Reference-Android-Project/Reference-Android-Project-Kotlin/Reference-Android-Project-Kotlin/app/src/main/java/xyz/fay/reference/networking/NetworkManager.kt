@@ -26,32 +26,54 @@ package xyz.fay.reference.networking
 
 import android.content.Context
 import android.os.Parcelable
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import xyz.fay.reference.networking.response.*
 import xyz.fay.reference.utils.AssetProvider
 import kotlin.reflect.KClass
 
 class NetworkManager {
-    private val mock = "mock/"
-
     private enum class MockFile(val rawValue: String) {
-        GET_CITY("get_city.json"),
-        GET_WEATHER("get_weather.json")
+        GET_CITY_LIST("get_city_list.json"),
+        GET_FORECASTS_WEATHER("get_forecasts_weather.json"),
+        GET_LIVES_WEATHER("get_lives_weather.json"),
+        MOCK_ASSET("mock/")
     }
 
     private fun <R: Parcelable> sendRequest(context: Context, parcelableResponse: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
-        val jsonString = AssetProvider.loadFile(context, mock + fileName.rawValue)
+        val jsonString = AssetProvider.loadFile(context, MockFile.MOCK_ASSET.rawValue + fileName.rawValue)
         completion?.let {
             it(parseData(jsonString, parcelableResponse))
         }
     }
 
+    private fun baseRequest(context: Context) {
+        val queue = Volley.newRequestQueue(context);
+        val url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"
+//        val stringRequest = StringRequest(Request.Method.GET, url, Response.Listener { response ->
+//            println(response)
+//        }, Response.ErrorListener { error ->
+//            println(error)
+//        })
+        val stringRequest = StringRequest(Request.Method.GET, url, {
+            println(it)
+        }, {
+            println(it)
+        })
+        queue.add(stringRequest)
+    }
+
     private fun <R: Parcelable> parseData(data: String, response: KClass<R>): R =
         Gson().fromJson(data, response.java)
 
-    fun getCity(context: Context, completion: ((response: GetCityResponse?) -> Unit)?) =
-        sendRequest(context, GetCityResponse::class, MockFile.GET_CITY, completion)
+    fun getCityList(context: Context, completion: ((response: GetCityListResponse?) -> Unit)?) =
+        sendRequest(context, GetCityListResponse::class, MockFile.GET_CITY_LIST, completion)
 
-    fun getWeather(context: Context, completion: ((response: GetWeatherResponse?) -> Unit)?) =
-        sendRequest(context, GetWeatherResponse::class, MockFile.GET_WEATHER, completion)
+    fun getForecastsWeather(context: Context, completion: ((response: GetForecastsWeatherResponse?) -> Unit)?) =
+        sendRequest(context, GetForecastsWeatherResponse::class, MockFile.GET_FORECASTS_WEATHER, completion)
+
+    fun getLivesWeather(context: Context, completion: ((response: GetLivesWeatherResponse?) -> Unit)?) =
+        sendRequest(context, GetLivesWeatherResponse::class, MockFile.GET_LIVES_WEATHER, completion)
 }

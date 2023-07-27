@@ -27,7 +27,7 @@
 @implementation FRBundleProvider
 
 + (instancetype)provider {
-    return [[self alloc] init];
+    return [[super alloc] init];
 }
 
 - (id)loadFile:(NSString *)filePath ofType:(NSString *)type {

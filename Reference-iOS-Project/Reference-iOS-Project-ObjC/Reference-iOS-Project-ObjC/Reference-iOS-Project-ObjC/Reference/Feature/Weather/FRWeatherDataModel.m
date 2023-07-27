@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
                                  weather:(NSString *)weather
                                     wind:(NSString *)wind
                                listItems:(NSArray<FRWeatherListItemDataModel *> *)listItems {
-    FRWeatherDataModel *dataModel = [[self alloc] init];
+    FRWeatherDataModel *dataModel = [[super alloc] init];
     dataModel.temperature = temperature;
     dataModel.weather = weather;
     dataModel.wind = wind;
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)dataModelWithTime:(NSString *)time
                             image:(UIImage *)image
                           weather:(NSString *)weather {
-    FRWeatherListItemDataModel *model = [[self alloc] init];
+    FRWeatherListItemDataModel *model = [[super alloc] init];
     model.time = time;
     model.image = image;
     model.weather = weather;

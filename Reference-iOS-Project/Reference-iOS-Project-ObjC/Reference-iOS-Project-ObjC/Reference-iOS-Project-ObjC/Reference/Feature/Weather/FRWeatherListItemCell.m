@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
 
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
-        _titleLabel = [UILabel makeWithText:_viewModel.title textAlignment:NSTextAlignmentNatural];
+        _titleLabel = [UILabel makeWithText:_viewModel.title textAlignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
 }
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_END
 
 - (UILabel *)valueLabel {
     if (!_valueLabel) {
-        _valueLabel = [UILabel makeWithText:_viewModel.value textAlignment:NSTextAlignmentNatural];
+        _valueLabel = [UILabel makeWithText:_viewModel.value textAlignment:NSTextAlignmentCenter];
     }
     return _valueLabel;
 }
@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark - Lifecycle
 
 + (instancetype)cellWithViewModel:(FRWeatherListItemCellViewModel *)viewModel {
-    FRWeatherListItemCell *cell = [[self alloc] init];
+    FRWeatherListItemCell *cell = [[super alloc] init];
     cell.viewModel = viewModel;
     [cell setupSubviews];
     [cell setupLayouts];
@@ -120,7 +120,7 @@ NS_ASSUME_NONNULL_END
 + (instancetype)viewModelWithTitle:(NSString *)title
                              image:(UIImage *)image
                              value:(NSString *)value {
-    FRWeatherListItemCellViewModel *viewModel = [[self alloc] init];
+    FRWeatherListItemCellViewModel *viewModel = [[super alloc] init];
     viewModel.title = title;
     viewModel.image = image;
     viewModel.value = value;

@@ -39,7 +39,7 @@
 }
 
 + (instancetype)makeWithText:(NSString *)text numberOfLines:(int)numberOfLines textAlignment:(NSTextAlignment)textAlignment {
-    UILabel *label = [[self alloc] init];
+    UILabel *label = [[super alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.adjustsFontForContentSizeCategory = YES;
     label.numberOfLines = numberOfLines;

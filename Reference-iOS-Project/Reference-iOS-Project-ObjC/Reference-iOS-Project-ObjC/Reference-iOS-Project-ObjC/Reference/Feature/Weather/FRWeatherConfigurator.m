@@ -30,7 +30,7 @@
 @implementation FRWeatherConfigurator
 
 + (instancetype)configurator {
-    return [[self alloc] init];
+    return [[super alloc] init];
 }
 
 - (UIViewController *)makeViewControllerWithDataModel:(id)dataModel {

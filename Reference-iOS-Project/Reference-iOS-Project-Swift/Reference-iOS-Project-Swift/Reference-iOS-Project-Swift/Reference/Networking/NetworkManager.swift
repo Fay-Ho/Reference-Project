@@ -25,18 +25,34 @@
 import Foundation
 
 class NetworkManager {
-    private let mockBundle = "Mock.bundle/"
-    private let jsonFile = "json"
-    
     private enum MockFile: String {
-        case city = "get_city"
-        case weather = "get_weather"
+        case city = "get_city_list"
+        case forecasts = "get_forecaste_weather"
+        case lives = "get_lives_weather"
+        case mockBundle = "Mock.bundle/"
+        case jsonFile = "json"
     }
     
     private func sendRequest<R: Decodable>(fileName: MockFile, completion: ((_ response: R?) -> Void)?) {
-        let jsonData = BundleProvider.loadFile(mockBundle + fileName.rawValue, type: jsonFile)
+        let jsonData = BundleProvider.loadFile(MockFile.mockBundle.rawValue + fileName.rawValue, type: MockFile.jsonFile.rawValue)
         guard let data = jsonData else { return }
         parseData(data: data, completion: completion)
+    }
+    
+    private func baseRequest() {
+        guard let url = URL(string: "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments)
+                print(json)
+            } catch {
+                print(error)
+            }
+        }
+        dataTask.resume()
     }
     
     private func parseData<R: Decodable>(data: Data, completion: ((_ response: R?) -> Void)?) {
@@ -48,11 +64,11 @@ class NetworkManager {
         }
     }
     
-    func getCity(completion: ((_ response: GetCityResponse?) -> Void)?) {
+    func getCityList(completion: ((_ response: GetCityListResponse?) -> Void)?) {
         sendRequest(fileName: .city, completion: completion)
     }
     
-    func getWeather(completion: ((_ response: GetWeatherResponse?) -> Void)?) {
-        sendRequest(fileName: .weather, completion: completion)
+    func getLivesWeather(completion: ((_ response: GetLivesWeatherResponse?) -> Void)?) {
+        sendRequest(fileName: .lives, completion: completion)
     }
 }

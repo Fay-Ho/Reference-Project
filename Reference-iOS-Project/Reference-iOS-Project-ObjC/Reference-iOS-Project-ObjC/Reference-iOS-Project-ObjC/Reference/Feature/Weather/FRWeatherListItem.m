@@ -60,7 +60,7 @@
 #pragma mark - Lifecycle
 
 + (instancetype)item {
-    FRWeatherListItem *item = [[self alloc] init];
+    FRWeatherListItem *item = [[super alloc] init];
     [item setupSubviews];
     [item setupLayouts];
     [item updateStyling];
@@ -92,8 +92,7 @@
         FRWeatherListItemCellViewModel *viewModel = [FRWeatherListItemCellViewModel viewModelWithTitle:element.time
                                                                                                  image:element.image
                                                                                                  value:element.weather];
-        FRWeatherListItemCell *cell = [FRWeatherListItemCell cellWithViewModel:viewModel];
-        return cell;
+        return [FRWeatherListItemCell cellWithViewModel:viewModel];
     }];
     [self.container addArrangedSubviews:cells];
 }

@@ -27,7 +27,7 @@
 
 @interface FRLocationViewController ()
 
-@property (nonatomic, strong) FRLocationDataModel *tableViewDataModel;
+@property (nonatomic, strong) FRLocationDataModel *dataModel;
 
 @end
 
@@ -50,7 +50,7 @@
 #pragma mark - UITableViewDataSource Implementation
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tableViewDataModel.rows.count;
+    return self.dataModel.rowDataModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,14 +60,14 @@
         cell.textLabel.textColor = [UIColor fontColor];
         cell.backgroundColor = [UIColor clearColor];
     }
-    cell.textLabel.text = self.tableViewDataModel.rows[indexPath.row].name;
+    cell.textLabel.text = self.dataModel.rowDataModels[indexPath.row].name;
     return cell;
 }
 
 #pragma mark - FRLocationViewControllerInterface Implementation
 
 - (void)updateTableViewWithDataModel:(FRLocationDataModel *)dataModel {
-    self.tableViewDataModel = dataModel;
+    self.dataModel = dataModel;
 }
 
 @end

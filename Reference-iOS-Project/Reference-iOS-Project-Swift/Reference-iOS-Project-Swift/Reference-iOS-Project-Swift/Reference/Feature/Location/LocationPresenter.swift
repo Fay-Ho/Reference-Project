@@ -32,10 +32,8 @@ class LocationPresenter {
 // MARK: - LocationPresenterInterface Implementation
 
 extension LocationPresenter : LocationPresenterInterface {
-    func handleGetCityResponse() {
-        guard let dataModel = dataModel as? GetCityResponse else { return }
-        let rows = dataModel.cities.map { LocationRowDataModel(name: $0.name) }
-        let model = LocationDataModel(rows: rows)
-        viewController?.updateTableView(dataModel: model)
+    func handleGetCityListResponse() {
+        guard let response = dataModel as? GetCityListResponse else { return }
+        viewController?.updateTableView(dataModel: LocationDataModel(rowDataModels: response.cities.map { LocationRowDataModel(name: $0.name) }))
     }
 }

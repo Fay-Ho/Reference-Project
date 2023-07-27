@@ -29,7 +29,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LocationDataModel(
-    val rows: Array<LocationRowDataModel>
+    val rowDataModels: Array<LocationRowDataModel>
 ) : Parcelable
 
 @Parcelize

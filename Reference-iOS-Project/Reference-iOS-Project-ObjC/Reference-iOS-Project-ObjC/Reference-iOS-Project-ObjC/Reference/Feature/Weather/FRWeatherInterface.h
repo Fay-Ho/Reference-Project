@@ -23,8 +23,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FRGetWeatherResponse.h"
-#import "FRGetCityResponse.h"
+#import "FRGetCityListResponse.h"
+#import "FRGetForecastsWeatherResponse.h"
+#import "FRGetLivesWeatherResponse.h"
 #import "FRWeatherDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -32,14 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol FRWeatherInteractorInterface <NSObject>
 
 - (void)viewIsReady;
-- (void)fetchCityData;
+- (void)fetchCityList;
 
 @end
 
 @protocol FRWeatherPresenterInterface <NSObject>
 
-- (void)handleGetWeatherResponse:(FRGetWeatherResponse *)response;
-- (void)handleGetCityResponse:(FRGetCityResponse *)response;
+- (void)handleGetCityListResponse:(FRGetCityListResponse *)response;
+- (void)handleGetLivesWeatherResponse:(FRGetLivesWeatherResponse *)getLivesWeatherResponse
+       andGetForecastsWeatherResponse:(FRGetForecastsWeatherResponse *)getForecastsWeatherResponse;
 
 @end
 

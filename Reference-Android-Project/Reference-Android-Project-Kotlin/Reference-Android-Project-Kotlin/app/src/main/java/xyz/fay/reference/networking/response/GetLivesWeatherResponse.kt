@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking.response;
+package xyz.fay.reference.networking.response
 
 /*
   MIT License
@@ -24,16 +24,29 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
-import androidx.annotation.NonNull;
-
-import xyz.fay.parcel.Parcelable;
-import xyz.fay.parcel.Parcelize;
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
-public final class GetCityResponse extends Parcelable {
-    @NonNull private final GetCityCitiesResponse[] cities;
+data class GetLivesWeatherResponse(
+    val count: String,
+    val info: String,
+    val infocode: String,
+    val lives: Array<GetLivesWeatherLivesResponse>,
+    val status: String
+) : Parcelable
 
-    public GetCityResponse(GetCityCitiesResponse[] cities) {
-        this.cities = cities;
-    }
-}
+@Parcelize
+data class GetLivesWeatherLivesResponse(
+    val adcode: String,
+    val city: String,
+    val humidity: String,
+    val humidity_float: String,
+    val province: String,
+    val reporttime: String,
+    val temperature: String,
+    val temperature_float: String,
+    val weather: String,
+    val winddirection: String,
+    val windpower: String
+) : Parcelable

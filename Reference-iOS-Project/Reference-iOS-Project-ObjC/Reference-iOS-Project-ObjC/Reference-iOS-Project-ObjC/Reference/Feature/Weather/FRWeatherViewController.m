@@ -107,7 +107,7 @@
 #pragma mark - Event Management
 
 - (void)nextPage:(id)sender {
-    [self.interactor fetchCityData];
+    [self.interactor fetchCityList];
 }
 
 #pragma mark - FRWeatherViewControllerInterface Implementation

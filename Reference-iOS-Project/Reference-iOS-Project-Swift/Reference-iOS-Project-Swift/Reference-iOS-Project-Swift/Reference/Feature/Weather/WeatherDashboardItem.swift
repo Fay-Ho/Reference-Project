@@ -25,7 +25,7 @@
 import UIKit
 
 class WeatherDashboardItem: UIView {
-    private let viewModel: ViewModel
+    private var viewModel: ViewModel?
     
     // MARK: - UI Component
     
@@ -37,28 +37,22 @@ class WeatherDashboardItem: UIView {
     }()
     
     private lazy var temperatureLabel: UILabel = {
-        let label: UILabel = .make(text: nil)
-        label.textAlignment = .center
-        return label
+        .make(text: nil, textAlignment: .center)
     }()
     
     private lazy var celsiusLabel: UILabel = {
-        let label: UILabel = .make(text: "°C")
-        label.textAlignment = .natural
-        return label
+        .make(text: "°C", textAlignment: .natural)
     }()
     
     private lazy var weatherLabel: UILabel = {
-        let label: UILabel = .make(text: nil)
-        label.textAlignment = .natural
+        let label: UILabel = .make(text: nil, textAlignment: .center)
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         return label
     }()
     
     private lazy var windLabel: UILabel = {
-        let label: UILabel = .make(text: nil)
-        label.textAlignment = .natural
+        let label: UILabel = .make(text: nil, textAlignment: .center)
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         return label
@@ -66,8 +60,7 @@ class WeatherDashboardItem: UIView {
     
     // MARK: - Lifecycle
     
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(frame: .zero)
         setupSubviews()
         setupLayouts()
@@ -91,11 +84,11 @@ extension WeatherDashboardItem {
         container
             .top(equalTo: topAnchor, constant: 60)
             .bottom(equalTo: bottomAnchor, constant: 10)
-            .horizontal(equalTo: self, constant: 10)
+            .horizontal(equalTo: self, constant: 16)
         
         temperatureLabel
             .vertical(equalTo: container, constant: 100)
-            .horizontal(equalTo: container, constant: 150)
+            .horizontal(equalTo: container, constant: 135)
         
         celsiusLabel
             .top(equalTo: container.topAnchor, constant: 100)
@@ -112,7 +105,7 @@ extension WeatherDashboardItem {
     }
     
     func updateStyling() {
-        container.backgroundColor = .dashboard
+        container.backgroundColor = .item
         
         temperatureLabel.font = .size80
         temperatureLabel.textColor = .font
@@ -122,11 +115,9 @@ extension WeatherDashboardItem {
         
         weatherLabel.font = .size16
         weatherLabel.textColor = .font
-        weatherLabel.backgroundColor = .label
         
         windLabel.font = .size16
         windLabel.textColor = .font
-        windLabel.backgroundColor = .label
     }
 }
 

@@ -41,9 +41,7 @@ class WeatherViewController : BaseViewController {
     }()
     
     private lazy var dashboardItem: WeatherDashboardItem = {
-        let dataModel = WeatherDashboardItem.ViewModel(temperature: nil, weather: nil, wind: nil)
-        let item = WeatherDashboardItem(viewModel: dataModel)
-        return item
+        WeatherDashboardItem()
     }()
     
     // MARK: - View Lifecycle

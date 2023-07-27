@@ -31,16 +31,16 @@ class WeatherPresenter {
 // MARK: - WeatherPresenterInterface Implementation
 
 extension WeatherPresenter : WeatherPresenterInterface {
-    func handleGetWeatherResponse(_ response: GetWeatherResponse) {
+    func handleGetCityListResponse(_ response: GetCityListResponse) {
+        viewController?.showLocationPage(dataModel: response)
+    }
+    
+    func handleGetLivesWeatherResponse(_ response: GetLivesWeatherResponse) {
         let dataModel = WeatherDataModel(
             temperature: response.lives.first?.temperature,
             weather: response.lives.first?.weather,
             wind: (response.lives.first?.winddirection ?? "") + (response.lives.first?.windpower ?? "")
         )
         viewController?.updateDashboardItem(dataModel: dataModel)
-    }
-    
-    func handleGetCityResponse(_ response: GetCityResponse) {
-        viewController?.showLocationPage(dataModel: response)
     }
 }

@@ -65,24 +65,21 @@ NS_ASSUME_NONNULL_END
 
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
-        _temperatureLabel = [UILabel makeWithText:nil];
-        _temperatureLabel.textAlignment = NSTextAlignmentCenter;
+        _temperatureLabel = [UILabel makeWithText:nil textAlignment:NSTextAlignmentCenter];
     }
     return _temperatureLabel;
 }
 
 - (UILabel *)celsiusLabel {
     if (!_celsiusLabel) {
-        _celsiusLabel = [UILabel makeWithText:@"°C"];
-        _celsiusLabel.textAlignment = NSTextAlignmentNatural;
+        _celsiusLabel = [UILabel makeWithText:@"°C" textAlignment:NSTextAlignmentNatural];
     }
     return _celsiusLabel;
 }
 
 - (UILabel *)weatherLabel {
     if (!_weatherLabel) {
-        _weatherLabel = [UILabel makeWithText:nil];
-        _weatherLabel.textAlignment = NSTextAlignmentCenter;
+        _weatherLabel = [UILabel makeWithText:nil textAlignment:NSTextAlignmentCenter];
         _weatherLabel.layer.cornerRadius = 5;
         _weatherLabel.layer.masksToBounds = YES;
     }
@@ -91,8 +88,7 @@ NS_ASSUME_NONNULL_END
 
 - (UILabel *)windLabel {
     if (!_windLabel) {
-        _windLabel = [UILabel makeWithText:nil];
-        _windLabel.textAlignment = NSTextAlignmentCenter;
+        _windLabel = [UILabel makeWithText:nil textAlignment:NSTextAlignmentCenter];
         _windLabel.layer.cornerRadius = 5;
         _windLabel.layer.masksToBounds = YES;
     }
@@ -102,7 +98,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark - Lifecycle
 
 + (instancetype)item {
-    FRWeatherDashboardItem *item = [[self alloc] init];
+    FRWeatherDashboardItem *item = [[super alloc] init];
     [item setupSubviews];
     [item setupLayouts];
     [item updateStyling];
@@ -146,11 +142,9 @@ NS_ASSUME_NONNULL_END
     
     self.weatherLabel.font = [UIFont size16Font];
     self.weatherLabel.textColor = [UIColor fontColor];
-    self.weatherLabel.backgroundColor = [UIColor labelColor];
     
     self.windLabel.font = [UIFont size16Font];
     self.windLabel.textColor = [UIColor fontColor];
-    self.windLabel.backgroundColor = [UIColor labelColor];
 }
 
 #pragma mark -
@@ -168,7 +162,7 @@ NS_ASSUME_NONNULL_END
 + (instancetype)viewModelWithTemperature:(NSString *)temperature
                                  weather:(NSString *)weather
                                     wind:(NSString *)wind {
-    FRWeatherDashboardItemViewModel *viewModel = [[self alloc] init];
+    FRWeatherDashboardItemViewModel *viewModel = [[super alloc] init];
     viewModel.temperature = temperature;
     viewModel.weather = weather;
     viewModel.wind = wind;

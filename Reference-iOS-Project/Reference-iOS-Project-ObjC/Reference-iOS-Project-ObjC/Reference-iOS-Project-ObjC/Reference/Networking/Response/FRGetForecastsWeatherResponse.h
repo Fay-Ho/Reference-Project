@@ -26,31 +26,42 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FRGetWeatherLivesResponse;
+@class FRGetForecastsWeatherForecastsResponse, FRGetForecastsWeatherForecastsCastsResponse;
 
-@interface FRGetWeatherResponse : NSObject
+@interface FRGetForecastsWeatherResponse : NSObject
 
 @property (nonatomic, strong, readonly) NSString *count;
+@property (nonatomic, strong, readonly) NSArray<FRGetForecastsWeatherForecastsResponse *> *forecasts;
 @property (nonatomic, strong, readonly) NSString *info;
 @property (nonatomic, strong, readonly) NSString *infocode;
-@property (nonatomic, strong, readonly) NSArray<FRGetWeatherLivesResponse *> *lives;
 @property (nonatomic, strong, readonly) NSString *status;
 
 @end
 
-@interface FRGetWeatherLivesResponse : NSObject
+@interface FRGetForecastsWeatherForecastsResponse : NSObject
 
 @property (nonatomic, strong, readonly) NSString *adcode;
+@property (nonatomic, strong, readonly) NSArray<FRGetForecastsWeatherForecastsCastsResponse *> *casts;
 @property (nonatomic, strong, readonly) NSString *city;
-@property (nonatomic, strong, readonly) NSString *humidity;
-@property (nonatomic, strong, readonly) NSString *humidity_float;
 @property (nonatomic, strong, readonly) NSString *province;
 @property (nonatomic, strong, readonly) NSString *reporttime;
-@property (nonatomic, strong, readonly) NSString *temperature;
-@property (nonatomic, strong, readonly) NSString *temperature_float;
-@property (nonatomic, strong, readonly) NSString *weather;
-@property (nonatomic, strong, readonly) NSString *winddirection;
-@property (nonatomic, strong, readonly) NSString *windpower;
+
+@end
+
+@interface FRGetForecastsWeatherForecastsCastsResponse : NSObject
+
+@property (nonatomic, strong, readonly) NSString *date;
+@property (nonatomic, strong, readonly) NSString *daypower;
+@property (nonatomic, strong, readonly) NSString *daytemp;
+@property (nonatomic, strong, readonly) NSString *daytemp_float;
+@property (nonatomic, strong, readonly) NSString *dayweather;
+@property (nonatomic, strong, readonly) NSString *daywind;
+@property (nonatomic, strong, readonly) NSString *nightpower;
+@property (nonatomic, strong, readonly) NSString *nighttemp;
+@property (nonatomic, strong, readonly) NSString *nighttemp_float;
+@property (nonatomic, strong, readonly) NSString *nightweather;
+@property (nonatomic, strong, readonly) NSString *nightwind;
+@property (nonatomic, strong, readonly) NSString *week;
 
 @end
 

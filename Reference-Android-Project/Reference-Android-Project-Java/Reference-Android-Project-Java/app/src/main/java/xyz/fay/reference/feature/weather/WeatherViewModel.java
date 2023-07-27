@@ -26,63 +26,43 @@ package xyz.fay.reference.feature.weather;
 
 import android.content.Context;
 
-import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import xyz.fay.reference.networking.NetworkManager;
-import xyz.fay.reference.networking.RequestHandler;
-import xyz.fay.reference.networking.response.GetCityResponse;
-import xyz.fay.reference.networking.response.GetWeatherResponse;
+import xyz.fay.reference.networking.response.GetCityListResponse;
 
 public class WeatherViewModel extends ViewModel {
     private final MutableLiveData<WeatherDataModel> weatherDataModel = new MutableLiveData<>();
-    private final MutableLiveData<GetCityResponse> getCityResponse = new MutableLiveData<>();
+    private final MutableLiveData<GetCityListResponse> getCityListResponse = new MutableLiveData<>();
 
     public void viewIsReady(Context context) {
         NetworkManager manager = new NetworkManager();
-        manager.getWeather(context, new RequestHandler<GetWeatherResponse>() {
-            @Override
-            public void completion(@Nullable GetWeatherResponse response) {
-                if (response != null) {
-                    WeatherDataModel dataModel = new WeatherDataModel(
-                            response.getLives()[0].getTemperature(),
-                            response.getLives()[0].getWeather(),
-                            response.getLives()[0].getWinddirection() + response.getLives()[0].getWindpower()
-                    );
-                    weatherDataModel.postValue(dataModel);
-                }
+        manager.getLivesWeather(context, response -> {
+            if (response != null) {
+                WeatherDataModel dataModel = new WeatherDataModel(
+                        response.getLives()[0].getTemperature(),
+                        response.getLives()[0].getWeather(),
+                        response.getLives()[0].getWinddirection() + response.getLives()[0].getWindpower()
+                );
+                weatherDataModel.postValue(dataModel);
             }
         });
     }
 
-    public void fetchCityData(Context context) {
+
+    public void fetchCityList(Context context) {
         NetworkManager manager = new NetworkManager();
-        manager.getCity(context, new RequestHandler<GetCityResponse>() {
-            @Override
-            public void completion(@Nullable GetCityResponse response) {
-                if (response != null) {
-                    // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//                    getCityResponse.setValue(response);
-                    getCityResponse.postValue(response);
-                }
-            }
-        });
-//        manager.getCity(context, response -> {
-//            // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//            getCityResponse.setValue(response);
-//            getCityResponse.postValue(response);
-//        });
-//        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-//        manager.getCity(context, getCityResponse::setValue);
-//        manager.getCity(context, getCityResponse::postValue);
+
+        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+        manager.getCityList(context, getCityListResponse::postValue);
     }
 
     public MutableLiveData<WeatherDataModel> getWeatherDataModel() {
         return weatherDataModel;
     }
 
-    public MutableLiveData<GetCityResponse> getGetCityResponse() {
-        return getCityResponse;
+    public MutableLiveData<GetCityListResponse> getGetCityListResponse() {
+        return getCityListResponse;
     }
 }
