@@ -26,7 +26,7 @@ import Foundation
 
 protocol WeatherInteractorInterface {
     func viewIsReady()
-    func fetchCityData()
+    func fetchCityList()
 }
 
 protocol WeatherPresenterInterface {

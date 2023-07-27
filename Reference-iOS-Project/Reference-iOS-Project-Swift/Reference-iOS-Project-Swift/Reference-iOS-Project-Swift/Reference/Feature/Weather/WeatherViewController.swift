@@ -90,7 +90,7 @@ extension WeatherViewController {
 
 extension WeatherViewController {
     @objc func nextPage(_ sender: Any) {
-        interactor?.fetchCityData()
+        interactor?.fetchCityList()
     }
 }
 
