@@ -1,4 +1,4 @@
-package xyz.fay.parcel;
+package xyz.fay.annotation;
 
 /*
   MIT License

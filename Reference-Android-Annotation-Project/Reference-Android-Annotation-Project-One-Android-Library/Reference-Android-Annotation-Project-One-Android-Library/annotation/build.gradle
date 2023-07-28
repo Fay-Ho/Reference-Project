@@ -52,7 +52,7 @@ dependencies {
 
 task makeJar(type: Copy) {
     // 删除已存在的 Jar 包
-    delete 'build/libs/parcel.jar'
+    delete 'build/libs/annotation.jar'
 
     // 设置拷贝的文件
     from('build/intermediates/aar_main_jar/release/')
@@ -64,8 +64,8 @@ task makeJar(type: Copy) {
     // include, exclude参数来设置过滤
     include('classes.jar')
 
-    // 重命名为 parcel.jar
-    rename ('classes.jar', 'parcel.jar')
+    // 重命名为 annotation.jar
+    rename ('classes.jar', 'annotation.jar')
 
     // 在当前目录的命令行输入 ./gradlew makeJar 编译 Jar 包
 }

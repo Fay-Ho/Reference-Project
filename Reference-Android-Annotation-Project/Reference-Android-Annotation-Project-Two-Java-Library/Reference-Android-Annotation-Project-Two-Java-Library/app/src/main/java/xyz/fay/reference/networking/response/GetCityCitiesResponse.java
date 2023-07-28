@@ -26,8 +26,8 @@ package xyz.fay.reference.networking.response;
 
 import androidx.annotation.NonNull;
 
-import xyz.fay.parcel.Parcelable;
-import xyz.fay.parcel.Parcelize;
+import xyz.fay.annotation.Parcelable;
+import xyz.fay.annotation.Parcelize;
 
 @Parcelize
 public final class GetCityCitiesResponse extends Parcelable {

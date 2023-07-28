@@ -1,4 +1,4 @@
-package xyz.fay.parcel;
+package xyz.fay.annotation;
 
 /*
   MIT License
@@ -33,23 +33,16 @@ import com.sun.tools.javac.processing.JavacProcessingEnvironment;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.tree.TreeTranslator;
-import com.sun.tools.javac.util.Context;
-import com.sun.tools.javac.util.List;
-import com.sun.tools.javac.util.ListBuffer;
-import com.sun.tools.javac.util.Name;
-import com.sun.tools.javac.util.Names;
+import com.sun.tools.javac.util.*;
 
-import java.util.Collections;
-import java.util.Set;
-
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.ProcessingEnvironment;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+
+import java.util.Collections;
+import java.util.Set;
 
 @AutoService(Processor.class)
 public final class ParcelizeProcessor extends AbstractProcessor {

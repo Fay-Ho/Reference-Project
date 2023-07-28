@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking.response;
+package xyz.fay.annotation;
 
 /*
   MIT License
@@ -24,18 +24,12 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
-import androidx.annotation.NonNull;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-import xyz.fay.annotation.Parcelable;
-import xyz.fay.annotation.Parcelize;
-
-@Parcelize
-public final class GetCityCitiesResponse extends Parcelable {
-    @NonNull private final String adcode;
-    @NonNull private final String name;
-
-    public GetCityCitiesResponse(String adcode, String name) {
-        this.adcode = adcode;
-        this.name = name;
-    }
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.TYPE)
+public @interface Parcelize {
 }
