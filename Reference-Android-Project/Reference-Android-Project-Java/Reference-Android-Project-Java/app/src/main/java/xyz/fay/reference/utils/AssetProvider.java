@@ -24,7 +24,6 @@ package xyz.fay.reference.utils;
   SOFTWARE.
 */
 
-import android.content.Context;
 import android.content.res.AssetManager;
 
 import androidx.annotation.NonNull;
@@ -35,11 +34,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class AssetProvider {
+import xyz.fay.reference.MainApplication;
+
+public final class AssetProvider {
     @Nullable
-    public static String loadFile(@NonNull Context context, @NonNull String fileName) {
+    public static String loadFile(@NonNull String fileName) {
         try {
-            AssetManager assetManager = context.getAssets();
+            AssetManager assetManager = MainApplication.getAppContext().getAssets();
             InputStream inputStream = assetManager.open(fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

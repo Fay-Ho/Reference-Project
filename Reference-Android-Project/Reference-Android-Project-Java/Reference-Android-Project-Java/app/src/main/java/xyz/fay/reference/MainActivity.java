@@ -33,15 +33,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import java.util.function.Consumer;
-
 import xyz.fay.reference.common.OnBackPressedListener;
 import xyz.fay.reference.databinding.MainActivityBinding;
 
-public class MainActivity extends AppCompatActivity {
+public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println(getLayoutInflater());
         MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActionBar actionBar = getSupportActionBar();
@@ -56,19 +55,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Fragment hostFragment = getSupportFragmentManager().getFragments().get(0);
         if (hostFragment instanceof NavHostFragment) {
-            hostFragment.getChildFragmentManager().getFragments().forEach(new Consumer<Fragment>() {
-                @Override
-                public void accept(Fragment fragment) {
-                    if (fragment instanceof OnBackPressedListener) {
-                        ((OnBackPressedListener) fragment).onPop();
-                    }
+            hostFragment.getChildFragmentManager().getFragments().forEach(fragment -> {
+                if (fragment instanceof OnBackPressedListener) {
+                    ((OnBackPressedListener) fragment).onPop();
                 }
             });
-//            hostFragment.getChildFragmentManager().getFragments().forEach(fragment -> {
-//                if (fragment instanceof OnBackPressedListener) {
-//                    ((OnBackPressedListener) fragment).pop();
-//                }
-//            });
         }
         return super.onOptionsItemSelected(item);
     }

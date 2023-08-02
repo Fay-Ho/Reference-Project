@@ -24,14 +24,12 @@ package xyz.fay.reference.feature.location
   SOFTWARE.
 */
 
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import xyz.fay.reference.common.BaseFragment
-import xyz.fay.reference.common.OnBackPressedListener
 import xyz.fay.reference.databinding.LocationFragmentBinding
 
-class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel>(LocationFragmentBinding::inflate), OnBackPressedListener {
+class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel>(LocationFragmentBinding::inflate) {
     //region --- Override Methods ---
 
     override fun createViewModel() =
@@ -42,20 +40,12 @@ class LocationFragment : BaseFragment<LocationFragmentBinding, LocationViewModel
     //region --- View Lifecycle ---
 
     override fun onCreateView() {
+        val args: LocationFragmentArgs by navArgs()
         viewModel.locationDataModel.observe(viewLifecycleOwner) {
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.recyclerView.adapter = LocationAdapter(it)
         }
-        val args: LocationFragmentArgs by navArgs()
-        viewModel.handleGetCityResponse(args.response)
-    }
-
-    //endregion
-
-    //region --- Event Management ---
-
-    override fun onPop() {
-        findNavController().popBackStack()
+        viewModel.handleCityResponse(args.response)
     }
 
     //endregion

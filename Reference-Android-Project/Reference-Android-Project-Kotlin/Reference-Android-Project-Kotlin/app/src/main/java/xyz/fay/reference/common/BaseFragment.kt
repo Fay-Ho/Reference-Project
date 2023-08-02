@@ -32,28 +32,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KClass
 
-// Implementation 1
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: (LayoutInflater, ViewGroup?, Boolean) -> VB) : Fragment() {
+abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: (LayoutInflater, ViewGroup?, Boolean) -> VB) : Fragment(), OnBackPressedListener {
     private var _binding: VB? = null
     protected val binding: VB get() = _binding!!
 
     protected lateinit var viewModel: VM
 
+    //region --- View Lifecycle ---
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Implementation 1
         _binding = bindingCreator(inflater, container, false)
-
-        // Implementation 2
-//        _binding = createViewBinding(inflater, container, false)
-
-        // Implementation 3
-//        val type = javaClass.genericSuperclass as ParameterizedType
-//        val cls = type.actualTypeArguments[0] as Class<*>
-//        val method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
-//        _binding = method.invoke(null, layoutInflater, container, false) as VB
         viewModel = ViewModelProvider(this)[createViewModel().java]
         onCreateView()
         return _binding?.root
@@ -64,18 +56,27 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(val bindingCreator: 
         _binding = null
     }
 
-    protected fun hideActionBar() {
+    //endregion
+
+    //region --- Event Management ---
+
+    protected fun hideActionBar() =
         (activity as AppCompatActivity).supportActionBar?.hide()
-    }
 
-    protected fun showActionBar() {
+    protected fun showActionBar() =
         (activity as AppCompatActivity).supportActionBar?.show()
+
+    override fun onPop() {
+        findNavController().popBackStack()
     }
 
-    // Implementation 2
-//    protected abstract fun createViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToParent: Boolean): VB
+    //endregion
+
+    //region --- Abstract Methods ---
 
     protected abstract fun createViewModel(): KClass<VM>
 
     abstract fun onCreateView()
+
+    //endregion
 }

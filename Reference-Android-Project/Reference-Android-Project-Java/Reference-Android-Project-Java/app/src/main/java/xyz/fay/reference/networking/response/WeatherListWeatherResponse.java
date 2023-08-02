@@ -1,4 +1,4 @@
-package xyz.fay.reference.utils;
+package xyz.fay.reference.networking.response;
 
 /*
   MIT License
@@ -24,20 +24,27 @@ package xyz.fay.reference.utils;
   SOFTWARE.
 */
 
-public final class Pair<T, U> {
-    private final T first;
-    private final U second;
+import androidx.annotation.NonNull;
 
-    public Pair(T first, U second) {
-        this.first = first;
-        this.second = second;
-    }
+import xyz.fay.parcel.Parcelable;
+import xyz.fay.parcel.Parcelize;
 
-    public T getFirst() {
-        return first;
-    }
+@Parcelize
+public final class WeatherListWeatherResponse extends Parcelable {
+    @NonNull private final String description;
+    @NonNull private final String icon;
+    @NonNull private final Integer id;
+    @NonNull private final String main;
 
-    public U getSecond() {
-        return second;
+    public WeatherListWeatherResponse(
+            @NonNull String description,
+            @NonNull String icon,
+            @NonNull Integer id,
+            @NonNull String main
+    ) {
+        this.description = description;
+        this.icon = icon;
+        this.id = id;
+        this.main = main;
     }
 }

@@ -26,13 +26,13 @@
 
 @implementation FRImageProvider
 
-NSString * const FRImageEnumCloudy = @"阴天";
+NSString * const FRImageEnumClouds = @"Clouds";
 NSString * const FRImageEnumFoggy = @"大雾";
 NSString * const FRImageEnumHail = @"冰雹";
 NSString * const FRImageEnumLocation = @"定位";
 NSString * const FRImageEnumMoon = @"夜间";
 NSString * const FRImageEnumMoonCloudy = @"夜间多云";
-NSString * const FRImageEnumRainy = @"雨天";
+NSString * const FRImageEnumRain = @"Rain";
 NSString * const FRImageEnumSnowy = @"雪天";
 NSString * const FRImageEnumSun = @"晴朗";
 NSString * const FRImageEnumSunCloudy = @"晴朗多云";
@@ -40,8 +40,8 @@ NSString * const FRImageEnumThunderstorms = @"雷暴";
 NSString * const FRImageEnumTornado = @"龙卷风";
 NSString * const FRImageEnumTyphoon = @"台风";
 
-+ (UIImage *)loadImageWithRawValue:(FRImageEnum)rawValue {
-    if ([rawValue isEqualToString:FRImageEnumCloudy]) {
++ (UIImage *)loadImageWithRawValue:(NSString *)rawValue {
+    if ([rawValue isEqualToString:FRImageEnumClouds]) {
         return [UIImage imageNamed:@"ImgCloudy"];
     } else if ([rawValue isEqualToString:FRImageEnumFoggy]) {
         return [UIImage imageNamed:@"ImgFoggy"];
@@ -53,7 +53,7 @@ NSString * const FRImageEnumTyphoon = @"台风";
         return [UIImage imageNamed:@"ImgMoon"];
     } else if ([rawValue isEqualToString:FRImageEnumMoonCloudy]) {
         return [UIImage imageNamed:@"ImgMoonCloudy"];
-    } else if ([rawValue isEqualToString:FRImageEnumRainy]) {
+    } else if ([rawValue isEqualToString:FRImageEnumRain]) {
         return [UIImage imageNamed:@"ImgRainy"];
     } else if ([rawValue isEqualToString:FRImageEnumSnowy]) {
         return [UIImage imageNamed:@"ImgSnowy"];

@@ -30,15 +30,36 @@ import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-public final class GetCityListCitiesResponse extends Parcelable {
-    @NonNull private final String adcode;
-    @NonNull private final String name;
+public final class WeatherListMainResponse extends Parcelable {
+    @NonNull private final Double feels_like;
+    @NonNull private final Integer grnd_level;
+    @NonNull private final Integer humidity;
+    @NonNull private final Integer pressure;
+    @NonNull private final Integer sea_level;
+    @NonNull private final Double temp;
+    @NonNull private final Double temp_kf;
+    @NonNull private final Double temp_max;
+    @NonNull private final Double temp_min;
 
-    public GetCityListCitiesResponse(
-            @NonNull String adcode,
-            @NonNull String name
+    public WeatherListMainResponse(
+            @NonNull Double feels_like,
+            @NonNull Integer grnd_level,
+            @NonNull Integer humidity,
+            @NonNull Integer pressure,
+            @NonNull Integer sea_level,
+            @NonNull Double temp,
+            @NonNull Double temp_kf,
+            @NonNull Double temp_max,
+            @NonNull Double temp_min
     ) {
-        this.adcode = adcode;
-        this.name = name;
+        this.feels_like = feels_like;
+        this.grnd_level = grnd_level;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        this.sea_level = sea_level;
+        this.temp = temp;
+        this.temp_kf = temp_kf;
+        this.temp_max = temp_max;
+        this.temp_min = temp_min;
     }
 }

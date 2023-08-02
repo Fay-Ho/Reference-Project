@@ -54,17 +54,18 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
 - `LocationViewModel`
 
 ```
-public void handleGetCityListResponse(@Nullable GetCityListResponse response) {
+public class LocationViewModel extends ViewModel {
+    public void handleCityResponse(@Nullable CityResponse response) {
         if (response != null) {
             // Implementation 1
 //            List<LocationRowDataModel> rowDataModels = new ArrayList<>();
-//            for (GetCityListCitiesResponse response1 : response.getCities()) {
+//            for (CityCitiesResponse response1 : response.getCities()) {
 //                rowDataModels.add(new LocationRowDataModel(response1.getName()));
 //            }
 //            locationDataModel.postValue(new LocationDataModel(rowDataModels.toArray(new LocationRowDataModel[0])));
 
             // Implementation 2
-//            List<GetCityListCitiesResponse> responses = Arrays.asList(response.getCities());
+//            List<CityCitiesResponse> responses = Arrays.asList(response.getCities());
 //            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(response1 -> {
 //                return new LocationRowDataModel(response1.getName());
 //            }).toArray(rowDataModels -> {
@@ -73,29 +74,30 @@ public void handleGetCityListResponse(@Nullable GetCityListResponse response) {
 //            locationDataModel.postValue(dataModel);
 
             // Implementation 3
-//            List<GetCityListCitiesResponse> responses = Arrays.asList(response.getCities());
+//            List<CityCitiesResponse> responses = Arrays.asList(response.getCities());
 //            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(response1 -> {
 //                return new LocationRowDataModel(response1.getName());
 //            }).toArray(rowDataModels -> new LocationRowDataModel[rowDataModels]));
 //            locationDataModel.postValue(dataModel);
 
             // Implementation 4
-//            List<GetCityListCitiesResponse> responses = Arrays.asList(response.getCities());
+//            List<CityCitiesResponse> responses = Arrays.asList(response.getCities());
 //            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(response1 -> new LocationRowDataModel(response1.getName())).toArray(rowDataModels -> new LocationRowDataModel[rowDataModels]));
 //            locationDataModel.postValue(dataModel);
 
             // Implementation 5
-            List<GetCityListCitiesResponse> responses = Arrays.asList(response.getCities());
-            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(LocationViewModel::apply).toArray(LocationRowDataModel[]::new));
-            locationDataModel.postValue(dataModel);
+//            List<CityCitiesResponse> responses = Arrays.asList(response.getCities());
+//            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(this::createRowDataModel).toArray(LocationRowDataModel[]::new));
+//            locationDataModel.postValue(dataModel);
         }
     }
 
     // Implementation 5
     @NonNull
-    private static LocationRowDataModel apply(@NonNull GetCityListCitiesResponse response) {
+    private LocationRowDataModel createRowDataModel(@NonNull CityCitiesResponse response) {
         return new LocationRowDataModel(response.getName());
     }
+}
 ```
 
 - `WeatherFragment`
@@ -172,16 +174,16 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 //        getBinding().imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                getViewModel().getGetCityListResponse().observe(getViewLifecycleOwner(), new Observer<GetCityListResponse>() {
+//                getViewModel().getCityResponse().observe(getViewLifecycleOwner(), new Observer<CityResponse>() {
 //                    @Override
-//                    public void onChanged(GetCityListResponse response) {}
+//                    public void onChanged(CityResponse response) {}
 //                });
 //            }
 //        });
 
         // Implementation 6-2
         getBinding().imageView.setOnClickListener(v -> {
-            getViewModel().getGetCityListResponse().observe(getViewLifecycleOwner(), response -> {});
+            getViewModel().getCityResponse().observe(getViewLifecycleOwner(), response -> {});
         });
     }
 }
@@ -191,32 +193,93 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
 
 ```
 public class WeatherViewModel extends ViewModel {
+    public void viewIsReady() {
+        // Implementation 1-1
+//        new NetworkManager().getWeather(this::handleWeatherResponse);
+
+        // Implementation 1-2
+        new NetworkManager().getWeather(response -> {
+            if (response == null) { return; }
+
+            WeatherListItemDataModel[] listItems = Arrays
+                    .stream(response.getList())
+                    .map(this::createListItemDataModel)
+                    .toArray(WeatherListItemDataModel[]::new);
+
+            WeatherListResponse listResponse = Arrays2.firstOrNull(Arrays.asList(response.getList()));
+
+            if (listResponse == null) { return; }
+
+            WeatherListWeatherResponse weatherResponse = Arrays2.firstOrNull(Arrays.asList(listResponse.getWeather()));
+
+            if (weatherResponse == null) { return; }
+
+            WeatherDataModel dataModel = new WeatherDataModel(
+                    listResponse.getMain().getTemp().toString(),
+                    weatherResponse.getMain(),
+                    listResponse.getWind().getDeg().toString(),
+                    listItems
+            );
+
+            weatherDataModel.postValue(dataModel);
+        });
+    }
+
     public void fetchCityList(Context context) {
         NetworkManager manager = new NetworkManager();
         
-        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
+        // `setValue()` can only run in main thread, `postValue()` can run in all thread.
 
-        // Implementation 1
-//        manager.getCityList(context, new RequestHandler<GetCityListResponse>() {
+        // Implementation 2-1
+//        manager.getCity(new RequestHandler<CityResponse>() {
 //            @Override
-//            public void completion(@Nullable GetCityListResponse response) {
+//            public void completion(@Nullable CityResponse response) {
 //                if (response != null) {
-//                    getCityListResponse.setValue(response);
-//                    getCityListResponse.postValue(response);
+//                    cityResponse.setValue(response);
+//                    cityResponse.postValue(response);
 //                }
 //            }
 //        });
         
-        // Implementation 2
-//        manager.getCityList(context, response -> {
-//            getCityListResponse.setValue(response);
-//            getCityListResponse.postValue(response);
+        // Implementation 2-2
+//        manager.getCity(response -> {
+//            if (response != null) {
+//                cityResponse.setValue(response);
+//                cityResponse.postValue(response);
+//            }
 //        });
         
-        // Implementation 3
-        manager.getCityList(context, getCityListResponse::setValue);
-        manager.getCityList(context, getCityListResponse::postValue);
+        // Implementation 2-3
+        manager.getCity(cityResponse::setValue);
+        manager.getCity(cityResponse::postValue);
     }
+
+    // Implementation 1-1
+//    private void handleWeatherResponse(@Nullable WeatherResponse response) {
+//        if (response == null) { return; }
+//
+//        WeatherListItemDataModel[] listItems = Arrays
+//                .stream(response.getList())
+//                .map(this::createListItemDataModel)
+//                .toArray(WeatherListItemDataModel[]::new);
+//
+//        WeatherListResponse listResponse = Arrays2.firstOrNull(Arrays.asList(response.getList()));
+//
+//        if (listResponse == null) { return; }
+//
+//        WeatherListWeatherResponse weatherResponse = Arrays2.firstOrNull(Arrays.asList(listResponse.getWeather()));
+//
+//        if (weatherResponse == null) { return; }
+//
+//        WeatherDataModel dataModel = new WeatherDataModel(
+//                listResponse.getMain().getTemp().toString(),
+//                weatherResponse.getMain(),
+//                listResponse.getWind().getDeg().toString(),
+//                listItems
+//        );
+//
+//        weatherDataModel.postValue(dataModel);
+//    }
 }
 ```
 
@@ -239,6 +302,36 @@ public enum ImageProvider {
                 .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
                 .findFirst()
                 .orElse(null);
+    }
+}
+```
+
+- `MainActivity`
+
+```
+public final class MainActivity extends AppCompatActivity {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Fragment hostFragment = getSupportFragmentManager().getFragments().get(0);
+        if (hostFragment instanceof NavHostFragment) {
+            // Implementation 1
+//            hostFragment.getChildFragmentManager().getFragments().forEach(new Consumer<Fragment>() {
+//                @Override
+//                public void accept(Fragment fragment) {
+//                    if (fragment instanceof OnBackPressedListener) {
+//                        ((OnBackPressedListener) fragment).onPop();
+//                    }
+//                }
+//            });
+
+            // Implementation 2
+            hostFragment.getChildFragmentManager().getFragments().forEach(fragment -> {
+                if (fragment instanceof OnBackPressedListener) {
+                    ((OnBackPressedListener) fragment).onPop();
+                }
+            });
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 ```

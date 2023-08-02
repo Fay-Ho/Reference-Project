@@ -28,7 +28,7 @@ import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-class LocationDataModel extends Parcelable {
+final class LocationDataModel extends Parcelable {
     private final LocationRowDataModel[] rowDataModels;
 
     public LocationDataModel(LocationRowDataModel[] rowDataModels) {

@@ -32,10 +32,12 @@ final class WeatherDataModel extends Parcelable {
     private final String temperature;
     private final String weather;
     private final String wind;
+    private final WeatherListItemDataModel[] listItems;
 
-    public WeatherDataModel(String temperature, String weather, String wind) {
+    public WeatherDataModel(String temperature, String weather, String wind, WeatherListItemDataModel[] listItems) {
         this.temperature = temperature;
         this.weather = weather;
         this.wind = wind;
+        this.listItems = listItems;
     }
 }

@@ -42,12 +42,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     override fun onCreateView() {
         hideActionBar()
         setupSubviews()
-        viewModel.weatherDataModel.observe(viewLifecycleOwner) {
-            binding.temperatureView.text = it.temperature
-            binding.weatherView.text = it.weather
-            binding.windView.text = it.wind
-        }
-        viewModel.viewIsReady(requireContext())
+        observeWeatherDataModel()
     }
 
     override fun onDestroyView() {
@@ -64,13 +59,27 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     }
 
     private fun setupImageView() {
-        binding.imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()))
+        binding.imageView.setImageDrawable(ImageProvider.LOCATION.loadImage())
         binding.imageView.setOnClickListener {
-            viewModel.getCityListResponse.observe(viewLifecycleOwner) {
+            viewModel.cityResponse.observe(viewLifecycleOwner) {
                 findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))
             }
-            viewModel.fetchCityList(requireContext())
+            viewModel.fetchCityList()
         }
+    }
+
+    //endregion
+
+    //region --- Event Management ---
+
+    private fun observeWeatherDataModel() {
+        viewModel.weatherDataModel.observe(viewLifecycleOwner) {
+            binding.temperatureView.text = it.temperature
+            binding.weatherView.text = it.weather
+            binding.windView.text = it.wind
+            println(it.listItems[0].time)
+        }
+        viewModel.viewIsReady()
     }
 
     //endregion

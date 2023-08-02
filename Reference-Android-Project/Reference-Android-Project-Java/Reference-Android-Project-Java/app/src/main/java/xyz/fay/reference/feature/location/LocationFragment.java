@@ -25,32 +25,19 @@ package xyz.fay.reference.feature.location;
 */
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 
 import xyz.fay.reference.common.BaseFragment;
 import xyz.fay.reference.common.BindingCreator;
-import xyz.fay.reference.common.OnBackPressedListener;
 import xyz.fay.reference.databinding.LocationFragmentBinding;
 
-public class LocationFragment extends BaseFragment<LocationFragmentBinding, LocationViewModel> implements OnBackPressedListener {
+final class LocationFragment extends BaseFragment<LocationFragmentBinding, LocationViewModel> {
     //region --- Override Methods ---
 
     @NonNull
     @Override
     protected BindingCreator<LocationFragmentBinding> getBindingCreator() {
-        return new BindingCreator<LocationFragmentBinding>() {
-            @Override
-            public LocationFragmentBinding onCreate(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @NonNull Boolean attachToParent) {
-                return LocationFragmentBinding.inflate(layoutInflater, viewGroup, attachToParent);
-            }
-        };
+        return LocationFragmentBinding::inflate;
     }
 
     @NonNull
@@ -65,25 +52,12 @@ public class LocationFragment extends BaseFragment<LocationFragmentBinding, Loca
 
     @Override
     public void onCreateView() {
-        getViewModel().getLocationDataModel().observe(getViewLifecycleOwner(), new Observer<LocationDataModel>() {
-            @Override
-            public void onChanged(LocationDataModel dataModel) {
-                getBinding().recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-                getBinding().recyclerView.setAdapter(new LocationAdapter(dataModel));
-            }
-        });
         LocationFragmentArgs args = LocationFragmentArgs.fromBundle(requireArguments());
-        getViewModel().handleGetCityListResponse(args.getResponse());
-    }
-
-    //endregion
-
-    //region --- Event Management ---
-
-    @Override
-    public void onPop() {
-        NavController navController = NavHostFragment.findNavController(this);
-        navController.popBackStack();
+        getViewModel().getLocationDataModel().observe(getViewLifecycleOwner(), dataModel -> {
+            getBinding().recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+            getBinding().recyclerView.setAdapter(new LocationAdapter(dataModel));
+        });
+        getViewModel().handleCityResponse(args.getResponse());
     }
 
     //endregion

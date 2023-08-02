@@ -24,7 +24,6 @@ package xyz.fay.reference.networking
   SOFTWARE.
 */
 
-import android.content.Context
 import android.os.Parcelable
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -36,44 +35,35 @@ import kotlin.reflect.KClass
 
 class NetworkManager {
     private enum class MockFile(val rawValue: String) {
-        GET_CITY_LIST("get_city_list.json"),
-        GET_FORECASTS_WEATHER("get_forecasts_weather.json"),
-        GET_LIVES_WEATHER("get_lives_weather.json"),
+        GET_CITY("city.json"),
+        GET_WEATHER("weather.json"),
         MOCK_ASSET("mock/")
     }
 
-    private fun <R: Parcelable> sendRequest(context: Context, parcelableResponse: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
-        val jsonString = AssetProvider.loadFile(context, MockFile.MOCK_ASSET.rawValue + fileName.rawValue)
+    private fun <R: Parcelable> sendRequest(parcelableResponse: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
+        val jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue + fileName.rawValue)
         completion?.let {
             it(parseData(jsonString, parcelableResponse))
         }
     }
 
-    private fun baseRequest(context: Context) {
-        val queue = Volley.newRequestQueue(context);
-        val url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"
-//        val stringRequest = StringRequest(Request.Method.GET, url, Response.Listener { response ->
-//            println(response)
-//        }, Response.ErrorListener { error ->
-//            println(error)
+//    private fun baseRequest() {
+//        val queue = Volley.newRequestQueue(MainApplication.appContext);
+//        val url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"
+//        val stringRequest = StringRequest(Request.Method.GET, url, {
+//            println(it)
+//        }, {
+//            println(it)
 //        })
-        val stringRequest = StringRequest(Request.Method.GET, url, {
-            println(it)
-        }, {
-            println(it)
-        })
-        queue.add(stringRequest)
-    }
+//        queue.add(stringRequest)
+//    }
 
     private fun <R: Parcelable> parseData(data: String, response: KClass<R>): R =
         Gson().fromJson(data, response.java)
 
-    fun getCityList(context: Context, completion: ((response: GetCityListResponse?) -> Unit)?) =
-        sendRequest(context, GetCityListResponse::class, MockFile.GET_CITY_LIST, completion)
+    fun getCity(completion: ((response: CityResponse?) -> Unit)?) =
+        sendRequest(CityResponse::class, MockFile.GET_CITY, completion)
 
-    fun getForecastsWeather(context: Context, completion: ((response: GetForecastsWeatherResponse?) -> Unit)?) =
-        sendRequest(context, GetForecastsWeatherResponse::class, MockFile.GET_FORECASTS_WEATHER, completion)
-
-    fun getLivesWeather(context: Context, completion: ((response: GetLivesWeatherResponse?) -> Unit)?) =
-        sendRequest(context, GetLivesWeatherResponse::class, MockFile.GET_LIVES_WEATHER, completion)
+    fun getWeather(completion: ((response: WeatherResponse?) -> Unit)?) =
+        sendRequest(WeatherResponse::class, MockFile.GET_WEATHER, completion)
 }

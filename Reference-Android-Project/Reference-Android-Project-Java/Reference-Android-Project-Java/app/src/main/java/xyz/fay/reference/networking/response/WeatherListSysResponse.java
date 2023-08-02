@@ -1,4 +1,4 @@
-package xyz.fay.reference.utils;
+package xyz.fay.reference.networking.response;
 
 /*
   MIT License
@@ -24,26 +24,18 @@ package xyz.fay.reference.utils;
   SOFTWARE.
 */
 
-public final class Triple<T, U, V> {
-    private final T first;
-    private final U second;
-    private final V third;
+import androidx.annotation.NonNull;
 
-    public Triple(T first, U second, V third) {
-        this.first = first;
-        this.second = second;
-        this.third = third;
-    }
+import xyz.fay.parcel.Parcelable;
+import xyz.fay.parcel.Parcelize;
 
-    public T getFirst() {
-        return first;
-    }
+@Parcelize
+public final class WeatherListSysResponse extends Parcelable {
+    @NonNull private final String pod;
 
-    public U getSecond() {
-        return second;
-    }
-
-    public V getThird() {
-        return third;
+    public WeatherListSysResponse(
+            @NonNull String pod
+    ) {
+        this.pod = pod;
     }
 }

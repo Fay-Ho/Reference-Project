@@ -35,7 +35,7 @@ import xyz.fay.reference.common.BindingCreator;
 import xyz.fay.reference.databinding.WeatherFragmentBinding;
 import xyz.fay.reference.utils.ImageProvider;
 
-public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
+public final class WeatherFragment extends BaseFragment<WeatherFragmentBinding, WeatherViewModel> {
     //region --- Override Methods ---
 
     @NonNull
@@ -76,13 +76,13 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
     }
 
     private void setupImageView() {
-        getBinding().imageView.setImageDrawable(ImageProvider.LOCATION.loadImage(requireContext()));
+        getBinding().imageView.setImageDrawable(ImageProvider.LOCATION.loadImage());
         getBinding().imageView.setOnClickListener(v -> {
-            getViewModel().getGetCityListResponse().observe(getViewLifecycleOwner(), response -> {
+            getViewModel().getCityResponse().observe(getViewLifecycleOwner(), response -> {
                 NavController navController = NavHostFragment.findNavController(this);
                 navController.navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(response));
             });
-            getViewModel().fetchCityList(requireContext());
+            getViewModel().fetchCityList();
         });
     }
 
@@ -98,9 +98,9 @@ public class WeatherFragment extends BaseFragment<WeatherFragmentBinding, Weathe
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
             linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
             getBinding().recyclerView.setLayoutManager(linearLayoutManager);
-            getBinding().recyclerView.setAdapter(new WeatherAdapter());
+            getBinding().recyclerView.setAdapter(new WeatherAdapter(dataModel.getListItems()));
         });
-        getViewModel().viewIsReady(requireContext());
+        getViewModel().viewIsReady();
     }
 
     //endregion

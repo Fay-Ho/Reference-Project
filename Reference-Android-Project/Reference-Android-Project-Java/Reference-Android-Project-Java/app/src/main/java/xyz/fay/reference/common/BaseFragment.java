@@ -36,11 +36,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment {
+public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel> extends Fragment implements OnBackPressedListener {
     private VB binding;
     private VM viewModel;
+
+    //region --- View Lifecycle ---
 
     @Nullable
     @Override
@@ -56,6 +60,10 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
         super.onDestroyView();
         binding = null;
     }
+
+    //endregion
+
+    //region --- Event Management ---
 
     protected void hideActionBar() {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -77,6 +85,16 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
         }
     }
 
+    @Override
+    public void onPop() {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.popBackStack();
+    }
+
+    //endregion
+
+    //region --- Getter Methods ---
+
     public VB getBinding() {
         return binding;
     }
@@ -85,6 +103,10 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
         return viewModel;
     }
 
+    //endregion
+
+    //region --- Abstract Methods ---
+
     @NonNull
     protected abstract BindingCreator<VB> getBindingCreator();
 
@@ -92,4 +114,6 @@ public abstract class BaseFragment<VB extends ViewBinding, VM extends ViewModel>
     protected abstract Class<VM> createViewModel();
 
     public abstract void onCreateView();
+
+    //endregion
 }

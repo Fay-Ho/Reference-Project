@@ -121,7 +121,6 @@ NS_ASSUME_NONNULL_END
     [self.temperatureLabel horizontalEqualToView:self.container constant:135];
     
     [self.celsiusLabel topEqualToAnchor:self.container.topAnchor constant:100];
-    [self.celsiusLabel trailingEqualToAnchor:self.container.trailingAnchor constant:100];
     [self.celsiusLabel leadingEqualToAnchor:self.temperatureLabel.trailingAnchor];
     
     [self.weatherLabel topEqualToAnchor:self.temperatureLabel.bottomAnchor constant:10];

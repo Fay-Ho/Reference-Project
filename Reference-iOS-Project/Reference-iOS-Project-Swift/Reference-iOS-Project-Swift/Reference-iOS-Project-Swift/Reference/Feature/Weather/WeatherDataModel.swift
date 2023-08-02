@@ -22,8 +22,17 @@
 //  SOFTWARE.
 //
 
+import UIKit
+
 struct WeatherDataModel {
-    let temperature: String?
-    let weather: String?
-    let wind: String?
+    let temperature: String
+    let weather: String
+    let wind: String
+    let listItems: [WeatherListItemDataModel]
+}
+
+struct WeatherListItemDataModel {
+    let time: String
+    let image: ImageProvider?
+    let weather: String
 }

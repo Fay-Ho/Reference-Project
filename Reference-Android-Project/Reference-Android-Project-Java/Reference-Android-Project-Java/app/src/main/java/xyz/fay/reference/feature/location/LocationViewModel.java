@@ -32,26 +32,25 @@ import androidx.lifecycle.ViewModel;
 import java.util.Arrays;
 import java.util.List;
 
-import xyz.fay.reference.networking.response.GetCityListCitiesResponse;
-import xyz.fay.reference.networking.response.GetCityListResponse;
+import xyz.fay.reference.networking.response.CityCitiesResponse;
+import xyz.fay.reference.networking.response.CityResponse;
 
-public class LocationViewModel extends ViewModel {
+final class LocationViewModel extends ViewModel {
     private final MutableLiveData<LocationDataModel> locationDataModel = new MutableLiveData<>();
-
     public MutableLiveData<LocationDataModel> getLocationDataModel() {
         return locationDataModel;
     }
 
-    public void handleGetCityListResponse(@Nullable GetCityListResponse response) {
+    public void handleCityResponse(@Nullable CityResponse response) {
         if (response != null) {
-            List<GetCityListCitiesResponse> responses = Arrays.asList(response.getCities());
-            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(LocationViewModel::apply).toArray(LocationRowDataModel[]::new));
+            List<CityCitiesResponse> responses = Arrays.asList(response.getCities());
+            LocationDataModel dataModel = new LocationDataModel(responses.stream().map(this::createRowDataModel).toArray(LocationRowDataModel[]::new));
             locationDataModel.postValue(dataModel);
         }
     }
 
     @NonNull
-    private static LocationRowDataModel apply(@NonNull GetCityListCitiesResponse response) {
+    private LocationRowDataModel createRowDataModel(@NonNull CityCitiesResponse response) {
         return new LocationRowDataModel(response.getName());
     }
 }

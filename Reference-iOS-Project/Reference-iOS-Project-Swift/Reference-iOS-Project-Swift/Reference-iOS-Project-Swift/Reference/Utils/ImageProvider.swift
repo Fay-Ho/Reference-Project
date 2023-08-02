@@ -25,13 +25,13 @@
 import UIKit
 
 enum ImageProvider : String {
-    case cloudy = "阴天"
+    case cloudy = "Clouds"
     case foggy = "大雾"
     case hail = "冰雹"
     case location = "定位"
     case moon = "夜间"
     case moonCloudy = "夜间多云"
-    case rainy = "雨天"
+    case rainy = "Rain"
     case snowy = "雪天"
     case sun = "晴朗"
     case sunCloudy = "晴朗多云"
@@ -39,34 +39,39 @@ enum ImageProvider : String {
     case tornado = "龙卷风"
     case typhoon = "台风"
     
+//    var image: UIImage? {
+//        switch self {
+//        case .cloudy: return UIImage(named: "ImgCloudy")
+//        case .foggy: return UIImage(named: "ImgFoggy")
+//        case .hail: return UIImage(named: "ImgHail")
+//        case .location: return UIImage(named: "ImgLocation")
+//        case .moon: return UIImage(named: "ImgMoon")
+//        case .moonCloudy: return UIImage(named: "ImgMoonCloudy")
+//        case .rainy: return UIImage(named: "ImgRainy")
+//        case .snowy: return UIImage(named: "ImgSnowy")
+//        case .sun: return UIImage(named: "ImgSun")
+//        case .sunCloudy: return UIImage(named: "ImgSunCloudy")
+//        case .thunderstorms: return UIImage(named: "ImgThunderstorms")
+//        case .tornado: return UIImage(named: "ImgTornado")
+//        case .typhoon: return UIImage(named: "ImgTyphoon")
+//        }
+//    }
+
     func loadImage() -> UIImage? {
         switch self {
-        case .cloudy:
-            return UIImage(named: "ImgCloudy")
-        case .foggy:
-            return UIImage(named: "ImgFoggy")
-        case .hail:
-            return UIImage(named: "ImgHail")
-        case .location:
-            return UIImage(named: "ImgLocation")
-        case .moon:
-            return UIImage(named: "ImgMoon")
-        case .moonCloudy:
-            return UIImage(named: "ImgMoonCloudy")
-        case .rainy:
-            return UIImage(named: "ImgRainy")
-        case .snowy:
-            return UIImage(named: "ImgSnowy")
-        case .sun:
-            return UIImage(named: "ImgSun")
-        case .sunCloudy:
-            return UIImage(named: "ImgSunCloudy")
-        case .thunderstorms:
-            return UIImage(named: "ImgThunderstorms")
-        case .tornado:
-            return UIImage(named: "ImgTornado")
-        case .typhoon:
-            return UIImage(named: "ImgTyphoon")
+        case .cloudy: return UIImage(named: "ImgCloudy")
+        case .foggy: return UIImage(named: "ImgFoggy")
+        case .hail: return UIImage(named: "ImgHail")
+        case .location: return UIImage(named: "ImgLocation")
+        case .moon: return UIImage(named: "ImgMoon")
+        case .moonCloudy: return UIImage(named: "ImgMoonCloudy")
+        case .rainy: return UIImage(named: "ImgRainy")
+        case .snowy: return UIImage(named: "ImgSnowy")
+        case .sun: return UIImage(named: "ImgSun")
+        case .sunCloudy: return UIImage(named: "ImgSunCloudy")
+        case .thunderstorms: return UIImage(named: "ImgThunderstorms")
+        case .tornado: return UIImage(named: "ImgTornado")
+        case .typhoon: return UIImage(named: "ImgTyphoon")
         }
     }
 }

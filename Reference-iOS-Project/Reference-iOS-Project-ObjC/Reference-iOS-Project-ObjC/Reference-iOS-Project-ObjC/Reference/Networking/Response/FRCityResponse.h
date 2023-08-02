@@ -22,33 +22,23 @@
 //  SOFTWARE.
 //
 
-struct GetForecastsWeatherResponse : Codable {
-    let count: String
-    let forecasts: [GetForecastsWeatherForecastsResponse]
-    let info: String
-    let infocode: String
-    let status: String
-}
+#import <Foundation/Foundation.h>
 
-struct GetForecastsWeatherForecastsResponse : Codable {
-    let adcode: String
-    let casts: [GetForecastsWeatherForecastsCastsResponse]
-    let city: String
-    let province: String
-    let reporttime: String
-}
+NS_ASSUME_NONNULL_BEGIN
 
-struct GetForecastsWeatherForecastsCastsResponse : Codable {
-    let date: String
-    let daypower: String
-    let daytemp: String
-    let daytemp_float: String
-    let dayweather: String
-    let daywind: String
-    let nightpower: String
-    let nighttemp: String
-    let nighttemp_float: String
-    let nightweather: String
-    let nightwind: String
-    let week: String
-}
+@class FRCityCitiesResponse;
+
+@interface FRCityResponse : NSObject
+
+@property (nonatomic, strong, readonly) NSArray<FRCityCitiesResponse *> *cities;
+
+@end
+
+@interface FRCityCitiesResponse : NSObject
+
+@property (nonatomic, strong, readonly) NSString *adcode;
+@property (nonatomic, strong, readonly) NSString *name;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -29,7 +29,7 @@
 #pragma mark - FRLocationInteractorInterface Implementation
 
 - (void)viewIsReady {
-    [self.presenter handleGetCityListResponse];
+    [self.presenter handleCityResponse];
 }
 
 @end

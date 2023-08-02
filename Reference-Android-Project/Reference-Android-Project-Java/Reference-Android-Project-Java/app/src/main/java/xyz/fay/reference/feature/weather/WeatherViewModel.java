@@ -24,45 +24,79 @@ package xyz.fay.reference.feature.weather;
   SOFTWARE.
 */
 
-import android.content.Context;
-
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
 import xyz.fay.reference.networking.NetworkManager;
-import xyz.fay.reference.networking.response.GetCityListResponse;
+import xyz.fay.reference.networking.response.CityResponse;
+import xyz.fay.reference.networking.response.WeatherListResponse;
+import xyz.fay.reference.networking.response.WeatherListWeatherResponse;
+import xyz.fay.reference.utils.ImageProvider;
+import xyz.fay.reference.vendor.Arrays2;
 
-public class WeatherViewModel extends ViewModel {
+public final class WeatherViewModel extends ViewModel {
     private final MutableLiveData<WeatherDataModel> weatherDataModel = new MutableLiveData<>();
-    private final MutableLiveData<GetCityListResponse> getCityListResponse = new MutableLiveData<>();
-
-    public void viewIsReady(Context context) {
-        NetworkManager manager = new NetworkManager();
-        manager.getLivesWeather(context, response -> {
-            if (response != null) {
-                WeatherDataModel dataModel = new WeatherDataModel(
-                        response.getLives()[0].getTemperature(),
-                        response.getLives()[0].getWeather(),
-                        response.getLives()[0].getWinddirection() + response.getLives()[0].getWindpower()
-                );
-                weatherDataModel.postValue(dataModel);
-            }
-        });
-    }
-
-
-    public void fetchCityList(Context context) {
-        NetworkManager manager = new NetworkManager();
-
-        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-        manager.getCityList(context, getCityListResponse::postValue);
-    }
-
     public MutableLiveData<WeatherDataModel> getWeatherDataModel() {
         return weatherDataModel;
     }
 
-    public MutableLiveData<GetCityListResponse> getGetCityListResponse() {
-        return getCityListResponse;
+    private final MutableLiveData<CityResponse> cityResponse = new MutableLiveData<>();
+    public MutableLiveData<CityResponse> getCityResponse() {
+        return cityResponse;
+    }
+
+    public void viewIsReady() {
+        new NetworkManager().getWeather(response -> {
+            if (response == null) { return; }
+
+            WeatherListItemDataModel[] listItems = Arrays
+                    .stream(response.getList())
+                    .map(this::createListItemDataModel)
+                    .toArray(WeatherListItemDataModel[]::new);
+
+            WeatherListResponse listResponse = Arrays2.firstOrNull(Arrays.asList(response.getList()));
+
+            if (listResponse == null) { return; }
+
+            WeatherListWeatherResponse weatherResponse = Arrays2.firstOrNull(Arrays.asList(listResponse.getWeather()));
+
+            if (weatherResponse == null) { return; }
+
+            WeatherDataModel dataModel = new WeatherDataModel(
+                    listResponse.getMain().getTemp().toString(),
+                    weatherResponse.getMain(),
+                    listResponse.getWind().getDeg().toString(),
+                    listItems
+            );
+
+            weatherDataModel.postValue(dataModel);
+        });
+    }
+
+    public void fetchCityList() {
+        // `setValue()` can only run in main thread, `postValue()` can run in all thread.
+        new NetworkManager().getCity(cityResponse::postValue);
+    }
+
+    @NonNull
+    private WeatherListItemDataModel createListItemDataModel(@NonNull WeatherListResponse response) {
+        return new WeatherListItemDataModel(
+                formatDate(response.getDt_txt()),
+                ImageProvider.rawValue(response.getWeather()[0].getMain()),
+                response.getMain().getTemp().toString()
+        );
+    }
+
+    @NonNull
+    private String formatDate(String string) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime date = LocalDateTime.parse(string, formatter);
+        formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return date.format(formatter);
     }
 }

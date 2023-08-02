@@ -22,11 +22,11 @@
 //  SOFTWARE.
 //
 
-struct GetCityListResponse : Codable {
-    let cities: [GetCityListCitiesResponse]
+struct CityResponse : Codable {
+    let cities: [CityCitiesResponse]
 }
 
-struct GetCityListCitiesResponse : Codable {
+struct CityCitiesResponse : Codable {
     let adcode: String
     let name: String
 }

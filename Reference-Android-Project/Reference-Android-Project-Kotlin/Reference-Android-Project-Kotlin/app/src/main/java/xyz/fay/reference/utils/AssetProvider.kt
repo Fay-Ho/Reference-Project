@@ -24,14 +24,14 @@ package xyz.fay.reference.utils
   SOFTWARE.
 */
 
-import android.content.Context
+import xyz.fay.reference.MainApplication
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class AssetProvider {
     companion object {
-        fun loadFile(context: Context, fileName: String): String {
-            val manager = context.assets
+        fun loadFile(fileName: String): String {
+            val manager = MainApplication.appContext.assets
             val inputStream = manager.open(fileName)
             val inputStreamReader = InputStreamReader(inputStream)
             val bufferedReader = BufferedReader(inputStreamReader)

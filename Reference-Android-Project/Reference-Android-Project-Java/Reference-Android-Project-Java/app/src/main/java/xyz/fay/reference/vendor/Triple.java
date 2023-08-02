@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking.response;
+package xyz.fay.reference.vendor;
 
 /*
   MIT License
@@ -24,18 +24,26 @@ package xyz.fay.reference.networking.response;
   SOFTWARE.
 */
 
-import androidx.annotation.NonNull;
+public final class Triple<T, U, V> {
+    private final T first;
+    private final U second;
+    private final V third;
 
-import xyz.fay.parcel.Parcelable;
-import xyz.fay.parcel.Parcelize;
+    public Triple(T first, U second, V third) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
 
-@Parcelize
-public final class GetCityListResponse extends Parcelable {
-    @NonNull private final GetCityListCitiesResponse[] cities;
+    public T getFirst() {
+        return first;
+    }
 
-    public GetCityListResponse(
-            @NonNull GetCityListCitiesResponse[] cities
-    ) {
-        this.cities = cities;
+    public U getSecond() {
+        return second;
+    }
+
+    public V getThird() {
+        return third;
     }
 }

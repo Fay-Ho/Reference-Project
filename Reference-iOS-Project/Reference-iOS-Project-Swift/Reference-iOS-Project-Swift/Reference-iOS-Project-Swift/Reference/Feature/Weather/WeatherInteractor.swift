@@ -31,17 +31,17 @@ class WeatherInteractor {
 extension WeatherInteractor : WeatherInteractorInterface {
     func viewIsReady() {
         let manager = NetworkManager()
-        manager.getLivesWeather { [weak self] in
+        manager.getWeather { [weak self] in
             guard let response = $0 else { return }
-            self?.presenter?.handleGetLivesWeatherResponse(response)
+            self?.presenter?.handleWeatherResponse(response)
         }
     }
     
     func fetchCityList() {
         let manager = NetworkManager()
-        manager.getCityList { [weak self] in
+        manager.getCity { [weak self] in
             guard let response = $0 else { return }
-            self?.presenter?.handleGetCityListResponse(response)
+            self?.presenter?.handleCityResponse(response)
         }
     }
 }

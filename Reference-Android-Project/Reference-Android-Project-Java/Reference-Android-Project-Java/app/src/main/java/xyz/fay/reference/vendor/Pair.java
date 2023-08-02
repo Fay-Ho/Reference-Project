@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking.response
+package xyz.fay.reference.vendor;
 
 /*
   MIT License
@@ -24,29 +24,20 @@ package xyz.fay.reference.networking.response
   SOFTWARE.
 */
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+public final class Pair<T, U> {
+    private final T first;
+    private final U second;
 
-@Parcelize
-data class GetLivesWeatherResponse(
-    val count: String,
-    val info: String,
-    val infocode: String,
-    val lives: Array<GetLivesWeatherLivesResponse>,
-    val status: String
-) : Parcelable
+    public Pair(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
 
-@Parcelize
-data class GetLivesWeatherLivesResponse(
-    val adcode: String,
-    val city: String,
-    val humidity: String,
-    val humidity_float: String,
-    val province: String,
-    val reporttime: String,
-    val temperature: String,
-    val temperature_float: String,
-    val weather: String,
-    val winddirection: String,
-    val windpower: String
-) : Parcelable
+    public T getFirst() {
+        return first;
+    }
+
+    public U getSecond() {
+        return second;
+    }
+}

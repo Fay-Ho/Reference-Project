@@ -30,8 +30,8 @@ protocol WeatherInteractorInterface {
 }
 
 protocol WeatherPresenterInterface {
-    func handleGetCityListResponse(_ response: GetCityListResponse)
-    func handleGetLivesWeatherResponse(_ response: GetLivesWeatherResponse)
+    func handleCityResponse(_ response: CityResponse)
+    func handleWeatherResponse(_ response: WeatherResponse?)
 }
 
 protocol WeatherViewControllerInterface: NSObject {

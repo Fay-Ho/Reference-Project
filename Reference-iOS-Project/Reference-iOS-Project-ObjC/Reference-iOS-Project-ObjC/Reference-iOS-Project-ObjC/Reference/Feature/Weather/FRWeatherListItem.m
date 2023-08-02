@@ -87,6 +87,8 @@
     self.root.backgroundColor = [UIColor itemColor];
 }
 
+#pragma mark -
+
 - (void)updateWithDataModel:(NSArray<FRWeatherListItemDataModel *> *)dataModel {
     NSArray<FRWeatherListItemCell *> *cells = [dataModel map:^id _Nonnull (FRWeatherListItemDataModel * _Nonnull element) {
         FRWeatherListItemCellViewModel *viewModel = [FRWeatherListItemCellViewModel viewModelWithTitle:element.time

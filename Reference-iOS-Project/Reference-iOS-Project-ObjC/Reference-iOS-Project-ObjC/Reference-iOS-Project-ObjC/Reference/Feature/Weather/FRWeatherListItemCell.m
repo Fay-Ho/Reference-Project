@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_END
 
 @property (nonatomic, strong) UIStackView *container;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView *imageContainer;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *valueLabel;
 
@@ -57,7 +58,7 @@ NS_ASSUME_NONNULL_END
 
 - (UIStackView *)container {
     if (!_container) {
-        _container = [UIStackView makeWithSpacing:10];
+        _container = [UIStackView makeWithSpacing:20];
     }
     return _container;
 }
@@ -67,6 +68,13 @@ NS_ASSUME_NONNULL_END
         _titleLabel = [UILabel makeWithText:_viewModel.title textAlignment:NSTextAlignmentCenter];
     }
     return _titleLabel;
+}
+
+- (UIView *)imageContainer {
+    if (!_imageContainer) {
+        _imageContainer = [UIView make];
+    }
+    return _imageContainer;
 }
 
 - (UIImageView *)imageView {
@@ -98,12 +106,17 @@ NS_ASSUME_NONNULL_END
 
 - (void)setupSubviews {
     [self addSubview:self.container];
-    [self.container addArrangedSubviews:@[self.titleLabel, self.imageView, self.valueLabel]];
+    [self.container addArrangedSubviews:@[self.titleLabel, self.imageContainer, self.valueLabel]];
+    [self.imageContainer addSubview:self.imageView];
 }
 
 - (void)setupLayouts {
     [self.container edgeEqualToView:self];
     [self.container widthEqualToAnchor:self.widthAnchor];
+    
+    [self.imageView centerEqualToView:self.imageContainer];
+    [self.imageView widthEqualToConstant:36];
+    [self.imageView heightEqualToAnchor:self.imageView.widthAnchor];
 }
 
 - (void)updateStyling {

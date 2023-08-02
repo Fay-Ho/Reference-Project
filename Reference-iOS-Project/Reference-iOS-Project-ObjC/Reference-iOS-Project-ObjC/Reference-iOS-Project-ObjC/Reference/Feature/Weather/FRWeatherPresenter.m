@@ -30,23 +30,41 @@
 
 #pragma mark - FRWeatherPresenterInterface Implementation
 
-- (void)handleGetCityListResponse:(FRGetCityListResponse *)response {
+- (void)handleCityResponse:(FRCityResponse *)response {
     [self.viewController showLocationPageWithDataModel:response];
 }
 
-- (void)handleGetLivesWeatherResponse:(FRGetLivesWeatherResponse *)getLivesWeatherResponse
-       andGetForecastsWeatherResponse:(FRGetForecastsWeatherResponse *)getForecastsWeatherResponse {
-    FRGetLivesWeatherLivesResponse *livesResponse = getLivesWeatherResponse.lives.firstObject;
-    NSArray<FRWeatherListItemDataModel *> *listItems = [getForecastsWeatherResponse.forecasts.firstObject.casts map:^id _Nonnull(FRGetForecastsWeatherForecastsCastsResponse * _Nonnull element) {
-        return [FRWeatherListItemDataModel dataModelWithTime:element.week
-                                                       image:[FRImageProvider loadImageWithRawValue:element.dayweather]
-                                                     weather:element.daytemp];
+- (void)handleWeatherResponse:(FRWeatherResponse *)response {
+    if (response == nil) { return; }
+    
+    NSArray<FRWeatherListItemDataModel *> *listItems = [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
+        return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
+                                                       image:[FRImageProvider loadImageWithRawValue:response.weather.firstObject.main]
+                                                     weather:[NSString stringWithFormat:@"%0.f", response.main.temp]];
     }];
-    FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:livesResponse.temperature
-                                                                         weather:livesResponse.weather
-                                                                            wind:[livesResponse.winddirection stringByAppendingString:livesResponse.windpower]
+    
+    FRWeatherListResponse *listResponse = response.list.firstObject;
+    
+    if (listResponse == nil) { return; }
+    
+    FRWeatherListWeatherResponse *weatherResponse = listResponse.weather.firstObject;
+    
+    if (weatherResponse == nil) { return; }
+    
+    FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:[NSString stringWithFormat:@"%0.f", listResponse.main.temp]
+                                                                         weather:weatherResponse.main
+                                                                            wind:[NSString stringWithFormat:@"%d", listResponse.wind.deg]
                                                                        listItems:listItems];
+    
     [self.viewController updateSubviewsWithDataModel:dataModel];
+}
+
+- (NSString *)formatDate:(NSString *)string {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *date = [formatter dateFromString:string];
+    formatter.dateFormat = @"HH:mm";
+    return [formatter stringFromDate:date];
 }
 
 @end

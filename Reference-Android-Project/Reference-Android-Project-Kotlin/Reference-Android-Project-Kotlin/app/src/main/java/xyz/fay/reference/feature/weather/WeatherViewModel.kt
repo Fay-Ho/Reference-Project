@@ -24,37 +24,54 @@ package xyz.fay.reference.feature.weather
   SOFTWARE.
 */
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
-import xyz.fay.reference.networking.response.GetCityListResponse
+import xyz.fay.reference.networking.response.CityResponse
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class WeatherViewModel : ViewModel() {
     private val _weatherDataModel = MutableLiveData<WeatherDataModel>()
     val weatherDataModel: MutableLiveData<WeatherDataModel> get() = _weatherDataModel
 
-    private val _getCityListResponse = MutableLiveData<GetCityListResponse>()
-    val getCityListResponse: MutableLiveData<GetCityListResponse> get() = _getCityListResponse
+    private val _cityResponse = MutableLiveData<CityResponse>()
+    val cityResponse: MutableLiveData<CityResponse> get() = _cityResponse
 
-    fun viewIsReady(context: Context) {
-        val manager = NetworkManager()
-        manager.getLivesWeather(context) {
-            it?.let {
-                val dataModel = WeatherDataModel(
-                    it.lives.first().temperature,
-                    it.lives.first().weather,
-                    it.lives.first().winddirection + it.lives.first().windpower
-                )
-                _weatherDataModel.postValue(dataModel)
+    fun viewIsReady() {
+        NetworkManager().getWeather {
+            it?.apply {
+                val listItems = list.map {
+                    WeatherListItemDataModel(
+                        formatDate(it.dt_txt),
+                        it.main.temp.toString()
+                    )
+                }
+                list.firstOrNull()?.apply {
+                    weather.firstOrNull()?.let {
+                        _weatherDataModel.postValue(
+                            WeatherDataModel(
+                                main.temp.toString(),
+                                it.main,
+                                wind.deg.toString(),
+                                listItems.toTypedArray()
+                            )
+                        )
+                    }
+                }
             }
         }
     }
 
-    fun fetchCityList(context: Context) {
-        val manager = NetworkManager()
+    fun fetchCityList() {
+        // `setValue()` can only run in main thread, `postValue()` can run in all thread.
+        NetworkManager().getCity(_cityResponse::postValue)
+    }
 
-        // setValue() 只能在主线程中调用，postValue() 可以在任何线程中调用
-        manager.getCityList(context, _getCityListResponse::postValue)
+    private fun formatDate(string: String): String {
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val date = LocalDateTime.parse(string, formatter)
+        formatter = DateTimeFormatter.ofPattern("HH:mm")
+        return date.format(formatter)
     }
 }

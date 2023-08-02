@@ -44,9 +44,8 @@
 		65D3F8F82A66F9AB00522C5A /* FRWeatherDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F8F72A66F9AB00522C5A /* FRWeatherDataModel.m */; };
 		65D3F9432A671B5D00522C5A /* UIFont+FRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F9422A671B5D00522C5A /* UIFont+FRTheme.m */; };
 		65D3F95D2A672DA100522C5A /* NSArray+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */; };
-		65E4D6D92A726C3100D1A8FD /* FRGetLivesWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4D6D52A726C3100D1A8FD /* FRGetLivesWeatherResponse.m */; };
-		65E4D6DA2A726C3100D1A8FD /* FRGetForecastsWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4D6D62A726C3100D1A8FD /* FRGetForecastsWeatherResponse.m */; };
-		65E4D6F52A72776B00D1A8FD /* FRGetCityListResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4D6F42A72776B00D1A8FD /* FRGetCityListResponse.m */; };
+		65E4BA9F2A7651B900E90CC5 /* FRCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9B2A7651B900E90CC5 /* FRCityResponse.m */; };
+		65E4BAA02A7651B900E90CC5 /* FRWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,12 +145,10 @@
 		65D3F9422A671B5D00522C5A /* UIFont+FRTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FRTheme.m"; sourceTree = "<group>"; };
 		65D3F95B2A672DA100522C5A /* NSArray+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+FRExtension.h"; sourceTree = "<group>"; };
 		65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FRExtension.m"; sourceTree = "<group>"; };
-		65E4D6D52A726C3100D1A8FD /* FRGetLivesWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGetLivesWeatherResponse.m; sourceTree = "<group>"; };
-		65E4D6D62A726C3100D1A8FD /* FRGetForecastsWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGetForecastsWeatherResponse.m; sourceTree = "<group>"; };
-		65E4D6D72A726C3100D1A8FD /* FRGetLivesWeatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGetLivesWeatherResponse.h; sourceTree = "<group>"; };
-		65E4D6D82A726C3100D1A8FD /* FRGetForecastsWeatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGetForecastsWeatherResponse.h; sourceTree = "<group>"; };
-		65E4D6F32A72776B00D1A8FD /* FRGetCityListResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRGetCityListResponse.h; sourceTree = "<group>"; };
-		65E4D6F42A72776B00D1A8FD /* FRGetCityListResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRGetCityListResponse.m; sourceTree = "<group>"; };
+		65E4BA9B2A7651B900E90CC5 /* FRCityResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRCityResponse.m; sourceTree = "<group>"; };
+		65E4BA9C2A7651B900E90CC5 /* FRWeatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRWeatherResponse.h; sourceTree = "<group>"; };
+		65E4BA9D2A7651B900E90CC5 /* FRCityResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCityResponse.h; sourceTree = "<group>"; };
+		65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRWeatherResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,12 +345,10 @@
 		650814032A61077B00242F55 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				65E4D6F32A72776B00D1A8FD /* FRGetCityListResponse.h */,
-				65E4D6F42A72776B00D1A8FD /* FRGetCityListResponse.m */,
-				65E4D6D82A726C3100D1A8FD /* FRGetForecastsWeatherResponse.h */,
-				65E4D6D62A726C3100D1A8FD /* FRGetForecastsWeatherResponse.m */,
-				65E4D6D72A726C3100D1A8FD /* FRGetLivesWeatherResponse.h */,
-				65E4D6D52A726C3100D1A8FD /* FRGetLivesWeatherResponse.m */,
+				65E4BA9D2A7651B900E90CC5 /* FRCityResponse.h */,
+				65E4BA9B2A7651B900E90CC5 /* FRCityResponse.m */,
+				65E4BA9C2A7651B900E90CC5 /* FRWeatherResponse.h */,
+				65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -568,19 +563,18 @@
 				650813F02A6106A300242F55 /* FRLocationInteractor.m in Sources */,
 				650813F82A61071E00242F55 /* FRNavigator.m in Sources */,
 				650814352A61439B00242F55 /* UIColor+FRTheme.m in Sources */,
-				65E4D6DA2A726C3100D1A8FD /* FRGetForecastsWeatherResponse.m in Sources */,
+				65E4BAA02A7651B900E90CC5 /* FRWeatherResponse.m in Sources */,
 				650813ED2A6106A300242F55 /* FRLocationConfigurator.m in Sources */,
 				650813EE2A6106A300242F55 /* FRLocationViewController.m in Sources */,
 				65984FEB2A6303D90058F69E /* FRLocationDataModel.m in Sources */,
 				650814012A61074F00242F55 /* FRNetworkManager.m in Sources */,
 				65D3F9432A671B5D00522C5A /* UIFont+FRTheme.m in Sources */,
 				655D80082A66DC1F006BCA74 /* UIStackView+FRExtension.m in Sources */,
+				65E4BA9F2A7651B900E90CC5 /* FRCityResponse.m in Sources */,
 				655D806D2A66F24A006BCA74 /* UILabel+FRExtension.m in Sources */,
 				65984FFD2A63B7F70058F69E /* FRWeatherViewController.m in Sources */,
-				65E4D6D92A726C3100D1A8FD /* FRGetLivesWeatherResponse.m in Sources */,
 				65984FFC2A63B7F70058F69E /* FRWeatherInteractor.m in Sources */,
 				650813F92A61071E00242F55 /* FRBundleProvider.m in Sources */,
-				65E4D6F52A72776B00D1A8FD /* FRGetCityListResponse.m in Sources */,
 				6598501E2A63F1EE0058F69E /* FRBaseViewController.m in Sources */,
 				65984FFE2A63B7F70058F69E /* FRWeatherConfigurator.m in Sources */,
 				65984FFB2A63B7F70058F69E /* FRWeatherPresenter.m in Sources */,

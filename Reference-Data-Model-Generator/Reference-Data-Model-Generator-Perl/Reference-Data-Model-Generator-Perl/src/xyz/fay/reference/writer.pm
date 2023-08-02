@@ -27,6 +27,7 @@ use warnings FATAL => 'all';
 #
 
 use File::Path;
+use Scalar::Util qw(looks_like_number);
 
 require './lib/CamelCase.pm';
 
@@ -97,6 +98,18 @@ my $flag_param = 'PARAM%';
 my $flag_prefix = '%PREFIX%';
 
 my $flag_string_type = 'String';
+
+my $flag_double_type = 'Double';
+
+my $flag_int_type = 'Int';
+
+my $flag_java_double_type = 'Double';
+
+my $flag_java_int_type = 'Integer';
+
+my $flag_objc_double_type = 'double';
+
+my $flag_objc_int_type = 'int';
 
 my $flag_suffix = '%SUFFIX%';
 
@@ -233,6 +246,8 @@ $flag_define
 
 my $flag_objc_h_type_define = "\@property (nonatomic, strong, readonly) $flag_prefix$flag_type$flag_suffix *$flag_var;";
 
+my $flag_objc_h_type_number_define = "\@property (nonatomic, assign, readonly) $flag_prefix$flag_type$flag_suffix $flag_var;";
+
 my $flag_objc_h_type_list_define = "\@property (nonatomic, strong, readonly) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
 my $flag_objc_m_file = "//
@@ -259,6 +274,8 @@ $flag_define
 \@end";
 
 my $flag_objc_m_type_define = "\@property (nonatomic, strong, readwrite) $flag_prefix$flag_type$flag_suffix *$flag_var;";
+
+my $flag_objc_m_type_number_define = "\@property (nonatomic, assign, readwrite) $flag_prefix$flag_type$flag_suffix $flag_var;";
 
 my $flag_objc_m_type_list_define = "\@property (nonatomic, strong, readwrite) NSArray<$flag_prefix$flag_type$flag_suffix *> *$flag_var;";
 
@@ -304,6 +321,12 @@ sub generate_java_file {
                 } elsif (ref $target_define_value eq $is_hash) {
                     $target_class_var_define = create_java_define($flag_java_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
                     $target_class_var_param = create_java_param($flag_java_type_param, $target_define_type, $target_suffix, $target_define_name, $target_class_var_param);
+                } elsif ($target_define_value =~ /^[+-]?\d+$/) {
+                    $target_class_var_define = create_java_define($flag_java_type_define, $flag_java_int_type, $empty, $target_define_name, $target_class_var_define);
+                    $target_class_var_param = create_java_param($flag_java_type_param, $flag_java_int_type, $empty, $target_define_name, $target_class_var_param);
+                } elsif ($target_define_value =~ /^-?(?:\d+(?:\.\d*)?|\.\d+)$/) {
+                    $target_class_var_define = create_java_define($flag_java_type_define, $flag_java_double_type, $empty, $target_define_name, $target_class_var_define);
+                    $target_class_var_param = create_java_param($flag_java_type_param, $flag_java_double_type, $empty, $target_define_name, $target_class_var_param);
                 } else {
                     $target_class_var_define = create_java_define($flag_java_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                     $target_class_var_param = create_java_param($flag_java_type_param, $flag_string_type, $empty, $target_define_name, $target_class_var_param);
@@ -407,6 +430,10 @@ sub generate_kotlin_file {
                     }
                 } elsif (ref $target_define_value eq $is_hash) {
                     $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                } elsif ($target_define_value =~ /^[+-]?\d+$/) {
+                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $flag_int_type, $empty, $target_define_name, $target_class_var_define);
+                } elsif ($target_define_value =~ /^-?(?:\d+(?:\.\d*)?|\.\d+)$/) {
+                    $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $flag_double_type, $empty, $target_define_name, $target_class_var_define);
                 } else {
                     $target_class_var_define = create_kotlin_define($flag_kotlin_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                 }
@@ -533,6 +560,10 @@ sub generate_objc_file {
                     }
                 } elsif (ref $target_define_value eq $is_hash) {
                     @objc_define = create_objc_define($flag_objc_h_type_define, $flag_objc_m_type_define, $target_prefix, $target_define_type, $target_suffix, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
+                } elsif ($target_define_value =~ /^[+-]?\d+$/) {
+                    @objc_define = create_objc_define($flag_objc_h_type_number_define, $flag_objc_m_type_number_define, $empty, $flag_objc_int_type, $empty, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
+                } elsif ($target_define_value =~ /^-?(?:\d+(?:\.\d*)?|\.\d+)$/) {
+                    @objc_define = create_objc_define($flag_objc_h_type_number_define, $flag_objc_m_type_number_define, $empty, $flag_objc_double_type, $empty, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
                 } else {
                     @objc_define = create_objc_define($flag_objc_h_type_define, $flag_objc_m_type_define, $default_prefix_ns, $flag_string_type, $empty, $target_define_name, $target_class_h_var_define, $target_class_m_var_define);
                 }
@@ -674,6 +705,10 @@ sub generate_swift_file {
                     }
                 } elsif (ref $target_define_value eq $is_hash) {
                     $target_class_var_define = create_swift_define($flag_swift_type_define, $target_define_type, $target_suffix, $target_define_name, $target_class_var_define);
+                } elsif ($target_define_value =~ /^[+-]?\d+$/) {
+                    $target_class_var_define = create_swift_define($flag_swift_type_define, $flag_int_type, $empty, $target_define_name, $target_class_var_define);
+                } elsif ($target_define_value =~ /^-?(?:\d+(?:\.\d*)?|\.\d+)$/) {
+                    $target_class_var_define = create_swift_define($flag_swift_type_define, $flag_double_type, $empty, $target_define_name, $target_class_var_define);
                 } else {
                     $target_class_var_define = create_swift_define($flag_swift_type_define, $flag_string_type, $empty, $target_define_name, $target_class_var_define);
                 }

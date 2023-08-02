@@ -22,22 +22,28 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "FRCityResponse.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FRGetCityListCitiesResponse;
+@interface FRCityResponse ()
 
-@interface FRGetCityListResponse : NSObject
-
-@property (nonatomic, strong, readonly) NSArray<FRGetCityListCitiesResponse *> *cities;
+@property (nonatomic, strong, readwrite) NSArray<FRCityCitiesResponse *> *cities;
 
 @end
 
-@interface FRGetCityListCitiesResponse : NSObject
+@implementation FRCityResponse
 
-@property (nonatomic, strong, readonly) NSString *adcode;
-@property (nonatomic, strong, readonly) NSString *name;
+@end
+
+@interface FRCityCitiesResponse ()
+
+@property (nonatomic, strong, readwrite) NSString *adcode;
+@property (nonatomic, strong, readwrite) NSString *name;
+
+@end
+
+@implementation FRCityCitiesResponse
 
 @end
 

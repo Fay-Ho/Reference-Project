@@ -92,7 +92,6 @@ extension WeatherDashboardItem {
         
         celsiusLabel
             .top(equalTo: container.topAnchor, constant: 100)
-            .trailing(equalTo: container.trailingAnchor, constant: 100)
             .leading(equalTo: temperatureLabel.trailingAnchor)
         
         weatherLabel

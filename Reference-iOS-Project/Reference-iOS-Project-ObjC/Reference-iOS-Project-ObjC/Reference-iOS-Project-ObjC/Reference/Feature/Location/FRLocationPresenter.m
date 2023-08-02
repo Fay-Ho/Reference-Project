@@ -25,15 +25,15 @@
 #import "FRLocationPresenter.h"
 #import "NSArray+FRExtension.h"
 #import "FRLocationDataModel.h"
-#import "FRGetCityListResponse.h"
+#import "FRCityResponse.h"
 
 @implementation FRLocationPresenter
 
 #pragma mark - FRLocationPresenterInterface Implementation
 
-- (void)handleGetCityListResponse {
-    FRGetCityListResponse *response = (FRGetCityListResponse *)self.dataModel;
-    NSArray<FRLocationRowDataModel *> *rowDataModels = [response.cities map:^id _Nonnull (FRGetCityListCitiesResponse * _Nonnull element) {
+- (void)handleCityResponse {
+    FRCityResponse *response = (FRCityResponse *)self.dataModel;
+    NSArray<FRLocationRowDataModel *> *rowDataModels = [response.cities map:^id _Nonnull (FRCityCitiesResponse * _Nonnull element) {
         return [FRLocationRowDataModel dataModelWithName:element.name];
     }];
     [self.viewController updateTableViewWithDataModel:[FRLocationDataModel dataModelWithRowDataModels:rowDataModels]];

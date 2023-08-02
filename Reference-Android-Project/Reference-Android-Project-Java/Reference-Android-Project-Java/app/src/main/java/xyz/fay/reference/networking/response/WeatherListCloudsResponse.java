@@ -30,24 +30,12 @@ import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-public final class GetForecastsWeatherResponse extends Parcelable {
-    @NonNull private final String count;
-    @NonNull private final GetForecastsWeatherForecastsResponse[] forecasts;
-    @NonNull private final String info;
-    @NonNull private final String infocode;
-    @NonNull private final String status;
+public final class WeatherListCloudsResponse extends Parcelable {
+    @NonNull private final Integer all;
 
-    public GetForecastsWeatherResponse(
-            @NonNull String count,
-            @NonNull GetForecastsWeatherForecastsResponse[] forecasts,
-            @NonNull String info,
-            @NonNull String infocode,
-            @NonNull String status
+    public WeatherListCloudsResponse(
+            @NonNull Integer all
     ) {
-        this.count = count;
-        this.forecasts = forecasts;
-        this.info = info;
-        this.infocode = infocode;
-        this.status = status;
+        this.all = all;
     }
 }

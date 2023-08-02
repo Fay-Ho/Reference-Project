@@ -29,7 +29,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Iterator;
 
-public class Arrays2 {
+public final class Arrays2 {
     @Nullable
     public static <T> T firstOrNull(@NonNull Iterable<T> iterable) {
         Iterator<T> iterator = iterable.iterator();

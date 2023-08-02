@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking.response
+package xyz.fay.reference.networking.response;
 
 /*
   MIT License
@@ -24,39 +24,24 @@ package xyz.fay.reference.networking.response
   SOFTWARE.
 */
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.annotation.NonNull;
+
+import xyz.fay.parcel.Parcelable;
+import xyz.fay.parcel.Parcelize;
 
 @Parcelize
-data class GetForecastsWeatherResponse(
-    val count: String,
-    val forecasts: Array<GetForecastsWeatherForecastsResponse>,
-    val info: String,
-    val infocode: String,
-    val status: String
-) : Parcelable
+public final class WeatherListWindResponse extends Parcelable {
+    @NonNull private final Integer deg;
+    @NonNull private final Double gust;
+    @NonNull private final Double speed;
 
-@Parcelize
-data class GetForecastsWeatherForecastsResponse(
-    val adcode: String,
-    val casts: Array<GetForecastsWeatherForecastsCastsResponse>,
-    val city: String,
-    val province: String,
-    val reporttime: String
-) : Parcelable
-
-@Parcelize
-data class GetForecastsWeatherForecastsCastsResponse(
-    val date: String,
-    val daypower: String,
-    val daytemp: String,
-    val daytemp_float: String,
-    val dayweather: String,
-    val daywind: String,
-    val nightpower: String,
-    val nighttemp: String,
-    val nighttemp_float: String,
-    val nightweather: String,
-    val nightwind: String,
-    val week: String
-) : Parcelable
+    public WeatherListWindResponse(
+            @NonNull Integer deg,
+            @NonNull Double gust,
+            @NonNull Double speed
+    ) {
+        this.deg = deg;
+        this.gust = gust;
+        this.speed = speed;
+    }
+}

@@ -24,32 +24,24 @@
 
 #import "FRWeatherInteractor.h"
 #import "FRNetworkManager.h"
-#import "FRGetCityListResponse.h"
-#import "FRGetForecastsWeatherResponse.h"
-#import "FRGetLivesWeatherResponse.h"
+#import "FRCityResponse.h"
+#import "FRWeatherResponse.h"
 
 @implementation FRWeatherInteractor
-
-- (void)fetchForecastsWeatherWithGetLivesWeatherResponse:(FRGetLivesWeatherResponse *)getLivesWeatherResponse {
-    FRNetworkManager<FRGetForecastsWeatherResponse *> *manager = [FRNetworkManager manager];
-    [manager getForecastsWeather:^(FRGetForecastsWeatherResponse * _Nullable response) {
-        [self.presenter handleGetLivesWeatherResponse:getLivesWeatherResponse andGetForecastsWeatherResponse:response];
-    }];
-}
 
 #pragma mark - FRWeatherInteractorInterface Implementation
 
 - (void)viewIsReady {
-    FRNetworkManager<FRGetLivesWeatherResponse *> *manager = [FRNetworkManager manager];
-    [manager getLivesWeather:^(FRGetLivesWeatherResponse * _Nullable response) {
-        [self fetchForecastsWeatherWithGetLivesWeatherResponse:response];
+    FRNetworkManager<FRWeatherResponse *> *manager = [FRNetworkManager manager];
+    [manager getWeather:^(FRWeatherResponse * _Nullable response) {
+        [self.presenter handleWeatherResponse:response];
     }];
 }
 
 - (void)fetchCityList {
-    FRNetworkManager<FRGetCityListResponse *> *manager = [FRNetworkManager manager];
-    [manager getCityList:^(FRGetCityListResponse * _Nullable response) {
-        [self.presenter handleGetCityListResponse:response];
+    FRNetworkManager<FRCityResponse *> *manager = [FRNetworkManager manager];
+    [manager getCity:^(FRCityResponse * _Nullable response) {
+        [self.presenter handleCityResponse:response];
     }];
 }
 

@@ -24,8 +24,8 @@ package xyz.fay.reference.utils
   SOFTWARE.
 */
 
-import android.content.Context
 import android.graphics.drawable.Drawable
+import xyz.fay.reference.MainApplication
 import xyz.fay.reference.R
 
 enum class ImageProvider(val rawValue: String) {
@@ -44,24 +44,45 @@ enum class ImageProvider(val rawValue: String) {
     TYPHOON("台风");
 
     companion object {
-        fun rawValue(rawValue: String) = values().firstOrNull { it.rawValue == rawValue }
+        fun rawValue(rawValue: String) =
+            values().firstOrNull { it.rawValue == rawValue }
     }
 
-    fun loadImage(context: Context): Drawable? {
-        return when(this) {
-            CLOUDY -> context.getDrawable(R.drawable.img_cloudy)
-            FOGGY -> context.getDrawable(R.drawable.img_foggy)
-            HAIL -> context.getDrawable(R.drawable.img_hail)
-            LOCATION -> context.getDrawable(R.drawable.img_location)
-            MOON -> context.getDrawable(R.drawable.img_moon)
-            MOON_CLOUDY -> context.getDrawable(R.drawable.img_moon_cloudy)
-            RAINY -> context.getDrawable(R.drawable.img_rainy)
-            SNOWY -> context.getDrawable(R.drawable.img_snowy)
-            SUN -> context.getDrawable(R.drawable.img_sun)
-            SUN_CLOUDY -> context.getDrawable(R.drawable.img_sun_cloudy)
-            THUNDERSTORMS -> context.getDrawable(R.drawable.img_thunderstorms)
-            TORNADO -> context.getDrawable(R.drawable.img_tornado)
-            TYPHOON -> context.getDrawable(R.drawable.img_typhoon)
-        }
-    }
+//    val image: Drawable? get() =
+//        MainApplication.appContext.getDrawable(
+//            when(this) {
+//                CLOUDY -> R.drawable.img_cloudy
+//                FOGGY -> R.drawable.img_foggy
+//                HAIL -> R.drawable.img_hail
+//                LOCATION -> R.drawable.img_location
+//                MOON -> R.drawable.img_moon
+//                MOON_CLOUDY -> R.drawable.img_moon_cloudy
+//                RAINY -> R.drawable.img_rainy
+//                SNOWY -> R.drawable.img_snowy
+//                SUN -> R.drawable.img_sun
+//                SUN_CLOUDY -> R.drawable.img_sun_cloudy
+//                THUNDERSTORMS -> R.drawable.img_thunderstorms
+//                TORNADO -> R.drawable.img_tornado
+//                TYPHOON -> R.drawable.img_typhoon
+//            }
+//        )
+
+    fun loadImage() =
+        MainApplication.appContext.getDrawable(
+            when(this) {
+                CLOUDY -> R.drawable.img_cloudy
+                FOGGY -> R.drawable.img_foggy
+                HAIL -> R.drawable.img_hail
+                LOCATION -> R.drawable.img_location
+                MOON -> R.drawable.img_moon
+                MOON_CLOUDY -> R.drawable.img_moon_cloudy
+                RAINY -> R.drawable.img_rainy
+                SNOWY -> R.drawable.img_snowy
+                SUN -> R.drawable.img_sun
+                SUN_CLOUDY -> R.drawable.img_sun_cloudy
+                THUNDERSTORMS -> R.drawable.img_thunderstorms
+                TORNADO -> R.drawable.img_tornado
+                TYPHOON -> R.drawable.img_typhoon
+            }
+        )
 }

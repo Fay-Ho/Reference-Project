@@ -24,17 +24,15 @@
 
 #import "FRNetworkManager.h"
 #import "FRBundleProvider.h"
-#import "FRGetCityListResponse.h"
-#import "FRGetForecastsWeatherResponse.h"
-#import "FRGetLivesWeatherResponse.h"
+#import "FRCityResponse.h"
+#import "FRWeatherResponse.h"
 #import "NSObject+JSONModel.h"
 
 @implementation FRNetworkManager
 
 typedef NSString *FRMockFile NS_STRING_ENUM;
-FRMockFile const GET_CITY = @"get_city_list";
-FRMockFile const GET_FORECASTS = @"get_forecasts_weather";
-FRMockFile const GET_LIVES = @"get_lives_weather";
+FRMockFile const GET_CITY = @"city";
+FRMockFile const GET_WEATHER = @"weather";
 FRMockFile const MOCK_BUNDLE = @"Mock.bundle/";
 FRMockFile const JSON_FILE = @"json";
 
@@ -53,29 +51,26 @@ FRMockFile const JSON_FILE = @"json";
     completion([response modelWithJSON:JSON]);
 }
 
-- (void)baseRequest {
-    NSURL *url = [NSURL URLWithString:@"https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.HTTPMethod = @"GET";
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error]);
-    }];
-    [dataTask resume];
-}
+//- (void)baseRequest {
+////    NSURL *url = [NSURL URLWithString:@"https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"];
+//    NSURL *url = [NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    request.HTTPMethod = @"GET";
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error]);
+//    }];
+//    [dataTask resume];
+//}
 
 #pragma mark -
 
-- (void)getCityList:(void (^)(id _Nullable))completion {
-    [self sendRequest:[FRGetCityListResponse class] fileName:GET_CITY completion:completion];
+- (void)getCity:(void (^)(id _Nullable))completion {
+    [self sendRequest:[FRCityResponse class] fileName:GET_CITY completion:completion];
 }
 
-- (void)getForecastsWeather:(void (^)(id _Nullable))completion {
-    [self sendRequest:[FRGetForecastsWeatherResponse class] fileName:GET_FORECASTS completion:completion];
-}
-
-- (void)getLivesWeather:(void (^)(id _Nullable))completion {
-    [self sendRequest:[FRGetLivesWeatherResponse class] fileName:GET_LIVES completion:completion];
+- (void)getWeather:(void (^)(id _Nullable))completion {
+    [self sendRequest:[FRWeatherResponse class] fileName:GET_WEATHER completion:completion];
 }
 
 @end

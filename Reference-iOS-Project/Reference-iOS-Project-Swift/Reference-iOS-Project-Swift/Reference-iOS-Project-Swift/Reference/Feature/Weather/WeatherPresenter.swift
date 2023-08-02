@@ -22,7 +22,7 @@
 //  SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
 class WeatherPresenter {
     weak var viewController: WeatherViewControllerInterface?
@@ -31,16 +31,39 @@ class WeatherPresenter {
 // MARK: - WeatherPresenterInterface Implementation
 
 extension WeatherPresenter : WeatherPresenterInterface {
-    func handleGetCityListResponse(_ response: GetCityListResponse) {
+    func handleCityResponse(_ response: CityResponse) {
         viewController?.showLocationPage(dataModel: response)
     }
     
-    func handleGetLivesWeatherResponse(_ response: GetLivesWeatherResponse) {
+    func handleWeatherResponse(_ response: WeatherResponse?) {
+        guard let response = response,
+              let listResponse = response.list.first,
+              let weatherResponse = listResponse.weather.first
+        else { return }
+        
+        let listItems = response.list.map {
+            WeatherListItemDataModel(
+                time: formatDate($0.dt_txt),
+                image: ImageProvider(rawValue: $0.weather.first?.main ?? ""),
+                weather: String($0.main.temp)
+            )
+        }
+        
         let dataModel = WeatherDataModel(
-            temperature: response.lives.first?.temperature,
-            weather: response.lives.first?.weather,
-            wind: (response.lives.first?.winddirection ?? "") + (response.lives.first?.windpower ?? "")
+            temperature: String(listResponse.main.temp),
+            weather: weatherResponse.main,
+            wind: String(listResponse.wind.deg),
+            listItems: listItems
         )
+        
         viewController?.updateDashboardItem(dataModel: dataModel)
+    }
+    
+    func formatDate(_ string: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = formatter.date(from: string) ?? Date()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
 }

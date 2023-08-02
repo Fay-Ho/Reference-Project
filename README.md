@@ -3,7 +3,7 @@
 
 A mobile weather application, the reference project for mobile app development.
 
-- Using `AMap.Weather` API
+- Using `openweathermap.org` API
 
 - Project Tree
     

@@ -31,5 +31,6 @@ import kotlinx.parcelize.Parcelize
 data class WeatherDataModel(
     val temperature: String,
     val weather: String,
-    val wind: String
+    val wind: String,
+    val listItems: Array<WeatherListItemDataModel>
 ) : Parcelable

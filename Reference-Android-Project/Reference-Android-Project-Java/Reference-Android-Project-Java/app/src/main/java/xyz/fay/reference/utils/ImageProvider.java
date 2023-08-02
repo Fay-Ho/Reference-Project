@@ -24,7 +24,6 @@ package xyz.fay.reference.utils;
   SOFTWARE.
 */
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
@@ -32,16 +31,17 @@ import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
+import xyz.fay.reference.MainApplication;
 import xyz.fay.reference.R;
 
 public enum ImageProvider {
-    CLOUDY("阴天"),
+    CLOUDY("Clouds"),
     FOGGY("大雾"),
     HAIL("冰雹"),
     LOCATION("定位"),
     MOON("夜间"),
     MOON_CLOUDY("夜间多云"),
-    RAINY("雨天"),
+    RAINY("Rain"),
     SNOWY("雪天"),
     SUN("晴朗"),
     SUN_CLOUDY("晴朗多云"),
@@ -64,40 +64,32 @@ public enum ImageProvider {
     }
 
     @Nullable
-    public Drawable loadImage(@NonNull Context context) {
-        switch (this) {
-            case CLOUDY:
-                return context.getDrawable(R.drawable.img_cloudy);
-            case FOGGY:
-                return context.getDrawable(R.drawable.img_foggy);
-            case HAIL:
-                return context.getDrawable(R.drawable.img_hail);
-            case LOCATION:
-                return context.getDrawable(R.drawable.img_location);
-            case MOON:
-                return context.getDrawable(R.drawable.img_moon);
-            case MOON_CLOUDY:
-                return context.getDrawable(R.drawable.img_moon_cloudy);
-            case RAINY:
-                return context.getDrawable(R.drawable.img_rainy);
-            case SNOWY:
-                return context.getDrawable(R.drawable.img_snowy);
-            case SUN:
-                return context.getDrawable(R.drawable.img_sun);
-            case SUN_CLOUDY:
-                return context.getDrawable(R.drawable.img_sun_cloudy);
-            case THUNDERSTORMS:
-                return context.getDrawable(R.drawable.img_thunderstorms);
-            case TORNADO:
-                return context.getDrawable(R.drawable.img_tornado);
-            case TYPHOON:
-                return context.getDrawable(R.drawable.img_typhoon);
-        }
-        return null;
+    public Drawable loadImage() {
+        return MainApplication.getAppContext().getDrawable(drawable());
     }
 
     @NonNull
     public String getRawValue() {
         return rawValue;
+    }
+
+    @NonNull
+    private Integer drawable() {
+        switch (this) {
+            case CLOUDY: return R.drawable.img_cloudy;
+            case FOGGY: return R.drawable.img_foggy;
+            case HAIL: return R.drawable.img_hail;
+            case LOCATION: return R.drawable.img_location;
+            case MOON: return R.drawable.img_moon;
+            case MOON_CLOUDY: return R.drawable.img_moon_cloudy;
+            case RAINY: return R.drawable.img_rainy;
+            case SNOWY: return R.drawable.img_snowy;
+            case SUN: return R.drawable.img_sun;
+            case SUN_CLOUDY: return R.drawable.img_sun_cloudy;
+            case THUNDERSTORMS: return R.drawable.img_thunderstorms;
+            case TORNADO: return R.drawable.img_tornado;
+            case TYPHOON: return R.drawable.img_typhoon;
+            default: return null;
+        }
     }
 }

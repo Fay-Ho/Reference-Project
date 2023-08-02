@@ -28,14 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRImageProvider : NSObject
 
-typedef NSString *FRImageEnum NS_STRING_ENUM;
-FOUNDATION_EXPORT FRImageEnum const FRImageEnumCloudy;
+typedef NSString* FRImageEnum NS_STRING_ENUM;
+FOUNDATION_EXPORT FRImageEnum const FRImageEnumClouds;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumFoggy;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumHail;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumLocation;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumMoon;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumMoonCloudy;
-FOUNDATION_EXPORT FRImageEnum const FRImageEnumRainy;
+FOUNDATION_EXPORT FRImageEnum const FRImageEnumRain;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumSnowy;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumSun;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumSunCloudy;
@@ -43,7 +43,7 @@ FOUNDATION_EXPORT FRImageEnum const FRImageEnumThunderstorms;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumTornado;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumTyphoon;
 
-+ (nullable UIImage *)loadImageWithRawValue:(FRImageEnum)rawValue;
++ (nullable UIImage *)loadImageWithRawValue:(NSString *)rawValue;
 
 @end
 

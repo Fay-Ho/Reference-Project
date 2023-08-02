@@ -24,30 +24,23 @@ package xyz.fay.reference.networking;
   SOFTWARE.
 */
 
-import android.content.Context;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 
-import xyz.fay.reference.networking.response.GetCityListResponse;
-import xyz.fay.reference.networking.response.GetForecastsWeatherResponse;
-import xyz.fay.reference.networking.response.GetLivesWeatherResponse;
+import xyz.fay.reference.networking.response.CityResponse;
+import xyz.fay.reference.networking.response.WeatherResponse;
 import xyz.fay.reference.utils.AssetProvider;
 
 public final class NetworkManager {
     private enum MockFile {
-        GET_CITY_LIST("get_city_list.json"),
-        GET_FORECASTS_WEATHER("get_forecasts_weather.json"),
-        GET_LIVES_WEATHER("get_lives_weather.json"),
+        GET_CITY("city.json"),
+        GET_WEATHER("weather.json"),
         MOCK_ASSET("mock/");
 
         private final String rawValue;
@@ -61,19 +54,21 @@ public final class NetworkManager {
         }
     }
 
-    private <R extends Parcelable> void sendRequest(@NonNull Context context, @NonNull Class<R> parcelableResponse, @NonNull MockFile fileName, @Nullable RequestHandler<R> requestHandler) {
-        String jsonString = AssetProvider.loadFile(context, MockFile.MOCK_ASSET.rawValue.concat(fileName.getRawValue()));
+    private <R extends Parcelable> void sendRequest(@NonNull Class<R> parcelableResponse, @NonNull MockFile fileName, @Nullable RequestHandler<R> requestHandler) {
+        String jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue.concat(fileName.getRawValue()));
         if (requestHandler != null) {
             requestHandler.completion(parseData(jsonString, parcelableResponse));
         }
     }
 
-    private void baseRequest(Context context) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all";
+//    private void baseRequest() {
+//        RequestQueue queue = Volley.newRequestQueue(MainApplication.getAppContext());
+////        String url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all";
+//        String url = "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68";
 //        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String response) {
+//                System.out.println("11111");
 //                System.out.println(response);
 //            }
 //        }, new Response.ErrorListener() {
@@ -82,28 +77,23 @@ public final class NetworkManager {
 //                System.out.println(error);
 //            }
 //        });
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-
-        }, error -> {
-
-        });
-        queue.add(stringRequest);
-    }
+////        StringRequest stringRequest2 = new StringRequest(Request.Method.GET, url, response -> {
+////            System.out.println(response);
+////        }, error -> {
+////            System.out.println(error);
+////        });
+//        queue.add(stringRequest);
+//    }
 
     private <R extends Parcelable> R parseData(String data, Class<R> response) {
         Gson gson = new Gson();
         return gson.fromJson(data, (Type) response);
     }
 
-    public final void getCityList(@NonNull Context context, @Nullable RequestHandler<GetCityListResponse> requestHandler) {
-        sendRequest(context, GetCityListResponse.class, MockFile.GET_CITY_LIST, requestHandler);
+    public final void getCity(@Nullable RequestHandler<CityResponse> requestHandler) {
+        sendRequest(CityResponse.class, MockFile.GET_CITY, requestHandler);
     }
-
-    public final void getForecastsWeather(@NonNull Context context, @Nullable RequestHandler<GetForecastsWeatherResponse> requestHandler) {
-        sendRequest(context, GetForecastsWeatherResponse.class, MockFile.GET_FORECASTS_WEATHER, requestHandler);
-    }
-
-    public final void getLivesWeather(@NonNull Context context, @Nullable RequestHandler<GetLivesWeatherResponse> requestHandler) {
-        sendRequest(context, GetLivesWeatherResponse.class, MockFile.GET_LIVES_WEATHER, requestHandler);
+    public final void getWeather(@Nullable RequestHandler<WeatherResponse> requestHandler) {
+        sendRequest(WeatherResponse.class, MockFile.GET_WEATHER, requestHandler);
     }
 }

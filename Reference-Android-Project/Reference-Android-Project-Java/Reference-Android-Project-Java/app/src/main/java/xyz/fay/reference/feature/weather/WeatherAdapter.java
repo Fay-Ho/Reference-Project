@@ -24,7 +24,6 @@ package xyz.fay.reference.feature.weather;
   SOFTWARE.
 */
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,29 +33,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.fay.reference.databinding.WeatherAdapterBinding;
-import xyz.fay.reference.utils.ImageProvider;
 
-public class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private Context context;
+final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final WeatherListItemDataModel[] dataModels;
+
+    public WeatherAdapter(WeatherListItemDataModel[] dataModels) {
+        this.dataModels = dataModels;
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
         return new ViewHolder(WeatherAdapterBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.imageView.setImageDrawable(ImageProvider.rawValue("雪天").loadImage(context));
-        viewHolder.timeTextView.setText("6时");
-        viewHolder.weatherTextView.setText("晴朗");
+        viewHolder.imageView.setImageDrawable(dataModels[position].getImageProvider().loadImage());
+        viewHolder.timeTextView.setText(dataModels[position].getTime());
+        viewHolder.weatherTextView.setText(dataModels[position].getWeather());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return dataModels.length;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

@@ -26,9 +26,8 @@ import Foundation
 
 class NetworkManager {
     private enum MockFile: String {
-        case city = "get_city_list"
-        case forecasts = "get_forecaste_weather"
-        case lives = "get_lives_weather"
+        case getCity = "city"
+        case getWeather = "weather"
         case mockBundle = "Mock.bundle/"
         case jsonFile = "json"
     }
@@ -39,36 +38,37 @@ class NetworkManager {
         parseData(data: data, completion: completion)
     }
     
-    private func baseRequest() {
-        guard let url = URL(string: "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            do {
-                let json = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments)
-                print(json)
-            } catch {
-                print(error)
-            }
-        }
-        dataTask.resume()
-    }
+//    private func baseRequest() {
+//        guard let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn") else { return }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        let session = URLSession.shared
+//        let dataTask = session.dataTask(with: request) { data, response, error in
+//            do {
+//                let json = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments)
+//                print(json)
+//            } catch {
+//                print(error)
+//            }
+//        }
+//        dataTask.resume()
+//    }
     
     private func parseData<R: Decodable>(data: Data, completion: ((_ response: R?) -> Void)?) {
         do {
             let response = try JSONDecoder().decode(R.self, from: data)
             completion?(response)
         } catch {
+            print(error)
             completion?(nil)
         }
     }
     
-    func getCityList(completion: ((_ response: GetCityListResponse?) -> Void)?) {
-        sendRequest(fileName: .city, completion: completion)
+    func getCity(completion: ((_ response: CityResponse?) -> Void)?) {
+        sendRequest(fileName: .getCity, completion: completion)
     }
     
-    func getLivesWeather(completion: ((_ response: GetLivesWeatherResponse?) -> Void)?) {
-        sendRequest(fileName: .lives, completion: completion)
+    func getWeather(completion: ((_ response: WeatherResponse?) -> Void)?) {
+        sendRequest(fileName: .getWeather, completion: completion)
     }
 }
