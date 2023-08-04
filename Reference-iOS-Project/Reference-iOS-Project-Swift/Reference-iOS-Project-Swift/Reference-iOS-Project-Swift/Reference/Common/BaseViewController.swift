@@ -58,7 +58,7 @@ extension BaseViewController {
     
     private func setupLayouts() {
         root
-            .vertical(equalTo: view, safeArea: true)
+            .verticalEqualTo(view: view, safeArea: true)
             .horizontalEqualTo(view: view)
 
         container

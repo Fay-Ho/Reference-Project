@@ -30,10 +30,10 @@ extension UIView {
      
      ```
      // example 1:
-     view1.top(equalTo: view2.topAnchor)
+     view1.topEqualTo(anchor: view2.topAnchor)
      
      // example 2:
-     view1.top(equalTo: view2.topAnchor, constant: 16)
+     view1.topEqualTo(anchor: view2.topAnchor, constant: 16)
      ```
      
      - Parameters:
@@ -55,10 +55,10 @@ extension UIView {
      
      ```
      // example 1:
-     view1.bottom(equalTo: view2.bottomAnchor)
+     view1.bottomEqualTo(anchor: view2.bottomAnchor)
      
      // example 2:
-     view1.bottom(equalTo: view2.bottomAnchor, constant: -16)
+     view1.bottomEqualTo(anchor: view2.bottomAnchor, constant: -16)
      ```
      
      - Parameters:
@@ -80,10 +80,10 @@ extension UIView {
      
      ```
      // example 1:
-     view1.leading(equalTo: view2.leadingAnchor)
+     view1.leadingEqualTo(anchor: view2.leadingAnchor)
      
      // example 2:
-     view1.leading(equalTo: view2.leadingAnchor, constant: 16)
+     view1.leadingEqualTo(anchor: view2.leadingAnchor, constant: 16)
      ```
      
      - Parameters:
@@ -94,21 +94,21 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func leading(equalTo anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func leadingEqualTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = leadingAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
     }
     
     /**
-     Align the trailing anchor of current view and target view.
+     Align the trailingEqualTo anchor of current view and target view.
      
      ```
      // example 1:
-     view1.trailing(equalTo: view2.trailingAnchor)
+     view1.trailingEqualTo(anchor: view2.trailingAnchor)
      
      // example 2:
-     view1.trailing(equalTo: view2.trailingAnchor, constant: -16)
+     view1.trailingEqualTo(anchor: view2.trailingAnchor, constant: -16)
      ```
      
      - Parameters:
@@ -119,7 +119,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func trailing(equalTo anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func trailingEqualTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = trailingAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
@@ -130,13 +130,13 @@ extension UIView {
      
      ```
      // example 1:
-     view1.vertical(equalTo: view2)
+     view1.verticalEqualTo(view: view2)
      
      // example 2:
-     view1.vertical(equalTo: view2, constant: 16)
+     view1.verticalEqualTo(view: view2, constant: 16)
      
      // example 3:
-     view1.vertical(equalTo: view2, constant: 16, safeArea: true)
+     view1.verticalEqualTo(view: view2, constant: 16, safeArea: true)
      ```
      
      - Parameters:
@@ -148,7 +148,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func vertical(equalTo view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
+    func verticalEqualTo(view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
         topEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor, constant: abs(constant))
         bottomEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor, constant: -abs(constant))
         return self
@@ -159,13 +159,13 @@ extension UIView {
      
      ```
      // example 1:
-     view1.horizontalEqualTo(equalTo: view2)
+     view1.horizontalEqualTo(view: view2)
      
      // example 2:
-     view1.horizontalEqualTo(equalTo: view2, constant: 16)
+     view1.horizontalEqualTo(view: view2, constant: 16)
      
      // example 3:
-     view1.horizontalEqualTo(equalTo: view2, constant: 16, safeArea: true)
+     view1.horizontalEqualTo(view: view2, constant: 16, safeArea: true)
      ```
      
      - Parameters:
@@ -178,8 +178,8 @@ extension UIView {
      */
     @discardableResult
     func horizontalEqualTo(view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
-        leading(equalTo: safeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor, constant: abs(constant))
-        trailing(equalTo: safeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor, constant: -abs(constant))
+        leadingEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor, constant: abs(constant))
+        trailingEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor, constant: -abs(constant))
         return self
     }
     
@@ -188,10 +188,10 @@ extension UIView {
      
      ```
      // example 1:
-     view1.centerX(equalTo: view2.centerXAnchor)
+     view1.centerXEqualTo(anchor: view2.centerXAnchor)
      
      // example 2:
-     view1.centerX(equalTo: view2.centerXAnchor, constant: 16)
+     view1.centerXEqualTo(anchor: view2.centerXAnchor, constant: 16)
      ```
      
      - Parameters:
@@ -202,7 +202,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func centerX(equalTo anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func centerXEqualTo(anchor: NSLayoutXAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = centerXAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
@@ -213,10 +213,10 @@ extension UIView {
      
      ```
      // example 1:
-     view1.centerY(equalTo: view2.centerYAnchor)
+     view1.centerYEqualTo(anchor: view2.centerYAnchor)
      
      // example 2:
-     view1.centerY(equalTo: view2.centerYAnchor, constant: 16)
+     view1.centerYEqualTo(anchor: view2.centerYAnchor, constant: 16)
      ```
      
      - Parameters:
@@ -227,7 +227,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func centerY(equalTo anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func centerYEqualTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = centerYAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
@@ -238,7 +238,7 @@ extension UIView {
      
      ```
      // example:
-     view1.center(equalTo: view2)
+     view1.centerEqualTo(view: view2)
      ```
      
      - Parameters:
@@ -249,8 +249,8 @@ extension UIView {
      */
     @discardableResult
     func centerEqualTo(view: UIView) -> UIView {
-        centerX(equalTo: view.centerXAnchor)
-        centerY(equalTo: view.centerYAnchor)
+        centerXEqualTo(anchor: view.centerXAnchor)
+        centerYEqualTo(anchor: view.centerYAnchor)
         return self
     }
     
@@ -261,13 +261,13 @@ extension UIView {
      
      ```
      // example1:
-     view1.width(equalTo: view2.widthAnchor)
+     view1.widthEqualTo(anchor: view2.widthAnchor)
      
      // example2:
-     view1.width(equalTo: view2.widthAnchor, multiplier: 2)
+     view1.widthEqualTo(anchor: view2.widthAnchor, multiplier: 2)
      
      // example3:
-     view1.width(equalTo: view2.widthAnchor, multiplier: 2, constant: 16)
+     view1.widthEqualTo(anchor: view2.widthAnchor, multiplier: 2, constant: 16)
      ```
      
      - Parameters:
@@ -290,7 +290,7 @@ extension UIView {
      
      ```
      // example:
-     view.width(equalToConstant: 16)
+     view.widthEqualTo(constant: 16)
      ```
      
      - Parameters:
@@ -313,13 +313,13 @@ extension UIView {
      
      ```
      // example1:
-     view1.height(equalTo: view2)
+     view1.heightEqualTo(anchor: view2)
      
      // example2:
-     view1.height(equalTo: view2, multiplier: 2)
+     view1.heightEqualTo(anchor: view2, multiplier: 2)
      
      // example3:
-     view1.height(equalTo: view2, multiplier: 2, constant: 16)
+     view1.heightEqualTo(anchor: view2, multiplier: 2, constant: 16)
      ```
      
      - Parameters:
@@ -342,7 +342,7 @@ extension UIView {
      
      ```
      // example:
-     view.height(equalToConstant: 16)
+     view.heightEqualTo(constant: 16)
      ```
      
      - Parameters:
@@ -352,7 +352,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func height(equalToConstant constant: CGFloat) -> UIView {
+    func heightEqualTo(constant: CGFloat) -> UIView {
         let constraint = heightAnchor.constraint(equalToConstant: constant)
         constraint.isActive = true
         return self
@@ -363,7 +363,7 @@ extension UIView {
      
      ```
      // example:
-     view.size(equalToConstant: 16)
+     view.sizeEqualTo(constant: 16)
      ```
      
      - Parameters:
@@ -373,9 +373,9 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func size(equalToConstant constant: CGFloat) -> UIView {
+    func sizeEqualTo(constant: CGFloat) -> UIView {
         widthEqualTo(constant: constant)
-        height(equalToConstant: constant)
+        heightEqualTo(constant: constant)
         return self
     }
     
@@ -384,10 +384,10 @@ extension UIView {
      
      ```
      // example1:
-     view1.edge(equalTo: view2)
+     view1.edgeEqualTo(view: view2)
      
      // example2:
-     view1.edge(equalTo: view2, constant: 16)
+     view1.edgeEqualTo(view: view2, constant: 16)
      ```
      
      - Parameters:
@@ -401,8 +401,8 @@ extension UIView {
     func edgeEqualTo(view: UIView, constant: CGFloat = 0) -> UIView {
         topEqualTo(anchor: view.topAnchor, constant: abs(constant))
         bottomEqualTo(anchor: view.bottomAnchor, constant: -abs(constant))
-        leading(equalTo: view.leadingAnchor, constant: abs(constant))
-        trailing(equalTo: view.trailingAnchor, constant: -abs(constant))
+        leadingEqualTo(anchor: view.leadingAnchor, constant: abs(constant))
+        trailingEqualTo(anchor: view.trailingAnchor, constant: -abs(constant))
         return self
     }
 }

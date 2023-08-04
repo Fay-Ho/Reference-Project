@@ -80,7 +80,7 @@ extension WeatherViewController {
     func setupLayouts() {
         locationButton
             .topEqualTo(anchor: view.safeAreaLayoutGuide.topAnchor, constant: 16)
-            .trailing(equalTo: view.trailingAnchor, constant: -24)
+            .trailingEqualTo(anchor: view.trailingAnchor, constant: -24)
             .widthEqualTo(constant: 24)
             .heightEqualTo(anchor: locationButton.widthAnchor)
     }

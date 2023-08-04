@@ -87,20 +87,20 @@ extension WeatherDashboardItem {
             .horizontalEqualTo(view: self, constant: 16)
         
         temperatureLabel
-            .vertical(equalTo: container, constant: 100)
+            .verticalEqualTo(view: container, constant: 100)
             .horizontalEqualTo(view: container, constant: 135)
         
         celsiusLabel
             .topEqualTo(anchor: container.topAnchor, constant: 100)
-            .leading(equalTo: temperatureLabel.trailingAnchor)
+            .leadingEqualTo(anchor: temperatureLabel.trailingAnchor)
         
         weatherLabel
             .topEqualTo(anchor: temperatureLabel.bottomAnchor, constant: 10)
-            .centerX(equalTo: container.centerXAnchor, constant: -50)
+            .centerXEqualTo(anchor: container.centerXAnchor, constant: -50)
         
         windLabel
             .topEqualTo(anchor: temperatureLabel.bottomAnchor, constant: 10)
-            .centerX(equalTo: container.centerXAnchor, constant: 50)
+            .centerXEqualTo(anchor: container.centerXAnchor, constant: 50)
     }
     
     func updateStyling() {
