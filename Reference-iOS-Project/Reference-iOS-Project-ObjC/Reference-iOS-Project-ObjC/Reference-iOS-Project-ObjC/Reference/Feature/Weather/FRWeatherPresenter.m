@@ -34,12 +34,6 @@
 }
 
 - (void)handleWeatherResponse:(FRWeatherResponse *)response {
-    NSArray<FRWeatherListItemDataModel *> *listItems = [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
-        return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
-                                                       image:response.weather.firstObject.main ? response.weather.firstObject.main : FRImageEnumSun
-                                                     weather:[NSString stringWithFormat:@"%0.f", response.main.temp]];
-    }];
-    
     FRWeatherListResponse *listResponse = response.list.firstObject;
     
     if (listResponse == nil) { return; }
@@ -51,9 +45,17 @@
     FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:[NSString stringWithFormat:@"%0.f", listResponse.main.temp]
                                                                          weather:weatherResponse.main
                                                                             wind:[NSString stringWithFormat:@"%d", listResponse.wind.deg]
-                                                                       listItems:listItems];
+                                                                       listItems:[self makeListItems:response]];
     
     [self.viewController updateSubviewsWithDataModel:dataModel];
+}
+
+- (NSArray<FRWeatherListItemDataModel *> *)makeListItems:(FRWeatherResponse *)response {
+    return [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
+        return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
+                                                       image:response.weather.firstObject.main ? response.weather.firstObject.main : FRImageEnumSun
+                                                     weather:[NSString stringWithFormat:@"%0.f", response.main.temp]];
+    }];
 }
 
 - (NSString *)formatDate:(NSString *)string {

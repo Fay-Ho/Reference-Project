@@ -31,7 +31,6 @@ import androidx.lifecycle.ViewModel;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Optional;
 
 import xyz.fay.reference.networking.NetworkManager;
 import xyz.fay.reference.networking.response.CityResponse;
@@ -54,12 +53,8 @@ public final class WeatherViewModel extends ViewModel {
 
     public void viewIsReady() {
         new NetworkManager().getWeather(result -> {
-            result.onSuccess(
-                this::handleWeatherResponse
-            );
-            result.onFailure(
-                System.out::println
-            );
+            result.onSuccess(this::handleWeatherResponse);
+            result.onFailure(System.out::println);
         });
     }
 
@@ -68,12 +63,7 @@ public final class WeatherViewModel extends ViewModel {
         new NetworkManager().getCity(cityResponse::postValue);
     }
 
-    private void handleWeatherResponse(WeatherResponse response) {
-        WeatherListItemDataModel[] listItems = Arrays
-                .stream(response.getList())
-                .map(this::createListItemDataModel)
-                .toArray(WeatherListItemDataModel[]::new);
-
+    private void handleWeatherResponse(@NonNull WeatherResponse response) {
         WeatherListResponse listResponse = Arrays2.firstOrNull(Arrays.asList(response.getList()));
 
         if (listResponse == null) { return; }
@@ -86,14 +76,21 @@ public final class WeatherViewModel extends ViewModel {
                 listResponse.getMain().getTemp().toString(),
                 weatherResponse.getMain(),
                 listResponse.getWind().getDeg().toString(),
-                listItems
+                makeListItems(response)
         );
 
         weatherDataModel.postValue(dataModel);
     }
 
+    private WeatherListItemDataModel[] makeListItems(@NonNull WeatherResponse response) {
+        return Arrays
+                .stream(response.getList())
+                .map(this::makeWeatherListItemDataModel)
+                .toArray(WeatherListItemDataModel[]::new);
+    }
+
     @NonNull
-    private WeatherListItemDataModel createListItemDataModel(@NonNull WeatherListResponse response) {
+    private WeatherListItemDataModel makeWeatherListItemDataModel(@NonNull WeatherListResponse response) {
         return new WeatherListItemDataModel(
                 formatDate(response.getDt_txt()),
                 response.getWeather()[0].getMain() != null ? response.getWeather()[0].getMain() : ImageProvider.SUN.getRawValue(),
@@ -102,7 +99,7 @@ public final class WeatherViewModel extends ViewModel {
     }
 
     @NonNull
-    private String formatDate(String string) {
+    private String formatDate(@NonNull String string) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime date = LocalDateTime.parse(string, formatter);
         formatter = DateTimeFormatter.ofPattern("HH:mm");

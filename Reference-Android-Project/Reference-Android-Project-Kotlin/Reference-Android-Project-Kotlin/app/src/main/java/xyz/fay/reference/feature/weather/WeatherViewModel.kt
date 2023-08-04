@@ -42,12 +42,8 @@ class WeatherViewModel : ViewModel() {
 
     fun viewIsReady() {
         NetworkManager().getWeather {
-            it.onSuccess(
-                ::handleWeatherResponse
-            )
-            it.onFailure(
-                ::println
-            )
+            it.onSuccess(::handleWeatherResponse)
+            it.onFailure(::println)
         }
     }
 
@@ -57,26 +53,28 @@ class WeatherViewModel : ViewModel() {
     }
 
     private fun handleWeatherResponse(response: WeatherResponse) {
-        val listItems = response.list.map {
-            WeatherListItemDataModel(
-                formatDate(it.dt_txt),
-                it.weather.firstOrNull()?.main ?: ImageProvider.SUN.rawValue,
-                it.main.temp.toString()
-            )
-        }
-
         response.list.firstOrNull()?.let { listResponse ->
             listResponse.weather.firstOrNull()?.let { weatherResponse ->
                 val dataModel = WeatherDataModel(
                     listResponse.main.temp.toString(),
                     weatherResponse.main,
                     listResponse.wind.deg.toString(),
-                    listItems.toTypedArray()
+                    makeListItems(response)
                 )
 
                 _weatherDataModel.postValue(dataModel)
             }
         }
+    }
+
+    private fun makeListItems(response: WeatherResponse): Array<WeatherListItemDataModel> {
+        return response.list.map {
+            WeatherListItemDataModel(
+                formatDate(it.dt_txt),
+                it.weather.firstOrNull()?.main ?: ImageProvider.SUN.rawValue,
+                it.main.temp.toString()
+            )
+        }.toTypedArray()
     }
 
     private fun formatDate(string: String): String {

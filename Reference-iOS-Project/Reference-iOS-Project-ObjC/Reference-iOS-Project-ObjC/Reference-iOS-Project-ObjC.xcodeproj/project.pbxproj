@@ -132,6 +132,7 @@
 		6565E79C2A7B8120005DB1DB /* FLNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetwork.m; sourceTree = "<group>"; };
 		6565E7A42A7B9095005DB1DB /* FLHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLHTTPRequest.h; sourceTree = "<group>"; };
 		6565E7A52A7B9095005DB1DB /* FLHTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLHTTPRequest.m; sourceTree = "<group>"; };
+		657BB23E2A7D215A00D98F58 /* FLMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLMacro.h; sourceTree = "<group>"; };
 		6589F2EE2A708B2B001DC7F3 /* FRWeatherListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherListItem.h; sourceTree = "<group>"; };
 		6589F2EF2A708B2B001DC7F3 /* FRWeatherListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherListItem.m; sourceTree = "<group>"; };
 		6589F2F42A708B6E001DC7F3 /* FRWeatherListItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherListItemCell.h; sourceTree = "<group>"; };
@@ -391,6 +392,7 @@
 			children = (
 				6565E7A42A7B9095005DB1DB /* FLHTTPRequest.h */,
 				6565E7A52A7B9095005DB1DB /* FLHTTPRequest.m */,
+				657BB23E2A7D215A00D98F58 /* FLMacro.h */,
 				6565E79B2A7B8120005DB1DB /* FLNetwork.h */,
 				6565E79C2A7B8120005DB1DB /* FLNetwork.m */,
 				65FF6E452A7BFD2B005600F8 /* FLResult.h */,

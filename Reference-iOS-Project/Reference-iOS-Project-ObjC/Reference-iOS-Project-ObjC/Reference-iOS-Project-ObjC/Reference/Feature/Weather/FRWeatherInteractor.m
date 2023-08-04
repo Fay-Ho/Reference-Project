@@ -26,6 +26,7 @@
 #import "FRNetworkManager.h"
 #import "FRCityResponse.h"
 #import "FRWeatherResponse.h"
+#import "FLMacro.h"
 
 @implementation FRWeatherInteractor
 
@@ -34,7 +35,9 @@
 - (void)viewIsReady {
     FRNetworkManager<FRWeatherResponse *> *manager = [FRNetworkManager manager];
     [manager getWeather:^(FLResult<FRWeatherResponse *> * _Nullable result) {
+        @weakify(self);
         [result success:^(FRWeatherResponse * _Nonnull response) {
+            @strongify(self);
             [self.presenter handleWeatherResponse:response];
         }];
         [result failure:^(NSError * _Nonnull error) {

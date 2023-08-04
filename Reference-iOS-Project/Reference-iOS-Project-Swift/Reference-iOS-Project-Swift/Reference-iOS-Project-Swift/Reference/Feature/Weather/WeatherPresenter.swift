@@ -36,14 +36,6 @@ extension WeatherPresenter : WeatherPresenterInterface {
     }
     
     func handleWeatherResponse(_ response: WeatherResponse) {
-        let listItems = response.list.map {
-            WeatherListItemDataModel(
-                time: formatDate($0.dt_txt),
-                image: $0.weather.first?.main ?? ImageProvider.sun.rawValue,
-                weather: String($0.main.temp)
-            )
-        }
-        
         guard let listResponse = response.list.first,
               let weatherResponse = listResponse.weather.first
         else { return }
@@ -52,13 +44,23 @@ extension WeatherPresenter : WeatherPresenterInterface {
             temperature: String(listResponse.main.temp),
             weather: weatherResponse.main,
             wind: String(listResponse.wind.deg),
-            listItems: listItems
+            listItems: makeListItems(response)
         )
         
         viewController?.updateDashboardItem(dataModel: dataModel)
     }
     
-    func formatDate(_ string: String) -> String {
+    private func makeListItems(_ response: WeatherResponse) -> [WeatherListItemDataModel] {
+        response.list.map {
+            .init(
+                time: formatDate($0.dt_txt),
+                image: $0.weather.first?.main ?? ImageProvider.sun.rawValue,
+                weather: String($0.main.temp)
+            )
+        }
+    }
+    
+    private func formatDate(_ string: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = formatter.date(from: string) ?? Date()
