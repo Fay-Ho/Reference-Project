@@ -24,8 +24,11 @@
 
 import UIKit
 
-class WeatherRequest: Request {
-    func url() -> String {
-        "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"
+class WeatherRequest: RequestHandler {
+    func makeRequest() -> HTTPRequest {
+        .init(
+            requestURL: "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn",
+            requestMethod: .get
+        )
     }
 }

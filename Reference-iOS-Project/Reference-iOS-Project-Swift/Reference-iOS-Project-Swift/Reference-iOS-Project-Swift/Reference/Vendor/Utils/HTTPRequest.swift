@@ -22,8 +22,12 @@
 //  SOFTWARE.
 //
 
-class HTTPClient {
-    func a() {
-        
+struct HTTPRequest {
+    enum Method: String {
+        case get = "GET"
+        case post = "POST"
     }
+    
+    let requestURL: String
+    let requestMethod: Method
 }

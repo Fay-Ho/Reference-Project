@@ -42,10 +42,11 @@ class NetworkManager {
         }
     }
     
-    private func sendRequest<R: Decodable>(networkRequest: Request, completion: ((_ result: Result<R, Error>) -> Void)?) {
-        guard let url = URL(string: networkRequest.url()) else { return }
+    private func sendRequest<R: Decodable>(_ handler: RequestHandler, completion: ((_ result: Result<R, Error>) -> Void)?) {
+        let httpRequest = handler.makeRequest()
+        guard let url = URL(string: httpRequest.requestURL) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = httpRequest.requestMethod.rawValue
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
@@ -70,6 +71,6 @@ extension NetworkManager {
     }
     
     func getWeather(completion: ((_ result: Result<WeatherResponse, Error>) -> Void)?) {
-        sendRequest(networkRequest: WeatherRequest(), completion: completion)
+        sendRequest(WeatherRequest(), completion: completion)
     }
 }

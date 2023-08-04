@@ -22,6 +22,6 @@
 //  SOFTWARE.
 //
 
-protocol Request {
-    func url() -> String
+protocol RequestHandler {
+    func makeRequest() -> HTTPRequest
 }
