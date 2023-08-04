@@ -90,11 +90,10 @@
 #pragma mark -
 
 - (void)updateWithDataModel:(NSArray<FRWeatherListItemDataModel *> *)dataModel {
-    NSArray<FRWeatherListItemCell *> *cells = [dataModel map:^id _Nonnull (FRWeatherListItemDataModel * _Nonnull element) {
-        FRWeatherListItemCellViewModel *viewModel = [FRWeatherListItemCellViewModel viewModelWithTitle:element.time
-                                                                                                 image:element.image
-                                                                                                 value:element.weather];
-        return [FRWeatherListItemCell cellWithViewModel:viewModel];
+    NSArray<FRWeatherListItemCell *> *cells = [dataModel map:^id _Nonnull (FRWeatherListItemDataModel * _Nonnull dataModel) {
+        return [FRWeatherListItemCell cellWithViewModel:[FRWeatherListItemCellViewModel viewModelWithTitle:dataModel.time
+                                                                                                     image:dataModel.image
+                                                                                                   content:dataModel.weather]];
     }];
     [self.container addArrangedSubviews:cells];
 }

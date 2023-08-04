@@ -24,22 +24,19 @@
 
 #import "FRWeatherPresenter.h"
 #import "NSArray+FRExtension.h"
-#import "FRImageProvider.h"
 
 @implementation FRWeatherPresenter
 
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleCityResponse:(FRCityResponse *)response {
-    [self.viewController showLocationPageWithDataModel:response];
+    [self.viewController showLocationPageWithResponse:response];
 }
 
 - (void)handleWeatherResponse:(FRWeatherResponse *)response {
-    if (response == nil) { return; }
-    
     NSArray<FRWeatherListItemDataModel *> *listItems = [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
         return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
-                                                       image:[FRImageProvider loadImageWithRawValue:response.weather.firstObject.main]
+                                                       image:response.weather.firstObject.main ? response.weather.firstObject.main : FRImageEnumSun
                                                      weather:[NSString stringWithFormat:@"%0.f", response.main.temp]];
     }];
     

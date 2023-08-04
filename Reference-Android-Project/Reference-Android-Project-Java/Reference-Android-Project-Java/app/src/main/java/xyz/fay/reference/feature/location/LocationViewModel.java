@@ -35,7 +35,7 @@ import java.util.List;
 import xyz.fay.reference.networking.response.CityCitiesResponse;
 import xyz.fay.reference.networking.response.CityResponse;
 
-final class LocationViewModel extends ViewModel {
+public final class LocationViewModel extends ViewModel {
     private final MutableLiveData<LocationDataModel> locationDataModel = new MutableLiveData<>();
     public MutableLiveData<LocationDataModel> getLocationDataModel() {
         return locationDataModel;

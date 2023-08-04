@@ -23,18 +23,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FLResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FRNetworkManager<R> : NSObject
 
-typedef void(^FRCompletion)(R _Nullable response);
+typedef void(^FRLoadCompletion)(R _Nullable response);
+typedef void(^FRRequestCompletion)(FLResult<R> * _Nullable result);
 
 + (instancetype)manager;
 
-- (void)getCity:(nullable FRCompletion)completion;
+- (void)getCity:(nullable FRLoadCompletion)completion;
 
-- (void)getWeather:(nullable FRCompletion)completion;
+- (void)getWeather:(nullable FRRequestCompletion)completion;
 
 @end
 

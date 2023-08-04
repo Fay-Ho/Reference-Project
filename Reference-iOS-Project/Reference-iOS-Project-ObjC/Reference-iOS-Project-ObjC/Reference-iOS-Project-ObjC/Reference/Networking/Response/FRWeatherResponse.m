@@ -23,10 +23,11 @@
 //
 
 #import "FRWeatherResponse.h"
+#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRWeatherResponse ()
+@interface FRWeatherResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) FRWeatherCityResponse *city;
 @property (nonatomic, assign, readwrite) int cnt;
@@ -38,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherResponse
 
-- (NSDictionary<NSString *, NSString *> *)unkeyedContainer {
++ (NSDictionary<NSString *,id> *)unkeyedContainer {
     return @{
         @"city": @"FRWeatherCityResponse",
         @"list": @"FRWeatherListResponse"
@@ -47,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityResponse ()
+@interface FRWeatherCityResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) FRWeatherCityCoordResponse *coord;
 @property (nonatomic, strong, readwrite) NSString *country;
@@ -62,13 +63,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherCityResponse
 
-- (NSDictionary<NSString *, NSString *> *)unkeyedContainer {
++ (NSDictionary<NSString *,id> *)unkeyedContainer {
     return @{
         @"coord": @"FRWeatherCityCoordResponse"
     };
 }
 
-- (NSDictionary<NSString *, NSString *> *)codingKeys {
++ (NSDictionary<NSString *, id> *)codingKeys {
     return @{
         @"id": @"w_id"
     };
@@ -76,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityCoordResponse ()
+@interface FRWeatherCityCoordResponse () <JSONModel>
 
 @property (nonatomic, assign, readwrite) double lat;
 @property (nonatomic, assign, readwrite) double lon;
@@ -87,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListResponse ()
+@interface FRWeatherListResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) FRWeatherListCloudsResponse *clouds;
 @property (nonatomic, assign, readwrite) int dt;
@@ -104,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherListResponse
 
-- (NSDictionary<NSString *, NSString *> *)unkeyedContainer {
++ (NSDictionary<NSString *,id> *)unkeyedContainer {
     return @{
         @"clouds": @"FRWeatherListCloudsResponse",
         @"main": @"FRWeatherListMainResponse",
@@ -117,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListCloudsResponse ()
+@interface FRWeatherListCloudsResponse () <JSONModel>
 
 @property (nonatomic, assign, readwrite) int all;
 
@@ -127,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListMainResponse ()
+@interface FRWeatherListMainResponse () <JSONModel>
 
 @property (nonatomic, assign, readwrite) double feels_like;
 @property (nonatomic, assign, readwrite) int grnd_level;
@@ -145,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListRainResponse ()
+@interface FRWeatherListRainResponse () <JSONModel>
 
 @property (nonatomic, assign, readwrite) double h;
 
@@ -153,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherListRainResponse
 
-- (NSDictionary<NSString *, NSString *> *)codingKeys {
++ (NSDictionary<NSString *, id> *)codingKeys {
     return @{
         @"3h": @"h"
     };
@@ -161,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListSysResponse ()
+@interface FRWeatherListSysResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) NSString *pod;
 
@@ -171,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListWeatherResponse ()
+@interface FRWeatherListWeatherResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) NSString *w_description;
 @property (nonatomic, strong, readwrite) NSString *icon;
@@ -182,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherListWeatherResponse
 
-- (NSDictionary<NSString *, NSString *> *)codingKeys {
++ (NSDictionary<NSString *, id> *)codingKeys {
     return @{
         @"id": @"w_id"
     };

@@ -44,7 +44,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func top(equalTo anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func topEqualTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = topAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
@@ -69,7 +69,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func bottom(equalTo anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
+    func bottomEqualTo(anchor: NSLayoutYAxisAnchor, constant: CGFloat = 0) -> UIView {
         let constraint = bottomAnchor.constraint(equalTo: anchor, constant: constant)
         constraint.isActive = true
         return self
@@ -149,8 +149,8 @@ extension UIView {
      */
     @discardableResult
     func vertical(equalTo view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
-        top(equalTo: safeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor, constant: abs(constant))
-        bottom(equalTo: safeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor, constant: -abs(constant))
+        topEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.topAnchor : view.topAnchor, constant: abs(constant))
+        bottomEqualTo(anchor: safeArea ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor, constant: -abs(constant))
         return self
     }
     
@@ -159,13 +159,13 @@ extension UIView {
      
      ```
      // example 1:
-     view1.horizontal(equalTo: view2)
+     view1.horizontalEqualTo(equalTo: view2)
      
      // example 2:
-     view1.horizontal(equalTo: view2, constant: 16)
+     view1.horizontalEqualTo(equalTo: view2, constant: 16)
      
      // example 3:
-     view1.horizontal(equalTo: view2, constant: 16, safeArea: true)
+     view1.horizontalEqualTo(equalTo: view2, constant: 16, safeArea: true)
      ```
      
      - Parameters:
@@ -177,7 +177,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func horizontal(equalTo view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
+    func horizontalEqualTo(view: UIView, constant: CGFloat = 0, safeArea: Bool = false) -> UIView {
         leading(equalTo: safeArea ? view.safeAreaLayoutGuide.leadingAnchor : view.leadingAnchor, constant: abs(constant))
         trailing(equalTo: safeArea ? view.safeAreaLayoutGuide.trailingAnchor : view.trailingAnchor, constant: -abs(constant))
         return self
@@ -248,7 +248,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func center(equalTo view: UIView) -> UIView {
+    func centerEqualTo(view: UIView) -> UIView {
         centerX(equalTo: view.centerXAnchor)
         centerY(equalTo: view.centerYAnchor)
         return self
@@ -279,7 +279,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func width(equalTo anchor: NSLayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+    func widthEqualTo(anchor: NSLayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
         let constraint = widthAnchor.constraint(equalTo: anchor, multiplier: multiplier, constant: constant)
         constraint.isActive = true
         return self
@@ -300,7 +300,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func width(equalToConstant constant: CGFloat) -> UIView {
+    func widthEqualTo(constant: CGFloat) -> UIView {
         let constraint = widthAnchor.constraint(equalToConstant: constant)
         constraint.isActive = true
         return self
@@ -331,7 +331,7 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func height(equalTo anchor: NSLayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
+    func heightEqualTo(anchor: NSLayoutDimension, multiplier: CGFloat = 1, constant: CGFloat = 0) -> UIView {
         let constraint = heightAnchor.constraint(equalTo: anchor, multiplier: multiplier, constant: constant)
         constraint.isActive = true
         return self
@@ -374,7 +374,7 @@ extension UIView {
      */
     @discardableResult
     func size(equalToConstant constant: CGFloat) -> UIView {
-        width(equalToConstant: constant)
+        widthEqualTo(constant: constant)
         height(equalToConstant: constant)
         return self
     }
@@ -398,9 +398,9 @@ extension UIView {
      The current view
      */
     @discardableResult
-    func edge(equalTo view: UIView, constant: CGFloat = 0) -> UIView {
-        top(equalTo: view.topAnchor, constant: abs(constant))
-        bottom(equalTo: view.bottomAnchor, constant: -abs(constant))
+    func edgeEqualTo(view: UIView, constant: CGFloat = 0) -> UIView {
+        topEqualTo(anchor: view.topAnchor, constant: abs(constant))
+        bottomEqualTo(anchor: view.bottomAnchor, constant: -abs(constant))
         leading(equalTo: view.leadingAnchor, constant: abs(constant))
         trailing(equalTo: view.trailingAnchor, constant: -abs(constant))
         return self

@@ -31,9 +31,13 @@ class WeatherInteractor {
 extension WeatherInteractor : WeatherInteractorInterface {
     func viewIsReady() {
         let manager = NetworkManager()
-        manager.getWeather { [weak self] in
-            guard let response = $0 else { return }
-            self?.presenter?.handleWeatherResponse(response)
+        manager.getWeather { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.presenter?.handleWeatherResponse(response)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     

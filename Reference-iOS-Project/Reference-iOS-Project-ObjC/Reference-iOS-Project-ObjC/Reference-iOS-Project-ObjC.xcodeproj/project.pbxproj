@@ -24,13 +24,17 @@
 		6508140B2A61079D00242F55 /* Mock.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6508140A2A61079D00242F55 /* Mock.bundle */; };
 		650814322A6142DE00242F55 /* UIColor+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814312A6142DE00242F55 /* UIColor+FRExtension.m */; };
 		650814352A61439B00242F55 /* UIColor+FRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814342A61439B00242F55 /* UIColor+FRTheme.m */; };
-		650814382A6151E200242F55 /* NSObject+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 650814362A6151E200242F55 /* NSObject+JSONModel.m */; };
 		655138F02A71621F0033F68D /* FRImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 655138EF2A71621F0033F68D /* FRImageProvider.m */; };
 		655D80022A66DC0F006BCA74 /* UIImageView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D80012A66DC0F006BCA74 /* UIImageView+FRExtension.m */; };
 		655D80082A66DC1F006BCA74 /* UIStackView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D80072A66DC1F006BCA74 /* UIStackView+FRExtension.m */; };
 		655D800F2A66DC60006BCA74 /* UIView+CGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D800E2A66DC60006BCA74 /* UIView+CGRect.m */; };
 		655D80572A66EB25006BCA74 /* FRWeatherDashboardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D80562A66EB25006BCA74 /* FRWeatherDashboardItem.m */; };
 		655D806D2A66F24A006BCA74 /* UILabel+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D806C2A66F24A006BCA74 /* UILabel+FRExtension.m */; };
+		6565E7562A7AD730005DB1DB /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6565E7532A7AD730005DB1DB /* NSObject+YYModel.m */; };
+		6565E7572A7AD730005DB1DB /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6565E7542A7AD730005DB1DB /* YYClassInfo.m */; };
+		6565E7612A7AF148005DB1DB /* FRWeatherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6565E7602A7AF148005DB1DB /* FRWeatherRequest.m */; };
+		6565E79D2A7B8120005DB1DB /* FLNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6565E79C2A7B8120005DB1DB /* FLNetwork.m */; };
+		6565E7A62A7B9095005DB1DB /* FLHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6565E7A52A7B9095005DB1DB /* FLHTTPRequest.m */; };
 		6589F2F02A708B2B001DC7F3 /* FRWeatherListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589F2EF2A708B2B001DC7F3 /* FRWeatherListItem.m */; };
 		6589F2F62A708B6E001DC7F3 /* FRWeatherListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589F2F52A708B6E001DC7F3 /* FRWeatherListItemCell.m */; };
 		65984FEB2A6303D90058F69E /* FRLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65984FEA2A6303D90058F69E /* FRLocationDataModel.m */; };
@@ -46,6 +50,7 @@
 		65D3F95D2A672DA100522C5A /* NSArray+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */; };
 		65E4BA9F2A7651B900E90CC5 /* FRCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9B2A7651B900E90CC5 /* FRCityResponse.m */; };
 		65E4BAA02A7651B900E90CC5 /* FRWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */; };
+		65FF6E472A7BFD2B005600F8 /* FRResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF6E462A7BFD2B005600F8 /* FRResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +107,6 @@
 		650814312A6142DE00242F55 /* UIColor+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRExtension.m"; sourceTree = "<group>"; };
 		650814332A61439B00242F55 /* UIColor+FRTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+FRTheme.h"; sourceTree = "<group>"; };
 		650814342A61439B00242F55 /* UIColor+FRTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FRTheme.m"; sourceTree = "<group>"; };
-		650814362A6151E200242F55 /* NSObject+JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSONModel.m"; sourceTree = "<group>"; };
-		650814372A6151E200242F55 /* NSObject+JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSONModel.h"; sourceTree = "<group>"; };
 		655138EE2A71621F0033F68D /* FRImageProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRImageProvider.h; sourceTree = "<group>"; };
 		655138EF2A71621F0033F68D /* FRImageProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRImageProvider.m; sourceTree = "<group>"; };
 		655D80002A66DC0F006BCA74 /* UIImageView+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FRExtension.h"; sourceTree = "<group>"; };
@@ -117,6 +120,18 @@
 		655D80562A66EB25006BCA74 /* FRWeatherDashboardItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherDashboardItem.m; sourceTree = "<group>"; };
 		655D806B2A66F24A006BCA74 /* UILabel+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+FRExtension.h"; sourceTree = "<group>"; };
 		655D806C2A66F24A006BCA74 /* UILabel+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FRExtension.m"; sourceTree = "<group>"; };
+		6565E7512A7AD730005DB1DB /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		6565E7522A7AD730005DB1DB /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		6565E7532A7AD730005DB1DB /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		6565E7542A7AD730005DB1DB /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		6565E7552A7AD730005DB1DB /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		6565E75E2A7AF10B005DB1DB /* FRRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRRequestHandler.h; sourceTree = "<group>"; };
+		6565E75F2A7AF148005DB1DB /* FRWeatherRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherRequest.h; sourceTree = "<group>"; };
+		6565E7602A7AF148005DB1DB /* FRWeatherRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherRequest.m; sourceTree = "<group>"; };
+		6565E79B2A7B8120005DB1DB /* FLNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetwork.h; sourceTree = "<group>"; };
+		6565E79C2A7B8120005DB1DB /* FLNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetwork.m; sourceTree = "<group>"; };
+		6565E7A42A7B9095005DB1DB /* FLHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLHTTPRequest.h; sourceTree = "<group>"; };
+		6565E7A52A7B9095005DB1DB /* FLHTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLHTTPRequest.m; sourceTree = "<group>"; };
 		6589F2EE2A708B2B001DC7F3 /* FRWeatherListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherListItem.h; sourceTree = "<group>"; };
 		6589F2EF2A708B2B001DC7F3 /* FRWeatherListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherListItem.m; sourceTree = "<group>"; };
 		6589F2F42A708B6E001DC7F3 /* FRWeatherListItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherListItemCell.h; sourceTree = "<group>"; };
@@ -149,6 +164,8 @@
 		65E4BA9C2A7651B900E90CC5 /* FRWeatherResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRWeatherResponse.h; sourceTree = "<group>"; };
 		65E4BA9D2A7651B900E90CC5 /* FRCityResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCityResponse.h; sourceTree = "<group>"; };
 		65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRWeatherResponse.m; sourceTree = "<group>"; };
+		65FF6E452A7BFD2B005600F8 /* FLResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLResult.h; sourceTree = "<group>"; };
+		65FF6E462A7BFD2B005600F8 /* FRResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,8 +328,9 @@
 			isa = PBXGroup;
 			children = (
 				65ACDBA12A686F2F008DA5D7 /* Foundation+FRExtension */,
-				65EF336D2A66CB3A00992D1C /* NSObject+JSONModel */,
 				65EF336C2A66CB2B00992D1C /* UIKit+FRExtension */,
+				6565E79A2A7B80CE005DB1DB /* Utils */,
+				6565E7502A7AD730005DB1DB /* YYModel */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -338,6 +356,9 @@
 		650814022A61077000242F55 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				6565E75E2A7AF10B005DB1DB /* FRRequestHandler.h */,
+				6565E75F2A7AF148005DB1DB /* FRWeatherRequest.h */,
+				6565E7602A7AF148005DB1DB /* FRWeatherRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -351,6 +372,31 @@
 				65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		6565E7502A7AD730005DB1DB /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				6565E7552A7AD730005DB1DB /* NSObject+YYModel.h */,
+				6565E7532A7AD730005DB1DB /* NSObject+YYModel.m */,
+				6565E7512A7AD730005DB1DB /* YYClassInfo.h */,
+				6565E7542A7AD730005DB1DB /* YYClassInfo.m */,
+				6565E7522A7AD730005DB1DB /* YYModel.h */,
+			);
+			path = YYModel;
+			sourceTree = "<group>";
+		};
+		6565E79A2A7B80CE005DB1DB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6565E7A42A7B9095005DB1DB /* FLHTTPRequest.h */,
+				6565E7A52A7B9095005DB1DB /* FLHTTPRequest.m */,
+				6565E79B2A7B8120005DB1DB /* FLNetwork.h */,
+				6565E79C2A7B8120005DB1DB /* FLNetwork.m */,
+				65FF6E452A7BFD2B005600F8 /* FLResult.h */,
+				65FF6E462A7BFD2B005600F8 /* FRResult.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		65984FF02A63B2AF0058F69E /* Weather */ = {
@@ -406,15 +452,6 @@
 				659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */,
 			);
 			path = "UIKit+FRExtension";
-			sourceTree = "<group>";
-		};
-		65EF336D2A66CB3A00992D1C /* NSObject+JSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				650814372A6151E200242F55 /* NSObject+JSONModel.h */,
-				650814362A6151E200242F55 /* NSObject+JSONModel.m */,
-			);
-			path = "NSObject+JSONModel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,11 +587,11 @@
 				650813FA2A61071E00242F55 /* FRHelper.m in Sources */,
 				655D80022A66DC0F006BCA74 /* UIImageView+FRExtension.m in Sources */,
 				650813EF2A6106A300242F55 /* FRLocationPresenter.m in Sources */,
+				65FF6E472A7BFD2B005600F8 /* FRResult.m in Sources */,
 				6589F2F62A708B6E001DC7F3 /* FRWeatherListItemCell.m in Sources */,
 				655D800F2A66DC60006BCA74 /* UIView+CGRect.m in Sources */,
 				6589F2F02A708B2B001DC7F3 /* FRWeatherListItem.m in Sources */,
 				659850122A63DDCA0058F69E /* UIView+FRExtension.m in Sources */,
-				650814382A6151E200242F55 /* NSObject+JSONModel.m in Sources */,
 				65D3F8F82A66F9AB00522C5A /* FRWeatherDataModel.m in Sources */,
 				650814322A6142DE00242F55 /* UIColor+FRExtension.m in Sources */,
 				6504B4E12A60EE4A00B1D482 /* AppDelegate.m in Sources */,
@@ -563,17 +600,22 @@
 				650813F02A6106A300242F55 /* FRLocationInteractor.m in Sources */,
 				650813F82A61071E00242F55 /* FRNavigator.m in Sources */,
 				650814352A61439B00242F55 /* UIColor+FRTheme.m in Sources */,
+				6565E7572A7AD730005DB1DB /* YYClassInfo.m in Sources */,
+				6565E7612A7AF148005DB1DB /* FRWeatherRequest.m in Sources */,
+				6565E7562A7AD730005DB1DB /* NSObject+YYModel.m in Sources */,
 				65E4BAA02A7651B900E90CC5 /* FRWeatherResponse.m in Sources */,
 				650813ED2A6106A300242F55 /* FRLocationConfigurator.m in Sources */,
 				650813EE2A6106A300242F55 /* FRLocationViewController.m in Sources */,
 				65984FEB2A6303D90058F69E /* FRLocationDataModel.m in Sources */,
 				650814012A61074F00242F55 /* FRNetworkManager.m in Sources */,
 				65D3F9432A671B5D00522C5A /* UIFont+FRTheme.m in Sources */,
+				6565E7A62A7B9095005DB1DB /* FLHTTPRequest.m in Sources */,
 				655D80082A66DC1F006BCA74 /* UIStackView+FRExtension.m in Sources */,
 				65E4BA9F2A7651B900E90CC5 /* FRCityResponse.m in Sources */,
 				655D806D2A66F24A006BCA74 /* UILabel+FRExtension.m in Sources */,
 				65984FFD2A63B7F70058F69E /* FRWeatherViewController.m in Sources */,
 				65984FFC2A63B7F70058F69E /* FRWeatherInteractor.m in Sources */,
+				6565E79D2A7B8120005DB1DB /* FLNetwork.m in Sources */,
 				650813F92A61071E00242F55 /* FRBundleProvider.m in Sources */,
 				6598501E2A63F1EE0058F69E /* FRBaseViewController.m in Sources */,
 				65984FFE2A63B7F70058F69E /* FRWeatherConfigurator.m in Sources */,

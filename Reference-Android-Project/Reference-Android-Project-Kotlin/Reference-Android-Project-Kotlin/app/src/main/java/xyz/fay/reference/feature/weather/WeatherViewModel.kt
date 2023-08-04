@@ -28,6 +28,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
 import xyz.fay.reference.networking.response.CityResponse
+import xyz.fay.reference.networking.response.WeatherResponse
+import xyz.fay.reference.utils.ImageProvider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -40,32 +42,41 @@ class WeatherViewModel : ViewModel() {
 
     fun viewIsReady() {
         NetworkManager().getWeather {
-            it?.apply {
-                val listItems = list.map {
-                    WeatherListItemDataModel(
-                        formatDate(it.dt_txt),
-                        it.main.temp.toString()
-                    )
-                }
-                list.firstOrNull()?.apply {
-                    weather.firstOrNull()?.let {
-                        _weatherDataModel.postValue(
-                            WeatherDataModel(
-                                main.temp.toString(),
-                                it.main,
-                                wind.deg.toString(),
-                                listItems.toTypedArray()
-                            )
-                        )
-                    }
-                }
-            }
+            it.onSuccess(
+                ::handleWeatherResponse
+            )
+            it.onFailure(
+                ::println
+            )
         }
     }
 
     fun fetchCityList() {
         // `setValue()` can only run in main thread, `postValue()` can run in all thread.
         NetworkManager().getCity(_cityResponse::postValue)
+    }
+
+    private fun handleWeatherResponse(response: WeatherResponse) {
+        val listItems = response.list.map {
+            WeatherListItemDataModel(
+                formatDate(it.dt_txt),
+                it.weather.firstOrNull()?.main ?: ImageProvider.SUN.rawValue,
+                it.main.temp.toString()
+            )
+        }
+
+        response.list.firstOrNull()?.let { listResponse ->
+            listResponse.weather.firstOrNull()?.let { weatherResponse ->
+                val dataModel = WeatherDataModel(
+                    listResponse.main.temp.toString(),
+                    weatherResponse.main,
+                    listResponse.wind.deg.toString(),
+                    listItems.toTypedArray()
+                )
+
+                _weatherDataModel.postValue(dataModel)
+            }
+        }
     }
 
     private fun formatDate(string: String): String {

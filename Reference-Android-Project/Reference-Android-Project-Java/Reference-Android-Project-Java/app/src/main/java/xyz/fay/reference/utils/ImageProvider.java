@@ -43,7 +43,7 @@ public enum ImageProvider {
     MOON_CLOUDY("夜间多云"),
     RAINY("Rain"),
     SNOWY("雪天"),
-    SUN("晴朗"),
+    SUN("Clear"),
     SUN_CLOUDY("晴朗多云"),
     THUNDERSTORMS("雷暴"),
     TORNADO("龙卷风"),

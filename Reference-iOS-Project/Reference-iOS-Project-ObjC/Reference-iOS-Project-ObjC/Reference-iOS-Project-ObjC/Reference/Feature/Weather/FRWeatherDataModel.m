@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FRWeatherListItemDataModel ()
 
 @property (nonatomic, strong, readwrite) NSString *time;
-@property (nonatomic, strong, readwrite) UIImage *image;
+@property (nonatomic, strong, readwrite) NSString *image;
 @property (nonatomic, strong, readwrite) NSString *weather;
 
 @end
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherListItemDataModel
 
 + (instancetype)dataModelWithTime:(NSString *)time
-                            image:(UIImage *)image
+                            image:(NSString *)image
                           weather:(NSString *)weather {
     FRWeatherListItemDataModel *model = [[super alloc] init];
     model.time = time;

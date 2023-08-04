@@ -29,6 +29,9 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import xyz.fay.reference.MainApplication
+import xyz.fay.reference.networking.request.RequestHandler
+import xyz.fay.reference.networking.request.WeatherRequest
 import xyz.fay.reference.networking.response.*
 import xyz.fay.reference.utils.AssetProvider
 import kotlin.reflect.KClass
@@ -40,30 +43,33 @@ class NetworkManager {
         MOCK_ASSET("mock/")
     }
 
-    private fun <R: Parcelable> sendRequest(parcelableResponse: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
+    //region
+
+    private fun <R: Parcelable> loadFile(classOfR: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
         val jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue + fileName.rawValue)
-        completion?.let {
-            it(parseData(jsonString, parcelableResponse))
-        }
+        completion?.invoke(Gson().fromJson(jsonString, classOfR.java))
     }
 
-//    private fun baseRequest() {
-//        val queue = Volley.newRequestQueue(MainApplication.appContext);
-//        val url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"
-//        val stringRequest = StringRequest(Request.Method.GET, url, {
-//            println(it)
-//        }, {
-//            println(it)
-//        })
-//        queue.add(stringRequest)
-//    }
+    private fun <R: Parcelable> sendRequest(requestHandler: RequestHandler, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
+        val queue = Volley.newRequestQueue(MainApplication.appContext);
+        val url = "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"
+        val stringRequest = StringRequest(Request.Method.GET, url, {
+            completion?.invoke(Result.success(Gson().fromJson(it, classOfR.java)))
+        }, {
+            completion?.invoke(Result.failure(it))
+        })
+        queue.add(stringRequest)
+    }
 
-    private fun <R: Parcelable> parseData(data: String, response: KClass<R>): R =
-        Gson().fromJson(data, response.java)
+    //endregion
+
+    //region
 
     fun getCity(completion: ((response: CityResponse?) -> Unit)?) =
-        sendRequest(CityResponse::class, MockFile.GET_CITY, completion)
+        loadFile(CityResponse::class, MockFile.GET_CITY, completion)
 
-    fun getWeather(completion: ((response: WeatherResponse?) -> Unit)?) =
-        sendRequest(WeatherResponse::class, MockFile.GET_WEATHER, completion)
+    fun getWeather(completion: ((result: Result<WeatherResponse>) -> Unit)?) =
+        sendRequest(WeatherRequest(), WeatherResponse::class, completion)
+
+    //endregion
 }

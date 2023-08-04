@@ -32,22 +32,21 @@ class WeatherPresenter {
 
 extension WeatherPresenter : WeatherPresenterInterface {
     func handleCityResponse(_ response: CityResponse) {
-        viewController?.showLocationPage(dataModel: response)
+        viewController?.showLocationPage(response: response)
     }
     
-    func handleWeatherResponse(_ response: WeatherResponse?) {
-        guard let response = response,
-              let listResponse = response.list.first,
-              let weatherResponse = listResponse.weather.first
-        else { return }
-        
+    func handleWeatherResponse(_ response: WeatherResponse) {
         let listItems = response.list.map {
             WeatherListItemDataModel(
                 time: formatDate($0.dt_txt),
-                image: ImageProvider(rawValue: $0.weather.first?.main ?? ""),
+                image: $0.weather.first?.main ?? ImageProvider.sun.rawValue,
                 weather: String($0.main.temp)
             )
         }
+        
+        guard let listResponse = response.list.first,
+              let weatherResponse = listResponse.weather.first
+        else { return }
         
         let dataModel = WeatherDataModel(
             temperature: String(listResponse.main.temp),

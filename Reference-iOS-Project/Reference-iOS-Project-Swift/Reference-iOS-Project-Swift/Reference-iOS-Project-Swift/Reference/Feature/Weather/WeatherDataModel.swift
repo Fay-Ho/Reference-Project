@@ -33,6 +33,6 @@ struct WeatherDataModel {
 
 struct WeatherListItemDataModel {
     let time: String
-    let image: ImageProvider?
+    let image: String
     let weather: String
 }

@@ -32,43 +32,44 @@ class NetworkManager {
         case jsonFile = "json"
     }
     
-    private func sendRequest<R: Decodable>(fileName: MockFile, completion: ((_ response: R?) -> Void)?) {
+    private func loadFile<R: Decodable>(fileName: MockFile, completion: ((_ response: R?) -> Void)?) {
         let jsonData = BundleProvider.loadFile(MockFile.mockBundle.rawValue + fileName.rawValue, type: MockFile.jsonFile.rawValue)
         guard let data = jsonData else { return }
-        parseData(data: data, completion: completion)
-    }
-    
-//    private func baseRequest() {
-//        guard let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn") else { return }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        let session = URLSession.shared
-//        let dataTask = session.dataTask(with: request) { data, response, error in
-//            do {
-//                let json = try JSONSerialization.jsonObject(with: data ?? Data(), options: .allowFragments)
-//                print(json)
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        dataTask.resume()
-//    }
-    
-    private func parseData<R: Decodable>(data: Data, completion: ((_ response: R?) -> Void)?) {
         do {
-            let response = try JSONDecoder().decode(R.self, from: data)
-            completion?(response)
+            try completion?(JSONDecoder().decode(R.self, from: data))
         } catch {
             print(error)
-            completion?(nil)
         }
     }
     
+    private func sendRequest<R: Decodable>(networkRequest: Request, completion: ((_ result: Result<R, Error>) -> Void)?) {
+        guard let url = URL(string: networkRequest.url()) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let data = data {
+                    do {
+                        try completion?(.success(JSONDecoder().decode(R.self, from: data)))
+                    } catch {
+                        completion?(.failure(error))
+                    }
+                } else if let error = error {
+                    completion?(.failure(error))
+                }
+            }
+        }
+        dataTask.resume()
+    }
+}
+
+extension NetworkManager {
     func getCity(completion: ((_ response: CityResponse?) -> Void)?) {
-        sendRequest(fileName: .getCity, completion: completion)
+        loadFile(fileName: .getCity, completion: completion)
     }
     
-    func getWeather(completion: ((_ response: WeatherResponse?) -> Void)?) {
-        sendRequest(fileName: .getWeather, completion: completion)
+    func getWeather(completion: ((_ result: Result<WeatherResponse, Error>) -> Void)?) {
+        sendRequest(networkRequest: WeatherRequest(), completion: completion)
     }
 }

@@ -24,10 +24,20 @@ package xyz.fay.reference.networking;
   SOFTWARE.
 */
 
-import android.os.Parcelable;
+public class HTTPRequest {
+    private final String url;
+    private final Integer method;
 
-import androidx.annotation.Nullable;
+    public HTTPRequest(String url, Integer method) {
+        this.url = url;
+        this.method = method;
+    }
 
-public interface RequestHandler<R extends Parcelable> {
-    void completion(@Nullable R response);
+    public String getUrl() {
+        return url;
+    }
+
+    public Integer getMethod() {
+        return method;
+    }
 }

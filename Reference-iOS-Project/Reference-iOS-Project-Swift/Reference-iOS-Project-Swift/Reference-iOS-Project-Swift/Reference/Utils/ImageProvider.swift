@@ -33,7 +33,7 @@ enum ImageProvider : String {
     case moonCloudy = "夜间多云"
     case rainy = "Rain"
     case snowy = "雪天"
-    case sun = "晴朗"
+    case sun = "Clear"
     case sunCloudy = "晴朗多云"
     case thunderstorms = "雷暴"
     case tornado = "龙卷风"

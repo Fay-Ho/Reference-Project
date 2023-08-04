@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol FRWeatherViewControllerInterface <NSObject>
 
 - (void)updateSubviewsWithDataModel:(FRWeatherDataModel *)dataModel;
-- (void)showLocationPageWithDataModel:(id)dataModel;
+- (void)showLocationPageWithResponse:(FRCityResponse *)response;
 
 @end
 

@@ -31,10 +31,10 @@ protocol WeatherInteractorInterface {
 
 protocol WeatherPresenterInterface {
     func handleCityResponse(_ response: CityResponse)
-    func handleWeatherResponse(_ response: WeatherResponse?)
+    func handleWeatherResponse(_ response: WeatherResponse)
 }
 
 protocol WeatherViewControllerInterface: NSObject {
     func updateDashboardItem(dataModel: WeatherDataModel)
-    func showLocationPage(dataModel: Codable)
+    func showLocationPage(response: CityResponse)
 }

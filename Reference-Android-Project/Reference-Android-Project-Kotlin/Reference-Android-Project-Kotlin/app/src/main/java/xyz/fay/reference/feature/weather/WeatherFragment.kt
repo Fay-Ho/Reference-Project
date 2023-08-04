@@ -25,6 +25,8 @@ package xyz.fay.reference.feature.weather
 */
 
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import xyz.fay.reference.common.BaseFragment
 import xyz.fay.reference.databinding.WeatherFragmentBinding
 import xyz.fay.reference.utils.ImageProvider
@@ -77,7 +79,10 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
             binding.temperatureView.text = it.temperature
             binding.weatherView.text = it.weather
             binding.windView.text = it.wind
-            println(it.listItems[0].time)
+            val linearLayoutManager = LinearLayoutManager(requireContext())
+            linearLayoutManager.orientation = RecyclerView.HORIZONTAL
+            binding.recyclerView.layoutManager = linearLayoutManager
+            binding.recyclerView.adapter = WeatherAdapter(it.listItems)
         }
         viewModel.viewIsReady()
     }

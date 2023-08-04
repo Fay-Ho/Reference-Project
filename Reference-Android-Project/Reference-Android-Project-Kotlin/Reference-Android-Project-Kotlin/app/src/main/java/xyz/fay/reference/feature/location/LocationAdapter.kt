@@ -29,22 +29,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import xyz.fay.reference.databinding.LocationAdapterBinding
 
-class LocationAdapter(
-    private val dataModel: LocationDataModel
-
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class LocationAdapter(private val dataModel: LocationDataModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder =
         ViewHolder(LocationAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         (holder as ViewHolder).run {
-            titleView.text = dataModel.rowDataModels[position].name
+            titleTextView.text = dataModel.rowDataModels[position].name
         }
 
     override fun getItemCount() =
         dataModel.rowDataModels.size
 
     private class ViewHolder(binding: LocationAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
-        val titleView = binding.titleView
+        val titleTextView = binding.titleTextView
     }
 }

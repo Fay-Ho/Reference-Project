@@ -9,7 +9,7 @@
     android:background="@color/wallpaper">
 
     <TextView
-        android:id="@+id/title_view"
+        android:id="@+id/title_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"

@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FRWeatherListItemCellViewModel : NSObject
 
 + (instancetype)viewModelWithTitle:(NSString *)title
-                             image:(UIImage *)image
-                             value:(NSString *)value;
+                             image:(NSString *)image
+                           content:(NSString *)content;
 
 @end
 

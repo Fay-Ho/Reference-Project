@@ -33,8 +33,13 @@
 
 - (void)viewIsReady {
     FRNetworkManager<FRWeatherResponse *> *manager = [FRNetworkManager manager];
-    [manager getWeather:^(FRWeatherResponse * _Nullable response) {
-        [self.presenter handleWeatherResponse:response];
+    [manager getWeather:^(FLResult<FRWeatherResponse *> * _Nullable result) {
+        [result success:^(FRWeatherResponse * _Nonnull response) {
+            [self.presenter handleWeatherResponse:response];
+        }];
+        [result failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
     }];
 }
 

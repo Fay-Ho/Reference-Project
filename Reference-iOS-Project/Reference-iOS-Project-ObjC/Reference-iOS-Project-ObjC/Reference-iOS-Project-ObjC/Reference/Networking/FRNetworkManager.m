@@ -26,7 +26,9 @@
 #import "FRBundleProvider.h"
 #import "FRCityResponse.h"
 #import "FRWeatherResponse.h"
-#import "NSObject+JSONModel.h"
+#import "YYModel.h"
+#import "FRWeatherRequest.h"
+#import "FLNetwork.h"
 
 @implementation FRNetworkManager
 
@@ -44,24 +46,33 @@ FRMockFile const JSON_FILE = @"json";
 
 #pragma mark -
 
-- (void)sendRequest:(Class)response fileName:(FRMockFile)fileName completion:(FRCompletion)completion {
+- (void)send:(void (^)(FLResult<NSString *> *result))completion {
+    completion([FLResult success:@"aa"]);
+}
+
+- (void)run {
+    [self send:^(FLResult<NSString *> *result) {
+        [result success:^(NSString * _Nonnull data) {
+            NSLog(@"%@", data);
+        }];
+    }];
+}
+
+- (void)sendRequest:(Class)response fileName:(FRMockFile)fileName completion:(FRLoadCompletion)completion {
     FRBundleProvider *provider = [FRBundleProvider provider];
     NSString *filePath = [MOCK_BUNDLE stringByAppendingString:fileName];
     id JSON = [provider loadFile:filePath ofType:JSON_FILE];
     completion([response modelWithJSON:JSON]);
 }
 
-//- (void)baseRequest {
-////    NSURL *url = [NSURL URLWithString:@"https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all"];
-//    NSURL *url = [NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    request.HTTPMethod = @"GET";
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error]);
-//    }];
-//    [dataTask resume];
-//}
+- (void)sendRequest:(id<FRRequestHandler>)handler response:(Class)response completion:(FRRequestCompletion)completion {
+    FLNetwork *network = [FLNetwork network];
+    [network sendRequest:[handler makeRequest] success:^(id _Nonnull resultData) {
+        completion([FLResult success:[response modelWithJSON:resultData]]);
+    } failure:^(NSError * _Nonnull error) {
+        completion([FLResult failure:error]);
+    }];
+}
 
 #pragma mark -
 
@@ -69,8 +80,8 @@ FRMockFile const JSON_FILE = @"json";
     [self sendRequest:[FRCityResponse class] fileName:GET_CITY completion:completion];
 }
 
-- (void)getWeather:(void (^)(id _Nullable))completion {
-    [self sendRequest:[FRWeatherResponse class] fileName:GET_WEATHER completion:completion];
+- (void)getWeather:(void (^)(FLResult<id> * _Nullable))completion {
+    [self sendRequest:[FRWeatherRequest new] response:[FRWeatherResponse class] completion:completion];
 }
 
 @end

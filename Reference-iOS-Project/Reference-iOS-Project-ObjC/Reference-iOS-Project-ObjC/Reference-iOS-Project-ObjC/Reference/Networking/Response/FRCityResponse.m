@@ -23,16 +23,23 @@
 //
 
 #import "FRCityResponse.h"
+#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRCityResponse ()
+@interface FRCityResponse () <JSONModel>
 
 @property (nonatomic, strong, readwrite) NSArray<FRCityCitiesResponse *> *cities;
 
 @end
 
 @implementation FRCityResponse
+
++ (NSDictionary<NSString *, id> *)unkeyedContainer {
+    return @{
+        @"cities": @"FRCityCitiesResponse"
+    };
+}
 
 @end
 

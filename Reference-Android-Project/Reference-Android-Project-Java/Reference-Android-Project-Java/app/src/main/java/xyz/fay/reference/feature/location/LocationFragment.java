@@ -31,7 +31,7 @@ import xyz.fay.reference.common.BaseFragment;
 import xyz.fay.reference.common.BindingCreator;
 import xyz.fay.reference.databinding.LocationFragmentBinding;
 
-final class LocationFragment extends BaseFragment<LocationFragmentBinding, LocationViewModel> {
+public final class LocationFragment extends BaseFragment<LocationFragmentBinding, LocationViewModel> {
     //region --- Override Methods ---
 
     @NonNull

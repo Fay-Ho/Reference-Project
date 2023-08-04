@@ -33,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.fay.reference.databinding.WeatherAdapterBinding;
+import xyz.fay.reference.utils.ImageProvider;
 
 final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final WeatherListItemDataModel[] dataModels;
@@ -50,9 +51,9 @@ final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.imageView.setImageDrawable(dataModels[position].getImageProvider().loadImage());
-        viewHolder.timeTextView.setText(dataModels[position].getTime());
-        viewHolder.weatherTextView.setText(dataModels[position].getWeather());
+        viewHolder.titleTextView.setText(dataModels[position].getTime());
+        viewHolder.imageView.setImageDrawable(ImageProvider.rawValue(dataModels[position].getImage()).loadImage());
+        viewHolder.contentTextView.setText(dataModels[position].getWeather());
     }
 
     @Override
@@ -61,15 +62,15 @@ final class WeatherAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView titleTextView;
         private final ImageView imageView;
-        private final TextView timeTextView;
-        private final TextView weatherTextView;
+        private final TextView contentTextView;
 
         private ViewHolder(@NonNull WeatherAdapterBinding binding) {
             super(binding.getRoot());
+            titleTextView = binding.titleTextView;
             imageView = binding.imageView;
-            timeTextView = binding.timeTextView;
-            weatherTextView = binding.weatherTextView;
+            contentTextView = binding.contentTextView;
         }
     }
 }

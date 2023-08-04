@@ -120,8 +120,8 @@
     [self.listItem updateWithDataModel:dataModel.listItems];
 }
 
-- (void)showLocationPageWithDataModel:(id)dataModel {
-    [self.navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:dataModel];
+- (void)showLocationPageWithResponse:(FRCityResponse *)response {
+    [self.navigator navigateTo:FRDestinationLocation from:self.navigationController dataModel:response];
 }
 
 @end

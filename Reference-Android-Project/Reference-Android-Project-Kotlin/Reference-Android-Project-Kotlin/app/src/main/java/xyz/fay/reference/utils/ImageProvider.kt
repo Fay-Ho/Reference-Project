@@ -29,15 +29,15 @@ import xyz.fay.reference.MainApplication
 import xyz.fay.reference.R
 
 enum class ImageProvider(val rawValue: String) {
-    CLOUDY("阴天"),
+    CLOUDY("Clouds"),
     FOGGY("大雾"),
     HAIL("冰雹"),
     LOCATION("定位"),
     MOON("夜间"),
     MOON_CLOUDY("夜间多云"),
-    RAINY("雨天"),
+    RAINY("Rain"),
     SNOWY("雪天"),
-    SUN("晴朗"),
+    SUN("Clear"),
     SUN_CLOUDY("晴朗多云"),
     THUNDERSTORMS("雷暴"),
     TORNADO("龙卷风"),

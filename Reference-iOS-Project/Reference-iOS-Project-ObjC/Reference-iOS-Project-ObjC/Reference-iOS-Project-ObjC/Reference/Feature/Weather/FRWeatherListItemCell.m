@@ -25,14 +25,15 @@
 #import "FRWeatherListItemCell.h"
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
+#import "FRImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FRWeatherListItemCellViewModel ()
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSString *value;
+@property (nonatomic, strong) NSString *image;
+@property (nonatomic, strong) NSString *content;
 
 @end
 
@@ -48,7 +49,7 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *imageContainer;
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UILabel *valueLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
 @end
 
@@ -79,16 +80,16 @@ NS_ASSUME_NONNULL_END
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UIImageView makeWithImage:_viewModel.image];
+        _imageView = [UIImageView makeWithImage:[FRImageProvider loadImageWithRawValue:_viewModel.image]];
     }
     return _imageView;
 }
 
-- (UILabel *)valueLabel {
-    if (!_valueLabel) {
-        _valueLabel = [UILabel makeWithText:_viewModel.value textAlignment:NSTextAlignmentCenter];
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [UILabel makeWithText:_viewModel.content textAlignment:NSTextAlignmentCenter];
     }
-    return _valueLabel;
+    return _contentLabel;
 }
 
 #pragma mark - Lifecycle
@@ -106,7 +107,7 @@ NS_ASSUME_NONNULL_END
 
 - (void)setupSubviews {
     [self addSubview:self.container];
-    [self.container addArrangedSubviews:@[self.titleLabel, self.imageContainer, self.valueLabel]];
+    [self.container addArrangedSubviews:@[self.titleLabel, self.imageContainer, self.contentLabel]];
     [self.imageContainer addSubview:self.imageView];
 }
 
@@ -121,7 +122,7 @@ NS_ASSUME_NONNULL_END
 
 - (void)updateStyling {
     self.titleLabel.textColor = [UIColor fontColor];
-    self.valueLabel.textColor = [UIColor fontColor];
+    self.contentLabel.textColor = [UIColor fontColor];
 }
 
 @end
@@ -131,12 +132,12 @@ NS_ASSUME_NONNULL_END
 @implementation FRWeatherListItemCellViewModel
 
 + (instancetype)viewModelWithTitle:(NSString *)title
-                             image:(UIImage *)image
-                             value:(NSString *)value {
+                             image:(NSString *)image
+                           content:(NSString *)content {
     FRWeatherListItemCellViewModel *viewModel = [[super alloc] init];
     viewModel.title = title;
     viewModel.image = image;
-    viewModel.value = value;
+    viewModel.content = content;
     return viewModel;
 }
 

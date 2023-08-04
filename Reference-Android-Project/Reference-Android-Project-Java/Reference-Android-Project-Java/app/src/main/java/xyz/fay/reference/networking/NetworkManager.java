@@ -29,13 +29,19 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
-import java.lang.reflect.Type;
-
+import xyz.fay.reference.MainApplication;
+import xyz.fay.reference.networking.request.RequestHandler;
+import xyz.fay.reference.networking.request.WeatherRequest;
 import xyz.fay.reference.networking.response.CityResponse;
 import xyz.fay.reference.networking.response.WeatherResponse;
 import xyz.fay.reference.utils.AssetProvider;
+import xyz.fay.reference.vendor.Result;
 
 public final class NetworkManager {
     private enum MockFile {
@@ -54,46 +60,57 @@ public final class NetworkManager {
         }
     }
 
-    private <R extends Parcelable> void sendRequest(@NonNull Class<R> parcelableResponse, @NonNull MockFile fileName, @Nullable RequestHandler<R> requestHandler) {
+    //region
+
+    private <R extends Parcelable> void loadFile(@NonNull Class<R> response, @NonNull MockFile fileName, @Nullable LoadListener<R> loadListener) {
         String jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue.concat(fileName.getRawValue()));
-        if (requestHandler != null) {
-            requestHandler.completion(parseData(jsonString, parcelableResponse));
+        if (loadListener != null) {
+            loadListener.onCompletion(new Gson().fromJson(jsonString, response));
         }
     }
 
-//    private void baseRequest() {
-//        RequestQueue queue = Volley.newRequestQueue(MainApplication.getAppContext());
-////        String url = "https://restapi.amap.com/v3/weather/weatherInfo?city=440106&key=13b60d45154a4e2670df67a585752ce1&extensions=all";
-//        String url = "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68";
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                System.out.println("11111");
-//                System.out.println(response);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                System.out.println(error);
-//            }
-//        });
-////        StringRequest stringRequest2 = new StringRequest(Request.Method.GET, url, response -> {
-////            System.out.println(response);
-////        }, error -> {
-////            System.out.println(error);
-////        });
-//        queue.add(stringRequest);
-//    }
-
-    private <R extends Parcelable> R parseData(String data, Class<R> response) {
-        Gson gson = new Gson();
-        return gson.fromJson(data, (Type) response);
+    private <R extends Parcelable> void sendRequest(@NonNull RequestHandler requestHandler, @NonNull Class<R> classOfR, @Nullable RequestListener<R> requestListener) {
+        RequestQueue queue = Volley.newRequestQueue(MainApplication.getAppContext());
+        HTTPRequest httpRequest = requestHandler.makeRequest();
+        StringRequest stringRequest = new StringRequest(httpRequest.getMethod(), httpRequest.getUrl(), response -> {
+            if (requestListener != null) {
+                try {
+                    requestListener.onCompletion(Result.success(new Gson().fromJson(response, classOfR)));
+                } catch (JsonSyntaxException exception) {
+                    requestListener.onCompletion(Result.failure(exception));
+                }
+            }
+        }, error -> {
+            if (requestListener != null) {
+                requestListener.onCompletion(Result.failure(error));
+            }
+        });
+        queue.add(stringRequest);
     }
 
-    public final void getCity(@Nullable RequestHandler<CityResponse> requestHandler) {
-        sendRequest(CityResponse.class, MockFile.GET_CITY, requestHandler);
+    //endregion
+
+    //region
+
+    public final void getCity(@Nullable LoadListener<CityResponse> loadListener) {
+        loadFile(CityResponse.class, MockFile.GET_CITY, loadListener);
     }
-    public final void getWeather(@Nullable RequestHandler<WeatherResponse> requestHandler) {
-        sendRequest(WeatherResponse.class, MockFile.GET_WEATHER, requestHandler);
+
+    public final void getWeather(@Nullable RequestListener<WeatherResponse> requestListener) {
+        sendRequest(new WeatherRequest(), WeatherResponse.class, requestListener);
     }
+
+    //endregion
+
+    //region
+
+    public interface LoadListener<R extends Parcelable> {
+        void onCompletion(@Nullable R response);
+    }
+
+    public interface RequestListener<R extends Parcelable> {
+        void onCompletion(@NonNull Result<R> result);
+    }
+
+    //endregion
 }

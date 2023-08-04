@@ -41,7 +41,11 @@ class WeatherViewController : BaseViewController {
     }()
     
     private lazy var dashboardItem: WeatherDashboardItem = {
-        WeatherDashboardItem()
+        .init()
+    }()
+    
+    private lazy var listItem: WeatherListItem = {
+        .init()
     }()
     
     // MARK: - View Lifecycle
@@ -70,15 +74,15 @@ class WeatherViewController : BaseViewController {
 extension WeatherViewController {
     func setupSubviews() {
         view.addSubview(locationButton)
-        container.addArrangedSubview(dashboardItem)
+        container.addArrangedSubviews([dashboardItem, listItem])
     }
     
     func setupLayouts() {
         locationButton
-            .top(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
+            .topEqualTo(anchor: view.safeAreaLayoutGuide.topAnchor, constant: 16)
             .trailing(equalTo: view.trailingAnchor, constant: -24)
-            .width(equalToConstant: 24)
-            .height(equalTo: locationButton.widthAnchor)
+            .widthEqualTo(constant: 24)
+            .heightEqualTo(anchor: locationButton.widthAnchor)
     }
     
     func updateStyling() {
@@ -104,10 +108,11 @@ extension WeatherViewController : WeatherViewControllerInterface {
             wind: dataModel.wind
         )
         dashboardItem.update(viewModel: viewModel)
+        listItem.update(dataModels: dataModel.listItems)
     }
     
-    func showLocationPage(dataModel: Codable) {
+    func showLocationPage(response: CityResponse) {
         guard let navigation = navigationController else { return }
-        navigator?.navigate(to: .location, from: navigation, dataModel: dataModel)
+        navigator?.navigate(to: .location, from: navigation, dataModel: response)
     }
 }

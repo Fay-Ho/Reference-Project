@@ -82,24 +82,24 @@ extension WeatherDashboardItem {
     
     func setupLayouts() {
         container
-            .top(equalTo: topAnchor, constant: 60)
-            .bottom(equalTo: bottomAnchor, constant: 10)
-            .horizontal(equalTo: self, constant: 16)
+            .topEqualTo(anchor: topAnchor, constant: 60)
+            .bottomEqualTo(anchor: bottomAnchor, constant: 10)
+            .horizontalEqualTo(view: self, constant: 16)
         
         temperatureLabel
             .vertical(equalTo: container, constant: 100)
-            .horizontal(equalTo: container, constant: 135)
+            .horizontalEqualTo(view: container, constant: 135)
         
         celsiusLabel
-            .top(equalTo: container.topAnchor, constant: 100)
+            .topEqualTo(anchor: container.topAnchor, constant: 100)
             .leading(equalTo: temperatureLabel.trailingAnchor)
         
         weatherLabel
-            .top(equalTo: temperatureLabel.bottomAnchor, constant: 10)
+            .topEqualTo(anchor: temperatureLabel.bottomAnchor, constant: 10)
             .centerX(equalTo: container.centerXAnchor, constant: -50)
         
         windLabel
-            .top(equalTo: temperatureLabel.bottomAnchor, constant: 10)
+            .topEqualTo(anchor: temperatureLabel.bottomAnchor, constant: 10)
             .centerX(equalTo: container.centerXAnchor, constant: 50)
     }
     
