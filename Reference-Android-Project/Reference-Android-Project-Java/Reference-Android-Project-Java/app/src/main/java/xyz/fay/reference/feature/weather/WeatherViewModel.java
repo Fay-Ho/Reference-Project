@@ -85,12 +85,12 @@ public final class WeatherViewModel extends ViewModel {
     private WeatherListItemDataModel[] makeListItems(@NonNull WeatherResponse response) {
         return Arrays
                 .stream(response.getList())
-                .map(this::makeWeatherListItemDataModel)
+                .map(this::makeListItem)
                 .toArray(WeatherListItemDataModel[]::new);
     }
 
     @NonNull
-    private WeatherListItemDataModel makeWeatherListItemDataModel(@NonNull WeatherListResponse response) {
+    private WeatherListItemDataModel makeListItem(@NonNull WeatherListResponse response) {
         return new WeatherListItemDataModel(
                 formatDate(response.getDt_txt()),
                 response.getWeather()[0].getMain() != null ? response.getWeather()[0].getMain() : ImageProvider.SUN.getRawValue(),
