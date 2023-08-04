@@ -35,26 +35,22 @@
 
 - (void)handleWeatherResponse:(FRWeatherResponse *)response {
     FRWeatherListResponse *listResponse = response.list.firstObject;
-    
     if (listResponse == nil) { return; }
     
     FRWeatherListWeatherResponse *weatherResponse = listResponse.weather.firstObject;
-    
     if (weatherResponse == nil) { return; }
     
-    FRWeatherDataModel *dataModel = [FRWeatherDataModel dataModelWithTemperature:[NSString stringWithFormat:@"%0.f", listResponse.main.temp]
-                                                                         weather:weatherResponse.main
-                                                                            wind:[NSString stringWithFormat:@"%d", listResponse.wind.deg]
-                                                                       listItems:[self makeListItems:response]];
-    
-    [self.viewController updateSubviewsWithDataModel:dataModel];
+    [self.viewController updateSubviewsWithDataModel:[FRWeatherDataModel dataModelWithTemperature:[self formatDouble:listResponse.main.temp]
+                                                                                          weather:weatherResponse.main
+                                                                                             wind:[self formatInt:listResponse.wind.deg]
+                                                                                        listItems:[self makeListItems:response]]];
 }
 
 - (NSArray<FRWeatherListItemDataModel *> *)makeListItems:(FRWeatherResponse *)response {
     return [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
         return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
-                                                       image:response.weather.firstObject.main ? response.weather.firstObject.main : FRImageEnumSun
-                                                     weather:[NSString stringWithFormat:@"%0.f", response.main.temp]];
+                                                       image:[self formatImage:response.weather.firstObject.main]
+                                                     weather:[self formatDouble:response.main.temp]];
     }];
 }
 
@@ -64,6 +60,18 @@
     NSDate *date = [formatter dateFromString:string];
     formatter.dateFormat = @"HH:mm";
     return [formatter stringFromDate:date];
+}
+
+- (NSString *)formatDouble:(double)value {
+    return [NSString stringWithFormat:@"%.f", ceil(value)];
+}
+
+- (NSString *)formatImage:(nonnull NSString *)name {
+    return name ? name : @"";
+}
+
+- (NSString *)formatInt:(int)value {
+    return [NSString stringWithFormat:@"%d", value];
 }
 
 @end

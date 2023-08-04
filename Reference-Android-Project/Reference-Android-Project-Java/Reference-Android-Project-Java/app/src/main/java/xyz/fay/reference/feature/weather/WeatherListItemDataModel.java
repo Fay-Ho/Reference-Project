@@ -25,6 +25,7 @@ package xyz.fay.reference.feature.weather;
 */
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Optional;
 
@@ -34,10 +35,10 @@ import xyz.fay.parcel.Parcelize;
 @Parcelize
 final class WeatherListItemDataModel extends Parcelable {
     @NonNull private final String time;
-    @NonNull private final String image;
+    @Nullable private final String image;
     @NonNull private final String weather;
 
-    public WeatherListItemDataModel(@NonNull String time, @NonNull String image, @NonNull String weather) {
+    public WeatherListItemDataModel(@NonNull String time, @Nullable String image, @NonNull String weather) {
         this.time = time;
         this.image = image;
         this.weather = weather;

@@ -58,9 +58,9 @@ public enum ImageProvider {
     @Nullable
     public static ImageProvider rawValue(@NonNull String rawValue) {
         return Arrays.stream(values())
-                .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
-                .findFirst()
-                .orElse(null);
+            .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
+            .findFirst()
+            .orElse(null);
     }
 
     @Nullable

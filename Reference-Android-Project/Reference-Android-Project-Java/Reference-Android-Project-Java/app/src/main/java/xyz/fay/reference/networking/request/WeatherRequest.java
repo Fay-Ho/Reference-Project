@@ -32,8 +32,8 @@ public class WeatherRequest implements RequestHandler {
     @Override
     public HTTPRequest makeRequest() {
         return new HTTPRequest(
-                "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn",
-                Request.Method.GET
+            "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn",
+            Request.Method.GET
         );
     }
 }

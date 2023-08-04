@@ -29,9 +29,9 @@ import androidx.lifecycle.ViewModel
 import xyz.fay.reference.networking.NetworkManager
 import xyz.fay.reference.networking.response.CityResponse
 import xyz.fay.reference.networking.response.WeatherResponse
-import xyz.fay.reference.utils.ImageProvider
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.math.ceil
 
 class WeatherViewModel : ViewModel() {
     private val _weatherDataModel = MutableLiveData<WeatherDataModel>()
@@ -55,14 +55,14 @@ class WeatherViewModel : ViewModel() {
     private fun handleWeatherResponse(response: WeatherResponse) {
         response.list.firstOrNull()?.let { listResponse ->
             listResponse.weather.firstOrNull()?.let { weatherResponse ->
-                val dataModel = WeatherDataModel(
-                    listResponse.main.temp.toString(),
-                    weatherResponse.main,
-                    listResponse.wind.deg.toString(),
-                    makeListItems(response)
+                _weatherDataModel.postValue(
+                    WeatherDataModel(
+                        formatDouble(listResponse.main.temp),
+                        weatherResponse.main,
+                        listResponse.wind.deg.toString(),
+                        makeListItems(response)
+                    )
                 )
-
-                _weatherDataModel.postValue(dataModel)
             }
         }
     }
@@ -71,8 +71,8 @@ class WeatherViewModel : ViewModel() {
         return response.list.map {
             WeatherListItemDataModel(
                 formatDate(it.dt_txt),
-                it.weather.firstOrNull()?.main ?: ImageProvider.SUN.rawValue,
-                it.main.temp.toString()
+                it.weather.firstOrNull()?.main ?: "",
+                formatDouble(it.main.temp)
             )
         }.toTypedArray()
     }
@@ -83,4 +83,7 @@ class WeatherViewModel : ViewModel() {
         formatter = DateTimeFormatter.ofPattern("HH:mm")
         return date.format(formatter)
     }
+
+    private fun formatDouble(value: Double) =
+        ceil(value).toInt().toString()
 }

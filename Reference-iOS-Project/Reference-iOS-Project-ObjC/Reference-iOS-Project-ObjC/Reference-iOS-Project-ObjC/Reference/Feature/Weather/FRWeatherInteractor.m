@@ -35,9 +35,9 @@
 - (void)viewIsReady {
     FRNetworkManager<FRWeatherResponse *> *manager = [FRNetworkManager manager];
     [manager getWeather:^(FLResult<FRWeatherResponse *> * _Nullable result) {
-        @weakify(self);
+        @weakify(self)
         [result success:^(FRWeatherResponse * _Nonnull response) {
-            @strongify(self);
+            @strongify(self)
             [self.presenter handleWeatherResponse:response];
         }];
         [result failure:^(NSError * _Nonnull error) {
@@ -48,7 +48,9 @@
 
 - (void)fetchCityList {
     FRNetworkManager<FRCityResponse *> *manager = [FRNetworkManager manager];
+    @weakify(self)
     [manager getCity:^(FRCityResponse * _Nullable response) {
+        @strongify(self)
         [self.presenter handleCityResponse:response];
     }];
 }
