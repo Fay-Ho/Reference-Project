@@ -1,4 +1,4 @@
-package xyz.fay.reference.networking;
+package xyz.fay.reference.vendor.utils
 
 /*
   MIT License
@@ -24,20 +24,7 @@ package xyz.fay.reference.networking;
   SOFTWARE.
 */
 
-public class HTTPRequest {
-    private final String url;
-    private final Integer method;
-
-    public HTTPRequest(String url, Integer method) {
-        this.url = url;
-        this.method = method;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public Integer getMethod() {
-        return method;
-    }
-}
+data class HTTPRequest(
+    val url: String,
+    val method: Int
+)

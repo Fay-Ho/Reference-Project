@@ -42,8 +42,8 @@ class NetworkManager {
         }
     }
     
-    private func sendRequest<R: Decodable>(_ handler: RequestHandler, completion: ((_ result: Result<R, Error>) -> Void)?) {
-        let httpRequest = handler.makeRequest()
+    private func sendRequest<R: Decodable>(_ requestHandler: RequestHandler, completion: ((_ result: Result<R, Error>) -> Void)?) {
+        let httpRequest = requestHandler.makeRequest()
         guard let url = URL(string: httpRequest.requestURL) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = httpRequest.requestMethod.rawValue

@@ -25,7 +25,6 @@ package xyz.fay.reference.networking
 */
 
 import android.os.Parcelable
-import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
@@ -52,8 +51,8 @@ class NetworkManager {
 
     private fun <R: Parcelable> sendRequest(requestHandler: RequestHandler, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
         val queue = Volley.newRequestQueue(MainApplication.appContext);
-        val url = "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"
-        val stringRequest = StringRequest(Request.Method.GET, url, {
+        val httpRequest = requestHandler.makeRequest()
+        val stringRequest = StringRequest(httpRequest.method, httpRequest.url, {
             completion?.invoke(Result.success(Gson().fromJson(it, classOfR.java)))
         }, {
             completion?.invoke(Result.failure(it))

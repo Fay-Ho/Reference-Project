@@ -26,7 +26,7 @@ package xyz.fay.reference.networking.request;
 
 import com.android.volley.Request;
 
-import xyz.fay.reference.networking.HTTPRequest;
+import xyz.fay.reference.vendor.utils.HTTPRequest;
 
 public class WeatherRequest implements RequestHandler {
     @Override

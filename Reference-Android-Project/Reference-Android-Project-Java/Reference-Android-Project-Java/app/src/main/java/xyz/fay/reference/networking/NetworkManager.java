@@ -41,6 +41,7 @@ import xyz.fay.reference.networking.request.WeatherRequest;
 import xyz.fay.reference.networking.response.CityResponse;
 import xyz.fay.reference.networking.response.WeatherResponse;
 import xyz.fay.reference.utils.AssetProvider;
+import xyz.fay.reference.vendor.utils.HTTPRequest;
 import xyz.fay.reference.vendor.Result;
 
 public final class NetworkManager {

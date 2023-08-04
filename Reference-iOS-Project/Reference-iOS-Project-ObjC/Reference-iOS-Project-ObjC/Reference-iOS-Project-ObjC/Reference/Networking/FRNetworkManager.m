@@ -65,9 +65,9 @@ FRMockFile const JSON_FILE = @"json";
     completion([response modelWithJSON:JSON]);
 }
 
-- (void)sendRequest:(id<FRRequestHandler>)handler response:(Class)response completion:(FRRequestCompletion)completion {
+- (void)sendRequest:(id<FRRequestHandler>)requestHandler response:(Class)response completion:(FRRequestCompletion)completion {
     FLNetwork *network = [FLNetwork network];
-    [network sendRequest:[handler makeRequest] success:^(id _Nonnull resultData) {
+    [network sendRequest:[requestHandler makeRequest] success:^(id _Nonnull resultData) {
         completion([FLResult success:[response modelWithJSON:resultData]]);
     } failure:^(NSError * _Nonnull error) {
         completion([FLResult failure:error]);

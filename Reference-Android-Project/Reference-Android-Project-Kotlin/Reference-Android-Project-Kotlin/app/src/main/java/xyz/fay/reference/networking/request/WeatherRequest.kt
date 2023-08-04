@@ -1,5 +1,8 @@
 package xyz.fay.reference.networking.request
 
+import com.android.volley.Request
+import xyz.fay.reference.vendor.utils.HTTPRequest
+
 /*
   MIT License
 
@@ -25,7 +28,10 @@ package xyz.fay.reference.networking.request
 */
 
 class WeatherRequest : RequestHandler {
-    override fun makeRequest(): String {
-        return ""
+    override fun makeRequest(): HTTPRequest {
+        return HTTPRequest(
+            "https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn",
+            Request.Method.GET
+        )
     }
 }
