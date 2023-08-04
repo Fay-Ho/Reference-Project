@@ -50,7 +50,7 @@
 		65D3F95D2A672DA100522C5A /* NSArray+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */; };
 		65E4BA9F2A7651B900E90CC5 /* FRCityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9B2A7651B900E90CC5 /* FRCityResponse.m */; };
 		65E4BAA02A7651B900E90CC5 /* FRWeatherResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */; };
-		65FF6E472A7BFD2B005600F8 /* FRResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF6E462A7BFD2B005600F8 /* FRResult.m */; };
+		65FF6E472A7BFD2B005600F8 /* FLResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF6E462A7BFD2B005600F8 /* FLResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,7 +165,7 @@
 		65E4BA9D2A7651B900E90CC5 /* FRCityResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FRCityResponse.h; sourceTree = "<group>"; };
 		65E4BA9E2A7651B900E90CC5 /* FRWeatherResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FRWeatherResponse.m; sourceTree = "<group>"; };
 		65FF6E452A7BFD2B005600F8 /* FLResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLResult.h; sourceTree = "<group>"; };
-		65FF6E462A7BFD2B005600F8 /* FRResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRResult.m; sourceTree = "<group>"; };
+		65FF6E462A7BFD2B005600F8 /* FLResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,7 +394,7 @@
 				6565E79B2A7B8120005DB1DB /* FLNetwork.h */,
 				6565E79C2A7B8120005DB1DB /* FLNetwork.m */,
 				65FF6E452A7BFD2B005600F8 /* FLResult.h */,
-				65FF6E462A7BFD2B005600F8 /* FRResult.m */,
+				65FF6E462A7BFD2B005600F8 /* FLResult.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -587,7 +587,7 @@
 				650813FA2A61071E00242F55 /* FRHelper.m in Sources */,
 				655D80022A66DC0F006BCA74 /* UIImageView+FRExtension.m in Sources */,
 				650813EF2A6106A300242F55 /* FRLocationPresenter.m in Sources */,
-				65FF6E472A7BFD2B005600F8 /* FRResult.m in Sources */,
+				65FF6E472A7BFD2B005600F8 /* FLResult.m in Sources */,
 				6589F2F62A708B6E001DC7F3 /* FRWeatherListItemCell.m in Sources */,
 				655D800F2A66DC60006BCA74 /* UIView+CGRect.m in Sources */,
 				6589F2F02A708B2B001DC7F3 /* FRWeatherListItem.m in Sources */,
