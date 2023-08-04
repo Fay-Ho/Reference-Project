@@ -24,14 +24,16 @@ package xyz.fay.reference.feature.location;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 final class LocationDataModel extends Parcelable {
-    private final LocationRowDataModel[] rowDataModels;
+    @NonNull private final LocationRowDataModel[] rowDataModels;
 
-    public LocationDataModel(LocationRowDataModel[] rowDataModels) {
+    public LocationDataModel(@NonNull LocationRowDataModel[] rowDataModels) {
         this.rowDataModels = rowDataModels;
     }
 }

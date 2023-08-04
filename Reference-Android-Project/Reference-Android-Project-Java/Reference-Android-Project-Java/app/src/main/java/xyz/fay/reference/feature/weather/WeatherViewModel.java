@@ -80,6 +80,7 @@ public final class WeatherViewModel extends ViewModel {
         );
     }
 
+    @NonNull
     private WeatherListItemDataModel[] makeListItems(@NonNull WeatherResponse response) {
         return Arrays
             .stream(response.getList())

@@ -34,3 +34,10 @@ data class WeatherDataModel(
     val wind: String,
     val listItems: Array<WeatherListItemDataModel>
 ) : Parcelable
+
+@Parcelize
+data class WeatherListItemDataModel(
+    val time: String,
+    val image: String,
+    val weather: String
+) : Parcelable

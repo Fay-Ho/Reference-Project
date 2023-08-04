@@ -24,17 +24,19 @@ package xyz.fay.reference.feature.weather;
   SOFTWARE.
 */
 
+import androidx.annotation.NonNull;
+
 import xyz.fay.parcel.Parcelable;
 import xyz.fay.parcel.Parcelize;
 
 @Parcelize
 final class WeatherDataModel extends Parcelable {
-    private final String temperature;
-    private final String weather;
-    private final String wind;
-    private final WeatherListItemDataModel[] listItems;
+    @NonNull private final String temperature;
+    @NonNull private final String weather;
+    @NonNull private final String wind;
+    @NonNull private final WeatherListItemDataModel[] listItems;
 
-    public WeatherDataModel(String temperature, String weather, String wind, WeatherListItemDataModel[] listItems) {
+    public WeatherDataModel(@NonNull String temperature, @NonNull String weather, @NonNull String wind, @NonNull WeatherListItemDataModel[] listItems) {
         this.temperature = temperature;
         this.weather = weather;
         this.wind = wind;
