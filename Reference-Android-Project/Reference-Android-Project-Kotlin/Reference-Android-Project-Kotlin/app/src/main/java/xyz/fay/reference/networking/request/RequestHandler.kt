@@ -1,7 +1,5 @@
 package xyz.fay.reference.networking.request
 
-import xyz.fay.reference.vendor.utils.HTTPRequest
-
 /*
   MIT License
 
@@ -25,6 +23,8 @@ import xyz.fay.reference.vendor.utils.HTTPRequest
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
+
+import xyz.fay.reference.vendor.utils.HTTPRequest
 
 interface RequestHandler {
     fun makeRequest(): HTTPRequest

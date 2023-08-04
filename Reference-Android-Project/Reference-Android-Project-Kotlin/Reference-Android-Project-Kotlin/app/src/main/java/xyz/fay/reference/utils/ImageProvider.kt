@@ -24,7 +24,6 @@ package xyz.fay.reference.utils
   SOFTWARE.
 */
 
-import android.graphics.drawable.Drawable
 import xyz.fay.reference.MainApplication
 import xyz.fay.reference.R
 
