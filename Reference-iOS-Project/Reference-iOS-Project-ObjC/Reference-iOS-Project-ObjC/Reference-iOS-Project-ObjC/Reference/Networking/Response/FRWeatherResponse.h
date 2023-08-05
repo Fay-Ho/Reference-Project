@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) FRWeatherCityCoordResponse *coord;
 @property (nonatomic, strong, readonly) NSString *country;
-@property (nonatomic, assign, readonly) int wid;
+@property (nonatomic, assign, readonly) int w_id;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, assign, readonly) int population;
 @property (nonatomic, assign, readonly) int sunrise;

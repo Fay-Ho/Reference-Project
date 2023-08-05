@@ -40,10 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherResponse
 
 + (NSDictionary<NSString *,id> *)unkeyedContainer {
-    return @{
-        @"city": @"FRWeatherCityResponse",
-        @"list": @"FRWeatherListResponse"
-    };
+    return @{@"list": @"FRWeatherListResponse"};
 }
 
 @end
@@ -63,16 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FRWeatherCityResponse
 
-+ (NSDictionary<NSString *,id> *)unkeyedContainer {
-    return @{
-        @"coord": @"FRWeatherCityCoordResponse"
-    };
-}
-
 + (NSDictionary<NSString *, id> *)codingKeys {
-    return @{
-        @"id": @"w_id"
-    };
+    return @{@"id": @"w_id"};
 }
 
 @end
@@ -106,14 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherListResponse
 
 + (NSDictionary<NSString *,id> *)unkeyedContainer {
-    return @{
-        @"clouds": @"FRWeatherListCloudsResponse",
-        @"main": @"FRWeatherListMainResponse",
-        @"rain": @"FRWeatherListRainResponse",
-        @"sys": @"FRWeatherListSysResponse",
-        @"weather": @"FRWeatherListWeatherResponse",
-        @"wind": @"FRWeatherListWindResponse"
-    };
+    return @{@"weather": @"FRWeatherListWeatherResponse"};
 }
 
 @end
@@ -155,9 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherListRainResponse
 
 + (NSDictionary<NSString *, id> *)codingKeys {
-    return @{
-        @"3h": @"h"
-    };
+    return @{@"3h": @"h"};
 }
 
 @end
@@ -184,9 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherListWeatherResponse
 
 + (NSDictionary<NSString *, id> *)codingKeys {
-    return @{
-        @"id": @"w_id"
-    };
+    return @{@"id": @"w_id"};
 }
 
 @end

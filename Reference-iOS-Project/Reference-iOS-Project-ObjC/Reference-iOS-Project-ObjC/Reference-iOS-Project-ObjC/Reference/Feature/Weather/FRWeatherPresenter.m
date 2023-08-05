@@ -49,7 +49,7 @@
 - (NSArray<FRWeatherListItemDataModel *> *)makeListItems:(FRWeatherResponse *)response {
     return [response.list map:^id _Nonnull (FRWeatherListResponse * _Nonnull response) {
         return [FRWeatherListItemDataModel dataModelWithTime:[self formatDate:response.dt_txt]
-                                                       image:[self formatImage:response.weather.firstObject.main]
+                                                       image:[self formatImage:response.weather.firstObject]
                                                      weather:[self formatDouble:response.main.temp]];
     }];
 }
@@ -66,8 +66,8 @@
     return [NSString stringWithFormat:@"%.f", ceil(value)];
 }
 
-- (NSString *)formatImage:(nonnull NSString *)name {
-    return name ? name : @"";
+- (NSString *)formatImage:(nullable FRWeatherListWeatherResponse *)response {
+    return response ? response.main : @"";
 }
 
 - (NSString *)formatInt:(int)value {

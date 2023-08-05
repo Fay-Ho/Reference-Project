@@ -92,7 +92,7 @@ public final class WeatherViewModel extends ViewModel {
     private WeatherListItemDataModel makeListItem(@NonNull WeatherListResponse response) {
         return new WeatherListItemDataModel(
             formatDate(response.getDt_txt()),
-            formatImage(response.getWeather()[0].getMain()),
+            formatImage(Arrays2.firstOrNull(Arrays.asList(response.getWeather()))),
             formatDouble(response.getMain().getTemp())
         );
     }
@@ -111,7 +111,7 @@ public final class WeatherViewModel extends ViewModel {
     }
 
     @NonNull
-    private String formatImage(@Nullable String string) {
-        return string != null ? string : "";
+    private String formatImage(@Nullable WeatherListWeatherResponse response) {
+        return response != null ? response.getMain() : "";
     }
 }

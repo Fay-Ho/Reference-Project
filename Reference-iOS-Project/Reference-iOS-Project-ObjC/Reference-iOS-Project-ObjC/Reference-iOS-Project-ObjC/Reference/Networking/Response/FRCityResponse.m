@@ -36,9 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRCityResponse
 
 + (NSDictionary<NSString *, id> *)unkeyedContainer {
-    return @{
-        @"cities": @"FRCityCitiesResponse"
-    };
+    return @{@"cities": @"FRCityCitiesResponse"};
 }
 
 @end
