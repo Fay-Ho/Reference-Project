@@ -28,7 +28,7 @@ enum ImageProvider : String {
     case cloudy = "Clouds"
     case foggy = "大雾"
     case hail = "冰雹"
-    case location = "定位"
+    case location = "Location"
     case moon = "夜间"
     case moonCloudy = "夜间多云"
     case rainy = "Rain"

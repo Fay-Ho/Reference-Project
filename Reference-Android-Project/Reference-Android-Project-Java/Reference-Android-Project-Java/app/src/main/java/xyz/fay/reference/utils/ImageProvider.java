@@ -38,7 +38,7 @@ public enum ImageProvider {
     CLOUDY("Clouds"),
     FOGGY("大雾"),
     HAIL("冰雹"),
-    LOCATION("定位"),
+    LOCATION("Location"),
     MOON("夜间"),
     MOON_CLOUDY("夜间多云"),
     RAINY("Rain"),
@@ -56,9 +56,9 @@ public enum ImageProvider {
     }
 
     @Nullable
-    public static ImageProvider rawValue(@NonNull String rawValue) {
+    public static ImageProvider rawValue(@NonNull String value) {
         return Arrays.stream(values())
-            .filter(imageProvider -> imageProvider.rawValue.equals(rawValue))
+            .filter(imageProvider -> imageProvider.rawValue.equals(value))
             .findFirst()
             .orElse(null);
     }

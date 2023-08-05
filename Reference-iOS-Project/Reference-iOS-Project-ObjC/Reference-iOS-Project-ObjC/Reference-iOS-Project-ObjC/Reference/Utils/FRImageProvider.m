@@ -29,7 +29,7 @@
 NSString * const FRImageEnumClouds = @"Clouds";
 NSString * const FRImageEnumFoggy = @"大雾";
 NSString * const FRImageEnumHail = @"冰雹";
-NSString * const FRImageEnumLocation = @"定位";
+NSString * const FRImageEnumLocation = @"Location";
 NSString * const FRImageEnumMoon = @"夜间";
 NSString * const FRImageEnumMoonCloudy = @"夜间多云";
 NSString * const FRImageEnumRain = @"Rain";
