@@ -26,17 +26,16 @@
 #import "FRBundleProvider.h"
 #import "FRCityResponse.h"
 #import "FRWeatherResponse.h"
-#import "YYModel.h"
 #import "FRWeatherRequest.h"
 #import "FLNetwork.h"
 
 @implementation FRNetworkManager
 
-typedef NSString *FRMockFile NS_STRING_ENUM;
-FRMockFile const GET_CITY = @"city";
-FRMockFile const GET_WEATHER = @"weather";
-FRMockFile const MOCK_BUNDLE = @"Mock.bundle/";
-FRMockFile const JSON_FILE = @"json";
+typedef NSString* FRFile NS_STRING_ENUM;
+FRFile const CITY = @"city";
+FRFile const WEATHER = @"weather";
+FRFile const MOCK = @"Mock.bundle/";
+FRFile const JSON = @"json";
 
 #pragma mark -
 
@@ -46,41 +45,31 @@ FRMockFile const JSON_FILE = @"json";
 
 #pragma mark -
 
-- (void)send:(void (^)(FLResult<NSString *> *result))completion {
-    completion([FLResult success:@"aa"]);
+- (void)loadFile:(FRFile)fileName response:(Class)response completion:(FRCompletion)completion {
+    id data = [FRBundleProvider loadFile:[MOCK stringByAppendingString:fileName] ofType:JSON];
+    [self parseData:data response:response completion:completion];
 }
 
-- (void)run {
-    [self send:^(FLResult<NSString *> *result) {
-        [result success:^(NSString * _Nonnull data) {
-            NSLog(@"%@", data);
-        }];
-    }];
-}
-
-- (void)sendRequest:(Class)response fileName:(FRMockFile)fileName completion:(FRLoadCompletion)completion {
-    FRBundleProvider *provider = [FRBundleProvider provider];
-    NSString *filePath = [MOCK_BUNDLE stringByAppendingString:fileName];
-    id JSON = [provider loadFile:filePath ofType:JSON_FILE];
-    completion([response modelWithJSON:JSON]);
-}
-
-- (void)sendRequest:(id<FRRequestHandler>)requestHandler response:(Class)response completion:(FRRequestCompletion)completion {
+- (void)sendRequest:(id<FRRequestHandler>)requestHandler response:(Class)response completion:(FRCompletion)completion {
     FLNetwork *network = [FLNetwork network];
     [network sendRequest:[requestHandler makeRequest] success:^(id _Nonnull resultData) {
-        completion([FLResult success:[response modelWithJSON:resultData]]);
+        [self parseData:resultData response:response completion:completion];
     } failure:^(NSError * _Nonnull error) {
         completion([FLResult failure:error]);
     }];
 }
 
-#pragma mark -
-
-- (void)getCity:(void (^)(id _Nullable))completion {
-    [self sendRequest:[FRCityResponse class] fileName:GET_CITY completion:completion];
+- (void)parseData:(NSData *)data response:(Class)response completion:(FRCompletion)completion {
+    completion([FLResult success:[response modelWithJSON:data]]);
 }
 
-- (void)getWeather:(void (^)(FLResult<id> * _Nullable))completion {
+#pragma mark -
+
+- (void)getCity:(void (^)(FLResult<id<JSONModel>> * _Nullable))completion {
+    [self loadFile:CITY response:[FRCityResponse class] completion:completion];
+}
+
+- (void)getWeather:(void (^)(FLResult<id<JSONModel>> * _Nullable))completion {
     [self sendRequest:[FRWeatherRequest new] response:[FRWeatherResponse class] completion:completion];
 }
 

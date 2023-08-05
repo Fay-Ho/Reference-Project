@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRNavigator : NSObject
 
-typedef NSString *FRDestination NS_STRING_ENUM;
+typedef NSString* FRDestination NS_STRING_ENUM;
 FOUNDATION_EXPORT FRDestination const FRDestinationLocation;
 FOUNDATION_EXPORT FRDestination const FRDestinationWeather;
 

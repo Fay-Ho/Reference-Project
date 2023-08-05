@@ -24,20 +24,37 @@ package xyz.fay.reference.vendor.utils;
   SOFTWARE.
 */
 
+import com.android.volley.Request;
+
 public class HTTPRequest {
-    private final String url;
-    private final Integer method;
+    public enum Method {
+        GET(Request.Method.GET),
+        POST(Request.Method.POST);
 
-    public HTTPRequest(String url, Integer method) {
-        this.url = url;
-        this.method = method;
+        private final Integer rawValue;
+
+        Method(Integer rawValue) {
+            this.rawValue = rawValue;
+        }
+
+        public Integer getRawValue() {
+            return rawValue;
+        }
     }
 
-    public String getUrl() {
-        return url;
+    private final String requestURL;
+    private final Method requestMethod;
+
+    public HTTPRequest(String requestURL, Method requestMethod) {
+        this.requestURL = requestURL;
+        this.requestMethod = requestMethod;
     }
 
-    public Integer getMethod() {
-        return method;
+    public String getRequestURL() {
+        return requestURL;
+    }
+
+    public Method getRequestMethod() {
+        return requestMethod;
     }
 }

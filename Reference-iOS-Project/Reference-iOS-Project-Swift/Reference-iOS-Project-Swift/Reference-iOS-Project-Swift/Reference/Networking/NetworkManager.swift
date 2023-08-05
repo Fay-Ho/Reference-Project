@@ -25,21 +25,17 @@
 import Foundation
 
 class NetworkManager {
-    private enum MockFile: String {
-        case getCity = "city"
-        case getWeather = "weather"
-        case mockBundle = "Mock.bundle/"
-        case jsonFile = "json"
+    private enum File : String {
+        case city
+        case weather
+        case mock = "Mock.bundle/"
+        case json
     }
     
-    private func loadFile<R: Decodable>(fileName: MockFile, completion: ((_ response: R?) -> Void)?) {
-        let jsonData = BundleProvider.loadFile(MockFile.mockBundle.rawValue + fileName.rawValue, type: MockFile.jsonFile.rawValue)
+    private func loadFile<R: Decodable>(_ fileName: File, completion: ((_ result: Result<R, Error>) -> Void)?) {
+        let jsonData = BundleProvider.loadFile(File.mock.rawValue + fileName.rawValue, type: File.json.rawValue)
         guard let data = jsonData else { return }
-        do {
-            try completion?(JSONDecoder().decode(R.self, from: data))
-        } catch {
-            print(error)
-        }
+        parseData(data, completion: completion)
     }
     
     private func sendRequest<R: Decodable>(_ requestHandler: RequestHandler, completion: ((_ result: Result<R, Error>) -> Void)?) {
@@ -51,11 +47,7 @@ class NetworkManager {
         let dataTask = session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let data = data {
-                    do {
-                        try completion?(.success(JSONDecoder().decode(R.self, from: data)))
-                    } catch {
-                        completion?(.failure(error))
-                    }
+                    self.parseData(data, completion: completion)
                 } else if let error = error {
                     completion?(.failure(error))
                 }
@@ -63,11 +55,19 @@ class NetworkManager {
         }
         dataTask.resume()
     }
+    
+    private func parseData<R: Decodable>(_ data: Data, completion: ((_ result: Result<R, Error>) -> Void)?) {
+        do {
+            try completion?(.success(JSONDecoder().decode(R.self, from: data)))
+        } catch {
+            completion?(.failure(error))
+        }
+    }
 }
 
 extension NetworkManager {
-    func getCity(completion: ((_ response: CityResponse?) -> Void)?) {
-        loadFile(fileName: .getCity, completion: completion)
+    func getCity(completion: ((_ result: Result<CityResponse, Error>) -> Void)?) {
+        loadFile(.city, completion: completion)
     }
     
     func getWeather(completion: ((_ result: Result<WeatherResponse, Error>) -> Void)?) {

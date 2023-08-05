@@ -38,10 +38,10 @@ NSString * const FLRequestMethodDelete = @"DELETE";
     return _timeoutInterval;
 }
 
-+ (instancetype)requestWithURL:(NSString *)url method:(FLRequestMethod)method {
++ (instancetype)requestWithRequestURL:(NSString *)requestURL requestMethod:(FLRequestMethod)requestMethod {
     FLHTTPRequest *httpRequest = [[super alloc] init];
-    httpRequest.requestURL = url;
-    httpRequest.requestMethod = method;
+    httpRequest.requestURL = requestURL;
+    httpRequest.requestMethod = requestMethod;
     return httpRequest;
 }
 

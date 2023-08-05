@@ -25,7 +25,34 @@
 import UIKit
 
 class WeatherPresenter {
+    private enum Pattern : String {
+        case dateTime = "yyyy-MM-dd HH:mm:ss"
+        case time = "HH:mm"
+    }
+    
     weak var viewController: WeatherViewControllerInterface?
+    
+    private func makeListItems(_ response: WeatherResponse) -> [WeatherListItemDataModel] {
+        response.list.map {
+            .init(
+                time: formatDate($0.dt_txt),
+                image: $0.weather.first?.main ?? "",
+                weather: formatDouble($0.main.temp)
+            )
+        }
+    }
+    
+    private func formatDate(_ string: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Pattern.dateTime.rawValue
+        let date = formatter.date(from: string) ?? Date()
+        formatter.dateFormat = Pattern.time.rawValue
+        return formatter.string(from: date)
+    }
+    
+    private func formatDouble(_ value: Double) -> String {
+        .init(format: "%.f", ceil(value))
+    }
 }
 
 // MARK: - WeatherPresenterInterface Implementation
@@ -48,27 +75,5 @@ extension WeatherPresenter : WeatherPresenterInterface {
                 listItems: makeListItems(response)
             )
         )
-    }
-    
-    private func makeListItems(_ response: WeatherResponse) -> [WeatherListItemDataModel] {
-        response.list.map {
-            .init(
-                time: formatDate($0.dt_txt),
-                image: $0.weather.first?.main ?? "",
-                weather: formatDouble($0.main.temp)
-            )
-        }
-    }
-    
-    private func formatDate(_ string: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = formatter.date(from: string) ?? Date()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
-    }
-    
-    private func formatDouble(_ value: Double) -> String {
-        .init(format: "%.f", ceil(value))
     }
 }

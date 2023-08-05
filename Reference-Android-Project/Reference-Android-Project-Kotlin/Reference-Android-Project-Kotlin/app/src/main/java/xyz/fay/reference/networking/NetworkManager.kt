@@ -28,6 +28,7 @@ import android.os.Parcelable
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import xyz.fay.reference.MainApplication
 import xyz.fay.reference.networking.request.RequestHandler
 import xyz.fay.reference.networking.request.WeatherRequest
@@ -36,36 +37,44 @@ import xyz.fay.reference.utils.AssetProvider
 import kotlin.reflect.KClass
 
 class NetworkManager {
-    private enum class MockFile(val rawValue: String) {
-        GET_CITY("city.json"),
-        GET_WEATHER("weather.json"),
-        MOCK_ASSET("mock/")
+    private sealed class File(val rawValue: String) {
+        object City: File("city.json")
+        object Weather: File("weather.json")
+        object Mock: File("mock/")
     }
 
     //region
 
-    private fun <R: Parcelable> loadFile(classOfR: KClass<R>, fileName: MockFile, completion: ((response: R?) -> Unit)?) {
-        val jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue + fileName.rawValue)
-        completion?.invoke(Gson().fromJson(jsonString, classOfR.java))
+    private fun <R: Parcelable> loadFile(fileName: File, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
+        val data = AssetProvider.loadFile(File.Mock.rawValue + fileName.rawValue)
+        parseData(data, classOfR, completion)
     }
 
     private fun <R: Parcelable> sendRequest(requestHandler: RequestHandler, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
         val queue = Volley.newRequestQueue(MainApplication.appContext);
         val httpRequest = requestHandler.makeRequest()
-        val stringRequest = StringRequest(httpRequest.method, httpRequest.url, {
-            completion?.invoke(Result.success(Gson().fromJson(it, classOfR.java)))
+        val stringRequest = StringRequest(httpRequest.requestMethod.rawValue, httpRequest.requestURL, {
+            parseData(it, classOfR, completion)
         }, {
             completion?.invoke(Result.failure(it))
         })
         queue.add(stringRequest)
     }
 
+    private fun <R: Parcelable> parseData(data: String, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
+        try {
+            completion?.invoke(Result.success(Gson().fromJson(data, classOfR.java)))
+        } catch (exception: JsonSyntaxException) {
+            completion?.invoke(Result.failure(exception))
+        }
+    }
+
     //endregion
 
     //region
 
-    fun getCity(completion: ((response: CityResponse?) -> Unit)?) =
-        loadFile(CityResponse::class, MockFile.GET_CITY, completion)
+    fun getCity(completion: ((response: Result<CityResponse>) -> Unit)?) =
+        loadFile(File.City, CityResponse::class, completion)
 
     fun getWeather(completion: ((result: Result<WeatherResponse>) -> Unit)?) =
         sendRequest(WeatherRequest(), WeatherResponse::class, completion)

@@ -35,8 +35,8 @@
 
 @implementation FRNavigator
 
-NSString * const FRDestinationLocation = @"FRLocationConfigurator";
-NSString * const FRDestinationWeather = @"FRWeatherConfigurator";
+FRDestination const FRDestinationLocation = @"FRLocationConfigurator";
+FRDestination const FRDestinationWeather = @"FRWeatherConfigurator";
 
 - (NSDictionary<FRDestination, id<FRFeatureConfigurator>> *)configurators {
     if (!_configurators) {

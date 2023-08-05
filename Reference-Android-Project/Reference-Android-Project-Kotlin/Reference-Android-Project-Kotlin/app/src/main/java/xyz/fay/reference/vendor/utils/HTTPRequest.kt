@@ -1,5 +1,7 @@
 package xyz.fay.reference.vendor.utils
 
+import com.android.volley.Request
+
 /*
   MIT License
 
@@ -25,6 +27,11 @@ package xyz.fay.reference.vendor.utils
 */
 
 data class HTTPRequest(
-    val url: String,
-    val method: Int
-)
+    val requestURL: String,
+    val requestMethod: Method
+) {
+    sealed class Method(val rawValue: Int) {
+        object Get: Method(Request.Method.GET)
+        object Post: Method(Request.Method.POST)
+    }
+}

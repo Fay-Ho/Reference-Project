@@ -34,23 +34,22 @@ import java.time.format.DateTimeFormatter
 import kotlin.math.ceil
 
 class WeatherViewModel : ViewModel() {
+    private sealed class Pattern(val rawValue: String) {
+        object DateTime: Pattern("yyyy-MM-dd HH:mm:ss")
+        object Time: Pattern("HH:mm")
+    }
+
+    //region
+
     private val _weatherDataModel = MutableLiveData<WeatherDataModel>()
     val weatherDataModel: MutableLiveData<WeatherDataModel> get() = _weatherDataModel
 
     private val _cityResponse = MutableLiveData<CityResponse>()
     val cityResponse: MutableLiveData<CityResponse> get() = _cityResponse
 
-    fun viewIsReady() {
-        NetworkManager().getWeather {
-            it.onSuccess(::handleWeatherResponse)
-            it.onFailure(::println)
-        }
-    }
+    //endregion
 
-    fun fetchCityList() {
-        // `setValue()` can only run in main thread, `postValue()` can run in all thread.
-        NetworkManager().getCity(_cityResponse::postValue)
-    }
+    //region
 
     private fun handleWeatherResponse(response: WeatherResponse) {
         response.list.firstOrNull()?.let { listResponse ->
@@ -78,12 +77,33 @@ class WeatherViewModel : ViewModel() {
     }
 
     private fun formatDate(string: String): String {
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        var formatter = DateTimeFormatter.ofPattern(Pattern.DateTime.rawValue)
         val date = LocalDateTime.parse(string, formatter)
-        formatter = DateTimeFormatter.ofPattern("HH:mm")
+        formatter = DateTimeFormatter.ofPattern(Pattern.Time.rawValue)
         return date.format(formatter)
     }
 
     private fun formatDouble(value: Double) =
         ceil(value).toInt().toString()
+
+    //endregion
+
+    //region
+
+    fun viewIsReady() {
+        NetworkManager().getWeather {
+            it.onSuccess(::handleWeatherResponse)
+            it.onFailure(::println)
+        }
+    }
+
+    fun fetchCityList() {
+        NetworkManager().getCity {
+            // `setValue()` can only run in main thread, `postValue()` can run in all thread.
+            it.onSuccess(_cityResponse::postValue)
+            it.onFailure(::println)
+        }
+    }
+
+    //endregion
 }

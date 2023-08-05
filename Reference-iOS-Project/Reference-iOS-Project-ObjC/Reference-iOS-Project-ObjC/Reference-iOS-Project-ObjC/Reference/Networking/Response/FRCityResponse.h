@@ -23,18 +23,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class FRCityCitiesResponse;
 
-@interface FRCityResponse : NSObject
+@interface FRCityResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) NSArray<FRCityCitiesResponse *> *cities;
 
 @end
 
-@interface FRCityCitiesResponse : NSObject
+@interface FRCityCitiesResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) NSString *adcode;
 @property (nonatomic, strong, readonly) NSString *name;

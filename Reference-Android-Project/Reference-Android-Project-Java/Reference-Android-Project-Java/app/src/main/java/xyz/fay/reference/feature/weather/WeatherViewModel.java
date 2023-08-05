@@ -41,6 +41,23 @@ import xyz.fay.reference.networking.response.WeatherResponse;
 import xyz.fay.reference.vendor.Arrays2;
 
 public final class WeatherViewModel extends ViewModel {
+    private enum Pattern {
+        DATE_TIME("yyyy-MM-dd HH:mm:ss"),
+        TIME("HH:mm");
+
+        private final String rawValue;
+
+        Pattern(String rawValue) {
+            this.rawValue = rawValue;
+        }
+
+        public String getRawValue() {
+            return rawValue;
+        }
+    }
+
+    //region
+
     private final MutableLiveData<WeatherDataModel> weatherDataModel = new MutableLiveData<>();
     public MutableLiveData<WeatherDataModel> getWeatherDataModel() {
         return weatherDataModel;
@@ -51,17 +68,9 @@ public final class WeatherViewModel extends ViewModel {
         return cityResponse;
     }
 
-    public void viewIsReady() {
-        new NetworkManager().getWeather(result -> {
-            result.onSuccess(this::handleWeatherResponse);
-            result.onFailure(System.out::println);
-        });
-    }
+    //endregion
 
-    public void fetchCityList() {
-        // `setValue()` can only run in main thread, `postValue()` can run in all thread.
-        new NetworkManager().getCity(cityResponse::postValue);
-    }
+    //region
 
     private void handleWeatherResponse(@NonNull WeatherResponse response) {
         WeatherListResponse listResponse = Arrays2.firstOrNull(Arrays.asList(response.getList()));
@@ -99,9 +108,9 @@ public final class WeatherViewModel extends ViewModel {
 
     @NonNull
     private String formatDate(@NonNull String string) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATE_TIME.getRawValue());
         LocalDateTime date = LocalDateTime.parse(string, formatter);
-        formatter = DateTimeFormatter.ofPattern("HH:mm");
+        formatter = DateTimeFormatter.ofPattern(Pattern.TIME.getRawValue());
         return date.format(formatter);
     }
 
@@ -114,4 +123,25 @@ public final class WeatherViewModel extends ViewModel {
     private String formatImage(@Nullable WeatherListWeatherResponse response) {
         return response != null ? response.getMain() : "";
     }
+
+    //endregion
+
+    //region
+
+    public void viewIsReady() {
+        new NetworkManager().getWeather(result -> {
+            result.onSuccess(this::handleWeatherResponse);
+            result.onFailure(System.out::println);
+        });
+    }
+
+    public void fetchCityList() {
+        new NetworkManager().getCity(result -> {
+            // `setValue()` can only run in main thread, `postValue()` can run in all thread.
+            result.onSuccess(cityResponse::postValue);
+            result.onFailure(System.out::println);
+        });
+    }
+
+    //endregion
 }

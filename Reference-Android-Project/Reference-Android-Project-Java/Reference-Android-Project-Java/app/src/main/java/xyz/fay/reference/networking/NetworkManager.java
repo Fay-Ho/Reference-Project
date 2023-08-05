@@ -45,14 +45,14 @@ import xyz.fay.reference.vendor.utils.HTTPRequest;
 import xyz.fay.reference.vendor.Result;
 
 public final class NetworkManager {
-    private enum MockFile {
-        GET_CITY("city.json"),
-        GET_WEATHER("weather.json"),
-        MOCK_ASSET("mock/");
+    private enum File {
+        CITY("city.json"),
+        WEATHER("weather.json"),
+        MOCK("mock/");
 
         private final String rawValue;
 
-        MockFile(String rawValue) {
+        File(String rawValue) {
             this.rawValue = rawValue;
         }
 
@@ -63,53 +63,51 @@ public final class NetworkManager {
 
     //region
 
-    private <R extends Parcelable> void loadFile(@NonNull Class<R> response, @NonNull MockFile fileName, @Nullable LoadListener<R> loadListener) {
-        String jsonString = AssetProvider.loadFile(MockFile.MOCK_ASSET.rawValue.concat(fileName.getRawValue()));
-        if (loadListener != null) {
-            loadListener.onCompletion(new Gson().fromJson(jsonString, response));
-        }
+    private <R extends Parcelable> void loadFile(@NonNull File fileName, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
+        String data = AssetProvider.loadFile(File.MOCK.rawValue.concat(fileName.getRawValue()));
+        parseData(data, classOfR, resultHandler);
     }
 
-    private <R extends Parcelable> void sendRequest(@NonNull RequestHandler requestHandler, @NonNull Class<R> classOfR, @Nullable RequestListener<R> requestListener) {
+    private <R extends Parcelable> void sendRequest(@NonNull RequestHandler requestHandler, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
         RequestQueue queue = Volley.newRequestQueue(MainApplication.getAppContext());
         HTTPRequest httpRequest = requestHandler.makeRequest();
-        StringRequest stringRequest = new StringRequest(httpRequest.getMethod(), httpRequest.getUrl(), response -> {
-            if (requestListener != null) {
-                try {
-                    requestListener.onCompletion(Result.success(new Gson().fromJson(response, classOfR)));
-                } catch (JsonSyntaxException exception) {
-                    requestListener.onCompletion(Result.failure(exception));
-                }
-            }
+        StringRequest stringRequest = new StringRequest(httpRequest.getRequestMethod().getRawValue(), httpRequest.getRequestURL(), response -> {
+            parseData(response, classOfR, resultHandler);
         }, error -> {
-            if (requestListener != null) {
-                requestListener.onCompletion(Result.failure(error));
+            if (resultHandler != null) {
+                resultHandler.onCompletion(Result.failure(error));
             }
         });
         queue.add(stringRequest);
     }
 
+    private <R extends Parcelable> void parseData(@NonNull String data, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
+        if (resultHandler != null) {
+            try {
+                resultHandler.onCompletion(Result.success(new Gson().fromJson(data, classOfR)));
+            } catch (JsonSyntaxException exception) {
+                resultHandler.onCompletion(Result.failure(exception));
+            }
+        }
+    }
+
     //endregion
 
     //region
 
-    public final void getCity(@Nullable LoadListener<CityResponse> loadListener) {
-        loadFile(CityResponse.class, MockFile.GET_CITY, loadListener);
+    public final void getCity(@Nullable ResultHandler<CityResponse> resultHandler) {
+        loadFile(File.CITY, CityResponse.class, resultHandler);
     }
 
-    public final void getWeather(@Nullable RequestListener<WeatherResponse> requestListener) {
-        sendRequest(new WeatherRequest(), WeatherResponse.class, requestListener);
+    public final void getWeather(@Nullable ResultHandler<WeatherResponse> resultHandler) {
+        sendRequest(new WeatherRequest(), WeatherResponse.class, resultHandler);
     }
 
     //endregion
 
     //region
 
-    public interface LoadListener<R extends Parcelable> {
-        void onCompletion(@Nullable R response);
-    }
-
-    public interface RequestListener<R extends Parcelable> {
+    public interface ResultHandler<R extends Parcelable> {
         void onCompletion(@NonNull Result<R> result);
     }
 

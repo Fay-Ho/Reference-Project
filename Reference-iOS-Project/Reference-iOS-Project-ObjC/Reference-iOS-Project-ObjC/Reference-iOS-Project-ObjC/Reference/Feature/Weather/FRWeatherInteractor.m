@@ -48,10 +48,15 @@
 
 - (void)fetchCityList {
     FRNetworkManager<FRCityResponse *> *manager = [FRNetworkManager manager];
-    @weakify(self)
-    [manager getCity:^(FRCityResponse * _Nullable response) {
-        @strongify(self)
-        [self.presenter handleCityResponse:response];
+    [manager getCity:^(FLResult<FRCityResponse *> * _Nullable result) {
+        @weakify(self)
+        [result success:^(FRCityResponse * _Nonnull response) {
+            @strongify(self)
+            [self.presenter handleCityResponse:response];
+        }];
+        [result failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
     }];
 }
 

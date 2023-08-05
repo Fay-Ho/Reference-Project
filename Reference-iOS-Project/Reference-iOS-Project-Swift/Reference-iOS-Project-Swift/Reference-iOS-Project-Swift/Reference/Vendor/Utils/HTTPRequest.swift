@@ -23,7 +23,7 @@
 //
 
 struct HTTPRequest {
-    enum Method: String {
+    enum Method : String {
         case get = "GET"
         case post = "POST"
     }

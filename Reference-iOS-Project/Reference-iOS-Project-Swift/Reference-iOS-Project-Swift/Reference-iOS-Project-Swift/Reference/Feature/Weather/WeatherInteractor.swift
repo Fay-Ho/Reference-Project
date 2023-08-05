@@ -43,9 +43,13 @@ extension WeatherInteractor : WeatherInteractorInterface {
     
     func fetchCityList() {
         let manager = NetworkManager()
-        manager.getCity { [weak self] in
-            guard let response = $0 else { return }
-            self?.presenter?.handleCityResponse(response)
+        manager.getCity { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.presenter?.handleCityResponse(response)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

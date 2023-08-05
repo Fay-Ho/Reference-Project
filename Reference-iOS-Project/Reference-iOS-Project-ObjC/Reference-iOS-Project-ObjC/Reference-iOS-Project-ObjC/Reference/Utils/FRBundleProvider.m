@@ -26,11 +26,7 @@
 
 @implementation FRBundleProvider
 
-+ (instancetype)provider {
-    return [[super alloc] init];
-}
-
-- (id)loadFile:(NSString *)filePath ofType:(NSString *)type {
++ (id)loadFile:(NSString *)filePath ofType:(NSString *)type {
     NSString *path = [[NSBundle mainBundle] pathForResource:filePath ofType:type];
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];

@@ -23,11 +23,10 @@
 //
 
 #import "FRWeatherResponse.h"
-#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRWeatherResponse () <JSONModel>
+@interface FRWeatherResponse ()
 
 @property (nonatomic, strong, readwrite) FRWeatherCityResponse *city;
 @property (nonatomic, assign, readwrite) int cnt;
@@ -45,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityResponse () <JSONModel>
+@interface FRWeatherCityResponse ()
 
 @property (nonatomic, strong, readwrite) FRWeatherCityCoordResponse *coord;
 @property (nonatomic, strong, readwrite) NSString *country;
@@ -66,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityCoordResponse () <JSONModel>
+@interface FRWeatherCityCoordResponse ()
 
 @property (nonatomic, assign, readwrite) double lat;
 @property (nonatomic, assign, readwrite) double lon;
@@ -77,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListResponse () <JSONModel>
+@interface FRWeatherListResponse ()
 
 @property (nonatomic, strong, readwrite) FRWeatherListCloudsResponse *clouds;
 @property (nonatomic, assign, readwrite) int dt;
@@ -100,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListCloudsResponse () <JSONModel>
+@interface FRWeatherListCloudsResponse ()
 
 @property (nonatomic, assign, readwrite) int all;
 
@@ -110,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListMainResponse () <JSONModel>
+@interface FRWeatherListMainResponse ()
 
 @property (nonatomic, assign, readwrite) double feels_like;
 @property (nonatomic, assign, readwrite) int grnd_level;
@@ -142,7 +141,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListSysResponse () <JSONModel>
+@interface FRWeatherListSysResponse ()
 
 @property (nonatomic, strong, readwrite) NSString *pod;
 
@@ -152,7 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListWeatherResponse () <JSONModel>
+@interface FRWeatherListWeatherResponse ()
 
 @property (nonatomic, strong, readwrite) NSString *w_description;
 @property (nonatomic, strong, readwrite) NSString *icon;

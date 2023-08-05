@@ -27,6 +27,10 @@
 
 @implementation FRWeatherPresenter
 
+typedef NSString* FRPattern NS_STRING_ENUM;
+FRPattern const FRPatternDateTime = @"yyyy-MM-dd HH:mm:ss";
+FRPattern const FRPatternTime = @"HH:mm";
+
 #pragma mark - FRWeatherPresenterInterface Implementation
 
 - (void)handleCityResponse:(FRCityResponse *)response {
@@ -56,9 +60,9 @@
 
 - (NSString *)formatDate:(NSString *)string {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    formatter.dateFormat = FRPatternDateTime;
     NSDate *date = [formatter dateFromString:string];
-    formatter.dateFormat = @"HH:mm";
+    formatter.dateFormat = FRPatternTime;
     return [formatter stringFromDate:date];
 }
 

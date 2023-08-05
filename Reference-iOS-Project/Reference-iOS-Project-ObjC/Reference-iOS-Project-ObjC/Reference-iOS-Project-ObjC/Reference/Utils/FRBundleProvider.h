@@ -28,9 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FRBundleProvider : NSObject
 
-+ (instancetype)provider;
-
-- (id)loadFile:(NSString *)filePath ofType:(NSString *)type;
++ (id)loadFile:(NSString *)filePath ofType:(NSString *)type;
 
 @end
 

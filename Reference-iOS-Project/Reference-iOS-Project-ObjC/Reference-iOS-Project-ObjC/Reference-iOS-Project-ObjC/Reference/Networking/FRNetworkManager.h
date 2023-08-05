@@ -24,19 +24,19 @@
 
 #import <Foundation/Foundation.h>
 #import "FLResult.h"
+#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FRNetworkManager<R> : NSObject
+@interface FRNetworkManager<R: id<JSONModel>> : NSObject
 
-typedef void(^FRLoadCompletion)(R _Nullable response);
-typedef void(^FRRequestCompletion)(FLResult<R> * _Nullable result);
+typedef void(^FRCompletion)(FLResult<R> * _Nullable result);
 
 + (instancetype)manager;
 
-- (void)getCity:(nullable FRLoadCompletion)completion;
+- (void)getCity:(nullable FRCompletion)completion;
 
-- (void)getWeather:(nullable FRRequestCompletion)completion;
+- (void)getWeather:(nullable FRCompletion)completion;
 
 @end
 

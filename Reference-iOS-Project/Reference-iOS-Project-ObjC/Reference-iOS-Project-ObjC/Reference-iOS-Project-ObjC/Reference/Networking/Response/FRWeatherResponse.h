@@ -23,12 +23,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class FRWeatherCityResponse, FRWeatherCityCoordResponse, FRWeatherListResponse, FRWeatherListCloudsResponse, FRWeatherListMainResponse, FRWeatherListRainResponse, FRWeatherListSysResponse, FRWeatherListWeatherResponse, FRWeatherListWindResponse;
 
-@interface FRWeatherResponse : NSObject
+@interface FRWeatherResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) FRWeatherCityResponse *city;
 @property (nonatomic, assign, readonly) int cnt;
@@ -38,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityResponse : NSObject
+@interface FRWeatherCityResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) FRWeatherCityCoordResponse *coord;
 @property (nonatomic, strong, readonly) NSString *country;
@@ -51,14 +52,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherCityCoordResponse : NSObject
+@interface FRWeatherCityCoordResponse : NSObject <JSONModel>
 
 @property (nonatomic, assign, readonly) double lat;
 @property (nonatomic, assign, readonly) double lon;
 
 @end
 
-@interface FRWeatherListResponse : NSObject
+@interface FRWeatherListResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) FRWeatherListCloudsResponse *clouds;
 @property (nonatomic, assign, readonly) int dt;
@@ -73,13 +74,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListCloudsResponse : NSObject
+@interface FRWeatherListCloudsResponse : NSObject <JSONModel>
 
 @property (nonatomic, assign, readonly) int all;
 
 @end
 
-@interface FRWeatherListMainResponse : NSObject
+@interface FRWeatherListMainResponse : NSObject <JSONModel>
 
 @property (nonatomic, assign, readonly) double feels_like;
 @property (nonatomic, assign, readonly) int grnd_level;
@@ -93,19 +94,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListRainResponse : NSObject
+@interface FRWeatherListRainResponse : NSObject <JSONModel>
 
 @property (nonatomic, assign, readonly) double h;
 
 @end
 
-@interface FRWeatherListSysResponse : NSObject
+@interface FRWeatherListSysResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) NSString *pod;
 
 @end
 
-@interface FRWeatherListWeatherResponse : NSObject
+@interface FRWeatherListWeatherResponse : NSObject <JSONModel>
 
 @property (nonatomic, strong, readonly) NSString *w_description;
 @property (nonatomic, strong, readonly) NSString *icon;
@@ -114,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListWindResponse : NSObject
+@interface FRWeatherListWindResponse : NSObject <JSONModel>
 
 @property (nonatomic, assign, readonly) int deg;
 @property (nonatomic, assign, readonly) double gust;

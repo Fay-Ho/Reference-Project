@@ -27,8 +27,8 @@
 @implementation FRWeatherRequest
 
 - (FLHTTPRequest *)makeRequest {
-    return [FLHTTPRequest requestWithURL:@"https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"
-                                  method:FLRequestMethodGet];
+    return [FLHTTPRequest requestWithRequestURL:@"https://api.openweathermap.org/data/2.5/forecast?q=guangzhou&appid=9520804e734d81ed699abf203a13bd68&units=metric&lang=zh_cn"
+                           requestMethod:FLRequestMethodGet];
 }
 
 @end
