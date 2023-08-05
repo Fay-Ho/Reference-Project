@@ -30,9 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^FLResponseSuccess)(id resultData);
 typedef void(^FLResponseFailure)(NSError *error);
 
-@interface FLNetwork : NSObject
+@interface FLNetworking : NSObject
 
-+ (instancetype)network;
++ (instancetype)networking;
 
 - (void)sendRequest:(FLHTTPRequest *)httpRequest success:(nullable FLResponseSuccess)success failure:(nullable FLResponseFailure)failure;
 

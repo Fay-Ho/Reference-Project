@@ -27,7 +27,7 @@
 #import "FRCityResponse.h"
 #import "FRWeatherResponse.h"
 #import "FRWeatherRequest.h"
-#import "FLNetwork.h"
+#import "FLNetworking.h"
 
 @implementation FRNetworkManager
 
@@ -51,7 +51,7 @@ FRFile const JSON = @"json";
 }
 
 - (void)sendRequest:(id<FRRequestHandler>)requestHandler response:(Class)response completion:(FRCompletion)completion {
-    FLNetwork *network = [FLNetwork network];
+    FLNetworking *network = [FLNetworking networking];
     [network sendRequest:[requestHandler makeRequest] success:^(id _Nonnull resultData) {
         [self parseData:resultData response:response completion:completion];
     } failure:^(NSError * _Nonnull error) {

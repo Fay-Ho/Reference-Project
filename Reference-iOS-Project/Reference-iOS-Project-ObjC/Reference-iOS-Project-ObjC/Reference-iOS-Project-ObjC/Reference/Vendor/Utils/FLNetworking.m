@@ -22,10 +22,10 @@
 //  SOFTWARE.
 //
 
-#import "FLNetwork.h"
+#import "FLNetworking.h"
 #import "YYModel.h"
 
-static NSOperationQueue *operationQueue() {
+static NSOperationQueue* operationQueue() {
     static NSOperationQueue *queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -35,31 +35,13 @@ static NSOperationQueue *operationQueue() {
     return queue;
 }
 
-@implementation FLNetwork
+@implementation FLNetworking
 
 #pragma mark -
 
 // 新建实例
-+ (instancetype)network {
++ (instancetype)networking {
     return [[super alloc] init];
-}
-
-#pragma mark -
-
-- (void)success:(FLResponseSuccess)success resultData:(id)resultData {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (success) {
-            success(resultData);
-        }
-    }];
-}
-
-- (void)failure:(FLResponseFailure)failure error:(NSError *)error {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (failure) {
-            failure(error);
-        }
-    }];
 }
 
 #pragma mark -
@@ -76,10 +58,14 @@ static NSOperationQueue *operationQueue() {
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:operationQueue()];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            [self failure:failure error:error];
-        } else {
-            [self success:success resultData:data];
+        if (data) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(data);
+            });
+        } else if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(error);
+            });
         }
     }];
     

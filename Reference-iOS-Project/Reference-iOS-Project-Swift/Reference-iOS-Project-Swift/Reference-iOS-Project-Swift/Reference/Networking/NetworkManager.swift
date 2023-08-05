@@ -39,21 +39,12 @@ class NetworkManager {
     }
     
     private func sendRequest<R: Decodable>(_ requestHandler: RequestHandler, completion: ((_ result: Result<R, Error>) -> Void)?) {
-        let httpRequest = requestHandler.makeRequest()
-        guard let url = URL(string: httpRequest.requestURL) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = httpRequest.requestMethod.rawValue
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async {
-                if let data = data {
-                    self.parseData(data, completion: completion)
-                } else if let error = error {
-                    completion?(.failure(error))
-                }
-            }
+        let networking = Networking()
+        networking.sendRequest(requestHandler.makeRequest()) {
+            self.parseData($0, completion: completion)
+        } failure: {
+            completion?(.failure($0))
         }
-        dataTask.resume()
     }
     
     private func parseData<R: Decodable>(_ data: Data, completion: ((_ result: Result<R, Error>) -> Void)?) {

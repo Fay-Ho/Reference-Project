@@ -29,9 +29,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -41,8 +38,8 @@ import xyz.fay.reference.networking.request.WeatherRequest;
 import xyz.fay.reference.networking.response.CityResponse;
 import xyz.fay.reference.networking.response.WeatherResponse;
 import xyz.fay.reference.utils.AssetProvider;
-import xyz.fay.reference.vendor.utils.HTTPRequest;
 import xyz.fay.reference.vendor.Result;
+import xyz.fay.reference.vendor.utils.Networking;
 
 public final class NetworkManager {
     private enum File {
@@ -69,25 +66,27 @@ public final class NetworkManager {
     }
 
     private <R extends Parcelable> void sendRequest(@NonNull RequestHandler requestHandler, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
-        RequestQueue queue = Volley.newRequestQueue(MainApplication.getAppContext());
-        HTTPRequest httpRequest = requestHandler.makeRequest();
-        StringRequest stringRequest = new StringRequest(httpRequest.getRequestMethod().getRawValue(), httpRequest.getRequestURL(), response -> {
-            parseData(response, classOfR, resultHandler);
-        }, error -> {
-            if (resultHandler != null) {
-                resultHandler.onCompletion(Result.failure(error));
+        Networking networking = new Networking(MainApplication.getAppContext());
+        networking.sendRequest(requestHandler.makeRequest(), new Networking.RequestListener() {
+            @Override
+            public void onSuccess(String resultData) {
+                parseData(resultData, classOfR, resultHandler);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                if (resultHandler == null) { return; }
+                resultHandler.onCompletion(Result.failure(throwable));
             }
         });
-        queue.add(stringRequest);
     }
 
     private <R extends Parcelable> void parseData(@NonNull String data, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
-        if (resultHandler != null) {
-            try {
-                resultHandler.onCompletion(Result.success(new Gson().fromJson(data, classOfR)));
-            } catch (JsonSyntaxException exception) {
-                resultHandler.onCompletion(Result.failure(exception));
-            }
+        if (resultHandler == null) { return; }
+        try {
+            resultHandler.onCompletion(Result.success(new Gson().fromJson(data, classOfR)));
+        } catch (JsonSyntaxException exception) {
+            resultHandler.onCompletion(Result.failure(exception));
         }
     }
 

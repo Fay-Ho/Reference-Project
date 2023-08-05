@@ -25,8 +25,6 @@ package xyz.fay.reference.networking
 */
 
 import android.os.Parcelable
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import xyz.fay.reference.MainApplication
@@ -34,6 +32,7 @@ import xyz.fay.reference.networking.request.RequestHandler
 import xyz.fay.reference.networking.request.WeatherRequest
 import xyz.fay.reference.networking.response.*
 import xyz.fay.reference.utils.AssetProvider
+import xyz.fay.reference.vendor.utils.Networking
 import kotlin.reflect.KClass
 
 class NetworkManager {
@@ -51,14 +50,12 @@ class NetworkManager {
     }
 
     private fun <R: Parcelable> sendRequest(requestHandler: RequestHandler, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
-        val queue = Volley.newRequestQueue(MainApplication.appContext);
-        val httpRequest = requestHandler.makeRequest()
-        val stringRequest = StringRequest(httpRequest.requestMethod.rawValue, httpRequest.requestURL, {
+        val networking = Networking(MainApplication.appContext)
+        networking.sendRequest(requestHandler.makeRequest(), {
             parseData(it, classOfR, completion)
         }, {
             completion?.invoke(Result.failure(it))
         })
-        queue.add(stringRequest)
     }
 
     private fun <R: Parcelable> parseData(data: String, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
