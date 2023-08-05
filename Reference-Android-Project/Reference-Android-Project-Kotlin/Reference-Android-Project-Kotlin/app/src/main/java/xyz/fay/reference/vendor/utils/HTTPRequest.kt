@@ -1,7 +1,5 @@
 package xyz.fay.reference.vendor.utils
 
-import com.android.volley.Request
-
 /*
   MIT License
 
@@ -25,6 +23,8 @@ import com.android.volley.Request
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 */
+
+import com.android.volley.Request
 
 data class HTTPRequest(
     val requestURL: String,
