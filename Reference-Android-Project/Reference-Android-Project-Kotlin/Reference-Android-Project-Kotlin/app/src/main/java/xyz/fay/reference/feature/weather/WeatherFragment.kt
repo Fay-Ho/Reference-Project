@@ -61,7 +61,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>(W
     }
 
     private fun setupImageView() {
-        binding.imageView.setImageDrawable(ImageProvider.LOCATION.loadImage())
+        binding.imageView.setImageDrawable(ImageProvider.Location.loadImage())
         binding.imageView.setOnClickListener {
             viewModel.cityResponse.observe(viewLifecycleOwner) {
                 findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToLocationFragment(it))
