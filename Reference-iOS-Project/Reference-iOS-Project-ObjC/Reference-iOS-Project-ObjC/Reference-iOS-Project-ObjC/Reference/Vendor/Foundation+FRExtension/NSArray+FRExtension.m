@@ -68,7 +68,7 @@ NSArray* zip(NSArray* array1, NSArray* array2) {
 
 - (NSArray *)filter:(BOOL (^)(id _Nonnull))transform {
     NSMutableArray *array = [NSMutableArray array];
-    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (transform(obj) == YES) {
             [array addObject:obj];
         }
