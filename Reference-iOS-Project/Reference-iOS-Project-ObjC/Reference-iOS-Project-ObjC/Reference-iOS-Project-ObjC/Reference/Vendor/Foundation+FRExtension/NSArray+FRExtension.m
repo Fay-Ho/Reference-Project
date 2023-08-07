@@ -84,17 +84,4 @@ NSArray* zip(NSArray* array1, NSArray* array2) {
     return obj;
 }
 
-- (NSArray *)zip:(NSArray *)secondArray {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count + secondArray.count];
-    
-    NSEnumerator *secondArrayEnumerator = [secondArray objectEnumerator];
-    [self enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
-        [result addObject:object];
-        id pairObject = [secondArrayEnumerator nextObject];
-        if (pairObject) [result addObject:pairObject];
-    }];
-    
-    return [result copy];
-}
-
 @end
