@@ -30,12 +30,12 @@ NSArray* zip(NSArray* array1, NSArray* array2) {
     return @[array1, array2];
 };
 
-- (void)forEach:(void (^)(id _Nonnull, id _Nonnull))body {
+- (void)forEach:(void (^)(id _Nonnull, id _Nonnull, NSUInteger))body {
     NSEnumerator *enumerator = [self.lastObject objectEnumerator];
     [self.firstObject enumerateObjectsUsingBlock:^(id _Nonnull firstObject, NSUInteger idx, BOOL * _Nonnull stop) {
         id lastObject = [enumerator nextObject];
         if (firstObject && lastObject) {
-            body(firstObject, lastObject);
+            body(firstObject, lastObject, idx);
         }
     }];
 }

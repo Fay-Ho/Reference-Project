@@ -34,7 +34,7 @@ NSArray* zip(NSArray*, NSArray*);
 
 /*!
  */
-- (void)forEach:(void (^)(E element1, E element2))body;
+- (void)forEach:(void (^)(E element1, E element2, NSUInteger idx))body;
 
 /*!
  */
