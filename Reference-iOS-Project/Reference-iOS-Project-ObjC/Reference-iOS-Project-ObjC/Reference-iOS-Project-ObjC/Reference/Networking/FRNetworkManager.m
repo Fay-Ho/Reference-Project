@@ -32,10 +32,10 @@
 @implementation FRNetworkManager
 
 typedef NSString* FRFile NS_STRING_ENUM;
-FRFile const CITY = @"city";
-FRFile const WEATHER = @"weather";
-FRFile const MOCK = @"Mock.bundle/";
-FRFile const JSON = @"json";
+FRFile const FRFileCity = @"city";
+FRFile const FRFileWeather = @"weather";
+FRFile const FRFileMock = @"Mock.bundle/";
+FRFile const FRFileJSON = @"json";
 
 #pragma mark -
 
@@ -46,7 +46,7 @@ FRFile const JSON = @"json";
 #pragma mark -
 
 - (void)loadFile:(FRFile)fileName response:(Class)response completion:(FRCompletion)completion {
-    NSData *data = [FRBundleProvider loadFile:[MOCK stringByAppendingString:fileName] ofType:JSON];
+    NSData *data = [FRBundleProvider loadFile:[FRFileMock stringByAppendingString:fileName] ofType:FRFileJSON];
     if (!data) { return; }
     [self parseData:data response:response completion:completion];
 }
@@ -67,7 +67,7 @@ FRFile const JSON = @"json";
 #pragma mark -
 
 - (void)getCity:(void (^)(FLResult<id<JSONModel>> * _Nullable))completion {
-    [self loadFile:CITY response:[FRCityResponse class] completion:completion];
+    [self loadFile:FRFileCity response:[FRCityResponse class] completion:completion];
 }
 
 - (void)getWeather:(void (^)(FLResult<id<JSONModel>> * _Nullable))completion {
