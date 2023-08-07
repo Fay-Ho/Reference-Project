@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FRWeatherListRainResponse () <JSONModel>
+@interface FRWeatherListRainResponse ()
 
 @property (nonatomic, assign, readwrite) double h;
 

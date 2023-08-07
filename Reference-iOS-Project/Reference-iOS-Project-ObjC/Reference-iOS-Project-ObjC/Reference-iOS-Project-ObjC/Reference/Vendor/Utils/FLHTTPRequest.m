@@ -26,10 +26,10 @@
 
 @implementation FLHTTPRequest
 
-NSString * const FLRequestMethodGet = @"GET";
-NSString * const FLRequestMethodPut = @"PUT";
-NSString * const FLRequestMethodPost = @"POST";
-NSString * const FLRequestMethodDelete = @"DELETE";
+FLRequestMethod const FLRequestMethodGet = @"GET";
+FLRequestMethod const FLRequestMethodPut = @"PUT";
+FLRequestMethod const FLRequestMethodPost = @"POST";
+FLRequestMethod const FLRequestMethodDelete = @"DELETE";
 
 - (NSTimeInterval)timeoutInterval {
     if (_timeoutInterval == 0) {

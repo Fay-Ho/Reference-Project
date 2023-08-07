@@ -26,21 +26,21 @@
 
 @implementation FRImageProvider
 
-NSString * const FRImageEnumClouds = @"Clouds";
-NSString * const FRImageEnumFoggy = @"大雾";
-NSString * const FRImageEnumHail = @"冰雹";
-NSString * const FRImageEnumLocation = @"Location";
-NSString * const FRImageEnumMoon = @"夜间";
-NSString * const FRImageEnumMoonCloudy = @"夜间多云";
-NSString * const FRImageEnumRain = @"Rain";
-NSString * const FRImageEnumSnowy = @"雪天";
-NSString * const FRImageEnumSun = @"Clear";
-NSString * const FRImageEnumSunCloudy = @"晴朗多云";
-NSString * const FRImageEnumThunderstorms = @"雷暴";
-NSString * const FRImageEnumTornado = @"龙卷风";
-NSString * const FRImageEnumTyphoon = @"台风";
+FRImageEnum const FRImageEnumClouds = @"Clouds";
+FRImageEnum const FRImageEnumFoggy = @"大雾";
+FRImageEnum const FRImageEnumHail = @"冰雹";
+FRImageEnum const FRImageEnumLocation = @"Location";
+FRImageEnum const FRImageEnumMoon = @"夜间";
+FRImageEnum const FRImageEnumMoonCloudy = @"夜间多云";
+FRImageEnum const FRImageEnumRain = @"Rain";
+FRImageEnum const FRImageEnumSnowy = @"雪天";
+FRImageEnum const FRImageEnumSun = @"Clear";
+FRImageEnum const FRImageEnumSunCloudy = @"晴朗多云";
+FRImageEnum const FRImageEnumThunderstorms = @"雷暴";
+FRImageEnum const FRImageEnumTornado = @"龙卷风";
+FRImageEnum const FRImageEnumTyphoon = @"台风";
 
-+ (UIImage *)loadImageWithRawValue:(NSString *)rawValue {
++ (UIImage *)loadImageWithRawValue:(FRImageEnum)rawValue {
     if ([rawValue isEqualToString:FRImageEnumClouds]) {
         return [UIImage imageNamed:@"ImgCloudy"];
     } else if ([rawValue isEqualToString:FRImageEnumFoggy]) {
