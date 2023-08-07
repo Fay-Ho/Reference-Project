@@ -26,6 +26,20 @@
 
 @implementation NSArray (FRExtension)
 
+NSArray* zip(NSArray* array1, NSArray* array2) {
+    return @[array1, array2];
+};
+
+- (void)forEach:(void (^)(id _Nonnull, id _Nonnull))body {
+    NSEnumerator *enumerator = [self.lastObject objectEnumerator];
+    [self.firstObject enumerateObjectsUsingBlock:^(id _Nonnull firstObject, NSUInteger idx, BOOL * _Nonnull stop) {
+        id lastObject = [enumerator nextObject];
+        if (firstObject && lastObject) {
+            body(firstObject, lastObject);
+        }
+    }];
+}
+
 - (NSArray *)map:(id _Nonnull (^)(id _Nonnull))transform {
     NSMutableArray *array = [NSMutableArray array];
     [self enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -50,6 +64,37 @@
         }
     }];
     return array;
+}
+
+- (NSArray *)filter:(BOOL (^)(id _Nonnull))transform {
+    NSMutableArray *array = [NSMutableArray array];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (transform(obj) == YES) {
+            [array addObject:obj];
+        }
+    }];
+    return array;
+}
+
+- (id)reduce:(id)initial nextPartial:(id _Nonnull (^)(id _Nonnull, id _Nonnull))nextPartial {
+    __block id obj = initial;
+    [self enumerateObjectsUsingBlock:^(id _Nonnull _obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj = nextPartial(obj, _obj);
+    }];
+    return obj;
+}
+
+- (NSArray *)zip:(NSArray *)secondArray {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count + secondArray.count];
+    
+    NSEnumerator *secondArrayEnumerator = [secondArray objectEnumerator];
+    [self enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
+        [result addObject:object];
+        id pairObject = [secondArrayEnumerator nextObject];
+        if (pairObject) [result addObject:pairObject];
+    }];
+    
+    return [result copy];
 }
 
 @end

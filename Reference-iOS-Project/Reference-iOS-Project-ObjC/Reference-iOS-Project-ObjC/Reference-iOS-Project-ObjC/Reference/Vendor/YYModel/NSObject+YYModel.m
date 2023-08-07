@@ -549,16 +549,16 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     
     if ([cls respondsToSelector:@selector(codingKeys)]) {
         NSDictionary *customMapper = [(id <JSONModel>)cls codingKeys];
-        [customMapper enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *mappedToKey, BOOL *stop) {
+        [customMapper enumerateKeysAndObjectsUsingBlock:^(NSString *jsonKey, NSString *propertyName, BOOL *stop) {
             _YYModelPropertyMeta *propertyMeta = allPropertyMetas[propertyName];
             if (!propertyMeta) return;
             [allPropertyMetas removeObjectForKey:propertyName];
             
-            if ([mappedToKey isKindOfClass:[NSString class]]) {
-                if (mappedToKey.length == 0) return;
+            if ([jsonKey isKindOfClass:[NSString class]]) {
+                if (jsonKey.length == 0) return;
                 
-                propertyMeta->_mappedToKey = mappedToKey;
-                NSArray *keyPath = [mappedToKey componentsSeparatedByString:@"."];
+                propertyMeta->_mappedToKey = jsonKey;
+                NSArray *keyPath = [jsonKey componentsSeparatedByString:@"."];
                 for (NSString *onePath in keyPath) {
                     if (onePath.length == 0) {
                         NSMutableArray *tmp = keyPath.mutableCopy;
@@ -571,13 +571,13 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
                     propertyMeta->_mappedToKeyPath = keyPath;
                     [keyPathPropertyMetas addObject:propertyMeta];
                 }
-                propertyMeta->_next = mapper[mappedToKey] ?: nil;
-                mapper[mappedToKey] = propertyMeta;
+                propertyMeta->_next = mapper[jsonKey] ?: nil;
+                mapper[jsonKey] = propertyMeta;
                 
-            } else if ([mappedToKey isKindOfClass:[NSArray class]]) {
+            } else if ([jsonKey isKindOfClass:[NSArray class]]) {
                 
                 NSMutableArray *mappedToKeyArray = [NSMutableArray new];
-                for (NSString *oneKey in ((NSArray *)mappedToKey)) {
+                for (NSString *oneKey in ((NSArray *)jsonKey)) {
                     if (![oneKey isKindOfClass:[NSString class]]) continue;
                     if (oneKey.length == 0) continue;
                     
@@ -598,8 +598,8 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
                 propertyMeta->_mappedToKeyArray = mappedToKeyArray;
                 [multiKeysPropertyMetas addObject:propertyMeta];
                 
-                propertyMeta->_next = mapper[mappedToKey] ?: nil;
-                mapper[mappedToKey] = propertyMeta;
+                propertyMeta->_next = mapper[jsonKey] ?: nil;
+                mapper[jsonKey] = propertyMeta;
             }
         }];
     }

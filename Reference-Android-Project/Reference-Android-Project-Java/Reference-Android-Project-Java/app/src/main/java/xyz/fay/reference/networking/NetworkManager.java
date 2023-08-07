@@ -62,6 +62,7 @@ public final class NetworkManager {
 
     private <R extends Parcelable> void loadFile(@NonNull File fileName, @NonNull Class<R> classOfR, @Nullable ResultHandler<R> resultHandler) {
         String data = AssetProvider.loadFile(File.MOCK.rawValue.concat(fileName.getRawValue()));
+        if (data == null) { return; }
         parseData(data, classOfR, resultHandler);
     }
 

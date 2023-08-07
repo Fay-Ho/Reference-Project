@@ -29,8 +29,7 @@ class BundleProvider {
         let path = Bundle.main.path(forResource: filePath, ofType: type)
         let url = URL(fileURLWithPath: path ?? "")
         do {
-            let data = try Data(contentsOf: url)
-            return data
+            return try Data(contentsOf: url)
         } catch {
             return nil
         }

@@ -25,6 +25,7 @@
 #import "FRWeatherDashboardItem.h"
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
+#import "FRImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,6 +44,8 @@ NS_ASSUME_NONNULL_END
 @interface FRWeatherDashboardItem ()
 
 @property (nonatomic, strong) UIView *container;
+@property (nonatomic, strong) UILabel *cityLabel;
+@property (nonatomic, strong) UIImageView *weatherImage;
 @property (nonatomic, strong) UILabel *temperatureLabel;
 @property (nonatomic, strong) UILabel *celsiusLabel;
 @property (nonatomic, strong) UILabel *weatherLabel;
@@ -63,9 +66,23 @@ NS_ASSUME_NONNULL_END
     return _container;
 }
 
+- (UILabel *)cityLabel {
+    if (!_cityLabel) {
+        _cityLabel = [UILabel makeWithText:nil textAlignment:NSTextAlignmentNatural];
+    }
+    return _cityLabel;
+}
+
+- (UIImageView *)weatherImage {
+    if (!_weatherImage) {
+        _weatherImage = [UIImageView makeWithImage:[FRImageProvider loadImageWithRawValue:FRImageEnumSun]];
+    }
+    return _weatherImage;
+}
+
 - (UILabel *)temperatureLabel {
     if (!_temperatureLabel) {
-        _temperatureLabel = [UILabel makeWithText:nil textAlignment:NSTextAlignmentCenter];
+        _temperatureLabel = [UILabel makeWithText:nil numberOfLines:1 textAlignment:NSTextAlignmentCenter];
     }
     return _temperatureLabel;
 }
@@ -109,16 +126,22 @@ NS_ASSUME_NONNULL_END
 
 - (void)setupSubviews {
     [self addSubview:self.container];
-    [self.container addSubviews:@[self.temperatureLabel, self.celsiusLabel, self.weatherLabel, self.windLabel]];
+    [self.container addSubviews:@[self.cityLabel, self.weatherImage, self.temperatureLabel, self.celsiusLabel, self.weatherLabel, self.windLabel]];
 }
 
 - (void)setupLayouts {
     [self.container topEqualToAnchor:self.topAnchor constant:60];
-    [self.container bottomEqualToAnchor:self.bottomAnchor constant:10];
+    [self.container bottomEqualToAnchor:self.bottomAnchor constant:-16];
     [self.container horizontalEqualToView:self constant:16];
     
+    [self.cityLabel topEqualToAnchor:self.container.topAnchor constant:24];
+    [self.cityLabel leadingEqualToAnchor:self.container.leadingAnchor constant:24];
+    
+    [self.weatherImage centerYEqualToAnchor:self.cityLabel.centerYAnchor];
+    [self.weatherImage trailingEqualToAnchor:self.container.trailingAnchor constant:-24];
+    
     [self.temperatureLabel verticalEqualToView:self.container constant:100];
-    [self.temperatureLabel horizontalEqualToView:self.container constant:135];
+    [self.temperatureLabel centerXEqualToAnchor:self.container.centerXAnchor];
     
     [self.celsiusLabel topEqualToAnchor:self.container.topAnchor constant:100];
     [self.celsiusLabel leadingEqualToAnchor:self.temperatureLabel.trailingAnchor];
@@ -133,10 +156,13 @@ NS_ASSUME_NONNULL_END
 - (void)updateStyling {
     self.container.backgroundColor = [UIColor itemColor];
     
-    self.temperatureLabel.font = [UIFont size80Font];
+    self.cityLabel.font = [UIFont size20Font];
+    self.cityLabel.textColor = [UIColor fontColor];
+    
+    self.temperatureLabel.font = [UIFont size60Font];
     self.temperatureLabel.textColor = [UIColor fontColor];
     
-    self.celsiusLabel.font = [UIFont size30Font];
+    self.celsiusLabel.font = [UIFont size25Font];
     self.celsiusLabel.textColor = [UIColor fontColor];
     
     self.weatherLabel.font = [UIFont size16Font];
@@ -149,6 +175,7 @@ NS_ASSUME_NONNULL_END
 #pragma mark -
 
 - (void)updateWithViewModel:(FRWeatherDashboardItemViewModel *)viewModel {
+    self.cityLabel.text = @"广州市";
     self.temperatureLabel.text = viewModel.temperature;
     self.weatherLabel.text = viewModel.weather;
     self.windLabel.text = viewModel.wind;

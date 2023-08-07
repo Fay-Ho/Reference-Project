@@ -39,13 +39,13 @@ FRPattern const FRPatternTime = @"HH:mm";
 
 - (void)handleWeatherResponse:(FRWeatherResponse *)response {
     FRWeatherListResponse *listResponse = response.list.firstObject;
-    if (listResponse == nil) { return; }
+    if (!listResponse) { return; }
     
     FRWeatherListWeatherResponse *weatherResponse = listResponse.weather.firstObject;
-    if (weatherResponse == nil) { return; }
+    if (!weatherResponse) { return; }
     
     [self.viewController updateSubviewsWithDataModel:[FRWeatherDataModel dataModelWithTemperature:[self formatDouble:listResponse.main.temp]
-                                                                                          weather:weatherResponse.main
+                                                                                          weather:weatherResponse.w_description
                                                                                              wind:[self formatInt:listResponse.wind.deg]
                                                                                         listItems:[self makeListItems:response]]];
 }

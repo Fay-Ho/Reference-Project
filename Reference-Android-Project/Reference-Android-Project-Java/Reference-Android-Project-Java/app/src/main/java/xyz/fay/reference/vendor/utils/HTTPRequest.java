@@ -26,7 +26,7 @@ package xyz.fay.reference.vendor.utils;
 
 import com.android.volley.Request;
 
-public class HTTPRequest {
+public final class HTTPRequest {
     public enum Method {
         GET(Request.Method.GET),
         POST(Request.Method.POST);

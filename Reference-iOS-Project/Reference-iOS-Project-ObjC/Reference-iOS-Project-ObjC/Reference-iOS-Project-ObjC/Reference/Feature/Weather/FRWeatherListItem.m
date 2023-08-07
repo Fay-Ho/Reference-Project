@@ -75,8 +75,7 @@
 }
 
 - (void)setupLayouts {
-    [self.root topEqualToAnchor:self.topAnchor constant:16];
-    [self.root bottomEqualToAnchor:self.bottomAnchor];
+    [self.root verticalEqualToView:self];
     [self.root horizontalEqualToView:self constant:16];
     
     [self.container edgeEqualToView:self.root];

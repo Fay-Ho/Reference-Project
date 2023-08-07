@@ -46,7 +46,8 @@ FRFile const JSON = @"json";
 #pragma mark -
 
 - (void)loadFile:(FRFile)fileName response:(Class)response completion:(FRCompletion)completion {
-    id data = [FRBundleProvider loadFile:[MOCK stringByAppendingString:fileName] ofType:JSON];
+    NSData *data = [FRBundleProvider loadFile:[MOCK stringByAppendingString:fileName] ofType:JSON];
+    if (!data) { return; }
     [self parseData:data response:response completion:completion];
 }
 

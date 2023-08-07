@@ -40,8 +40,8 @@ public final class AssetProvider {
     @Nullable
     public static String loadFile(@NonNull String fileName) {
         try {
-            AssetManager assetManager = MainApplication.getAppContext().getAssets();
-            InputStream inputStream = assetManager.open(fileName);
+            AssetManager assets = MainApplication.getAppContext().getAssets();
+            InputStream inputStream = assets.open(fileName);
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuilder stringBuilder = new StringBuilder();
@@ -55,7 +55,7 @@ public final class AssetProvider {
             return stringBuilder.toString();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

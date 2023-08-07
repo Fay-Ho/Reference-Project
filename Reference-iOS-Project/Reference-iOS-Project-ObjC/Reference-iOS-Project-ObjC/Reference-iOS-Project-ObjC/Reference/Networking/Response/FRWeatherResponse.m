@@ -163,7 +163,10 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FRWeatherListWeatherResponse
 
 + (NSDictionary<NSString *, id> *)codingKeys {
-    return @{@"id": @"w_id"};
+    return @{
+        @"description": @"w_description",
+        @"id": @"w_id"
+    };
 }
 
 @end

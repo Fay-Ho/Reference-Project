@@ -26,19 +26,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray<T> (FRExtension)
+@interface NSArray<E> (FRExtension)
 
 /*!
  */
-- (NSArray *)map:(id (^)(T element))transform;
+NSArray* zip(NSArray*, NSArray*);
 
 /*!
  */
-- (NSArray *)flatMap:(T (^)(T element))transform;
+- (void)forEach:(void (^)(E element1, E element2))body;
 
 /*!
  */
-- (NSArray *)compactMap:(BOOL (^)(T element))transform;
+- (NSArray *)map:(id (^)(E element))transform;
+
+/*!
+ */
+- (NSArray *)flatMap:(E (^)(E element))transform;
+
+/*!
+ */
+- (NSArray *)compactMap:(BOOL (^)(E element))transform;
+
+/*!
+ */
+- (NSArray *)filter:(BOOL (^)(E element))transform;
+
+/*!
+ */
+- (id)reduce:(E)initial nextPartial:(id (^)(E element, id obj))nextPartial;
 
 @end
 

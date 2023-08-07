@@ -46,7 +46,7 @@ class NetworkManager {
 
     private fun <R: Parcelable> loadFile(fileName: File, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {
         val data = AssetProvider.loadFile(File.Mock.rawValue + fileName.rawValue)
-        parseData(data, classOfR, completion)
+        data?.let { parseData(it, classOfR, completion) }
     }
 
     private fun <R: Parcelable> sendRequest(requestHandler: RequestHandler, classOfR: KClass<R>, completion: ((result: Result<R>) -> Unit)?) {

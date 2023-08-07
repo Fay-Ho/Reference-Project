@@ -26,20 +26,25 @@ package xyz.fay.reference.utils
 
 import xyz.fay.reference.MainApplication
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 
 class AssetProvider {
     companion object {
-        fun loadFile(fileName: String): String {
-            val manager = MainApplication.appContext.assets
-            val inputStream = manager.open(fileName)
-            val inputStreamReader = InputStreamReader(inputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
-            val data = bufferedReader.use { it.readText() }
-            bufferedReader.close()
-            inputStreamReader.close()
-            inputStream.close()
-            return data
+        fun loadFile(fileName: String): String? {
+            return try {
+                val assets = MainApplication.appContext.assets
+                val inputStream = assets.open(fileName)
+                val inputStreamReader = InputStreamReader(inputStream)
+                val bufferedReader = BufferedReader(inputStreamReader)
+                val data = bufferedReader.use { it.readText() }
+                bufferedReader.close()
+                inputStreamReader.close()
+                inputStream.close()
+                data
+            } catch (exception: IOException) {
+                null
+            }
         }
     }
 }
