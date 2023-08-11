@@ -24,6 +24,8 @@
 
 #import "FRWeatherPresenter.h"
 #import "NSArray+FRExtension.h"
+#import "FRWeatherResponse.h"
+#import "FRWeatherDataModel.h"
 
 @implementation FRWeatherPresenter
 

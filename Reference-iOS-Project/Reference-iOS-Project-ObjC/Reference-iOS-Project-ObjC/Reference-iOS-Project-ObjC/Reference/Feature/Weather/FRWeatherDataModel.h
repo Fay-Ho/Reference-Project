@@ -23,7 +23,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FRImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

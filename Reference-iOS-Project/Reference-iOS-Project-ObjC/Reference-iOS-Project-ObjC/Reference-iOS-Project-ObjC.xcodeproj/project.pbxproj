@@ -45,6 +45,7 @@
 		659850122A63DDCA0058F69E /* UIView+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 659850112A63DDCA0058F69E /* UIView+FRExtension.m */; };
 		659850182A63E8B20058F69E /* UIView+NSLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 659850162A63E8B20058F69E /* UIView+NSLayoutConstraint.m */; };
 		6598501E2A63F1EE0058F69E /* FRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6598501D2A63F1EE0058F69E /* FRBaseViewController.m */; };
+		65AE73312A8529AB00B2A6B3 /* NSObject+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE73302A8529AB00B2A6B3 /* NSObject+FRExtension.m */; };
 		65D3F8F82A66F9AB00522C5A /* FRWeatherDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F8F72A66F9AB00522C5A /* FRWeatherDataModel.m */; };
 		65D3F9432A671B5D00522C5A /* UIFont+FRTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F9422A671B5D00522C5A /* UIFont+FRTheme.m */; };
 		65D3F95D2A672DA100522C5A /* NSArray+FRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */; };
@@ -155,6 +156,9 @@
 		6598501C2A63F1EE0058F69E /* FRBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRBaseViewController.h; sourceTree = "<group>"; };
 		6598501D2A63F1EE0058F69E /* FRBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRBaseViewController.m; sourceTree = "<group>"; };
 		65ACDBA02A686E64008DA5D7 /* UIKit+FRTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIKit+FRTheme.h"; sourceTree = "<group>"; };
+		65AE732F2A8529AB00B2A6B3 /* NSObject+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+FRExtension.h"; sourceTree = "<group>"; };
+		65AE73302A8529AB00B2A6B3 /* NSObject+FRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FRExtension.m"; sourceTree = "<group>"; };
+		65AE73352A8529E100B2A6B3 /* Foundation+FRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Foundation+FRExtension.h"; sourceTree = "<group>"; };
 		65D3F8F62A66F9AB00522C5A /* FRWeatherDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRWeatherDataModel.h; sourceTree = "<group>"; };
 		65D3F8F72A66F9AB00522C5A /* FRWeatherDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FRWeatherDataModel.m; sourceTree = "<group>"; };
 		65D3F9412A671B5D00522C5A /* UIFont+FRTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+FRTheme.h"; sourceTree = "<group>"; };
@@ -428,8 +432,11 @@
 		65ACDBA12A686F2F008DA5D7 /* Foundation+FRExtension */ = {
 			isa = PBXGroup;
 			children = (
+				65AE73352A8529E100B2A6B3 /* Foundation+FRExtension.h */,
 				65D3F95B2A672DA100522C5A /* NSArray+FRExtension.h */,
 				65D3F95C2A672DA100522C5A /* NSArray+FRExtension.m */,
+				65AE732F2A8529AB00B2A6B3 /* NSObject+FRExtension.h */,
+				65AE73302A8529AB00B2A6B3 /* NSObject+FRExtension.m */,
 			);
 			path = "Foundation+FRExtension";
 			sourceTree = "<group>";
@@ -595,6 +602,7 @@
 				6589F2F02A708B2B001DC7F3 /* FRWeatherListItem.m in Sources */,
 				659850122A63DDCA0058F69E /* UIView+FRExtension.m in Sources */,
 				65D3F8F82A66F9AB00522C5A /* FRWeatherDataModel.m in Sources */,
+				65AE73312A8529AB00B2A6B3 /* NSObject+FRExtension.m in Sources */,
 				650814322A6142DE00242F55 /* UIColor+FRExtension.m in Sources */,
 				6504B4E12A60EE4A00B1D482 /* AppDelegate.m in Sources */,
 				6504B4F22A60EE4B00B1D482 /* main.m in Sources */,

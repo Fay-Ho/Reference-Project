@@ -74,7 +74,7 @@ FOUNDATION_EXPORT FLRequestMethod const FLRequestMethodPut;
  */
 @property (nonatomic) NSTimeInterval timeoutInterval;
 
-+ (instancetype)requestWithRequestURL:(NSString *)requestURL requestMethod:(FLRequestMethod)requestMethod;
++ (instancetype)requestWithRequestURL:(NSString *)requestURL requestMethod:(FLRequestMethod)requestMethod requestParams:(NSDictionary *)requestParams;
 
 @end
 

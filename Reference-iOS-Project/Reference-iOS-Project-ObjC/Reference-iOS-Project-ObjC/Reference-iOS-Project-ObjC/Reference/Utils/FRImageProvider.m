@@ -23,6 +23,13 @@
 //
 
 #import "FRImageProvider.h"
+#import "Foundation+FRExtension.h"
+
+@interface FRImageProvider ()
+
+@property (nonatomic, strong, nullable) FRImageEnum imageEnum;
+
+@end
 
 @implementation FRImageProvider
 
@@ -40,35 +47,44 @@ FRImageEnum const FRImageEnumThunderstorms = @"雷暴";
 FRImageEnum const FRImageEnumTornado = @"龙卷风";
 FRImageEnum const FRImageEnumTyphoon = @"台风";
 
-+ (UIImage *)loadImageWithRawValue:(FRImageEnum)rawValue {
-    if ([rawValue isEqualToString:FRImageEnumClouds]) {
-        return [UIImage imageNamed:@"ImgCloudy"];
-    } else if ([rawValue isEqualToString:FRImageEnumFoggy]) {
-        return [UIImage imageNamed:@"ImgFoggy"];
-    } else if ([rawValue isEqualToString:FRImageEnumHail]) {
-        return [UIImage imageNamed:@"ImgHail"];
-    } else if ([rawValue isEqualToString:FRImageEnumLocation]) {
-        return [UIImage imageNamed:@"ImgLocation"];
-    } else if ([rawValue isEqualToString:FRImageEnumMoon]) {
-        return [UIImage imageNamed:@"ImgMoon"];
-    } else if ([rawValue isEqualToString:FRImageEnumMoonCloudy]) {
-        return [UIImage imageNamed:@"ImgMoonCloudy"];
-    } else if ([rawValue isEqualToString:FRImageEnumRain]) {
-        return [UIImage imageNamed:@"ImgRainy"];
-    } else if ([rawValue isEqualToString:FRImageEnumSnowy]) {
-        return [UIImage imageNamed:@"ImgSnowy"];
-    } else if ([rawValue isEqualToString:FRImageEnumSun]) {
-        return [UIImage imageNamed:@"ImgSun"];
-    } else if ([rawValue isEqualToString:FRImageEnumSunCloudy]) {
-        return [UIImage imageNamed:@"ImgSunCloudy"];
-    } else if ([rawValue isEqualToString:FRImageEnumThunderstorms]) {
-        return [UIImage imageNamed:@"ImgThunderstorms"];
-    } else if ([rawValue isEqualToString:FRImageEnumTornado]) {
-        return [UIImage imageNamed:@"ImgTornado"];
-    } else if ([rawValue isEqualToString:FRImageEnumTyphoon]) {
-        return [UIImage imageNamed:@"ImgTyphoon"];
-    }
-    return nil;
++ (instancetype)rawValue:(NSString *)rawValue {
+    FRImageEnum imageEnum = [rawValue switchOf:@{
+        FRImageEnumClouds: ^FRImageEnum{ return FRImageEnumClouds; },
+        FRImageEnumFoggy: ^FRImageEnum{ return FRImageEnumFoggy; },
+        FRImageEnumHail: ^FRImageEnum{ return FRImageEnumHail; },
+        FRImageEnumLocation: ^FRImageEnum{ return FRImageEnumLocation; },
+        FRImageEnumMoon: ^FRImageEnum{ return FRImageEnumMoon; },
+        FRImageEnumMoonCloudy: ^FRImageEnum{ return FRImageEnumMoonCloudy; },
+        FRImageEnumRain: ^FRImageEnum{ return FRImageEnumRain; },
+        FRImageEnumSnowy: ^FRImageEnum{ return FRImageEnumSnowy; },
+        FRImageEnumSun: ^FRImageEnum{ return FRImageEnumSun; },
+        FRImageEnumSunCloudy: ^FRImageEnum{ return FRImageEnumSunCloudy; },
+        FRImageEnumThunderstorms: ^FRImageEnum{ return FRImageEnumThunderstorms; },
+        FRImageEnumTornado: ^FRImageEnum{ return FRImageEnumTornado; },
+        FRImageEnumTyphoon: ^FRImageEnum{ return FRImageEnumTyphoon; }
+    }];
+    
+    FRImageProvider *imageProvider = [[super alloc] init];
+    imageProvider.imageEnum = imageEnum;
+    return imageProvider;
+}
+
+- (UIImage *)loadImage {
+    return [self.imageEnum switchOf:@{
+        FRImageEnumClouds: ^UIImage *{ return [UIImage imageNamed:@"ImgCloudy"]; },
+        FRImageEnumFoggy: ^UIImage *{ return [UIImage imageNamed:@"ImgFoggy"]; },
+        FRImageEnumHail: ^UIImage *{ return [UIImage imageNamed:@"ImgHail"]; },
+        FRImageEnumLocation: ^UIImage *{ return [UIImage imageNamed:@"ImgLocation"]; },
+        FRImageEnumMoon: ^UIImage *{ return [UIImage imageNamed:@"ImgMoon"]; },
+        FRImageEnumMoonCloudy: ^UIImage *{ return [UIImage imageNamed:@"ImgMoonCloudy"]; },
+        FRImageEnumRain: ^UIImage *{ return [UIImage imageNamed:@"ImgRainy"]; },
+        FRImageEnumSnowy: ^UIImage *{ return [UIImage imageNamed:@"ImgSnowy"]; },
+        FRImageEnumSun: ^UIImage *{ return [UIImage imageNamed:@"ImgSun"]; },
+        FRImageEnumSunCloudy: ^UIImage *{ return [UIImage imageNamed:@"ImgSunCloudy"]; },
+        FRImageEnumThunderstorms: ^UIImage *{ return [UIImage imageNamed:@"ImgThunderstorms"]; },
+        FRImageEnumTornado: ^UIImage *{ return [UIImage imageNamed:@"ImgTornado"]; },
+        FRImageEnumTyphoon: ^UIImage *{ return [UIImage imageNamed:@"ImgTyphoon"]; }
+    }];
 }
 
 @end

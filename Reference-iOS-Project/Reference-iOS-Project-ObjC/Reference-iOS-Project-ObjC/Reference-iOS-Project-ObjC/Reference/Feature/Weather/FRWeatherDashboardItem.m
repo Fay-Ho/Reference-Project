@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_END
 
 - (UIImageView *)weatherImage {
     if (!_weatherImage) {
-        _weatherImage = [UIImageView makeWithImage:[FRImageProvider loadImageWithRawValue:FRImageEnumSun]];
+        _weatherImage = [UIImageView makeWithImage:[[FRImageProvider rawValue:FRImageEnumSun] loadImage]];
     }
     return _weatherImage;
 }

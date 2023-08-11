@@ -23,11 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
-#import "FRWeatherDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class FRCityResponse, FRWeatherResponse, FRWeatherDataModel;
 
 @protocol FRWeatherInteractorInterface <NSObject>
 

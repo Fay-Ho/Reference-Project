@@ -52,8 +52,8 @@ FRFile const FRFileJSON = @"json";
 }
 
 - (void)sendRequest:(id<FRRequestHandler>)requestHandler response:(Class)response completion:(FRCompletion)completion {
-    FLNetworking *network = [FLNetworking networking];
-    [network sendRequest:[requestHandler makeRequest] success:^(id _Nonnull resultData) {
+    FLNetworking *networking = [FLNetworking networking];
+    [networking sendRequest:[requestHandler makeRequest] success:^(id _Nonnull resultData) {
         [self parseData:resultData response:response completion:completion];
     } failure:^(NSError * _Nonnull error) {
         completion([FLResult failure:error]);

@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_END
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [UIImageView makeWithImage:[FRImageProvider loadImageWithRawValue:_viewModel.image]];
+        _imageView = [UIImageView makeWithImage:[[FRImageProvider rawValue:_viewModel.image] loadImage]];
     }
     return _imageView;
 }

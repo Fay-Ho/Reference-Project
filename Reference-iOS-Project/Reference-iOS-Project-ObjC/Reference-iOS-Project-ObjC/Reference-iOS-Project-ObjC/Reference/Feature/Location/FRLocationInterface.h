@@ -23,9 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FRLocationDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class FRLocationDataModel;
 
 @protocol FRLocationInteractorInterface <NSObject>
 

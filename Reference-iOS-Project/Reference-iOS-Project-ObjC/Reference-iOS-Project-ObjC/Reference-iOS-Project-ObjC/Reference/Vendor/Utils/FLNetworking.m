@@ -39,7 +39,6 @@ static NSOperationQueue* operationQueue() {
 
 #pragma mark -
 
-// 新建实例
 + (instancetype)networking {
     return [[super alloc] init];
 }
@@ -47,11 +46,17 @@ static NSOperationQueue* operationQueue() {
 #pragma mark -
 
 - (void)sendRequest:(FLHTTPRequest *)httpRequest success:(FLResponseSuccess)success failure:(FLResponseFailure)failure {
-    NSURL *url = [NSURL URLWithString:httpRequest.requestURL];
+    NSString *urlString = httpRequest.requestMethod == FLRequestMethodGet ?
+    [NSString stringWithFormat:@"%@?%@", httpRequest.requestURL, httpRequest.requestParams.queryString] :
+    httpRequest.requestURL;
+    
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = httpRequest.requestMethod;
     request.timeoutInterval = httpRequest.timeoutInterval;
-    request.HTTPBody = [httpRequest.requestParams.queryString dataUsingEncoding:NSUTF8StringEncoding];
+    if (httpRequest.requestMethod == FLRequestMethodPost) {
+        request.HTTPBody = [httpRequest.requestParams.queryString dataUsingEncoding:NSUTF8StringEncoding];
+    }
     [httpRequest.requestHeaders enumerateKeysAndObjectsUsingBlock:^(id _Nonnull field, id _Nonnull value, BOOL * _Nonnull stop) {
         [request setValue:value forHTTPHeaderField:field];
     }];

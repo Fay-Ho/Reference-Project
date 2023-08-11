@@ -27,6 +27,7 @@
 #import "UIKit+FRTheme.h"
 #import "NSArray+FRExtension.h"
 #import "FRWeatherListItemCell.h"
+#import "FRWeatherDataModel.h"
 
 @interface FRWeatherListItem ()
 

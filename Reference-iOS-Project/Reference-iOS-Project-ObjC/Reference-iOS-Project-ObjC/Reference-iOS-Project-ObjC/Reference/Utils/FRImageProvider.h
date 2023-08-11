@@ -43,7 +43,9 @@ FOUNDATION_EXPORT FRImageEnum const FRImageEnumThunderstorms;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumTornado;
 FOUNDATION_EXPORT FRImageEnum const FRImageEnumTyphoon;
 
-+ (nullable UIImage *)loadImageWithRawValue:(NSString *)rawValue;
++ (instancetype)rawValue:(NSString *)rawValue;
+
+- (nullable UIImage *)loadImage;
 
 @end
 
