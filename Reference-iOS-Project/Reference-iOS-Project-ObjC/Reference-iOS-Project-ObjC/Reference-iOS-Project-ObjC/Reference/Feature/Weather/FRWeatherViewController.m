@@ -28,9 +28,6 @@
 #import "FRWeatherListItem.h"
 #import "FRImageProvider.h"
 #import "FRWeatherDataModel.h"
-#import "FRWeatherConfiguration.h"
-#import "YYModel.h"
-#import "Foundation+FRExtension.h"
 
 @interface FRWeatherViewController ()
 
