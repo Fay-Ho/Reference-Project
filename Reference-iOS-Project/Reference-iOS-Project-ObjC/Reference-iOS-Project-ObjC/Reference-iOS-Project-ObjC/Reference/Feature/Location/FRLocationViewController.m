@@ -23,8 +23,10 @@
 //
 
 #import "FRLocationViewController.h"
-#import "UIKit+FRTheme.h"
+
 #import "FRLocationDataModel.h"
+
+#import "UIKit+FRTheme.h"
 
 @interface FRLocationViewController ()
 

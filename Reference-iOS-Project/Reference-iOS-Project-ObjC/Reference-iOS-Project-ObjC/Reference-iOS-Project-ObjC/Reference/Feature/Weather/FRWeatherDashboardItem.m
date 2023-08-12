@@ -23,9 +23,11 @@
 //
 
 #import "FRWeatherDashboardItem.h"
+
+#import "FRImageProvider.h"
+
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
-#import "FRImageProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

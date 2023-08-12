@@ -23,11 +23,13 @@
 //
 
 #import "FRWeatherViewController.h"
-#import "UIKit+FRTheme.h"
-#import "FRWeatherDashboardItem.h"
-#import "FRWeatherListItem.h"
+
 #import "FRImageProvider.h"
+#import "FRWeatherDashboardItem.h"
 #import "FRWeatherDataModel.h"
+#import "FRWeatherListItem.h"
+
+#import "UIKit+FRTheme.h"
 
 @interface FRWeatherViewController ()
 

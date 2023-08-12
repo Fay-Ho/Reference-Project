@@ -46,13 +46,13 @@
     }
 }
 
-+ (FLResult *)success:(id)data {
++ (instancetype)success:(id)data {
     FLResult *result = [[super alloc] init];
     result.data = data;
     return result;
 }
 
-+ (FLResult *)failure:(NSError *)error {
++ (instancetype)failure:(NSError *)error {
     FLResult *result = [[super alloc] init];
     result.error = error;
     return result;

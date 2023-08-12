@@ -23,10 +23,11 @@
 //
 
 #import "FRWeatherInteractor.h"
-#import "FRNetworkManager.h"
-#import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
+
 #import "FLMacro.h"
+#import "FRCityResponse.h"
+#import "FRNetworkManager.h"
+#import "FRWeatherResponse.h"
 
 @implementation FRWeatherInteractor
 

@@ -23,9 +23,11 @@
 //
 
 #import "FRLocationPresenter.h"
-#import "NSArray+FRExtension.h"
-#import "FRLocationDataModel.h"
+
 #import "FRCityResponse.h"
+#import "FRLocationDataModel.h"
+
+#import "Foundation+FRExtension.h"
 
 @implementation FRLocationPresenter
 

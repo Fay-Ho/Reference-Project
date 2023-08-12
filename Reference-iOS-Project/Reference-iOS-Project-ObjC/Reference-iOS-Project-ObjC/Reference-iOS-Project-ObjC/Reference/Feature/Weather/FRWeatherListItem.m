@@ -23,11 +23,13 @@
 //
 
 #import "FRWeatherListItem.h"
+
+#import "FRWeatherDataModel.h"
+#import "FRWeatherListItemCell.h"
+
+#import "Foundation+FRExtension.h"
 #import "UIKit+FRExtension.h"
 #import "UIKit+FRTheme.h"
-#import "NSArray+FRExtension.h"
-#import "FRWeatherListItemCell.h"
-#import "FRWeatherDataModel.h"
 
 @interface FRWeatherListItem ()
 

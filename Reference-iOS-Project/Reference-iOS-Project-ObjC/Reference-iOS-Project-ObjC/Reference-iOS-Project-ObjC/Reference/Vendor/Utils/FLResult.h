@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)failure:(void (^)(NSError *error))failure;
 
-+ (FLResult<T> *)success:(T)data;
++ (instancetype)success:(T)data;
 
-+ (FLResult<T> *)failure:(NSError *)error;
++ (instancetype)failure:(NSError *)error;
 
 @end
 

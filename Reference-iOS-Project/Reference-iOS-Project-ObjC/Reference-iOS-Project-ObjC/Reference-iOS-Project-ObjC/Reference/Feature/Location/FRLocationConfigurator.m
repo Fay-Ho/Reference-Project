@@ -23,6 +23,7 @@
 //
 
 #import "FRLocationConfigurator.h"
+
 #import "FRLocationInteractor.h"
 #import "FRLocationPresenter.h"
 #import "FRLocationViewController.h"

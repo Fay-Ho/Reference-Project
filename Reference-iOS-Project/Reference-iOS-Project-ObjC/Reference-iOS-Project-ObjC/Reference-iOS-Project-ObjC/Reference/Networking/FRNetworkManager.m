@@ -23,11 +23,12 @@
 //
 
 #import "FRNetworkManager.h"
+
+#import "FLNetworking.h"
 #import "FRBundleProvider.h"
 #import "FRCityResponse.h"
-#import "FRWeatherResponse.h"
 #import "FRWeatherRequest.h"
-#import "FLNetworking.h"
+#import "FRWeatherResponse.h"
 
 @implementation FRNetworkManager
 
